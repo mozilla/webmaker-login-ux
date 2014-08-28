@@ -16,7 +16,7 @@ angular.module("create-user-modal.html", []).run(["$templateCache", function($te
     "        <span class=\"help-block\" ng-show=\"form.user.email.$error.invalid\">That doesn't look like an email address!</span>\n" +
     "        <span class=\"help-block\" ng-show=\"form.user.email.$error.accountExists\">\n" +
     "          That email already has a Webmaker Account!\n" +
-    "          <button type=\"button\" class=\"create-user btn btn-primary\" ng-click=\"cancel(); tokenLogin(user.email);\">Log In</button>\n" +
+    "          <button type=\"button\" class=\"create-user btn btn-primary\" ng-click=\"cancel(); wmTokenLogin(user.email);\">Log In</button>\n" +
     "        </span>\n" +
     "      </div>\n" +
     "      <div class=\"checkbox\">\n" +

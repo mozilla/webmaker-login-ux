@@ -12,7 +12,7 @@
         <span class="help-block" ng-show="form.user.email.$error.invalid">That doesn't look like an email address!</span>
         <span class="help-block" ng-show="form.user.email.$error.accountExists">
           That email already has a Webmaker Account!
-          <button type="button" class="create-user btn btn-primary" ng-click="cancel(); tokenLogin(user.email);">Log In</button>
+          <button type="button" class="create-user btn btn-primary" ng-click="cancel(); wmTokenLogin(user.email);">Log In</button>
         </span>
       </div>
       <div class="checkbox">

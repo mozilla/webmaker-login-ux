@@ -72,14 +72,14 @@ module.directive('wmCreateUser', [
     return {
       restrict: 'A',
       controller:['$rootScope', '$scope', '$http', '$modal', '$timeout', 'focus', 'wmLoginService',
-      function($rootScope, $scope, $modal, $modal, $timeout, focus, $wmLoginService) {
+      function($rootScope, $scope, $http, $modal, $timeout, focus, wmLoginService) {
         function apply() {
           if (!$rootScope.$$phase) {
             $rootScope.$apply();
           }
         }
 
-        $rootScope.createUser = function (email) {
+        $rootScope.wmCreateUser = function (email) {
           $modal.open({
             templateUrl: 'create-user-modal.html',
             controller: createUserController,
@@ -190,7 +190,7 @@ module.directive('wmLogin', [
   function() {
     return {
       restrict: 'A',
-      controller:['$rootScope', '$scope', '$http', '$modal', 'wmLoginService',
+      controller:['$rootScope', '$scope', '$http', '$modal', '$timeout', 'wmLoginService',
         function($rootScope, $scope, $http, $modal, $timeout, wmLoginService) {
           function apply() {
             if (!$rootScope.$$phase) {
@@ -242,7 +242,7 @@ module.directive('wmLogin', [
               }
 
               $http
-                .get(webmakerLoginService.urls.checkEmail + $scope.user.loginEmail)
+                .get(wmLoginService.urls.checkEmail + $scope.user.loginEmail)
                 .success(function (resp) {
                   $scope.form.user.loginEmail.$setValidity('noAccount', resp.exists);
                 })
@@ -264,7 +264,7 @@ module.directive('wmLogin', [
                 return;
               }
 
-              webmakerLoginService.request($scope.user.loginEmail, function (err) {
+              wmLoginService.request($scope.user.loginEmail, function (err) {
                 if (err) {
                   $scope.form.user.loginEmail.$setValidity("tokenSendFailed", false);
                   $timeout(function () {
@@ -280,7 +280,7 @@ module.directive('wmLogin', [
             };
 
             $scope.submitToken = function () {
-              webmakerLoginService.authenticateToken($scope.user.loginEmail, $scope.user.token);
+              wmLoginService.authenticateToken($scope.user.loginEmail, $scope.user.token);
             };
 
             $scope.cancel = function () {
@@ -291,9 +291,9 @@ module.directive('wmLogin', [
               $modalInstance.dismiss('done');
             };
 
-            webmakerLoginService.on('login', $scope.continue);
+            wmLoginService.on('login', $scope.continue);
 
-            webmakerLoginService.on('tokenlogin', $scope.continue);
+            wmLoginService.on('tokenlogin', $scope.continue);
           };
         }
       ]
