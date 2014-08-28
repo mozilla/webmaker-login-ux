@@ -259,16 +259,16 @@ module.directive('wmLogin', [
 
             $scope.submit = function () {
               var isValid = emailRegex.test($scope.user.loginEmail);
-              $scope.form.user.loginEmail.$setValidity("invalid", isValid);
+              $scope.form.user.loginEmail.$setValidity('invalid', isValid);
               if (!isValid) {
                 return;
               }
 
               wmLoginService.request($scope.user.loginEmail, function (err) {
                 if (err) {
-                  $scope.form.user.loginEmail.$setValidity("tokenSendFailed", false);
+                  $scope.form.user.loginEmail.$setValidity('tokenSendFailed', false);
                   $timeout(function () {
-                    $scope.form.user.loginEmail.$setValidity("tokenSendFailed", true);
+                    $scope.form.user.loginEmail.$setValidity('tokenSendFailed', true);
                   }, 10000);
                   apply();
                 } else {
@@ -299,4 +299,9 @@ module.directive('wmLogin', [
       ]
     };
   }
+]);
+
+// Legacy Persona login
+module.controller('personaLoginController', [ 'wmLoginService',
+  function(wmLoginService) {}
 ]);
