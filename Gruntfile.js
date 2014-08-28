@@ -10,7 +10,7 @@ module.exports = function (grunt) {
         base: 'src/templates',
         indentString: '  '
       },
-      makeApiAngular: {
+      wmLoginAngular: {
         src: ['src/templates/**/*.html'],
         dest: 'dist/wmLogin-angular.templates.js'
       },

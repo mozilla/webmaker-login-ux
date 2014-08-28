@@ -1,4 +1,4 @@
-angular.module('templates-makeApiAngular', ['create-user-modal.html', 'login-modal.html']);
+angular.module('templates-wmLoginAngular', ['create-user-modal.html', 'login-modal.html']);
 
 angular.module("create-user-modal.html", []).run(["$templateCache", function($templateCache) {
   $templateCache.put("create-user-modal.html",
