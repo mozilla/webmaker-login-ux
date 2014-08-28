@@ -1,0 +1,30 @@
+<div class="modal-header">
+  <button ng-click="cancel()" type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+  <h3 class="modal-title" ng-hide="enterToken">{{ 'Sign in' | i18n }}</h3>
+  <span ng-show="enterToken"><i class="fa fa-envelope" style="color:#aaa;"> </i> {{ 'We emailed you a key' | i18n }}</span>
+</div>
+<div class="modal-body">
+  <form class="form" name="form.user" novalidate>
+    <div ng-show="enterEmail">
+      <div class="form-group">
+        <label for="loginEmail">{{ 'Email' | i18n }}</label>
+        <input name="loginEmail" class="form-control" ng-blur="checkEmail();" ng-model="user.loginEmail" autocomplete="on" required focus-on="login-email">
+        <span class="help-block" ng-show="form.user.loginEmail.$error.invalid">{{ 'That does not look like an email address' | i18n }}</span>
+        <span class="help-block" ng-show="form.user.loginEmail.$error.noAccount">
+          {{ 'No account found for your email' | i18n }}
+          <button type="button" class="create-user btn btn-primary" ng-click="switchToSignup();">{{'Sign up' | i18n}}</button>
+        </span>
+      </div>
+      <p bind-unsafe-html="'webmakerAuthAgreeToTerms' | i18n"></p>
+      <div class="alert alert-danger" ng-show="form.user.loginEmail.$error.tokenSendFailed">{{ 'problem sending token' | i18n }}</div>
+      <button class="submit-userid btn btn-primary" type="button" ng-disabled="form.user.loginEmail.$error.noAccount || resetRequestSent" ng-click="submit()">{{ 'Sign in' | i18n }}</button>
+    </div>
+    <div ng-show="enterToken">
+      <div class="form-group key-group">
+        <label for="key">{{ 'Enter your key to login' | i18n }}</label>
+        <input ng-model="user.token" name="key" class="form-control" required="">
+      </div>
+      <button class="submit-userid btn btn-primary" type="button" ng-click="user.token && submitToken()">{{ 'Submit Key' | i18n }}</button>
+    </div>
+  </form>
+</div>

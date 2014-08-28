@@ -1,0 +1,19 @@
+{
+  "name": "wmLogin-angular",
+  "version": "0.0.0",
+  "description": "Angular Modal directives for Webmaker Login and Account creation",
+  "main": "src/wmLogin-angular.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Mozilla Webmaker",
+  "license": "MPL-2.0",
+  "devDependencies": {
+    "grunt": "0.4.5",
+    "jit-grunt": "0.8.0",
+    "html2js": "0.0.3",
+    "grunt-contrib-copy": "0.5.0",
+    "grunt-contrib-watch": "0.6.1",
+    "grunt-html2js": "0.2.8"
+  }
+}

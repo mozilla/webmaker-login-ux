@@ -1,0 +1,50 @@
+<div class="modal-header">
+  <button ng-click="cancel()" ng-hide="welcome" type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+  <h3 class="modal-title" ng-hide="welcome && user.username">{{ 'webmakerAuthWelcome' | i18n }}</h3>
+  <h3 class="modal-title" ng-show="welcome && user.username">Welcome {{ user.username }}</h3>
+</div>
+<div class="modal-body">
+  <form class="form" name="form.user" novalidate>
+    <div ng-show="enterEmail">
+      <div class="form-group">
+        <label for="email">{{ 'Email' | i18n }}</label>
+        <input ng-model="user.email" ng-blur="checkEmail();" name="email" autocomplete="off" required>
+        <span class="help-block" ng-show="form.user.email.$error.invalid">That doesn't look like an email address!</span>
+        <span class="help-block" ng-show="form.user.email.$error.accountExists">
+          That email already has a Webmaker Account!
+          <button type="button" class="create-user btn btn-primary" ng-click="cancel(); tokenLogin(user.email);">Log In</button>
+        </span>
+      </div>
+      <div class="checkbox">
+        <label>
+          <input type="checkbox" ng-disabled="form.user.email.$error.accountExists" ng-model="form.agree" name="agreeToTerms"> <span bind-unsafe-html="'webmakerAuthAgreeToTerms' | i18n"></span>
+          <span class="help-block" ng-show="submit && !form.agree">{{ 'webmakerAuthAgreeError' | i18n }}</span>
+        </label>
+      </div>
+      <button ng-click="submitEmail()" ng-disabled="form.user.email.$error.accountExists" class="create-user btn btn-primary" type="button">Next</button>
+    </div>
+
+    <div ng-show="selectUsername">
+      <div class="form-group">
+        <label for="username">Select Username</label>
+        <input ng-model="user.username" name="username" ng-change="checkUsername()" autocomplete="off" required>
+        <span class="help-block" ng-show="form.user.username.$error.taken">{{ 'webmakerAuthTakenError' | i18n }}</span>
+      </div>
+      <button ng-click="submitUsername()" class="create-user btn btn-primary" type="button">{{ 'webmakerAuthCreateAccount' | i18n }}</button>
+    </div>
+
+    <div ng-show="welcome">
+      <div class="form-group">
+        <p>Welcome to Webmaker!</p>
+        <ul>
+          <li>Check your email to confirm your account.</li>
+          <li>Create your profile or explore all the projects you can remix!</li>
+        </ul>
+      </div>
+      <button ng-click="continue()" class="create-user btn btn-primary" type="button">Start using Webmaker</button>
+    </div>
+  </form>
+</div>
+<div class="modal-footer">
+  <button type="button" class="btn btn-default" data-dismiss="modal" ng-hide="welcome" ng-click="cancel()">{{ 'Cancel' | i18n }}</button>
+</div>
