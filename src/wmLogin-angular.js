@@ -71,6 +71,11 @@ module.directive('wmCreateUser', [
   function() {
     return {
       restrict: 'A',
+      link: function($scope, $element) {
+        $element.on('click', function() {
+          $scope.wmCreateUser();
+        });
+      },
       controller:['$rootScope', '$scope', '$http', '$modal', '$timeout', 'focus', 'wmLoginService',
       function($rootScope, $scope, $http, $modal, $timeout, focus, wmLoginService) {
         function apply() {
@@ -190,6 +195,11 @@ module.directive('wmLogin', [
   function() {
     return {
       restrict: 'A',
+      link: function($scope, $element) {
+        $element.on('click', function() {
+          $scope.wmTokenLogin();
+        });
+      },
       controller:['$rootScope', '$scope', '$http', '$modal', '$timeout', 'wmLoginService',
         function($rootScope, $scope, $http, $modal, $timeout, wmLoginService) {
           function apply() {
@@ -359,15 +369,20 @@ module.factory('wmPersonaListener', ['$modal', '$http', 'wmLoginService',
         wmLoginService.analytics.webmakerNewUserCancelled();
         $modalInstance.dismiss('cancel');
       };
+
     }
   }
 ]);
 
-module.directive('wmPersonaLogin', [
+module.directive('wmPersonaLogin', ['wmPersonaListener',
   function() {
     return {
       restrict: 'A',
-      controller: ['wmPersonaListener', Function.prototype]
+      link: function($scope, $element) {
+        $element.on('click', function() {
+          $scope.login();
+        });
+      }
     };
   }
 ]);
