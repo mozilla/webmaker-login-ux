@@ -1,4 +1,4 @@
-angular.module('templates-wmLoginAngular', ['create-user-modal.html', 'login-modal.html']);
+angular.module('templates-wmLoginAngular', ['create-user-modal.html', 'legacy-create-user-modal.html', 'login-modal.html']);
 
 angular.module("create-user-modal.html", []).run(["$templateCache", function($templateCache) {
   $templateCache.put("create-user-modal.html",
@@ -51,6 +51,49 @@ angular.module("create-user-modal.html", []).run(["$templateCache", function($te
     "</div>\n" +
     "<div class=\"modal-footer\">\n" +
     "  <button type=\"button\" class=\"btn btn-default\" data-dismiss=\"modal\" ng-hide=\"welcome\" ng-click=\"cancel()\">{{ 'Cancel' | i18n }}</button>\n" +
+    "</div>\n" +
+    "");
+}]);
+
+angular.module("legacy-create-user-modal.html", []).run(["$templateCache", function($templateCache) {
+  $templateCache.put("legacy-create-user-modal.html",
+    "<div class=\"modal-header\">\n" +
+    "  <button ng-click=\"cancel()\" type=\"button\" class=\"close\" data-dismiss=\"modal\" aria-hidden=\"true\">&times;</button>\n" +
+    "  <h3 class=\"modal-title\" >{{ 'webmakerAuthWelcome' | i18n }}</h3>\n" +
+    "</div>\n" +
+    "<div class=\"modal-body\">\n" +
+    "  <form class=\"form\" name=\"form.user\" novalidate>\n" +
+    "    <div class=\"form-group\" ng-class=\"{'has-error': (submit || form.user.username.$dirty) && form.user.username.$invalid }\">\n" +
+    "      <div class=\"row\">\n" +
+    "        <div class=\"col-sm-6\">\n" +
+    "          <label>{{ 'webmakerAuthChooseUsername' | i18n }}</label>\n" +
+    "        </div>\n" +
+    "        <div class=\"col-sm-6\">\n" +
+    "          <input ng-model=\"user.username\" name=\"username\" autocomplete=\"off\" class=\"form-control\" ng-change=\"checkUsername()\" required>\n" +
+    "          <span class=\"help-block\" ng-show=\"form.user.username.$error.taken\">{{ 'webmakerAuthTakenError' | i18n }}</span>\n" +
+    "          <span class=\"help-block\" ng-show=\"form.user.username.$error.invalid\">{{ 'webmakerAuthUsernameInvalid' | i18n }}</span>\n" +
+    "          <span class=\"help-block\" ng-show=\"(submit || form.user.username.$dirty) && form.user.username.$error.required\">{{ 'webmakerAuthUsernameRequiredError' | i18n }}</span>\n" +
+    "        </div>\n" +
+    "      </div>\n" +
+    "    </div>\n" +
+    "    <div class=\"checkbox\">\n" +
+    "      <label>\n" +
+    "        <input ng-model=\"user.mailingList\" name=\"mailingList\" type=\"checkbox\"> {{ 'webmakerAuthMailingList' | i18n }}\n" +
+    "      </label>\n" +
+    "    </div>\n" +
+    "    <div class=\"checkbox\" ng-class=\"{'has-error': submit && !form.agree }\">\n" +
+    "      <label>\n" +
+    "        <input ng-model=\"form.agree\" name=\"agree\" type=\"checkbox\"><span bind-unsafe-html=\"'webmakerAuthAgreeToTerms' | i18n\"></span>\n" +
+    "        <span class=\"help-block\" ng-show=\"submit && !form.agree\">{{ 'webmakerAuthAgreeError' | i18n }}</span>\n" +
+    "      </label>\n" +
+    "    </div>\n" +
+    "    <label>{{ 'Language Preference' | i18n }}</label>\n" +
+    "    <select ng-model=\"user.prefLocale\" language-select></select>\n" +
+    "  </form>\n" +
+    "</div>\n" +
+    "<div class=\"modal-footer\">\n" +
+    "  <button type=\"button\" class=\"btn btn-default\" data-dismiss=\"modal\" ng-click=\"cancel()\">{{ 'Cancel' | i18n }}</button>\n" +
+    "  <button ng-click=\"createUser()\" class=\"create-user btn btn-primary\" type=\"button\">{{ 'webmakerAuthCreateAccount' | i18n }}</button>\n" +
     "</div>\n" +
     "");
 }]);

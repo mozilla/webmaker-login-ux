@@ -302,6 +302,72 @@ module.directive('wmLogin', [
 ]);
 
 // Legacy Persona login
-module.controller('personaLoginController', [ 'wmLoginService',
-  function(wmLoginService) {}
+module.factory('wmPersonaListener', ['$modal', '$http', 'wmLoginService',
+  function($modal, $http, wmLoginService) {
+    wmLoginService.on('newuser', function (assertion) {
+      $modal.open({
+        templateUrl: 'legacy-create-user-modal.html',
+        controller: createUserCtrl,
+        resolve: {
+          assertion: function () {
+            return assertion;
+          }
+        }
+      });
+    });
+
+    function createUserCtrl($scope, $modalInstance, wmLoginService, assertion) {
+
+      $scope.form = {};
+      $scope.user = {};
+
+      var usernameRegex = /^[abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789\-]{1,20}$/;
+
+      $scope.checkUsername = function () {
+        if (!$scope.form.user.username) {
+          return;
+        }
+        if (!usernameRegex.test($scope.form.user.username.$viewValue)) {
+          $scope.form.user.username.$setValidity('invalid', false);
+          return;
+        }
+        $scope.form.user.username.$setValidity('invalid', true);
+        $http
+          .post(wmLoginService.urls.checkUsername, {
+            username: $scope.form.user.username.$viewValue
+          })
+          .success(function (username) {
+            $scope.form.user.username.$setValidity('taken', !username.exists);
+          })
+          .error(function (err) {
+            $scope.form.user.username.$setValidity('taken', true);
+          });
+      };
+
+      $scope.createUser = function () {
+        $scope.submit = true;
+        if ($scope.form.user.$valid && $scope.form.agree) {
+          wmLoginService.createUser({
+            assertion: assertion,
+            user: $scope.user
+          });
+          $modalInstance.close();
+        }
+      };
+
+      $scope.cancel = function () {
+        wmLoginService.analytics.webmakerNewUserCancelled();
+        $modalInstance.dismiss('cancel');
+      };
+    }
+  }
+]);
+
+module.directive('wmPersonaLogin', [
+  function() {
+    return {
+      restrict: 'A',
+      controller: ['wmPersonaListener', Function.prototype]
+    };
+  }
 ]);
