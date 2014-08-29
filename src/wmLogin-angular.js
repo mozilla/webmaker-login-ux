@@ -237,30 +237,6 @@ module.directive('wmLogin', [
 
             var emailRegex = /^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$/;
 
-            $scope.checkEmail = function () {
-              if (!$scope.user.loginEmail) {
-                return;
-              }
-
-              var isValid = emailRegex.test($scope.user.loginEmail);
-
-              $scope.form.user.loginEmail.$setValidity('invalid', isValid);
-              $scope.form.user.loginEmail.$setValidity('noAccount', true);
-
-              if (!isValid) {
-                return;
-              }
-
-              $http
-                .get(wmLoginService.urls.checkEmail + $scope.user.loginEmail)
-                .success(function (resp) {
-                  $scope.form.user.loginEmail.$setValidity('noAccount', resp.exists);
-                })
-                .error(function (err) {
-                  $scope.form.user.loginEmail.$setValidity('noAccount', true);
-                });
-            };
-
             // this is borked, causes $modal to throw when the create user modal attempts to close..
             $scope.switchToSignup = function () {
               $modalInstance.close();
@@ -276,16 +252,19 @@ module.directive('wmLogin', [
 
               wmLoginService.request($scope.user.loginEmail, function (err) {
                 if (err) {
-                  $scope.form.user.loginEmail.$setValidity('tokenSendFailed', false);
-                  $timeout(function () {
-                    $scope.form.user.loginEmail.$setValidity('tokenSendFailed', true);
-                  }, 10000);
-                  apply();
+                  if ( err === "User not found" ) {
+                    $scope.form.user.loginEmail.$setValidity('noAccount', false);
+                  } else {
+                    $scope.form.user.loginEmail.$setValidity('tokenSendFailed', false);
+                    $timeout(function () {
+                      $scope.form.user.loginEmail.$setValidity('tokenSendFailed', true);
+                    }, 10000);
+                  }
                 } else {
                   $scope.enterEmail = false;
                   $scope.enterToken = true;
-                  apply();
                 }
+                apply();
               });
             };
 
@@ -369,7 +348,6 @@ module.factory('wmPersonaListener', ['$modal', '$http', 'wmLoginService',
         wmLoginService.analytics.webmakerNewUserCancelled();
         $modalInstance.dismiss('cancel');
       };
-
     }
   }
 ]);
@@ -381,6 +359,19 @@ module.directive('wmPersonaLogin', ['wmPersonaListener',
       link: function($scope, $element) {
         $element.on('click', function() {
           $scope.login();
+        });
+      }
+    };
+  }
+]);
+
+module.directive('wmLogout', ['wmLoginService',
+  function() {
+    return {
+      restrict: 'A',
+      link: function($scope, $element) {
+        $element.on('click', function() {
+          $scope.logout();
         });
       }
     };

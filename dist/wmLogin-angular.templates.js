@@ -110,7 +110,7 @@ angular.module("login-modal.html", []).run(["$templateCache", function($template
     "    <div ng-show=\"enterEmail\">\n" +
     "      <div class=\"form-group\">\n" +
     "        <label for=\"loginEmail\">{{ 'Email' | i18n }}</label>\n" +
-    "        <input name=\"loginEmail\" class=\"form-control\" ng-blur=\"checkEmail();\" ng-model=\"user.loginEmail\" autocomplete=\"on\" required focus-on=\"login-email\">\n" +
+    "        <input name=\"loginEmail\" class=\"form-control\" ng-model=\"user.loginEmail\" autocomplete=\"on\" required focus-on=\"login-email\">\n" +
     "        <span class=\"help-block\" ng-show=\"form.user.loginEmail.$error.invalid\">{{ 'That does not look like an email address' | i18n }}</span>\n" +
     "        <span class=\"help-block\" ng-show=\"form.user.loginEmail.$error.noAccount\">\n" +
     "          {{ 'No account found for your email' | i18n }}\n" +

@@ -8,7 +8,7 @@
     <div ng-show="enterEmail">
       <div class="form-group">
         <label for="loginEmail">{{ 'Email' | i18n }}</label>
-        <input name="loginEmail" class="form-control" ng-blur="checkEmail();" ng-model="user.loginEmail" autocomplete="on" required focus-on="login-email">
+        <input name="loginEmail" class="form-control" ng-model="user.loginEmail" autocomplete="on" required focus-on="login-email">
         <span class="help-block" ng-show="form.user.loginEmail.$error.invalid">{{ 'That does not look like an email address' | i18n }}</span>
         <span class="help-block" ng-show="form.user.loginEmail.$error.noAccount">
           {{ 'No account found for your email' | i18n }}
