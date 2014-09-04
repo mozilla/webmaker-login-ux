@@ -1,8 +1,10 @@
 module.exports = function (grunt) {
 
-  require('jit-grunt')(grunt);
-  grunt.loadNpmTasks('grunt-contrib-less');
-  grunt.loadNpmTasks('grunt-contrib-jshint');
+  require('jit-grunt')(grunt, {
+    shell: 'grunt-shell-spawn',
+    less: 'grunt-contrib-less',
+    express: 'grunt-express-server'
+  });
 
   grunt.initConfig({
     pkg: grunt.file.readJSON('package.json'),
@@ -35,10 +37,20 @@ module.exports = function (grunt) {
       }
     },
 
+    express: {
+      dev: {
+        options: {
+          script: 'test/server.js',
+          node_env: 'DEV',
+          port: ''
+        }
+      }
+    },
+
     watch: {
       src: {
-        files: ['src/**/*'],
-        tasks: ['build'],
+        files: ['src/**/*', "test/**/*", "locale/**/*"],
+        tasks: ['build', 'express'],
         options: {
           spawn: false
         }
@@ -55,6 +67,7 @@ module.exports = function (grunt) {
 
   grunt.registerTask('dev', [
     'build',
+    'express',
     'watch'
   ]);
 

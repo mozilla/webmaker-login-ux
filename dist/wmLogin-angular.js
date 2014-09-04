@@ -128,20 +128,6 @@ module.directive('wmCreateUser', [
             var isValid = emailRegex.test($scope.user.email);
 
             $scope.form.user.email.$setValidity('invalid', isValid);
-            $scope.form.user.email.$setValidity('accountExists', true);
-
-            if (!isValid) {
-              return;
-            }
-
-            $http
-              .get(wmLoginService.urls.checkEmail + $scope.user.email)
-              .success(function (email) {
-                $scope.form.user.email.$setValidity('accountExists', !email.exists);
-              })
-              .error(function (err) {
-                $scope.form.user.email.$setValidity('accountExists', true);
-              });
           };
 
           $scope.submitUsername = function () {
@@ -252,6 +238,7 @@ module.directive('wmLogin', [
 
               wmLoginService.request($scope.user.loginEmail, function (err) {
                 if (err) {
+                  console.log( typeof err );
                   if ( err === "User not found" ) {
                     $scope.form.user.loginEmail.$setValidity('noAccount', false);
                   } else {

@@ -128,20 +128,6 @@ module.directive('wmCreateUser', [
             var isValid = emailRegex.test($scope.user.email);
 
             $scope.form.user.email.$setValidity('invalid', isValid);
-            $scope.form.user.email.$setValidity('accountExists', true);
-
-            if (!isValid) {
-              return;
-            }
-
-            $http
-              .get(wmLoginService.urls.checkEmail + $scope.user.email)
-              .success(function (email) {
-                $scope.form.user.email.$setValidity('accountExists', !email.exists);
-              })
-              .error(function (err) {
-                $scope.form.user.email.$setValidity('accountExists', true);
-              });
           };
 
           $scope.submitUsername = function () {
