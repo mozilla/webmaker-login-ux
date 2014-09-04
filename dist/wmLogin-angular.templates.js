@@ -4,7 +4,7 @@ angular.module("create-user-modal.html", []).run(["$templateCache", function($te
   $templateCache.put("create-user-modal.html",
     "<div class=\"modal-header\">\n" +
     "  <button ng-click=\"cancel()\" ng-hide=\"welcome\" type=\"button\" class=\"close\" data-dismiss=\"modal\" aria-hidden=\"true\">&times;</button>\n" +
-    "  <h3 class=\"modal-title\" ng-hide=\"welcome && user.username\">{{ 'webmakerAuthWelcome' | i18n }}</h3>\n" +
+    "  <h3 class=\"modal-title\" ng-hide=\"welcome && user.username\">{{ 'webmakerAuthCreateAccount' | i18n }}</h3>\n" +
     "  <h3 class=\"modal-title\" ng-show=\"welcome && user.username\">Welcome {{ user.username }}</h3>\n" +
     "</div>\n" +
     "<div class=\"modal-body\">\n" +
@@ -12,7 +12,7 @@ angular.module("create-user-modal.html", []).run(["$templateCache", function($te
     "    <div ng-show=\"enterEmail\">\n" +
     "      <div class=\"form-group\">\n" +
     "        <label for=\"email\">{{ 'Email' | i18n }}</label>\n" +
-    "        <input ng-model=\"user.email\" ng-blur=\"checkEmail();\" name=\"email\" autocomplete=\"off\" required>\n" +
+    "        <input ng-model=\"user.email\" ng-blur=\"checkEmail();\" type=\"email\" class=\"form-control\" name=\"email\" autocomplete=\"off\" required>\n" +
     "        <span class=\"help-block\" ng-show=\"form.user.email.$error.invalid\">That doesn't look like an email address!</span>\n" +
     "        <span class=\"help-block\" ng-show=\"form.user.email.$error.accountExists\">\n" +
     "          That email already has a Webmaker Account!\n" +
