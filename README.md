@@ -40,24 +40,13 @@ with fake data.
 
 ### Sign In Options:
 
-* email: "user@webmaker.org"
-* token: "token"
-* result: Should successfully log in (modal closes, check console if you don't trust me)
-
-* email: "user@webmaker.org"
-* token: anything that's not "token"
-* result: 401 reponse from server
-
-* email: "error@webmaker.org"
-* token: And token you want
-* result: server returns a 500 response
-
-* email: "ratelimit@webmaker.org"
-* token: any
-* result: server returns a 429 response
-
-* email: "fake@webmaker.org"
-* result: User not found, asks if you want to create an account
+|email|token|result|
+|-----|-----|------|
+|user@webmaker.org|token|Should successfully log in (modal closes, check console if you don't trust me)|
+|user@webmaker.org|anything not token|401 reponse from server|
+|error@webmaker.org|anything|server returns a 500 response|
+|ratelimit@webmaker.org|Anything|server returns a 429 response|
+|fake@webmaker.org|N/A|User not found, asks if you want to create an account|
 
 ### Sign Up Options:
 
@@ -65,9 +54,11 @@ with fake data.
 * username: Any username
 * result: Welcome to webmaker modal page
 
+
 * email: Any
 * username: "taken"
 * result: username is taken error
+
 
 * email: Any
 * username: "failCreate"
