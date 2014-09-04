@@ -11,3 +11,6 @@
   color: #454545;
   text-transform: uppercase;
 }
+.modal-content .modal-body .checkbox {
+  padding: 0;
+}
