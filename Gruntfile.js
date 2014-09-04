@@ -1,6 +1,8 @@
 module.exports = function (grunt) {
 
   require('jit-grunt')(grunt);
+  grunt.loadNpmTasks('grunt-contrib-less');
+  grunt.loadNpmTasks('grunt-contrib-jshint');
 
   grunt.initConfig({
     pkg: grunt.file.readJSON('package.json'),
@@ -14,6 +16,14 @@ module.exports = function (grunt) {
         src: ['src/templates/**/*.html'],
         dest: 'dist/wmLogin-angular.templates.js'
       },
+    },
+
+    less: {
+      production: {
+        files: {
+          "dist/login-angular.css": "src/less/login-angular.less"
+        }
+      }
     },
 
     copy: {
@@ -39,6 +49,7 @@ module.exports = function (grunt) {
 
   grunt.registerTask('build', [
     'html2js',
+    'less:production',
     'copy'
   ]);
 
