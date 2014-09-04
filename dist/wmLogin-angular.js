@@ -238,7 +238,6 @@ module.directive('wmLogin', [
 
               wmLoginService.request($scope.user.loginEmail, function (err) {
                 if (err) {
-                  console.log( typeof err );
                   if ( err === "User not found" ) {
                     $scope.form.user.loginEmail.$setValidity('noAccount', false);
                   } else {
