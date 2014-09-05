@@ -5,6 +5,9 @@
 </div>
 <div class="modal-body">
   <form class="form" name="form.user" novalidate>
+<div class="alert alert-danger" ng-show="submit && !form.agree" bind-unsafe-html="'webmakerAuthAgreeError' | i18n"></div><!-- <i class="fa fa-times"></i></div> -->
+<!-- <span bind-unsafe-html="'webmakerAuthAgreeToTerms' | i18n"></span>
+ -->
     <div ng-show="enterEmail">
       <div class="form-group">
         <label for="email">{{ 'Email' | i18n }}</label>
@@ -18,7 +21,7 @@
       <div class="checkbox">
         <label>
           <input type="checkbox" ng-disabled="form.user.email.$error.accountExists" ng-model="form.agree" name="agreeToTerms"> <span bind-unsafe-html="'webmakerAuthAgreeToTerms' | i18n"></span>
-          <span class="help-block" ng-show="submit && !form.agree">{{ 'webmakerAuthAgreeError' | i18n }}</span>
+
         </label>
       </div>
       <button ng-click="submitEmail()" ng-disabled="form.user.email.$error.accountExists" class="create-user btn btn-primary" type="button">{{ 'Sign up' | i18n }}</button>
@@ -45,6 +48,7 @@
     </div>
   </form>
 </div>
-<div class="modal-footer">
+<!-- <div class="modal-footer">
   <button type="button" class="btn btn-default" data-dismiss="modal" ng-hide="welcome" ng-click="cancel()">{{ 'Cancel' | i18n }}</button>
 </div>
+ -->
