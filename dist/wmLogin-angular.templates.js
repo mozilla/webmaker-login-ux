@@ -50,7 +50,7 @@ angular.module("create-user-modal.html", []).run(["$templateCache", function($te
     "          <li>Create your profile or explore all the projects you can remix!</li>\n" +
     "        </ul>\n" +
     "      </div>\n" +
-    "      <button ng-click=\"continue()\" class=\"create-user btn btn-primary\" type=\"button\">Start using Webmaker</button>\n" +
+    "      <button ng-click=\"continue()\" class=\"btn btn-primary\" type=\"button\">Start using Webmaker</button>\n" +
     "    </div>\n" +
     "  </form>\n" +
     "</div>\n" +
