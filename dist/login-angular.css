@@ -17,6 +17,9 @@
 .modal-content .modal-body .checkbox {
   padding: 0;
 }
+.modal-content .modal-body .create-user {
+  margin-top: 0.625rem;
+}
 .modal-content .alert {
   margin-bottom: 1.3rem;
 }
