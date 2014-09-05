@@ -1,3 +1,10 @@
+.uppercase-label() {
+  font-size: 1.333333333rem;
+  font-weight: 600;
+  color: #454545;
+  text-transform: uppercase;
+}
+
 .modal-content {
   padding: 0 0 2rem 0;
   .modal-header {
@@ -7,18 +14,11 @@
   .modal-body {
     padding: 1rem 3rem;
     label[for=email] {
-      font-size: 1.333333333rem;
-      font-weight: 600;
-      color: #454545;
-      text-transform: uppercase;
+      .uppercase-label();
     }
     label[for=pre-username] {
       display: block;
-      margin-bottom: 0.625rem;
-      font-size: 1.333333333rem;
-      font-weight: 600;
-      color: #454545;
-      text-transform: uppercase;
+      .uppercase-label();
     }
     label[for=username-url] {
       float: left;

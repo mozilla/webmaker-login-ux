@@ -16,7 +16,6 @@
 }
 .modal-content .modal-body label[for=pre-username] {
   display: block;
-  margin-bottom: 0.625rem;
   font-size: 1.333333333rem;
   font-weight: 600;
   color: #454545;
