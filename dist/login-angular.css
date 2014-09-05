@@ -43,6 +43,14 @@
   width: 130px;
   height: 120px;
 }
+.modal-content .modal-body .tool-desc .btn-primary {
+  float: left;
+}
+.modal-content .modal-body .tool-desc .explore-link {
+  float: left;
+  font-size: 12px;
+  margin: 14px 0 0 10px;
+}
 .modal-content .modal-body .form-control.username {
   width: 70%;
 }

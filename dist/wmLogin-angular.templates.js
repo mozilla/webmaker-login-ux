@@ -73,8 +73,10 @@ angular.module("create-user-modal.html", []).run(["$templateCache", function($te
     "          <p>X-Ray Goggles allow you to see the building blocks that make up\n" +
     "          websites on the Internet. Activate the goggles to inspect the code behind\n" +
     "          any webpage.</p>\n" +
-    "          <button class=\"create-user btn btn-primary\" type=\"button\">Try the Goggles now</button>\n" +
-    "          <a href=\"#\">Explore the rest of Webmaker</a>\n" +
+    "          <div class=\"clearfix\">\n" +
+    "            <button class=\"create-user btn btn-primary\" type=\"button\">Try the Goggles now</button>\n" +
+    "            <a href=\"#\" class=\"explore-link\">Explore the rest of Webmaker</a>\n" +
+    "          </div>\n" +
     "        </div>\n" +
     "      </div>\n" +
     "    </div>\n" +
