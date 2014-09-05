@@ -27,7 +27,6 @@ angular.module("create-user-modal.html", []).run(["$templateCache", function($te
     "      <div class=\"checkbox\">\n" +
     "        <label>\n" +
     "          <input type=\"checkbox\" ng-disabled=\"form.user.email.$error.accountExists\" ng-model=\"form.agree\" name=\"agreeToTerms\"> <span bind-unsafe-html=\"'webmakerAuthAgreeToTerms' | i18n\"></span>\n" +
-    "\n" +
     "        </label>\n" +
     "      </div>\n" +
     "      <button ng-click=\"submitEmail()\" ng-disabled=\"form.user.email.$error.accountExists\" class=\"create-user btn btn-primary\" type=\"button\">{{ 'Sign up' | i18n }}</button>\n" +
@@ -35,8 +34,10 @@ angular.module("create-user-modal.html", []).run(["$templateCache", function($te
     "\n" +
     "    <div ng-show=\"selectUsername\">\n" +
     "      <div class=\"form-group\">\n" +
-    "        <label for=\"username\">Select Username</label>\n" +
-    "        <input ng-model=\"user.username\" name=\"username\" ng-change=\"checkUsername()\" autocomplete=\"off\" required>\n" +
+    "        <label for=\"pre-username\">Choose a username</label>\n" +
+    "        <label for=\"username-url\">webmaker.org/user/</label>\n" +
+    "  <!--       <span class=\"username-url\">webmaker.org</span> -->\n" +
+    "        <input ng-model=\"user.username\" name=\"username-url\" ng-change=\"checkUsername()\" class=\"form-control username\" autocomplete=\"off\" required autofocus>\n" +
     "        <span class=\"help-block\" ng-show=\"form.user.username.$error.taken\">{{ 'webmakerAuthTakenError' | i18n }}</span>\n" +
     "      </div>\n" +
     "      <button ng-click=\"submitUsername()\" class=\"create-user btn btn-primary\" type=\"button\">{{ 'webmakerAuthCreateAccount' | i18n }}</button>\n" +
