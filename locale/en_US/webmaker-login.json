@@ -1,5 +1,6 @@
 {
   "webmakerAuthWelcome": "Welcome to Webmaker!",
+  "webmakerAuthCreateWelcome": "Create a Webmaker account",
   "webmakerAuthChooseUsername": "Choose a username",
   "webmakerAuthTakenError": "<i class=\"fa fa-times\"></i> That username is taken. Try adding your favourite number at the end.",
   "webmakerAuthUsernameInvalid": "Invalid username. All usernames must be between 1-20 characters, and only include \"-\" and alphanumeric characters",
