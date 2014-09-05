@@ -25,7 +25,7 @@
   "password_reset_complete": "Your password has been reset successfully! You can now try and log in.",
   "otp_enabled": "You have enabled one-time password logins for your account!",
   "We emailed you a key": "We emailed you a key",
-  "That does not look like an email address": "That doesn't look like an email address!",
+  "That does not look like an email address": "<i class=\"fa fa-times\"></i>  <strong>Uh oh!</strong> That doesn't look like an email address.",
   "No account found for your email": "<i class=\"fa fa-times\"></i>  We couldn't find your email address. Did you mean to <a href=\"#\" ngClick=\"switchToSignup();\" class=\"alert-link\">create an account</a>?",
   "invalid email or password": "The email and/or password your entered in invalid.",
   "problem sending token": "There was a problem sending a login key to you, please try again.",
