@@ -10,7 +10,7 @@
   "webmakerAuthCreateAccount": "Create a Webmaker account",
   "Cancel": "Cancel",
   "Email": "Enter your email",
-  "NotAnEmail": "That doesn't look like an email address",
+  "NotAnEmail": "<i class=\"fa fa-times\"></i>  <strong>Uh oh!</strong> That doesn't look like an email address.",
   "WebmakerAccountExists": "<i class=\"fa fa-exclamation-circle\"></i>  <strong>Heads up!</strong> That email already has an account. Did you mean to <a href=\"#\" class=\"alert-link\">log in</a>?",
   "ChooseUsername": "Choose Username",
   "Language Preference": "Language Preference",
