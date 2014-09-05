@@ -21,7 +21,7 @@
           <span class="help-block" ng-show="submit && !form.agree">{{ 'webmakerAuthAgreeError' | i18n }}</span>
         </label>
       </div>
-      <button ng-click="submitEmail()" ng-disabled="form.user.email.$error.accountExists" class="create-user btn btn-primary" type="button">Next</button>
+      <button ng-click="submitEmail()" ng-disabled="form.user.email.$error.accountExists" class="create-user btn btn-primary" type="button">{{ 'Sign up' | i18n }}</button>
     </div>
 
     <div ng-show="selectUsername">
