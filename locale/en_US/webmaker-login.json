@@ -6,7 +6,7 @@
   "webmakerAuthUsernameRequiredError": "You must choose a username",
   "webmakerAuthMailingList": "Send me email updates about Mozilla Webmaker and other projects",
   "webmakerAuthAgreeToTerms": "I agree to Webmaker's <a href='https://webmaker.org/{{localeInfo.lang}}/terms'>terms</a> and <a href='https://webmaker.org/{{localeInfo.lang}}/privacy'>conditions</a>",
-  "webmakerAuthAgreeError": "You must agree to our terms and conditions.",
+  "webmakerAuthAgreeError": "<i class=\"fa fa-times\"></i>  <strong>Oh snap!</strong> You must agree to our terms and conditions.",
   "webmakerAuthCreateAccount": "Create a Webmaker account",
   "Cancel": "Cancel",
   "Email": "Enter your email",

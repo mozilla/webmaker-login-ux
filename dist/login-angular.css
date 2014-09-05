@@ -1,3 +1,6 @@
+.modal-content {
+  padding: 0 0 2rem 0;
+}
 .modal-content .modal-header {
   padding: 2rem 3rem 0 3rem;
   border-bottom-style: none;
@@ -13,4 +16,7 @@
 }
 .modal-content .modal-body .checkbox {
   padding: 0;
+}
+.modal-content .alert {
+  margin-bottom: 1.3rem;
 }

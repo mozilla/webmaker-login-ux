@@ -9,6 +9,9 @@ angular.module("create-user-modal.html", []).run(["$templateCache", function($te
     "</div>\n" +
     "<div class=\"modal-body\">\n" +
     "  <form class=\"form\" name=\"form.user\" novalidate>\n" +
+    "<div class=\"alert alert-danger\" ng-show=\"submit && !form.agree\" bind-unsafe-html=\"'webmakerAuthAgreeError' | i18n\"></div><!-- <i class=\"fa fa-times\"></i></div> -->\n" +
+    "<!-- <span bind-unsafe-html=\"'webmakerAuthAgreeToTerms' | i18n\"></span>\n" +
+    " -->\n" +
     "    <div ng-show=\"enterEmail\">\n" +
     "      <div class=\"form-group\">\n" +
     "        <label for=\"email\">{{ 'Email' | i18n }}</label>\n" +
@@ -22,7 +25,7 @@ angular.module("create-user-modal.html", []).run(["$templateCache", function($te
     "      <div class=\"checkbox\">\n" +
     "        <label>\n" +
     "          <input type=\"checkbox\" ng-disabled=\"form.user.email.$error.accountExists\" ng-model=\"form.agree\" name=\"agreeToTerms\"> <span bind-unsafe-html=\"'webmakerAuthAgreeToTerms' | i18n\"></span>\n" +
-    "          <span class=\"help-block\" ng-show=\"submit && !form.agree\">{{ 'webmakerAuthAgreeError' | i18n }}</span>\n" +
+    "\n" +
     "        </label>\n" +
     "      </div>\n" +
     "      <button ng-click=\"submitEmail()\" ng-disabled=\"form.user.email.$error.accountExists\" class=\"create-user btn btn-primary\" type=\"button\">{{ 'Sign up' | i18n }}</button>\n" +
@@ -49,9 +52,10 @@ angular.module("create-user-modal.html", []).run(["$templateCache", function($te
     "    </div>\n" +
     "  </form>\n" +
     "</div>\n" +
-    "<div class=\"modal-footer\">\n" +
+    "<!-- <div class=\"modal-footer\">\n" +
     "  <button type=\"button\" class=\"btn btn-default\" data-dismiss=\"modal\" ng-hide=\"welcome\" ng-click=\"cancel()\">{{ 'Cancel' | i18n }}</button>\n" +
     "</div>\n" +
+    " -->\n" +
     "");
 }]);
 
