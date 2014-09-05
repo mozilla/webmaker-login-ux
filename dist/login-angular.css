@@ -37,19 +37,19 @@
 }
 .modal-content .modal-body .tool-desc .icon {
   float: left;
-  margin-right: 30px;
+  margin-right: 1.875rem;
 }
 .modal-content .modal-body .tool-desc .icon svg {
-  width: 130px;
-  height: 120px;
+  width: 13rem;
+  height: 12rem;
 }
 .modal-content .modal-body .tool-desc .btn-primary {
   float: left;
 }
 .modal-content .modal-body .tool-desc .explore-link {
   float: left;
-  font-size: 12px;
-  margin: 14px 0 0 10px;
+  font-size: 1.3rem;
+  margin: 1.4rem 0 0 1.2rem;
 }
 .modal-content .modal-body .form-control.username {
   width: 70%;
