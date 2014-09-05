@@ -36,7 +36,6 @@ angular.module("create-user-modal.html", []).run(["$templateCache", function($te
     "      <div class=\"form-group\">\n" +
     "        <label for=\"pre-username\">Choose a username</label>\n" +
     "        <label for=\"username-url\">webmaker.org/user/</label>\n" +
-    "  <!--       <span class=\"username-url\">webmaker.org</span> -->\n" +
     "        <input ng-model=\"user.username\" name=\"username-url\" ng-change=\"checkUsername()\" class=\"form-control username\" autocomplete=\"off\" required autofocus>\n" +
     "        <span class=\"help-block\" ng-show=\"form.user.username.$error.taken\">{{ 'webmakerAuthTakenError' | i18n }}</span>\n" +
     "      </div>\n" +
