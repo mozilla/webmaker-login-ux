@@ -57,6 +57,9 @@
 .modal-content .modal-body .checkbox {
   padding: 0;
 }
+.modal-content .modal-body .checkbox span {
+  font-weight: 300;
+}
 .modal-content .modal-body .btn-primary {
   margin-top: 0.625rem;
 }
