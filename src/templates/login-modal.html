@@ -5,17 +5,14 @@
 </div>
 <div class="modal-body">
   <form class="form" name="form.user" novalidate>
+    <div class="alert alert-warning" ng-show="form.user.loginEmail.$error.noAccount" bind-unsafe-html="'No account found for your email' | i18n"></div>
     <div ng-show="enterEmail">
       <div class="form-group">
         <label for="loginEmail">{{ 'Email' | i18n }}</label>
         <input name="loginEmail" class="form-control" ng-model="user.loginEmail" autocomplete="on" required focus-on="login-email">
         <span class="help-block" ng-show="form.user.loginEmail.$error.invalid">{{ 'That does not look like an email address' | i18n }}</span>
-        <span class="help-block" ng-show="form.user.loginEmail.$error.noAccount">
-          {{ 'No account found for your email' | i18n }}
-          <button type="button" class="create-user btn btn-primary" ng-click="switchToSignup();">{{'Sign up' | i18n}}</button>
         </span>
       </div>
-      <p bind-unsafe-html="'webmakerAuthAgreeToTerms' | i18n"></p>
       <div class="alert alert-danger" ng-show="form.user.loginEmail.$error.tokenSendFailed">{{ 'problem sending token' | i18n }}</div>
       <button class="submit-userid btn btn-primary" type="button" ng-disabled="form.user.loginEmail.$error.noAccount || resetRequestSent" ng-click="submit()">{{ 'Sign in' | i18n }}</button>
     </div>

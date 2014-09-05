@@ -139,17 +139,14 @@ angular.module("login-modal.html", []).run(["$templateCache", function($template
     "</div>\n" +
     "<div class=\"modal-body\">\n" +
     "  <form class=\"form\" name=\"form.user\" novalidate>\n" +
+    "    <div class=\"alert alert-warning\" ng-show=\"form.user.loginEmail.$error.noAccount\" bind-unsafe-html=\"'No account found for your email' | i18n\"></div>\n" +
     "    <div ng-show=\"enterEmail\">\n" +
     "      <div class=\"form-group\">\n" +
     "        <label for=\"loginEmail\">{{ 'Email' | i18n }}</label>\n" +
     "        <input name=\"loginEmail\" class=\"form-control\" ng-model=\"user.loginEmail\" autocomplete=\"on\" required focus-on=\"login-email\">\n" +
     "        <span class=\"help-block\" ng-show=\"form.user.loginEmail.$error.invalid\">{{ 'That does not look like an email address' | i18n }}</span>\n" +
-    "        <span class=\"help-block\" ng-show=\"form.user.loginEmail.$error.noAccount\">\n" +
-    "          {{ 'No account found for your email' | i18n }}\n" +
-    "          <button type=\"button\" class=\"create-user btn btn-primary\" ng-click=\"switchToSignup();\">{{'Sign up' | i18n}}</button>\n" +
     "        </span>\n" +
     "      </div>\n" +
-    "      <p bind-unsafe-html=\"'webmakerAuthAgreeToTerms' | i18n\"></p>\n" +
     "      <div class=\"alert alert-danger\" ng-show=\"form.user.loginEmail.$error.tokenSendFailed\">{{ 'problem sending token' | i18n }}</div>\n" +
     "      <button class=\"submit-userid btn btn-primary\" type=\"button\" ng-disabled=\"form.user.loginEmail.$error.noAccount || resetRequestSent\" ng-click=\"submit()\">{{ 'Sign in' | i18n }}</button>\n" +
     "    </div>\n" +
