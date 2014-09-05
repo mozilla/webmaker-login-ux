@@ -25,7 +25,7 @@ angular.module("create-user-modal.html", []).run(["$templateCache", function($te
     "          <span class=\"help-block\" ng-show=\"submit && !form.agree\">{{ 'webmakerAuthAgreeError' | i18n }}</span>\n" +
     "        </label>\n" +
     "      </div>\n" +
-    "      <button ng-click=\"submitEmail()\" ng-disabled=\"form.user.email.$error.accountExists\" class=\"create-user btn btn-primary\" type=\"button\">Next</button>\n" +
+    "      <button ng-click=\"submitEmail()\" ng-disabled=\"form.user.email.$error.accountExists\" class=\"create-user btn btn-primary\" type=\"button\">{{ 'Sign up' | i18n }}</button>\n" +
     "    </div>\n" +
     "\n" +
     "    <div ng-show=\"selectUsername\">\n" +
