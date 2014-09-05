@@ -9,9 +9,11 @@ angular.module("create-user-modal.html", []).run(["$templateCache", function($te
     "</div>\n" +
     "<div class=\"modal-body\">\n" +
     "  <form class=\"form\" name=\"form.user\" novalidate>\n" +
-    "  <div class=\"alert alert-danger\" ng-show=\"submit && !form.agree\" bind-unsafe-html=\"'webmakerAuthAgreeError' | i18n\"></div>\n" +
-    "  <!-- TODO: Show the following div if a Webmaker account exists -->\n" +
-    "  <div class=\"alert alert-warning\" ng-show=\"submit && !form.agree\" bind-unsafe-html=\"'WebmakerAccountExists' | i18n\"></div>\n" +
+    "    <div class=\"alert alert-danger\" ng-show=\"submit && !form.agree\" bind-unsafe-html=\"'webmakerAuthAgreeError' | i18n\"></div>\n" +
+    "    <!-- TODO: Show the following div if a Webmaker account exists -->\n" +
+    "    <div class=\"alert alert-warning\" ng-show=\"submit && !form.agree\" bind-unsafe-html=\"'WebmakerAccountExists' | i18n\"></div>\n" +
+    "    <!-- TODO: Show the following div if entry is not an email -->\n" +
+    "    <div class=\"alert alert-danger\" ng-show=\"submit && !form.agree\" bind-unsafe-html=\"'NotAnEmail' | i18n\"></div>\n" +
     "    <div ng-show=\"enterEmail\">\n" +
     "      <div class=\"form-group\">\n" +
     "        <label for=\"email\">{{ 'Email' | i18n }}</label>\n" +
