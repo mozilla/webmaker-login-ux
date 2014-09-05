@@ -23,7 +23,6 @@
       <div class="checkbox">
         <label>
           <input type="checkbox" ng-disabled="form.user.email.$error.accountExists" ng-model="form.agree" name="agreeToTerms"> <span bind-unsafe-html="'webmakerAuthAgreeToTerms' | i18n"></span>
-
         </label>
       </div>
       <button ng-click="submitEmail()" ng-disabled="form.user.email.$error.accountExists" class="create-user btn btn-primary" type="button">{{ 'Sign up' | i18n }}</button>
@@ -31,8 +30,10 @@
 
     <div ng-show="selectUsername">
       <div class="form-group">
-        <label for="username">Select Username</label>
-        <input ng-model="user.username" name="username" ng-change="checkUsername()" autocomplete="off" required>
+        <label for="pre-username">Choose a username</label>
+        <label for="username-url">webmaker.org/user/</label>
+  <!--       <span class="username-url">webmaker.org</span> -->
+        <input ng-model="user.username" name="username-url" ng-change="checkUsername()" class="form-control username" autocomplete="off" required autofocus>
         <span class="help-block" ng-show="form.user.username.$error.taken">{{ 'webmakerAuthTakenError' | i18n }}</span>
       </div>
       <button ng-click="submitUsername()" class="create-user btn btn-primary" type="button">{{ 'webmakerAuthCreateAccount' | i18n }}</button>
