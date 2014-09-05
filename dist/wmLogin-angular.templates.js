@@ -14,6 +14,7 @@ angular.module("create-user-modal.html", []).run(["$templateCache", function($te
     "    <div class=\"alert alert-warning\" ng-show=\"submit && !form.agree\" bind-unsafe-html=\"'WebmakerAccountExists' | i18n\"></div>\n" +
     "    <!-- TODO: Show the following div if entry is not an email -->\n" +
     "    <div class=\"alert alert-danger\" ng-show=\"submit && !form.agree\" bind-unsafe-html=\"'NotAnEmail' | i18n\"></div>\n" +
+    "    <div class=\"alert alert-danger\" ng-show=\"form.user.username.$error.taken\" bind-unsafe-html=\"'webmakerAuthTakenError' | i18n\"></div>\n" +
     "    <div ng-show=\"enterEmail\">\n" +
     "      <div class=\"form-group\">\n" +
     "        <label for=\"email\">{{ 'Email' | i18n }}</label>\n" +
@@ -37,7 +38,6 @@ angular.module("create-user-modal.html", []).run(["$templateCache", function($te
     "        <label for=\"pre-username\">Choose a username</label>\n" +
     "        <label for=\"username-url\">webmaker.org/user/</label>\n" +
     "        <input ng-model=\"user.username\" name=\"username-url\" ng-change=\"checkUsername()\" class=\"form-control username\" autocomplete=\"off\" required autofocus>\n" +
-    "        <span class=\"help-block\" ng-show=\"form.user.username.$error.taken\">{{ 'webmakerAuthTakenError' | i18n }}</span>\n" +
     "      </div>\n" +
     "      <button ng-click=\"submitUsername()\" class=\"create-user btn btn-primary\" type=\"button\">{{ 'webmakerAuthCreateAccount' | i18n }}</button>\n" +
     "    </div>\n" +
