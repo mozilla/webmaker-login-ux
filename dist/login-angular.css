@@ -68,7 +68,7 @@
 .modal-content .modal-body .enterToken .key-group {
   -webkit-flex: 1;
   flex: 1;
-  padding-left: 2rem;
+  padding: 1rem 0 0 2rem;
   border-left: 1px solid #DDDDDD;
 }
 .modal-content .modal-body .form-control.username {
