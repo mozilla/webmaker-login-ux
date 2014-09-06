@@ -52,6 +52,25 @@
   font-size: 1.3rem;
   margin: 1.4rem 0 0 1.2rem;
 }
+.modal-content .modal-body .enterToken .email-container {
+  display: -webkit-flex;
+  display: flex;
+}
+.modal-content .modal-body .enterToken .mailIcon {
+  -webkit-flex: 1;
+  flex: 1;
+  text-align: center;
+}
+.modal-content .modal-body .enterToken .mailIcon p {
+  width: 80%;
+  margin: 0 auto;
+}
+.modal-content .modal-body .enterToken .key-group {
+  -webkit-flex: 1;
+  flex: 1;
+  padding-left: 2rem;
+  border-left: 1px solid #DDDDDD;
+}
 .modal-content .modal-body .form-control.username {
   width: 70%;
 }
