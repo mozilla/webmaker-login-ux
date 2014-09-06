@@ -39,9 +39,11 @@
           </svg>
           <p>The email we just sent you contains a link and key to sign in.</p>
         </div>
-        <div class="form-group key-group">
-          <label for="key">{{ 'Enter your key to login' | i18n }}</label>
-          <input ng-model="user.token" name="key" class="form-control" required="">
+        <div class="key-group">
+          <div class="form-group">
+            <label for="key">{{ 'Enter your key to login' | i18n }}</label>
+            <input ng-model="user.token" name="key" class="form-control" required="">
+          </div>
           <button class="submit-userid btn btn-primary" type="button" ng-click="user.token && submitToken()">{{ 'Submit Key' | i18n }}</button>
         </div>
       </div>

@@ -173,9 +173,11 @@ angular.module("login-modal.html", []).run(["$templateCache", function($template
     "          </svg>\n" +
     "          <p>The email we just sent you contains a link and key to sign in.</p>\n" +
     "        </div>\n" +
-    "        <div class=\"form-group key-group\">\n" +
-    "          <label for=\"key\">{{ 'Enter your key to login' | i18n }}</label>\n" +
-    "          <input ng-model=\"user.token\" name=\"key\" class=\"form-control\" required=\"\">\n" +
+    "        <div class=\"key-group\">\n" +
+    "          <div class=\"form-group\">\n" +
+    "            <label for=\"key\">{{ 'Enter your key to login' | i18n }}</label>\n" +
+    "            <input ng-model=\"user.token\" name=\"key\" class=\"form-control\" required=\"\">\n" +
+    "          </div>\n" +
     "          <button class=\"submit-userid btn btn-primary\" type=\"button\" ng-click=\"user.token && submitToken()\">{{ 'Submit Key' | i18n }}</button>\n" +
     "        </div>\n" +
     "      </div>\n" +
