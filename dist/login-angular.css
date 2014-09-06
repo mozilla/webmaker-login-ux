@@ -90,3 +90,6 @@
   line-height: 2.2rem;
   font-weight: 300;
 }
+.webmaker img {
+  max-width: 100%;
+}
