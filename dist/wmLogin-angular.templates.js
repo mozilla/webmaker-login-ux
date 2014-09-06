@@ -171,7 +171,7 @@ angular.module("login-modal.html", []).run(["$templateCache", function($template
     "                  </g>\n" +
     "              </g>\n" +
     "          </svg>\n" +
-    "          <p>The email we just sent you contains a link and key to sign in.</p>\n" +
+    "          <p>{{ 'tokenMessage' | i18n }}</p>\n" +
     "        </div>\n" +
     "        <div class=\"key-group\">\n" +
     "          <div class=\"form-group\">\n" +
