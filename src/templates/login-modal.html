@@ -8,6 +8,8 @@
     <div class="alert alert-warning" ng-show="form.user.loginEmail.$error.noAccount" bind-unsafe-html="'No account found for your email' | i18n"></div>
     <div class="alert alert-danger" ng-show="form.user.loginEmail.$error.invalid" bind-unsafe-html="'That does not look like an email address' | i18n"></div>
     <div class="alert alert-danger" ng-show="form.user.loginEmail.$error.tokenSendFailed" bind-unsafe-html="'problem sending token' | i18n"></div>
+    <!-- TODO: Show this error if key is incorrect -->
+    <div class="alert alert-danger" ng-show="form.user.loginEmail.$error.tokenSendFailed" bind-unsafe-html="'incorrecToken' | i18n"></div>
     <div ng-show="enterEmail">
       <div class="form-group">
         <label for="loginEmail">{{ 'Email' | i18n }}</label>
