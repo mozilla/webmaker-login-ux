@@ -23,7 +23,7 @@
   color: #454545;
   text-transform: uppercase;
 }
-.modal-content .modal-body label[for=username-url] {
+.modal-content .modal-body label[for=username] {
   float: left;
   padding: 7px 12px;
   font-weight: normal;
