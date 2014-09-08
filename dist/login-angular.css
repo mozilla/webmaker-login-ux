@@ -1,0 +1,116 @@
+.modal-content {
+  padding: 0 0 2rem 0;
+}
+.modal-content .modal-header {
+  padding: 2rem 3rem 0 3rem;
+  border-bottom-style: none;
+}
+.modal-content .modal-body {
+  padding: 1rem 3rem;
+}
+.modal-content .modal-body label[for=email],
+.modal-content .modal-body label[for=loginEmail],
+.modal-content .modal-body label[for=key] {
+  font-size: 1.333333333rem;
+  font-weight: 600;
+  color: #454545;
+  text-transform: uppercase;
+}
+.modal-content .modal-body label[for=pre-username] {
+  display: block;
+  font-size: 1.333333333rem;
+  font-weight: 600;
+  color: #454545;
+  text-transform: uppercase;
+}
+.modal-content .modal-body label[for=username-url] {
+  float: left;
+  padding: 7px 12px;
+  font-weight: normal;
+  background-color: #e3eaee;
+  color: #454545;
+}
+.modal-content .modal-body .subheadline {
+  margin-top: -1rem;
+}
+.modal-content .modal-body .tool-desc {
+  margin: 1.5rem 0 0 0;
+}
+.modal-content .modal-body .tool-desc .icon {
+  float: left;
+  margin-right: 1.875rem;
+}
+.modal-content .modal-body .tool-desc .icon svg {
+  width: 13rem;
+  height: 12rem;
+}
+.modal-content .modal-body .tool-desc .btn-primary {
+  float: left;
+}
+.modal-content .modal-body .tool-desc .explore-link {
+  float: left;
+  font-size: 1.3rem;
+  margin: 1.4rem 0 0 1.2rem;
+}
+.modal-content .modal-body .enterToken .email-container {
+  display: -webkit-flex;
+  display: flex;
+}
+.modal-content .modal-body .enterToken .mailIcon {
+  -webkit-flex: 1;
+  flex: 1;
+  text-align: center;
+}
+.modal-content .modal-body .enterToken .mailIcon p {
+  width: 80%;
+  margin: 0 auto;
+}
+.modal-content .modal-body .enterToken .key-group {
+  -webkit-flex: 1;
+  flex: 1;
+  padding: 1rem 0 0 2rem;
+  border-left: 1px solid #DDDDDD;
+}
+.modal-content .modal-body .form-control.username {
+  width: 70%;
+}
+.modal-content .modal-body .checkbox {
+  padding: 0;
+}
+.modal-content .modal-body .checkbox span {
+  font-weight: 300;
+}
+.modal-content .modal-body .btn-primary {
+  margin-top: 0.625rem;
+}
+.modal-content .alert {
+  margin-bottom: 1.3rem;
+}
+.modal-content p {
+  line-height: 2.2rem;
+  font-weight: 300;
+}
+.navbar-btn {
+  margin-right: 0.7em;
+}
+.navbar-btn:last-child {
+  margin-right: 1em;
+}
+.navbar .test-buttons {
+  margin: 0;
+}
+.btn-secondary-nav {
+  color: #333;
+  background: none;
+  border-color: none;
+}
+.btn-secondary-nav:hover {
+  background: #333;
+  color: white !important;
+}
+.btn-secondary-nav.active {
+  background-color: #1f1f1f;
+}
+.webmaker img {
+  max-width: 100%;
+}

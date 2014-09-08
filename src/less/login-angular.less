@@ -1,0 +1,123 @@
+.uppercase-label() {
+  font-size: 1.333333333rem;
+  font-weight: 600;
+  color: #454545;
+  text-transform: uppercase;
+}
+
+.modal-content {
+  padding: 0 0 2rem 0;
+  .modal-header {
+    padding: 2rem 3rem 0 3rem;
+    border-bottom-style: none;
+  }
+  .modal-body {
+    padding: 1rem 3rem;
+    label[for=email], label[for=loginEmail], label[for=key] {
+      .uppercase-label();
+    }
+    label[for=pre-username] {
+      display: block;
+      .uppercase-label();
+    }
+    label[for=username-url] {
+      float: left;
+      padding: 7px 12px;
+      font-weight: normal;
+      background-color: #e3eaee;
+      color: #454545;
+    }
+    .subheadline {
+      margin-top: -1rem;
+    }
+    .tool-desc {
+      margin: 1.5rem 0 0 0;
+      .icon {
+        float: left;
+        margin-right: 1.875rem;
+        svg {
+          width: 13rem;
+          height: 12rem;
+        }
+      }
+      .btn-primary {
+        float: left;
+      }
+      .explore-link {
+        float: left;
+        font-size: 1.3rem;
+        margin: 1.4rem 0 0 1.2rem;
+      }
+    }
+    .enterToken {
+      .email-container {
+        display: -webkit-flex;
+        display: flex;
+      }
+      .mailIcon {
+        -webkit-flex: 1;
+        flex: 1;
+        text-align: center;
+        p {
+          width: 80%;
+          margin: 0 auto;
+        }
+      }
+      .key-group {
+        -webkit-flex: 1;
+        flex: 1;
+        padding: 1rem 0 0 2rem;
+        border-left: 1px solid #DDDDDD;
+      }
+    }
+    .form-control.username {
+      width: 70%;
+    }
+    .checkbox {
+      padding: 0;
+      span {
+        font-weight: 300;
+      }
+    }
+    .btn-primary {
+      margin-top: 0.625rem
+    }
+  }
+  .alert {
+    margin-bottom: 1.3rem;
+  }
+  p {
+    line-height: 2.2rem;
+    font-weight: 300;
+  }
+}
+
+// Delete this, CSS is for test page only
+.navbar-btn {
+  margin-right: 0.7em;
+  &:last-child {
+    margin-right: 1em;
+  }
+}
+
+.navbar .test-buttons{
+  margin: 0;
+}
+
+.btn-secondary-nav {
+  color: #333;
+  background: none;
+  border-color: none;
+  &:hover {
+    background: #333;
+    color: white !important;
+  }
+  &.active {
+    background-color: darken(#333, 8%);
+  }
+}
+.webmaker {
+  img {
+    max-width: 100%;
+  }
+}
