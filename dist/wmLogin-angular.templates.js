@@ -30,7 +30,10 @@ angular.module("create-user-modal.html", []).run(["$templateCache", function($te
     "          <input type=\"checkbox\" ng-disabled=\"form.user.email.$error.accountExists\" ng-model=\"form.agree\" name=\"agreeToTerms\"> <span bind-unsafe-html=\"'webmakerAuthAgreeToTerms' | i18n\"></span>\n" +
     "        </label>\n" +
     "      </div>\n" +
-    "      <button ng-click=\"submitEmail()\" ng-disabled=\"form.user.email.$error.accountExists\" class=\"create-user btn btn-primary\" type=\"button\">{{ 'Sign up' | i18n }}</button>\n" +
+    "      <div class=\"cta-links clearfix\">\n" +
+    "        <button ng-click=\"submitEmail()\" ng-disabled=\"form.user.email.$error.accountExists\" class=\"create-user btn btn-primary\" type=\"button\">{{ 'Sign up' | i18n }}</button>\n" +
+    "        <p>or <a href=\"#\">log in with Persona</a></p>\n" +
+    "      </div>\n" +
     "    </div>\n" +
     "\n" +
     "    <div ng-show=\"selectUsername\">\n" +
@@ -149,7 +152,10 @@ angular.module("login-modal.html", []).run(["$templateCache", function($template
     "        <label for=\"loginEmail\">{{ 'Email' | i18n }}</label>\n" +
     "        <input name=\"loginEmail\" class=\"form-control\" ng-model=\"user.loginEmail\" autocomplete=\"on\" required focus-on=\"login-email\">\n" +
     "      </div>\n" +
-    "      <button class=\"submit-userid btn btn-primary\" type=\"button\" ng-disabled=\"form.user.loginEmail.$error.noAccount || resetRequestSent\" ng-click=\"submit()\">{{ 'Sign in' | i18n }}</button>\n" +
+    "      <div class=\"cta-links clearfix\">\n" +
+    "        <button class=\"submit-userid btn btn-primary\" type=\"button\" ng-disabled=\"form.user.loginEmail.$error.noAccount || resetRequestSent\" ng-click=\"submit()\">{{ 'Sign in' | i18n }}</button>\n" +
+    "        <p>or <a href=\"#\">log in with Persona</a></p>\n" +
+    "      </div>\n" +
     "    </div>\n" +
     "    <div class=\"enterToken\" ng-show=\"enterToken\">\n" +
     "      <div class=\"email-container\">\n" +

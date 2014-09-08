@@ -80,6 +80,13 @@
 .modal-content .modal-body .checkbox span {
   font-weight: 300;
 }
+.modal-content .modal-body .cta-links button,
+.modal-content .modal-body .cta-links p {
+  float: left;
+}
+.modal-content .modal-body .cta-links p {
+  margin: 12px 0 0 8px;
+}
 .modal-content .modal-body .btn-primary {
   margin-top: 0.625rem;
 }
