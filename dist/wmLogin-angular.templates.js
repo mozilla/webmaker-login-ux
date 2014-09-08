@@ -36,8 +36,8 @@ angular.module("create-user-modal.html", []).run(["$templateCache", function($te
     "    <div ng-show=\"selectUsername\">\n" +
     "      <div class=\"form-group\">\n" +
     "        <label for=\"pre-username\">Choose a username</label>\n" +
-    "        <label for=\"username-url\">webmaker.org/user/</label>\n" +
-    "        <input ng-model=\"user.username\" name=\"username-url\" ng-change=\"checkUsername()\" class=\"form-control username\" autocomplete=\"off\" required autofocus>\n" +
+    "        <label for=\"username\">webmaker.org/user/</label>\n" +
+    "        <input ng-model=\"user.username\" name=\"username\" ng-change=\"checkUsername()\" class=\"form-control username\" autocomplete=\"off\" required autofocus>\n" +
     "      </div>\n" +
     "      <button ng-click=\"submitUsername()\" class=\"create-user btn btn-primary\" type=\"button\">{{ 'webmakerAuthCreateAccount' | i18n }}</button>\n" +
     "    </div>\n" +
