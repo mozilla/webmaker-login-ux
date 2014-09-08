@@ -15,7 +15,10 @@
         <label for="loginEmail">{{ 'Email' | i18n }}</label>
         <input name="loginEmail" class="form-control" ng-model="user.loginEmail" autocomplete="on" required focus-on="login-email">
       </div>
-      <button class="submit-userid btn btn-primary" type="button" ng-disabled="form.user.loginEmail.$error.noAccount || resetRequestSent" ng-click="submit()">{{ 'Sign in' | i18n }}</button>
+      <div class="cta-links clearfix">
+        <button class="submit-userid btn btn-primary" type="button" ng-disabled="form.user.loginEmail.$error.noAccount || resetRequestSent" ng-click="submit()">{{ 'Sign in' | i18n }}</button>
+        <p>or <a href="#">log in with Persona</a></p>
+      </div>
     </div>
     <div class="enterToken" ng-show="enterToken">
       <div class="email-container">
