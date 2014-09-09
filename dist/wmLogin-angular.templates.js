@@ -10,20 +10,13 @@ angular.module("create-user-modal.html", []).run(["$templateCache", function($te
     "<div class=\"modal-body\">\n" +
     "  <form class=\"form\" name=\"form.user\" novalidate>\n" +
     "    <div class=\"alert alert-danger\" ng-show=\"submit && !form.agree\" bind-unsafe-html=\"'webmakerAuthAgreeError' | i18n\"></div>\n" +
-    "    <!-- TODO: Show the following div if a Webmaker account exists -->\n" +
-    "    <div class=\"alert alert-warning\" ng-show=\"submit && !form.agree\" bind-unsafe-html=\"'WebmakerAccountExists' | i18n\"></div>\n" +
-    "    <!-- TODO: Show the following div if entry is not an email -->\n" +
-    "    <div class=\"alert alert-danger\" ng-show=\"submit && !form.agree\" bind-unsafe-html=\"'NotAnEmail' | i18n\"></div>\n" +
+    "    <div class=\"alert alert-warning\" ng-show=\"form.user.email.$error.accountExists\" bind-unsafe-html=\"'WebmakerAccountExists' | i18n\"></div>\n" +
+    "    <div class=\"alert alert-danger\" ng-show=\"form.user.email.$error.invalid\" bind-unsafe-html=\"'NotAnEmail' | i18n\"></div>\n" +
     "    <div class=\"alert alert-danger\" ng-show=\"form.user.username.$error.taken\" bind-unsafe-html=\"'webmakerAuthTakenError' | i18n\"></div>\n" +
     "    <div ng-show=\"enterEmail\">\n" +
     "      <div class=\"form-group\">\n" +
     "        <label for=\"email\">{{ 'Email' | i18n }}</label>\n" +
     "        <input ng-model=\"user.email\" ng-blur=\"checkEmail();\" type=\"email\" class=\"form-control\" name=\"email\" autocomplete=\"off\" required>\n" +
-    "        <span class=\"help-block\" ng-show=\"form.user.email.$error.invalid\">That doesn't look like an email address!</span>\n" +
-    "        <span class=\"help-block\" ng-show=\"form.user.email.$error.accountExists\">\n" +
-    "          That email already has a Webmaker Account!\n" +
-    "          <button type=\"button\" class=\"create-user btn btn-primary\" ng-click=\"cancel(); wmTokenLogin(user.email);\">Log In</button>\n" +
-    "        </span>\n" +
     "      </div>\n" +
     "      <div class=\"checkbox\">\n" +
     "        <label>\n" +

@@ -6,20 +6,13 @@
 <div class="modal-body">
   <form class="form" name="form.user" novalidate>
     <div class="alert alert-danger" ng-show="submit && !form.agree" bind-unsafe-html="'webmakerAuthAgreeError' | i18n"></div>
-    <!-- TODO: Show the following div if a Webmaker account exists -->
-    <div class="alert alert-warning" ng-show="submit && !form.agree" bind-unsafe-html="'WebmakerAccountExists' | i18n"></div>
-    <!-- TODO: Show the following div if entry is not an email -->
-    <div class="alert alert-danger" ng-show="submit && !form.agree" bind-unsafe-html="'NotAnEmail' | i18n"></div>
+    <div class="alert alert-warning" ng-show="form.user.email.$error.accountExists" bind-unsafe-html="'WebmakerAccountExists' | i18n"></div>
+    <div class="alert alert-danger" ng-show="form.user.email.$error.invalid" bind-unsafe-html="'NotAnEmail' | i18n"></div>
     <div class="alert alert-danger" ng-show="form.user.username.$error.taken" bind-unsafe-html="'webmakerAuthTakenError' | i18n"></div>
     <div ng-show="enterEmail">
       <div class="form-group">
         <label for="email">{{ 'Email' | i18n }}</label>
         <input ng-model="user.email" ng-blur="checkEmail();" type="email" class="form-control" name="email" autocomplete="off" required>
-        <span class="help-block" ng-show="form.user.email.$error.invalid">That doesn't look like an email address!</span>
-        <span class="help-block" ng-show="form.user.email.$error.accountExists">
-          That email already has a Webmaker Account!
-          <button type="button" class="create-user btn btn-primary" ng-click="cancel(); wmTokenLogin(user.email);">Log In</button>
-        </span>
       </div>
       <div class="checkbox">
         <label>
