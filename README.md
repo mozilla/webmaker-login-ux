@@ -48,7 +48,7 @@ with fake data.
 |ratelimit@webmaker.org|Anything|Server returns a 429 response|
 |fake@webmaker.org|N/A|User not found, asks if you want to create an account|
 
-### Sign Up Options:
+### Join Webmaker Options:
 
 |email|username|result|
 |-----|-----|------|
