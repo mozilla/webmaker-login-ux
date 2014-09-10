@@ -15,7 +15,7 @@
   "WebmakerAccountExists": "<i class=\"fa fa-exclamation-circle\"></i>  <strong>Heads up!</strong> That email already has an account. Did you mean to <a href=\"#\" class=\"alert-link\">sign in</a>?",
   "ChooseUsername": "Choose Username",
   "Language Preference": "Language Preference",
-  "Sign in": "Sign in to Webmaker",
+  "Sign in": "Sign in",
   "Sign up": "Sign up",
   "Sign out": "Sign out",
   "Password Reset": "Password Reset",
