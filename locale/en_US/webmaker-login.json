@@ -30,7 +30,7 @@
   "No account found for your email": "<i class=\"fa fa-times\"></i>  We couldn't find your email address. Did you mean to <a href=\"#\" ng-click=\"switchToSignup();\" class=\"alert-link\">create an account</a>?",
   "invalid email or password": "The email and/or password your entered in invalid.",
   "problem sending token": "<i class=\"fa fa-times\"></i>  There was a problem sending a login key to you, please try again.",
-  "incorrectToken": "<i class=\"fa fa-times\"></i>  <strong>Uh oh!</strong> They key is not correct.",
+  "incorrectToken": "<i class=\"fa fa-times\"></i>  <strong>Uh oh!</strong> That key is not correct.",
   "Enter your key to login": "Enter your key to login",
   "Submit Key": "Submit Key",
   "Enter the Login key": "Enter the Login key we just sent you",
