@@ -20,7 +20,7 @@ angular.module("create-user-modal.html", []).run(["$templateCache", function($te
     "        <label for=\"email\">{{ 'Email' | i18n }}</label>\n" +
     "        <input ng-model=\"user.email\" ng-blur=\"checkEmail();\" type=\"text\" class=\"form-control\" name=\"email\" autocomplete=\"off\" required>\n" +
     "      </div>\n" +
-    "      <div class=\"checkbox\">\n" +
+    "      <div class=\"terms-checkbox\">\n" +
     "        <label>\n" +
     "          <input ng-model=\"form.agree\" type=\"checkbox\" ng-disabled=\"form.user.email.$error.accountExists\" ng-model=\"form.agree\" name=\"agreeToTerms\"> <span bind-unsafe-html=\"'webmakerAuthAgreeToTerms' | i18n\"></span>\n" +
     "        </label>\n" +

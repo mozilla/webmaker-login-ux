@@ -16,7 +16,7 @@
         <label for="email">{{ 'Email' | i18n }}</label>
         <input ng-model="user.email" ng-blur="checkEmail();" type="text" class="form-control" name="email" autocomplete="off" required>
       </div>
-      <div class="checkbox">
+      <div class="terms-checkbox">
         <label>
           <input ng-model="form.agree" type="checkbox" ng-disabled="form.user.email.$error.accountExists" ng-model="form.agree" name="agreeToTerms"> <span bind-unsafe-html="'webmakerAuthAgreeToTerms' | i18n"></span>
         </label>
