@@ -27,6 +27,9 @@
       background-color: #e3eaee;
       color: #454545;
     }
+    .form-group {
+      margin-bottom: 1.5rem;
+    }
     .subheadline {
       margin-top: -1rem;
     }
@@ -73,10 +76,12 @@
     .form-control.username {
       width: 70%;
     }
-    .checkbox {
-      padding: 0;
-      span {
+    .terms-checkbox {
+      label {
         font-weight: 300;
+      }
+      input[type="checkbox"]:focus {
+        outline: 0;
       }
     }
     .cta-links {

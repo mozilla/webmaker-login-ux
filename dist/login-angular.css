@@ -30,6 +30,9 @@
   background-color: #e3eaee;
   color: #454545;
 }
+.modal-content .modal-body .form-group {
+  margin-bottom: 1.5rem;
+}
 .modal-content .modal-body .subheadline {
   margin-top: -1rem;
 }
@@ -74,11 +77,11 @@
 .modal-content .modal-body .form-control.username {
   width: 70%;
 }
-.modal-content .modal-body .checkbox {
-  padding: 0;
-}
-.modal-content .modal-body .checkbox span {
+.modal-content .modal-body .terms-checkbox label {
   font-weight: 300;
+}
+.modal-content .modal-body .terms-checkbox input[type="checkbox"]:focus {
+  outline: 0;
 }
 .modal-content .modal-body .cta-links button,
 .modal-content .modal-body .cta-links p {
