@@ -47,8 +47,6 @@
   "Password Set Successfully": "Password Set Successfully! You will be required to provide it to log in from now on.",
   "A reset request has been emailed": "A reset request has been emailed to you, follow the instructions in it to reset your password.",
   "Continue": "Continue",
-  "Or log in with": "Or Log in with",
-  "Mozilla Persona": "Mozilla Persona",
   "Trouble with the key": "Trouble with the key? <a href=\"#\">Get help.</a>",
   "Frustrated with these keys": "Frustrated with these keys?",
   "Set a password": "Set a password",
@@ -58,5 +56,11 @@
   "Your Password Reset Failed": "Your Password Reset Failed! Try reloading the page or resending the reset request.",
   "Change Password": "Change Password",
   "Switch To OTPs": "Switch to One-Time Passwords",
-  "webmakerAuthServerError": "An unknown error occured on the server. Try your request again, and if the problem persists, please contact us."
+  "webmakerAuthServerError": "An unknown error occured on the server. Try your request again, and if the problem persists, please contact us.",
+  "log in with Persona": "or <a href=\"#\" ng-click=\"continue(); login();\" >log in with Persona</a>",
+  "aboutWebmaker": "Make your own web pages, interactive videos, remixes and mobile apps.",
+  "XRay-Goggles": "X-Ray Goggles",
+  "AboutGoggles": "X-Ray Goggles allow you to see the building blocks that make up websites on the Internet. Activate the goggles to inspect the code behind any webpage.",
+  "TryGoggles": "Try the Goggles now",
+  "ExploreWebmaker": "Explore the rest of Webmaker"
 }

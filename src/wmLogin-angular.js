@@ -42,15 +42,14 @@ module.factory('wmLoginService', ['$rootScope', '$modal', '$window', '$location'
       apply();
     });
 
-    if ( CONFIG.loginV2Enabled ) {
-      // Set up persona related functions
-      $rootScope.login =  auth.login;
 
-      auth.on('login', function (user) {
-        $rootScope._user = user;
-        apply();
-      });
-    }
+    $rootScope.login =  auth.login;
+
+    auth.on('login', function (user) {
+      $rootScope._user = user;
+      apply();
+    });
+
 
     auth.on('error', function (message, xhr) {
       console.error('error', message, xhr);

@@ -17,7 +17,7 @@
       </div>
       <div class="cta-links clearfix">
         <button class="submit-userid btn btn-primary" type="button" ng-disabled="form.user.loginEmail.$error.noAccount || resetRequestSent" ng-click="submit()">{{ 'Sign in' | i18n }}</button>
-        <p>or <a href="#">log in with Persona</a></p>
+        <p bind-unsafe-html="'log in with Persona' | i18n"></p>
       </div>
     </div>
     <div class="enterToken" ng-show="enterToken">

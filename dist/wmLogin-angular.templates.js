@@ -5,7 +5,7 @@ angular.module("create-user-modal.html", []).run(["$templateCache", function($te
     "<div class=\"modal-header\">\n" +
     "  <button ng-click=\"cancel()\" ng-hide=\"\" type=\"button\" class=\"close\" data-dismiss=\"modal\" aria-hidden=\"true\">&times;</button>\n" +
     "  <h3 class=\"modal-title\" ng-hide=\"welcome && user.username\">{{ 'webmakerAuthCreateWelcome' | i18n }}</h3>\n" +
-    "  <h3 class=\"modal-title\" ng-show=\"welcome && user.username\">Welcome to Webmaker!</h3>\n" +
+    "  <h3 class=\"modal-title\" ng-show=\"welcome && user.username\">{{ 'webmakerAuthWelcome' | i18n }}</h3>\n" +
     "</div>\n" +
     "<div class=\"modal-body\">\n" +
     "  <form class=\"form\" name=\"form.user\" novalidate>\n" +
@@ -27,13 +27,13 @@ angular.module("create-user-modal.html", []).run(["$templateCache", function($te
     "      </div>\n" +
     "      <div class=\"cta-links clearfix\">\n" +
     "        <button ng-click=\"submitEmail()\" ng-disabled=\"form.user.email.$error.accountExists\" class=\"create-user btn btn-primary\" type=\"button\">{{ 'Sign up' | i18n }}</button>\n" +
-    "        <p>or <a href=\"#\">log in with Persona</a></p>\n" +
+    "        <p bind-unsafe-html=\"'log in with Persona' | i18n\" ></p>\n" +
     "      </div>\n" +
     "    </div>\n" +
     "\n" +
     "    <div ng-show=\"selectUsername\">\n" +
     "      <div class=\"form-group\">\n" +
-    "        <label for=\"pre-username\">Choose a username</label>\n" +
+    "        <label for=\"pre-username\">{{ 'webmakerAuthChooseUsername' | i18n }}</label>\n" +
     "        <label for=\"username\">webmaker.org/user/</label>\n" +
     "        <input ng-model=\"user.username\" name=\"username\" ng-change=\"checkUsername()\" class=\"form-control username\" autocomplete=\"off\" required autofocus>\n" +
     "      </div>\n" +
@@ -41,7 +41,7 @@ angular.module("create-user-modal.html", []).run(["$templateCache", function($te
     "    </div>\n" +
     "\n" +
     "    <div ng-show=\"welcome\">\n" +
-    "      <p class=\"subheadline\">Make your own web pages, interactive videos, remixes and mobile apps.</p>\n" +
+    "      <p class=\"subheadline\">{{ 'aboutWebmaker' | i18n }}</p>\n" +
     "      <div class=\"tool-desc\">\n" +
     "        <div class=\"icon\">\n" +
     "          <?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"no\"?>\n" +
@@ -66,22 +66,16 @@ angular.module("create-user-modal.html", []).run(["$templateCache", function($te
     "            </g>\n" +
     "          </svg>\n" +
     "        </div>\n" +
-    "        <h4>X-Ray Goggles</h4>\n" +
-    "        <p>X-Ray Goggles allow you to see the building blocks that make up\n" +
-    "          websites on the Internet. Activate the goggles to inspect the code behind\n" +
-    "          any webpage.</p>\n" +
+    "        <h4>{{ 'XRay-Goggles' | i18n }}</h4>\n" +
+    "        <p>{{ 'AboutGoggles' | i18n }}</p>\n" +
     "          <div class=\"clearfix\">\n" +
-    "            <button class=\"create-user btn btn-primary\" type=\"button\">Try the Goggles now</button>\n" +
-    "            <a href=\"#\" class=\"explore-link\">Explore the rest of Webmaker</a>\n" +
+    "            <button class=\"create-user btn btn-primary\" type=\"button\">{{'TryGoggles'}}</button>\n" +
+    "            <a href=\"#\" class=\"explore-link\">{{ 'ExploreWebmaker' | i18n }}</a>\n" +
     "          </div>\n" +
     "        </div>\n" +
     "      </div>\n" +
     "  </form>\n" +
     "</div>\n" +
-    "<!-- <div class=\"modal-footer\">\n" +
-    "  <button type=\"button\" class=\"btn btn-default\" data-dismiss=\"modal\" ng-hide=\"welcome\" ng-click=\"cancel()\">{{ 'Cancel' | i18n }}</button>\n" +
-    "</div>\n" +
-    " -->\n" +
     "");
 }]);
 
@@ -149,7 +143,7 @@ angular.module("login-modal.html", []).run(["$templateCache", function($template
     "      </div>\n" +
     "      <div class=\"cta-links clearfix\">\n" +
     "        <button class=\"submit-userid btn btn-primary\" type=\"button\" ng-disabled=\"form.user.loginEmail.$error.noAccount || resetRequestSent\" ng-click=\"submit()\">{{ 'Sign in' | i18n }}</button>\n" +
-    "        <p>or <a href=\"#\">log in with Persona</a></p>\n" +
+    "        <p bind-unsafe-html=\"'log in with Persona' | i18n\"></p>\n" +
     "      </div>\n" +
     "    </div>\n" +
     "    <div class=\"enterToken\" ng-show=\"enterToken\">\n" +
