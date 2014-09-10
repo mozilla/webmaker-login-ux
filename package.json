@@ -1,6 +1,6 @@
 {
   "name": "wmLogin-angular",
-  "version": "0.0.8",
+  "version": "0.0.9",
   "description": "Angular Modal directives for Webmaker Login and Account creation",
   "main": "src/wmLogin-angular.js",
   "scripts": {
