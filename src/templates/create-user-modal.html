@@ -6,17 +6,19 @@
 <div class="modal-body">
   <form class="form" name="form.user" novalidate>
     <div class="alert alert-danger" ng-show="submit && !form.agree" bind-unsafe-html="'webmakerAuthAgreeError' | i18n"></div>
-    <div class="alert alert-warning" ng-show="form.user.email.$error.accountExists" bind-unsafe-html="'WebmakerAccountExists' | i18n"></div>
-    <div class="alert alert-danger" ng-show="form.user.email.$error.invalid" bind-unsafe-html="'NotAnEmail' | i18n"></div>
+    <div class="alert alert-danger" ng-show="form.user.email.$error.accountExists" bind-unsafe-html="'WebmakerAccountExists' | i18n"></div>
+    <div class="alert alert-danger" ng-show="form.user.email.$error.invalidEmail" bind-unsafe-html="'NotAnEmail' | i18n"></div>
+    <div class="alert alert-danger" ng-show="form.user.username.$error.invalidUsername" bind-unsafe-html="'webmakerAuthUsernameInvalid' | i18n"></div>
+    <div class="alert alert-danger" ng-show="form.user.username.$error.serverError" bind-unsafe-html="'webmakerAuthServerError' | i18n"></div>
     <div class="alert alert-danger" ng-show="form.user.username.$error.taken" bind-unsafe-html="'webmakerAuthTakenError' | i18n"></div>
     <div ng-show="enterEmail">
       <div class="form-group">
         <label for="email">{{ 'Email' | i18n }}</label>
-        <input ng-model="user.email" ng-blur="checkEmail();" type="email" class="form-control" name="email" autocomplete="off" required>
+        <input ng-model="user.email" ng-blur="checkEmail();" type="text" class="form-control" name="email" autocomplete="off" required>
       </div>
       <div class="checkbox">
         <label>
-          <input type="checkbox" ng-disabled="form.user.email.$error.accountExists" ng-model="form.agree" name="agreeToTerms"> <span bind-unsafe-html="'webmakerAuthAgreeToTerms' | i18n"></span>
+          <input ng-model="form.agree" type="checkbox" ng-disabled="form.user.email.$error.accountExists" ng-model="form.agree" name="agreeToTerms"> <span bind-unsafe-html="'webmakerAuthAgreeToTerms' | i18n"></span>
         </label>
       </div>
       <div class="cta-links clearfix">
@@ -31,7 +33,7 @@
         <label for="username">webmaker.org/user/</label>
         <input ng-model="user.username" name="username" ng-change="checkUsername()" class="form-control username" autocomplete="off" required autofocus>
       </div>
-      <button ng-click="submitUsername()" class="create-user btn btn-primary" type="button">{{ 'webmakerAuthCreateAccount' | i18n }}</button>
+      <button ng-disabled="form.user.username.$invalid" ng-click="submitUsername()" class="create-user btn btn-primary" type="button">{{ 'webmakerAuthCreateAccount' | i18n }}</button>
     </div>
 
     <div ng-show="welcome">

@@ -10,17 +10,19 @@ angular.module("create-user-modal.html", []).run(["$templateCache", function($te
     "<div class=\"modal-body\">\n" +
     "  <form class=\"form\" name=\"form.user\" novalidate>\n" +
     "    <div class=\"alert alert-danger\" ng-show=\"submit && !form.agree\" bind-unsafe-html=\"'webmakerAuthAgreeError' | i18n\"></div>\n" +
-    "    <div class=\"alert alert-warning\" ng-show=\"form.user.email.$error.accountExists\" bind-unsafe-html=\"'WebmakerAccountExists' | i18n\"></div>\n" +
-    "    <div class=\"alert alert-danger\" ng-show=\"form.user.email.$error.invalid\" bind-unsafe-html=\"'NotAnEmail' | i18n\"></div>\n" +
+    "    <div class=\"alert alert-danger\" ng-show=\"form.user.email.$error.accountExists\" bind-unsafe-html=\"'WebmakerAccountExists' | i18n\"></div>\n" +
+    "    <div class=\"alert alert-danger\" ng-show=\"form.user.email.$error.invalidEmail\" bind-unsafe-html=\"'NotAnEmail' | i18n\"></div>\n" +
+    "    <div class=\"alert alert-danger\" ng-show=\"form.user.username.$error.invalidUsername\" bind-unsafe-html=\"'webmakerAuthUsernameInvalid' | i18n\"></div>\n" +
+    "    <div class=\"alert alert-danger\" ng-show=\"form.user.username.$error.serverError\" bind-unsafe-html=\"'webmakerAuthServerError' | i18n\"></div>\n" +
     "    <div class=\"alert alert-danger\" ng-show=\"form.user.username.$error.taken\" bind-unsafe-html=\"'webmakerAuthTakenError' | i18n\"></div>\n" +
     "    <div ng-show=\"enterEmail\">\n" +
     "      <div class=\"form-group\">\n" +
     "        <label for=\"email\">{{ 'Email' | i18n }}</label>\n" +
-    "        <input ng-model=\"user.email\" ng-blur=\"checkEmail();\" type=\"email\" class=\"form-control\" name=\"email\" autocomplete=\"off\" required>\n" +
+    "        <input ng-model=\"user.email\" ng-blur=\"checkEmail();\" type=\"text\" class=\"form-control\" name=\"email\" autocomplete=\"off\" required>\n" +
     "      </div>\n" +
     "      <div class=\"checkbox\">\n" +
     "        <label>\n" +
-    "          <input type=\"checkbox\" ng-disabled=\"form.user.email.$error.accountExists\" ng-model=\"form.agree\" name=\"agreeToTerms\"> <span bind-unsafe-html=\"'webmakerAuthAgreeToTerms' | i18n\"></span>\n" +
+    "          <input ng-model=\"form.agree\" type=\"checkbox\" ng-disabled=\"form.user.email.$error.accountExists\" ng-model=\"form.agree\" name=\"agreeToTerms\"> <span bind-unsafe-html=\"'webmakerAuthAgreeToTerms' | i18n\"></span>\n" +
     "        </label>\n" +
     "      </div>\n" +
     "      <div class=\"cta-links clearfix\">\n" +
@@ -35,7 +37,7 @@ angular.module("create-user-modal.html", []).run(["$templateCache", function($te
     "        <label for=\"username\">webmaker.org/user/</label>\n" +
     "        <input ng-model=\"user.username\" name=\"username\" ng-change=\"checkUsername()\" class=\"form-control username\" autocomplete=\"off\" required autofocus>\n" +
     "      </div>\n" +
-    "      <button ng-click=\"submitUsername()\" class=\"create-user btn btn-primary\" type=\"button\">{{ 'webmakerAuthCreateAccount' | i18n }}</button>\n" +
+    "      <button ng-disabled=\"form.user.username.$invalid\" ng-click=\"submitUsername()\" class=\"create-user btn btn-primary\" type=\"button\">{{ 'webmakerAuthCreateAccount' | i18n }}</button>\n" +
     "    </div>\n" +
     "\n" +
     "    <div ng-show=\"welcome\">\n" +
@@ -139,7 +141,7 @@ angular.module("login-modal.html", []).run(["$templateCache", function($template
     "    <div class=\"alert alert-danger\" ng-show=\"form.user.loginEmail.$error.invalid\" bind-unsafe-html=\"'That does not look like an email address' | i18n\"></div>\n" +
     "    <div class=\"alert alert-danger\" ng-show=\"form.user.loginEmail.$error.tokenSendFailed\" bind-unsafe-html=\"'problem sending token' | i18n\"></div>\n" +
     "    <!-- TODO: Show this error if key is incorrect -->\n" +
-    "    <div class=\"alert alert-danger\" ng-show=\"form.user.loginEmail.$error.tokenSendFailed\" bind-unsafe-html=\"'incorrecToken' | i18n\"></div>\n" +
+    "    <div class=\"alert alert-danger\" ng-show=\"form.user.loginEmail.$error.tokenSendFailed\" bind-unsafe-html=\"'incorrectToken' | i18n\"></div>\n" +
     "    <div ng-show=\"enterEmail\">\n" +
     "      <div class=\"form-group\">\n" +
     "        <label for=\"loginEmail\">{{ 'Email' | i18n }}</label>\n" +

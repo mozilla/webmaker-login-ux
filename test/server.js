@@ -120,6 +120,18 @@ app.post('/auth/v2/request', function(req, res) {
   });
 });
 
+app.post('/login', function(req, res) {
+  res.json({
+    status: "okay"
+  });
+});
+
+app.post('/logout', function(req, res) {
+  res.json({
+    status: "okay"
+  });
+});
+
 app.post('/auth/v2/authenticateToken', function(req, res) {
   if ( req.body.email === 'user@webmaker.org' && req.body.token === 'token' ) {
     return res.json({
