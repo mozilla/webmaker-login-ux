@@ -16,6 +16,6 @@
     "angular": "^1.2.20",
     "angular-bootstrap": "^0.11.0",
     "makerstrap": "^0.2.2",
-    "webmaker-auth-client": "^0.1.12"
+    "webmaker-auth-client": "cadecairos/1a5e49ccd"
   }
 }
