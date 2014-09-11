@@ -87,18 +87,14 @@ angular.module("legacy-create-user-modal.html", []).run(["$templateCache", funct
     "</div>\n" +
     "<div class=\"modal-body\">\n" +
     "  <form class=\"form\" name=\"form.user\" novalidate>\n" +
-    "    <div class=\"form-group\" ng-class=\"{'has-error': (submit || form.user.username.$dirty) && form.user.username.$invalid }\">\n" +
-    "      <div class=\"row\">\n" +
-    "        <div class=\"col-sm-6\">\n" +
-    "          <label>{{ 'webmakerAuthChooseUsername' | i18n }}</label>\n" +
-    "        </div>\n" +
-    "        <div class=\"col-sm-6\">\n" +
-    "          <input ng-model=\"user.username\" name=\"username\" autocomplete=\"off\" class=\"form-control\" ng-change=\"checkUsername()\" required>\n" +
-    "          <span class=\"help-block\" ng-show=\"form.user.username.$error.taken\">{{ 'webmakerAuthTakenError' | i18n }}</span>\n" +
-    "          <span class=\"help-block\" ng-show=\"form.user.username.$error.invalid\">{{ 'webmakerAuthUsernameInvalid' | i18n }}</span>\n" +
-    "          <span class=\"help-block\" ng-show=\"(submit || form.user.username.$dirty) && form.user.username.$error.required\">{{ 'webmakerAuthUsernameRequiredError' | i18n }}</span>\n" +
-    "        </div>\n" +
-    "      </div>\n" +
+    "    <div class=\"alert alert-danger\" ng-show=\"submit && !form.agree\" bind-unsafe-html=\"'webmakerAuthAgreeError' | i18n\"></div>\n" +
+    "    <div class=\"alert alert-danger\" ng-show=\"form.user.username.$error.taken\" bind-unsafe-html=\"'webmakerAuthTakenError' | i18n\"></div>\n" +
+    "    <div class=\"alert alert-danger\" ng-show=\"form.user.username.$error.invalidUsername\" bind-unsafe-html=\"'webmakerAuthUsernameInvalid' | i18n\"></div>\n" +
+    "    <div class=\"alert alert-danger\" ng-show=\"(submit || form.user.username.$dirty) && form.user.username.$error.required\" bind-unsafe-html=\"'webmakerAuthUsernameRequiredError' | i18n\"></div>\n" +
+    "    <div class=\"form-group\" ng-class=\"{'has-error': (submit || form.user.username.$dirty) && form.user.username.$invalid }\"></div>\n" +
+    "    <div class=\"form-group\">\n" +
+    "      <label for=\"username\">{{ 'webmakerAuthChooseUsername' | i18n }}</label>\n" +
+    "      <input ng-model=\"user.username\" name=\"username\" autocomplete=\"off\" class=\"form-control\" ng-change=\"checkUsername()\" required>\n" +
     "    </div>\n" +
     "    <div class=\"checkbox\">\n" +
     "      <label>\n" +
@@ -108,7 +104,6 @@ angular.module("legacy-create-user-modal.html", []).run(["$templateCache", funct
     "    <div class=\"checkbox\" ng-class=\"{'has-error': submit && !form.agree }\">\n" +
     "      <label>\n" +
     "        <input ng-model=\"form.agree\" name=\"agree\" type=\"checkbox\"><span bind-unsafe-html=\"'webmakerAuthAgreeToTerms' | i18n\"></span>\n" +
-    "        <span class=\"help-block\" ng-show=\"submit && !form.agree\">{{ 'webmakerAuthAgreeError' | i18n }}</span>\n" +
     "      </label>\n" +
     "    </div>\n" +
     "    <label>{{ 'Language Preference' | i18n }}</label>\n" +
