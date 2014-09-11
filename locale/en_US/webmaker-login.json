@@ -6,7 +6,7 @@
   "webmakerAuthUsernameInvalid": "<i class=\"fa fa-times\"></i>  <strong>Uh oh!</strong> All usernames must be between 1-20 characters, and only include \"-\" and alphanumeric symbols",
   "webmakerAuthUsernameRequiredError": "You must choose a username",
   "webmakerAuthMailingList": "Send me email updates about Mozilla Webmaker and other projects",
-  "webmakerAuthAgreeToTerms": "I agree to Webmaker's <a href='https://webmaker.org/{{angularConfig.lang}}/terms'>Terms</a> and <a href='https://webmaker.org/{{angularConfig.lang}}/privacy'>Conditions</a>",
+  "webmakerAuthAgreeToTerms": "I agree to Webmaker's <a href='https://webmaker.org/{{lang}}/terms'>Terms</a> and <a href='https://webmaker.org/{{lang}}/privacy'>Conditions</a>",
   "webmakerAuthAgreeError": "<i class=\"fa fa-times\"></i>  <strong>Oh snap!</strong> You must agree to our terms and conditions.",
   "webmakerAuthCreateAccount": "Create account",
   "Cancel": "Cancel",
@@ -62,5 +62,14 @@
   "XRay-Goggles": "X-Ray Goggles",
   "AboutGoggles": "X-Ray Goggles allow you to see the building blocks that make up websites on the Internet. Activate the goggles to inspect the code behind any webpage.",
   "TryGoggles": "Try the Goggles now",
-  "ExploreWebmaker": "Explore the rest of Webmaker"
+  "ExploreWebmaker": "Explore the rest of Webmaker",
+  "Thimble": "Thimble",
+  "AboutThimble": "Thimble makes it ridiculously simple to create and share your own web pages. Write and edit HTML and CSS right in your browser, then instantly preview your work.",
+  "TryThimbleNow": "Try Thimble now",
+  "PopcornMaker": "Popcorn Maker",
+  "AboutPopcornMaker": "Popcorn Maker helps you easily remix web video, audio and images into cool mashups that you can embed on other websites. Popcorn Maker videos are dynamic, full of links and unique with every view.",
+  "TryPopcornMaker": "Try Popcorn Maker now",
+  "Appmaker": "Appmaker",
+  "AboutAppmaker": "Appmaker is a free tool for creating personal mobile apps, even if you don't know how to code!",
+  "TryAppmaker": "Try Appmaker now"
 }

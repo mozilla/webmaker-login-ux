@@ -32,6 +32,8 @@ module.factory('wmLoginService', ['$rootScope', '$modal', '$window', '$location'
 
     $rootScope.logout = auth.logout;
 
+    $rootScope.lang = CONFIG.lang;
+
     auth.on('logout', function (why) {
       $rootScope._user = {};
       apply();
@@ -115,6 +117,10 @@ module.directive('wmCreateUser', [
           $scope.selectUsername = false;
           $scope.welcome = false;
 
+          function getModalIdx() {
+            return Math.floor(Math.random() * 4);
+          }
+
           $scope.submitEmail = function () {
             $scope.submit = true;
             if ($scope.form.agree && $scope.user.email) {
@@ -151,6 +157,7 @@ module.directive('wmCreateUser', [
                 user: $scope.user
               }, function (err, user) {
                 $scope.selectUsername = false;
+                $scope.welcomeModalIdx = getModalIdx();
                 $scope.welcome = true;
                 apply();
               });
@@ -192,6 +199,10 @@ module.directive('wmCreateUser', [
                 $scope.form.user.username.$setValidity('taken', true);
                 apply();
               });
+          };
+
+          $scope.tryApp = function(app) {
+            window.location = 'https://' + app + '.webmaker.org';
           };
         }
       }]

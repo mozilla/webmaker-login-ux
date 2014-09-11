@@ -45,7 +45,8 @@ app.use(express.static(path.join(__dirname, '../node_modules')));
 app.get('/angular-config.js', function(req, res) {
   res.setHeader('Content-type', 'text/javascript');
   res.send('window.angularConfig = ' + JSON.stringify({
-    csrf: 'thisisnotacsrftoken'
+    csrf: 'thisisnotacsrftoken',
+    lang: 'en-CA'
   }));
 });
 
