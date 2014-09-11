@@ -68,12 +68,12 @@ angular.module("create-user-modal.html", []).run(["$templateCache", function($te
     "        </div>\n" +
     "        <h4>{{ 'XRay-Goggles' | i18n }}</h4>\n" +
     "        <p>{{ 'AboutGoggles' | i18n }}</p>\n" +
-    "          <div class=\"clearfix\">\n" +
-    "            <button class=\"create-user btn btn-primary\" type=\"button\">{{'TryGoggles'}}</button>\n" +
-    "            <a href=\"#\" class=\"explore-link\">{{ 'ExploreWebmaker' | i18n }}</a>\n" +
-    "          </div>\n" +
+    "        <div class=\"clearfix\">\n" +
+    "          <button class=\"create-user btn btn-primary\" type=\"button\">{{'TryGoggles'}}</button>\n" +
+    "          <a href=\"#\" class=\"explore-link\">{{ 'ExploreWebmaker' | i18n }}</a>\n" +
     "        </div>\n" +
     "      </div>\n" +
+    "    </div>\n" +
     "  </form>\n" +
     "</div>\n" +
     "");
@@ -151,7 +151,6 @@ angular.module("login-modal.html", []).run(["$templateCache", function($template
     "        <div class=\"mailIcon\">\n" +
     "          <?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"no\"?>\n" +
     "          <svg width=\"94px\" height=\"94px\" viewBox=\"0 0 94 94\" version=\"1.1\" xmlns=\"http://www.w3.org/2000/svg\" xmlns:xlink=\"http://www.w3.org/1999/xlink\" xmlns:sketch=\"http://www.bohemiancoding.com/sketch/ns\">\n" +
-    "              <!-- Generator: Sketch 3.0.4 (8053) - http://www.bohemiancoding.com/sketch -->\n" +
     "              <title>Mail Icon</title>\n" +
     "              <desc></desc>\n" +
     "              <defs></defs>\n" +
