@@ -10,8 +10,8 @@
     <div class="alert alert-danger" ng-show="(submit || form.user.username.$dirty) && form.user.username.$error.required" bind-unsafe-html="'webmakerAuthUsernameRequiredError' | i18n"></div>
     <div class="form-group" ng-class="{'has-error': (submit || form.user.username.$dirty) && form.user.username.$invalid }"></div>
     <div class="form-group">
-      <label for="username">{{ 'webmakerAuthChooseUsername' | i18n }}</label>
-      <input ng-model="user.username" name="username" autocomplete="off" class="form-control" ng-change="checkUsername()" required>
+      <label for="persona-username">{{ 'webmakerAuthChooseUsername' | i18n }}</label>
+      <input ng-model="user.username" name="persona-username" autocomplete="off" class="form-control" ng-change="checkUsername()" required>
     </div>
     <div class="checkbox">
       <label>

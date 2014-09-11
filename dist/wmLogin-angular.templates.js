@@ -270,8 +270,8 @@ angular.module("legacy-create-user-modal.html", []).run(["$templateCache", funct
     "    <div class=\"alert alert-danger\" ng-show=\"(submit || form.user.username.$dirty) && form.user.username.$error.required\" bind-unsafe-html=\"'webmakerAuthUsernameRequiredError' | i18n\"></div>\n" +
     "    <div class=\"form-group\" ng-class=\"{'has-error': (submit || form.user.username.$dirty) && form.user.username.$invalid }\"></div>\n" +
     "    <div class=\"form-group\">\n" +
-    "      <label for=\"username\">{{ 'webmakerAuthChooseUsername' | i18n }}</label>\n" +
-    "      <input ng-model=\"user.username\" name=\"username\" autocomplete=\"off\" class=\"form-control\" ng-change=\"checkUsername()\" required>\n" +
+    "      <label for=\"persona-username\">{{ 'webmakerAuthChooseUsername' | i18n }}</label>\n" +
+    "      <input ng-model=\"user.username\" name=\"persona-username\" autocomplete=\"off\" class=\"form-control\" ng-change=\"checkUsername()\" required>\n" +
     "    </div>\n" +
     "    <div class=\"checkbox\">\n" +
     "      <label>\n" +
