@@ -4,18 +4,14 @@
 </div>
 <div class="modal-body">
   <form class="form" name="form.user" novalidate>
-    <div class="form-group" ng-class="{'has-error': (submit || form.user.username.$dirty) && form.user.username.$invalid }">
-      <div class="row">
-        <div class="col-sm-6">
-          <label>{{ 'webmakerAuthChooseUsername' | i18n }}</label>
-        </div>
-        <div class="col-sm-6">
-          <input ng-model="user.username" name="username" autocomplete="off" class="form-control" ng-change="checkUsername()" required>
-          <span class="help-block" ng-show="form.user.username.$error.taken">{{ 'webmakerAuthTakenError' | i18n }}</span>
-          <span class="help-block" ng-show="form.user.username.$error.invalid">{{ 'webmakerAuthUsernameInvalid' | i18n }}</span>
-          <span class="help-block" ng-show="(submit || form.user.username.$dirty) && form.user.username.$error.required">{{ 'webmakerAuthUsernameRequiredError' | i18n }}</span>
-        </div>
-      </div>
+    <div class="alert alert-danger" ng-show="submit && !form.agree" bind-unsafe-html="'webmakerAuthAgreeError' | i18n"></div>
+    <div class="alert alert-danger" ng-show="form.user.username.$error.taken" bind-unsafe-html="'webmakerAuthTakenError' | i18n"></div>
+    <div class="alert alert-danger" ng-show="form.user.username.$error.invalidUsername" bind-unsafe-html="'webmakerAuthUsernameInvalid' | i18n"></div>
+    <div class="alert alert-danger" ng-show="(submit || form.user.username.$dirty) && form.user.username.$error.required" bind-unsafe-html="'webmakerAuthUsernameRequiredError' | i18n"></div>
+    <div class="form-group" ng-class="{'has-error': (submit || form.user.username.$dirty) && form.user.username.$invalid }"></div>
+    <div class="form-group">
+      <label for="username">{{ 'webmakerAuthChooseUsername' | i18n }}</label>
+      <input ng-model="user.username" name="username" autocomplete="off" class="form-control" ng-change="checkUsername()" required>
     </div>
     <div class="checkbox">
       <label>
@@ -25,7 +21,6 @@
     <div class="checkbox" ng-class="{'has-error': submit && !form.agree }">
       <label>
         <input ng-model="form.agree" name="agree" type="checkbox"><span bind-unsafe-html="'webmakerAuthAgreeToTerms' | i18n"></span>
-        <span class="help-block" ng-show="submit && !form.agree">{{ 'webmakerAuthAgreeError' | i18n }}</span>
       </label>
     </div>
     <label>{{ 'Language Preference' | i18n }}</label>
