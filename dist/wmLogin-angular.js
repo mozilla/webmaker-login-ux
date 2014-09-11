@@ -258,6 +258,7 @@ module.directive('wmLogin', [
 
             // this is borked, causes $modal to throw when the create user modal attempts to close..
             $scope.switchToSignup = function () {
+              disableListeners();
               $modalInstance.close();
               $rootScope.wmCreateUser($scope.user.loginEmail);
             };
@@ -292,15 +293,26 @@ module.directive('wmLogin', [
             };
 
             $scope.cancel = function () {
+              disableListeners();
               $modalInstance.dismiss('cancel');
             };
 
             $scope.continue = function() {
+              disableListeners();
               $modalInstance.dismiss('done');
             };
 
-            wmLoginService.on('login', $scope.continue);
+            $scope.usePersona = function() {
+              $modalInstance.dismiss('done');
+              $rootScope.login();
+            }
 
+            function disableListeners() {
+              wmLoginService.off('login', $scope.continue);
+              wmLoginService.off('tokenlogin', $scope.continue);
+            }
+
+            wmLoginService.on('login', $scope.continue);
             wmLoginService.on('tokenlogin', $scope.continue);
           };
         }

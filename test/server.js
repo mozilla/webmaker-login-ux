@@ -133,6 +133,17 @@ app.post('/logout', function(req, res) {
   });
 });
 
+app.post('/authenticate', function(req, res) {
+  return res.json({
+    user: {
+      email: 'user@webmaker.org',
+      username: 'user'
+    },
+    email: 'user@webmaker.org'
+  });
+});
+
+
 app.post('/auth/v2/authenticateToken', function(req, res) {
   if ( req.body.email === 'user@webmaker.org' && req.body.token === 'token' ) {
     return res.json({
