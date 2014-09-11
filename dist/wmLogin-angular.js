@@ -303,6 +303,7 @@ module.directive('wmLogin', [
             };
 
             $scope.usePersona = function() {
+              disableListeners();
               $modalInstance.dismiss('done');
               $rootScope.login();
             }
