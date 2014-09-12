@@ -61,7 +61,7 @@ module.factory('wmLoginService', ['$rootScope', '$modal', '$window', '$location'
     var searchObj = $location.search();
 
     if (searchObj.email && searchObj.token) {
-      auth.authenticateToken(searchObj.email, searchObj.token);
+      auth.authenticateToken(searchObj.email, searchObj.token, searchObj.validFor);
     }
 
     auth.verify();
