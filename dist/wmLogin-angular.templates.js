@@ -306,16 +306,15 @@ angular.module("login-modal.html", []).run(["$templateCache", function($template
     "    <div class=\"alert alert-warning\" ng-show=\"form.user.loginEmail.$error.noAccount\" bind-unsafe-html=\"'No account found for your email' | i18n\"></div>\n" +
     "    <div class=\"alert alert-danger\" ng-show=\"form.user.loginEmail.$error.invalid\" bind-unsafe-html=\"'That does not look like an email address' | i18n\"></div>\n" +
     "    <div class=\"alert alert-danger\" ng-show=\"form.user.loginEmail.$error.tokenSendFailed\" bind-unsafe-html=\"'problem sending token' | i18n\"></div>\n" +
-    "    <!-- TODO: Show this error if key is incorrect -->\n" +
-    "    <div class=\"alert alert-danger\" ng-show=\"form.user.loginEmail.$error.tokenSendFailed\" bind-unsafe-html=\"'incorrectToken' | i18n\"></div>\n" +
+    "    <div class=\"alert alert-danger\" ng-show=\"form.user.key.$error.invalidKey\" bind-unsafe-html=\"'incorrectToken' | i18n\"></div>\n" +
     "    <div ng-show=\"enterEmail\">\n" +
     "      <div class=\"form-group\">\n" +
     "        <label for=\"loginEmail\">{{ 'Email' | i18n }}</label>\n" +
     "        <input name=\"loginEmail\" class=\"form-control\" ng-model=\"user.loginEmail\" autocomplete=\"on\" required focus-on=\"login-email\">\n" +
     "      </div>\n" +
     "      <div class=\"cta-links clearfix\">\n" +
-    "        <button class=\"submit-userid btn btn-primary\" type=\"button\" ng-disabled=\"form.user.loginEmail.$error.noAccount || resetRequestSent\" ng-click=\"submit()\">{{ 'Sign in' | i18n }}</button>\n" +
-    "        <p bind-unsafe-html=\"'log in with Persona' | i18n\"></p>\n" +
+    "        <button class=\"submit-userid btn btn-primary\" type=\"button\" ng-disabled=\"form.user.loginEmail.$error.noAccount || sendingRequest\" ng-click=\"submit()\">{{ 'Sign in' | i18n }}</button>\n" +
+    "        <p ng-hide=\"sendingRequest\" bind-unsafe-html=\"'log in with Persona' | i18n\"></p>\n" +
     "      </div>\n" +
     "    </div>\n" +
     "    <div class=\"enterToken\" ng-show=\"enterToken\">\n" +
@@ -342,9 +341,9 @@ angular.module("login-modal.html", []).run(["$templateCache", function($template
     "        <div class=\"key-group\">\n" +
     "          <div class=\"form-group\">\n" +
     "            <label for=\"key\">{{ 'Enter your key to login' | i18n }}</label>\n" +
-    "            <input ng-model=\"user.token\" name=\"key\" class=\"form-control\" required=\"\">\n" +
+    "            <input ng-model=\"user.key\" name=\"key\" class=\"form-control\" required=\"\">\n" +
     "          </div>\n" +
-    "          <button class=\"submit-userid btn btn-primary\" type=\"button\" ng-click=\"user.token && submitToken()\">{{ 'Submit Key' | i18n }}</button>\n" +
+    "          <button class=\"submit-userid btn btn-primary\" type=\"button\" ng-disabled=\"sendingRequest\" ng-click=\"user.key && submitKey()\">{{ 'Submit Key' | i18n }}</button>\n" +
     "        </div>\n" +
     "      </div>\n" +
     "    </div>\n" +

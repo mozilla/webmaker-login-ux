@@ -16,6 +16,6 @@
     "angular": "^1.2.20",
     "angular-bootstrap": "^0.11.0",
     "makerstrap": "^0.2.2",
-    "webmaker-auth-client": "https://github.com/cadecairos/webmaker-auth-client/archive/1a5e49ccd3b4eff5d9c8b598919f314150b92c98.tar.gz"
+    "webmaker-auth-client": "https://github.com/cadecairos/webmaker-auth-client/archive/8deca7378cf23dc4e534c2a6d7e2951e233ab110.tar.gz"
   }
 }

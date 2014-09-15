@@ -251,6 +251,7 @@ module.directive('wmLogin', [
             $scope.form = {};
             $scope.user = {};
             $scope.enterEmail = true;
+            $scope.sendingRequest = false;
 
             if (email) {
               $scope.user.loginEmail = email;
@@ -269,7 +270,7 @@ module.directive('wmLogin', [
               if (!isValid) {
                 return;
               }
-
+              $scope.sendingRequest = true;
               wmLoginService.request($scope.user.loginEmail, function (err) {
                 if (err) {
                   if ( err === "User not found" ) {
@@ -284,12 +285,18 @@ module.directive('wmLogin', [
                   $scope.enterEmail = false;
                   $scope.enterToken = true;
                 }
+                $scope.sendingRequest = false;
                 apply();
               });
             };
 
-            $scope.submitToken = function () {
-              wmLoginService.authenticateToken($scope.user.loginEmail, $scope.user.token);
+            $scope.submitKey = function () {
+              $scope.sendingRequest = true;
+              wmLoginService.authenticateToken($scope.user.loginEmail, $scope.user.key, 'session', function(err) {
+                $scope.form.user.key.$setValidity('invalidKey', !err);
+                $scope.sendingRequest = false;
+                apply();
+              });
             };
 
             $scope.cancel = function () {
