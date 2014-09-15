@@ -10,7 +10,7 @@ angular.module("create-user-modal.html", []).run(["$templateCache", function($te
     "<div class=\"modal-body\">\n" +
     "  <form class=\"form\" name=\"form.user\" novalidate>\n" +
     "    <div class=\"alert alert-danger\" ng-show=\"submit && !form.agree\" bind-unsafe-html=\"'webmakerAuthAgreeError' | i18n\"></div>\n" +
-    "    <div class=\"alert alert-danger\" ng-show=\"form.user.email.$error.accountExists\" bind-unsafe-html=\"'WebmakerAccountExists' | i18n\"></div>\n" +
+    "    <div class=\"alert alert-warning\" ng-show=\"form.user.email.$error.accountExists\" bind-unsafe-html=\"'WebmakerAccountExists' | i18n\"></div>\n" +
     "    <div class=\"alert alert-danger\" ng-show=\"form.user.email.$error.invalidEmail\" bind-unsafe-html=\"'NotAnEmail' | i18n\"></div>\n" +
     "    <div class=\"alert alert-danger\" ng-show=\"form.user.username.$error.invalidUsername\" bind-unsafe-html=\"'webmakerAuthUsernameInvalid' | i18n\"></div>\n" +
     "    <div class=\"alert alert-danger\" ng-show=\"form.user.username.$error.serverError\" bind-unsafe-html=\"'webmakerAuthServerError' | i18n\"></div>\n" +
