@@ -153,12 +153,14 @@ module.directive('wmCreateUser', [
 
           $scope.submitUsername = function () {
             if ($scope.form.user.username.$valid) {
+              $scope.sendingRequest = true;
               wmLoginService.createNewUser({
                 user: $scope.user
               }, function (err, user) {
                 $scope.selectUsername = false;
                 $scope.welcomeModalIdx = getModalIdx();
                 $scope.welcome = true;
+                $scope.sendingRequest = false;
                 apply();
               });
             }

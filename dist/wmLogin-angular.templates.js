@@ -37,7 +37,7 @@ angular.module("create-user-modal.html", []).run(["$templateCache", function($te
     "        <label for=\"username\">webmaker.org/user/</label>\n" +
     "        <input ng-model=\"user.username\" name=\"username\" ng-change=\"checkUsername()\" class=\"form-control username\" autocomplete=\"off\" required autofocus>\n" +
     "      </div>\n" +
-    "      <button ng-disabled=\"form.user.username.$invalid\" ng-click=\"submitUsername()\" class=\"create-user btn btn-primary\" type=\"button\">{{ 'webmakerAuthCreateAccount' | i18n }}</button>\n" +
+    "      <button ng-disabled=\"form.user.username.$invalid || sendingRequest\" ng-click=\"submitUsername()\" class=\"create-user btn btn-primary\" type=\"button\">{{ 'webmakerAuthCreateAccount' | i18n }}</button>\n" +
     "    </div>\n" +
     "\n" +
     "    <div ng-show=\"welcome\">\n" +
@@ -309,7 +309,7 @@ angular.module("login-modal.html", []).run(["$templateCache", function($template
     "    <div class=\"alert alert-danger\" ng-show=\"form.user.key.$error.invalidKey\" bind-unsafe-html=\"'incorrectToken' | i18n\"></div>\n" +
     "    <div ng-show=\"enterEmail\">\n" +
     "      <div class=\"form-group\">\n" +
-    "        <label for=\"loginEmail\">{{ 'Email' | i18n }}</label>\n" +
+    "        <label for=\"loginEmail\">{{ 'EmailOrUsername' | i18n }}</label>\n" +
     "        <input name=\"loginEmail\" class=\"form-control\" ng-model=\"user.loginEmail\" autocomplete=\"on\" required focus-on=\"login-email\">\n" +
     "      </div>\n" +
     "      <div class=\"cta-links clearfix\">\n" +

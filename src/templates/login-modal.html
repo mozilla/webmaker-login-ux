@@ -11,7 +11,7 @@
     <div class="alert alert-danger" ng-show="form.user.key.$error.invalidKey" bind-unsafe-html="'incorrectToken' | i18n"></div>
     <div ng-show="enterEmail">
       <div class="form-group">
-        <label for="loginEmail">{{ 'Email' | i18n }}</label>
+        <label for="loginEmail">{{ 'EmailOrUsername' | i18n }}</label>
         <input name="loginEmail" class="form-control" ng-model="user.loginEmail" autocomplete="on" required focus-on="login-email">
       </div>
       <div class="cta-links clearfix">
