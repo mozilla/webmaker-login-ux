@@ -317,9 +317,40 @@ angular.module("login-modal.html", []).run(["$templateCache", function($template
     "        <p ng-hide=\"sendingRequest\" bind-unsafe-html=\"'log in with Persona' | i18n\"></p>\n" +
     "      </div>\n" +
     "    </div>\n" +
+    "\n" +
+    "    <!-- checkEmail begins -->\n" +
+    "    <div class=\"checkEmail\" ng-show=\"enterToken\">\n" +
+    "      <div class=\"mailIcon clearfix\">\n" +
+    "        <?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"no\"?>\n" +
+    "        <svg class=\"enterToken\" width=\"94px\" height=\"94px\" viewBox=\"0 0 94 94\" version=\"1.1\" xmlns=\"http://www.w3.org/2000/svg\" xmlns:xlink=\"http://www.w3.org/1999/xlink\" xmlns:sketch=\"http://www.bohemiancoding.com/sketch/ns\">\n" +
+    "            <title>Mail Icon</title>\n" +
+    "            <desc></desc>\n" +
+    "            <defs></defs>\n" +
+    "            <g id=\"Page-1\" stroke=\"none\" stroke-width=\"1\" fill=\"none\" fill-rule=\"evenodd\" sketch:type=\"MSPage\">\n" +
+    "              <g id=\"AC4\" sketch:type=\"MSArtboardGroup\" transform=\"translate(-126.000000, -92.000000)\">\n" +
+    "                <g id=\"Mail-Icon\" sketch:type=\"MSLayerGroup\" transform=\"translate(126.000000, 92.000000)\">\n" +
+    "                    <circle id=\"Oval-1\" fill=\"#3FB58E\" sketch:type=\"MSShapeGroup\" cx=\"47\" cy=\"47\" r=\"47\"></circle>\n" +
+    "                    <rect id=\"Rectangle-1\" fill=\"#FFFFFF\" sketch:type=\"MSShapeGroup\" x=\"18\" y=\"27\" width=\"59\" height=\"41\" rx=\"3\"></rect>\n" +
+    "                    <path d=\"M21.0069321,27 C19.3462494,27 17.9900756,28.3368135 17.9778938,29.9953973 C17.9778938,29.9953973 17.9712616,30.8538058 17.9707031,31.0256348 C17.9688241,31.6037734 44.3277476,50.7739169 44.3277476,50.7739169 C45.6547338,51.7409595 47.981989,52.0459954 49.4771883,51.3411914 C49.4771883,51.3411914 52.3180561,50.8603167 59.4023438,44.0800781 C61.1871084,42.3719134 77.0395508,31.2178814 77.0395508,30.1010742 C77.0395508,29.644898 77.0391066,29.9910722 77.0391066,29.9910722 C77.0175086,28.3391486 75.6568485,27 73.9930679,27 L21.0069321,27 Z\" id=\"Rectangle-95\" fill=\"#F3F3F3\" sketch:type=\"MSShapeGroup\"></path>\n" +
+    "                    <path d=\"M17.7634277,31.0032813 L46.7917565,50.276875 L75.0556641,31.3201563 L46.5782176,55.1035938 L17.7634277,31.0032813 Z\" id=\"Path-1\" fill=\"#D8D8D8\" sketch:type=\"MSShapeGroup\"></path>\n" +
+    "                </g>\n" +
+    "              </g>\n" +
+    "            </g>\n" +
+    "        </svg>\n" +
+    "        <p>{{ 'tokenMessage' | i18n }}</p>\n" +
+    "      </div>\n" +
+    "      <a class=\"enter-key\" href=\"#\">Enter Key <i class=\"fa fa-angle-right\"></i></a>\n" +
+    "      <hr>\n" +
+    "      <footer class=\"help-footer\">\n" +
+    "        <p>Trouble with email?  <a href=\"#\">Get help</a></p>\n" +
+    "      </footer>\n" +
+    "    </div>\n" +
+    "    <!-- checkEmail ends -->\n" +
+    "\n" +
+    "    <!-- enterToken begins -->\n" +
     "    <div class=\"enterToken\" ng-show=\"enterToken\">\n" +
     "      <div class=\"email-container\">\n" +
-    "        <div class=\"mailIcon\">\n" +
+    "        <div class=\"mailIcon text-center\">\n" +
     "          <?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"no\"?>\n" +
     "          <svg width=\"94px\" height=\"94px\" viewBox=\"0 0 94 94\" version=\"1.1\" xmlns=\"http://www.w3.org/2000/svg\" xmlns:xlink=\"http://www.w3.org/1999/xlink\" xmlns:sketch=\"http://www.bohemiancoding.com/sketch/ns\">\n" +
     "              <title>Mail Icon</title>\n" +
@@ -336,7 +367,7 @@ angular.module("login-modal.html", []).run(["$templateCache", function($template
     "                  </g>\n" +
     "              </g>\n" +
     "          </svg>\n" +
-    "          <p>{{ 'tokenMessage' | i18n }}</p>\n" +
+    "          <!-- <p>{{ 'tokenMessage' | i18n }}</p> -->\n" +
     "        </div>\n" +
     "        <div class=\"key-group\">\n" +
     "          <div class=\"form-group\">\n" +
@@ -347,6 +378,7 @@ angular.module("login-modal.html", []).run(["$templateCache", function($template
     "        </div>\n" +
     "      </div>\n" +
     "    </div>\n" +
+    "    <!-- enterToken ends -->\n" +
     "  </form>\n" +
     "</div>\n" +
     "");
