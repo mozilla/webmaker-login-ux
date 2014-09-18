@@ -1,3 +1,5 @@
+@screen-xs-min: 480px;
+
 .uppercase-label() {
   font-size: 1.333333333rem;
   font-weight: 600;
@@ -59,17 +61,21 @@
         display: flex;
       }
       .mailIcon {
-        -webkit-flex: 1;
-        flex: 1;
         text-align: center;
+        -webkit-flex: 3;
+        flex: 3;
+        @media (min-width: @screen-xs-min) {
+          -webkit-flex: 1;
+          flex: 1;
+        }
         p {
           width: 80%;
           margin: 0 auto;
         }
       }
       .key-group {
-        -webkit-flex: 1;
-        flex: 1;
+        -webkit-flex: 3;
+        flex: 3;
         padding: 1rem 0 0 2rem;
         border-left: 1px solid #DDDDDD;
       }
@@ -81,12 +87,20 @@
       }
       .mailIcon {
         svg {
-          float: left;
+          display: block;
+          margin: 0 auto;
+          @media (min-width: @screen-xs-min) {
+            float: left;
+          }
         }
         p {
-          float: left;
-          text-align: left;
-          margin: 3.3rem 0 0 1.5rem;
+          text-align: center;
+          margin: 2rem 0 1rem 1.5rem;
+          @media (min-width: @screen-xs-min) {
+            float: left;
+            text-align: left;
+            margin: 3.3rem 0 0 1.5rem;
+          }
         }
       }
       .enter-key {

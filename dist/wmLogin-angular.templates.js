@@ -322,7 +322,7 @@ angular.module("login-modal.html", []).run(["$templateCache", function($template
     "    <div class=\"checkEmail\" ng-show=\"enterToken\">\n" +
     "      <div class=\"mailIcon clearfix\">\n" +
     "        <?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"no\"?>\n" +
-    "        <svg class=\"enterToken\" width=\"94px\" height=\"94px\" viewBox=\"0 0 94 94\" version=\"1.1\" xmlns=\"http://www.w3.org/2000/svg\" xmlns:xlink=\"http://www.w3.org/1999/xlink\" xmlns:sketch=\"http://www.bohemiancoding.com/sketch/ns\">\n" +
+    "        <svg width=\"94px\" height=\"94px\" viewBox=\"0 0 94 94\" version=\"1.1\" xmlns=\"http://www.w3.org/2000/svg\" xmlns:xlink=\"http://www.w3.org/1999/xlink\" xmlns:sketch=\"http://www.bohemiancoding.com/sketch/ns\">\n" +
     "            <title>Mail Icon</title>\n" +
     "            <desc></desc>\n" +
     "            <defs></defs>\n" +
