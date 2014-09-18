@@ -114,6 +114,10 @@
   text-align: right;
   color: inherit;
 }
+.modal-content .modal-body .checkEmail .help-footer p {
+  margin: 0;
+  padding: 0;
+}
 .modal-content .modal-body .form-control.username {
   width: 70%;
 }
