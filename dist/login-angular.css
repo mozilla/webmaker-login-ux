@@ -75,6 +75,27 @@
   padding: 1rem 0 0 2rem;
   border-left: 1px solid #DDDDDD;
 }
+.modal-content .modal-body .checkEmail hr {
+  margin: 4rem 0 1.5rem 0;
+}
+.modal-content .modal-body .checkEmail .mailIcon svg {
+  float: left;
+}
+.modal-content .modal-body .checkEmail .mailIcon p {
+  float: left;
+  text-align: left;
+  margin: 3.3rem 0 0 1.5rem;
+}
+.modal-content .modal-body .checkEmail .enter-key {
+  display: inline-block;
+  float: right;
+}
+.modal-content .modal-body .checkEmail .help-footer {
+  padding: 0;
+  background: none;
+  text-align: right;
+  color: inherit;
+}
 .modal-content .modal-body .form-control.username {
   width: 70%;
 }
