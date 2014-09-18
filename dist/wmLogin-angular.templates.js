@@ -319,7 +319,7 @@ angular.module("login-modal.html", []).run(["$templateCache", function($template
     "    </div>\n" +
     "\n" +
     "    <!-- checkEmail begins -->\n" +
-    "    <div class=\"checkEmail\" ng-show=\"enterToken\">\n" +
+    "    <div class=\"checkEmail\" ng-show=\"checkEmail\">\n" +
     "      <div class=\"mailIcon clearfix\">\n" +
     "        <?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"no\"?>\n" +
     "        <svg width=\"94px\" height=\"94px\" viewBox=\"0 0 94 94\" version=\"1.1\" xmlns=\"http://www.w3.org/2000/svg\" xmlns:xlink=\"http://www.w3.org/1999/xlink\" xmlns:sketch=\"http://www.bohemiancoding.com/sketch/ns\">\n" +
@@ -339,7 +339,7 @@ angular.module("login-modal.html", []).run(["$templateCache", function($template
     "        </svg>\n" +
     "        <p>{{ 'tokenMessage' | i18n }}</p>\n" +
     "      </div>\n" +
-    "      <a class=\"enter-key\" href=\"#\">Enter Key <i class=\"fa fa-angle-right\"></i></a>\n" +
+    "      <a class=\"enter-key\" href=\"#\" ng-click=\"enterKey()\">Enter Key <i class=\"fa fa-angle-right\"></i></a>\n" +
     "      <hr>\n" +
     "      <footer class=\"help-footer\">\n" +
     "        <p>Trouble with email?  <a href=\"#\">Get help</a></p>\n" +

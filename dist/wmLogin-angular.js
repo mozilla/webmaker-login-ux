@@ -254,6 +254,7 @@ module.directive('wmLogin', [
             $scope.user = {};
             $scope.enterEmail = true;
             $scope.sendingRequest = false;
+            $scope.enterToken = false;
 
             if (email) {
               $scope.user.loginEmail = email;
@@ -285,7 +286,7 @@ module.directive('wmLogin', [
                   }
                 } else {
                   $scope.enterEmail = false;
-                  $scope.enterToken = true;
+                  $scope.checkEmail = true;
                 }
                 $scope.sendingRequest = false;
                 apply();
@@ -315,6 +316,11 @@ module.directive('wmLogin', [
               disableListeners();
               $modalInstance.dismiss('done');
               $rootScope.login();
+            }
+
+            $scope.enterKey = function () {
+              $scope.checkEmail = false;
+              $scope.enterToken = true;
             }
 
             function disableListeners() {
