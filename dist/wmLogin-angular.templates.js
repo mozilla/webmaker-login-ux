@@ -344,7 +344,9 @@ angular.module("login-modal.html", []).run(["$templateCache", function($template
     "        </svg>\n" +
     "        <p>{{ 'tokenMessage' | i18n }}</p>\n" +
     "      </div>\n" +
-    "      <a class=\"enter-key\" href=\"#\" ng-click=\"enterKey()\">Enter Key <i class=\"fa fa-angle-right\"></i></a>\n" +
+    "      <div class=\"enter-key\">\n" +
+    "        <a href=\"#\" ng-click=\"enterKey()\">Enter Key <i class=\"fa fa-angle-right\"></i></a>\n" +
+    "      </div>\n" +
     "      <hr>\n" +
     "      <footer class=\"help-footer\">\n" +
     "        <p>Trouble with email?  <a href=\"#\">Get help</a></p>\n" +
@@ -390,14 +392,14 @@ angular.module("login-modal.html", []).run(["$templateCache", function($template
     "          <label for=\"password\">{{ 'Password' | i18n }}</label>\n" +
     "          <input type=\"password\" class=\"form-control\" required name=\"password\" ng-model=\"user.password\">\n" +
     "        </div>\n" +
-    "        <div class=\"cta-links\">\n" +
+    "        <div class=\"cta-links clearfix\">\n" +
     "          <button class=\"submit-password btn btn-primary\" type=\"button\" ng-disabled=\"sendingRequest\" ng-click=\"user.password && submitPassword()\">{{ 'Submit' | i18n }}</button>\n" +
-    "          <a href=\"#\" ng-click=\"requestReset()\">{{ 'Forgot your password?' | i18n }}</a>\n" +
+    "          <p><a href=\"#\" ng-click=\"requestReset()\">{{ 'Forgot your password?' | i18n }}</a></p>\n" +
     "        </div>\n" +
     "      </div>\n" +
     "      <hr />\n" +
     "      <footer class=\"help-footer\">\n" +
-    "        <p>{{ 'you can switch to webmaker login' | i18n }}</p>\n" +
+    "        <p class=\"switch-back\">{{ 'you can switch to webmaker login' | i18n }}</p>\n" +
     "      </footer>\n" +
     "    </div>\n" +
     "\n" +
