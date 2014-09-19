@@ -40,17 +40,21 @@ with fake data.
 
 ### Sign In Options:
 
-|email|token|result|
+|uid|token/password|result|
 |-----|-----|------|
-|user@webmaker.org|"token"|Should successfully log in (modal closes, check console if you don't trust me)|
-|user@webmaker.org|Anything not token|401 reponse from server|
-|error@webmaker.org|Anything|Server returns a 500 response|
-|ratelimit@webmaker.org|Anything|Server returns a 429 response|
-|fake@webmaker.org|N/A|User not found, asks if you want to create an account|
+|user OR user@webmaker.org|"token"|successfully logged in (modal closes, ui won't update, too much work)|
+|user OR user@webmaker.org|Anything not token|401 reponse from server|
+|error@webmaker.org|{Anything}|Server returns a 500 response|
+|ratelimit OR ratelimit@webmaker.org|Anything|Server returns a 429 response|
+|{any valid email or username}|N/A|User not found, asks if you want to create an account|
+|{anything that's not a valid email or username}|N/A|"that doesn't look like an email or username"|
+|pass OR pass@webmaker.org|topsecret|successfully logged in (modal closes, ui won't update, too much work)|
+|pass OR pass@webmaker.org|{anything else}|401 response from server|
+|passfail OR passfail@webmaker.org|{anything}|500 response from server|
 
 ### Join Webmaker Options:
 
-|email|username|result|
+|uid|username|result|
 |-----|-----|------|
 |Any|Any|Welcome to Webmaker modal view|
 |Any|"taken"|Username already taken error|

@@ -218,7 +218,6 @@ app.post('/auth/v2/authenticateToken', function(req, res) {
 app.post('/auth/v2/verify-password',function(req, res) {
   var uid = req.body.uid;
   var pass = req.body.password;
-  console.log( req.body, uid, pass );
   if ( uid === 'pass' || uid === 'pass@webmaker.org' ) {
     if ( pass === 'topsecret' ) {
       return res.json(200, {
