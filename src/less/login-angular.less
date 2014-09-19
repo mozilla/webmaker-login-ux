@@ -28,6 +28,14 @@
       font-weight: normal;
       background-color: #e3eaee;
       color: #454545;
+      text-align: center;
+      width: 100%;
+      margin-bottom: 0;
+      @media (min-width: @screen-xs-min) {
+        text-align: center;
+        width: auto;
+        text-align: left;
+      }
     }
     .form-group {
       margin-bottom: 1.5rem;
@@ -119,10 +127,13 @@
       }
     }
 
-
     .form-control.username {
-      width: 70%;
+      width: 100%;
+      @media (min-width: @screen-xs-min) {
+        width: 70%;
+      }
     }
+
     .terms-checkbox {
       label {
         font-weight: 300;
