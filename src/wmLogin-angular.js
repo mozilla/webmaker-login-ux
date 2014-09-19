@@ -298,6 +298,9 @@ module.directive('wmLogin', [
               wmLoginService.authenticateToken($scope.user.loginEmail, $scope.user.key, 'session', function(err) {
                 $scope.form.user.key.$setValidity('invalidKey', !err);
                 $scope.sendingRequest = false;
+                if ( !err ) {
+                  $scope.user.key = "";
+                }
                 apply();
               });
             };

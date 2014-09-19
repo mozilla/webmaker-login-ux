@@ -101,23 +101,23 @@ app.post('/auth/v2/create', function(req, res) {
 });
 
 app.post('/auth/v2/request', function(req, res) {
-  if ( req.body.email === 'fake@webmaker.org' ) {
-    return res.json({
-      error: 'User not found'
+  if ( req.body.email === 'error@webmaker.org' ) {
+    return res.json(500, {
+      error: 'Server Error'
     });
   }
 
   if (
     req.body.email === 'user@webmaker.org' ||
-    req.body.email === 'error@webmaker.org' ||
+    req.body.email === 'fail@webmaker.org' ||
     req.body.email === 'ratelimit@webmaker.org' ) {
     return res.json({
       status: 'Login Token Sent'
     });
   }
 
-  res.json(500, {
-    error: 'Server Error'
+  res.json({
+    error: 'User not found'
   });
 });
 
@@ -143,6 +143,33 @@ app.post('/authenticate', function(req, res) {
   });
 });
 
+app.post('/auth/v2/uid-exists', function(req, res) {
+  if ( uid === 'user@webmaker.org' ||
+       uid === 'unverified@webmaker.org' ||
+       uid === 'fail@webmaker.org' ||
+       uid === 'ratelimit@webmaker.org' ) {
+
+    var isVerified = uid !== 'unverified@webmaker.org';
+
+    return res.json(200, {
+      exists: true,
+      usePasswordLogin: false,
+      verified: isVerified
+    });
+  }
+
+  if ( uid === 'pass@webmaker.org' ) {
+    return res.json({
+      exists: true,
+      usePasswordLogin: true,
+      verified: true
+    });
+  }
+
+  res.json(200, {
+    exists: false
+  });
+});
 
 app.post('/auth/v2/authenticateToken', function(req, res) {
   if ( req.body.email === 'user@webmaker.org' && req.body.token === 'token' ) {
@@ -155,10 +182,10 @@ app.post('/auth/v2/authenticateToken', function(req, res) {
     });
   }
 
-  if ( req.body.email === 'error@webmaker.org' ) {
+  if ( req.body.email === 'fail@webmaker.org' ) {
     return res.json(500, {
       error: "Server Error"
-    })
+    });
   }
 
   if ( req.body.email === 'ratelimit@webmaker.org' ) {
@@ -171,6 +198,44 @@ app.post('/auth/v2/authenticateToken', function(req, res) {
     error: "Unauthorized"
   });
 
+});
+
+app.post('/auth/v2/user/verify-password',function(req, res) {
+  var uid = req.body.uid;
+  var pass = req.body.pass;
+  if ( uid === 'webmaker' || uid === 'pass@webmaker.org' ) {
+    if ( pass === 'topsecret' ) {
+      return res.json(200, {
+        user: {
+          email: 'pass@webmaker.org',
+          username: 'webmaker'
+        }
+      });
+    }
+  }
+  return res.json(401,{
+    status: 'unauthorized'
+  });
+});
+app.post('/auth/v2/user/enable-passwords',function(req, res) {
+  res.json(200, {
+    status: 'success'
+  });
+});
+app.post('/auth/v2/user/remove-password',function(req, res) {
+  res.json(200, {
+    status: 'success'
+  });
+});
+app.post('/auth/v2/user/request-reset-code',function(req, res) {
+  res.json(200, {
+    status: 'sent'
+  });
+});
+app.post('/auth/v2/user/reset-password',function(req, res) {
+  res.json(200, {
+    status: 'sent'
+  });
 });
 
 app.listen(4321, function() {
