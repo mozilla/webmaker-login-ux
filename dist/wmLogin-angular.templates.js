@@ -298,8 +298,8 @@ angular.module("login-modal.html", []).run(["$templateCache", function($template
   $templateCache.put("login-modal.html",
     "<div class=\"modal-header\">\n" +
     "  <button ng-click=\"cancel()\" type=\"button\" class=\"close\" data-dismiss=\"modal\" aria-hidden=\"true\">&times;</button>\n" +
-    "  <h3 class=\"modal-title\" ng-show=\"currentState !== MODALSTATE.checkEmail && currentState !== MODALSTATE.resetRequestSent\">{{ 'Sign in' | i18n }}</h3>\n" +
-    "  <h3 class=\"modal-title\" ng-show=\"currentState === MODALSTATE.checkEmail || currentState === MODALSTATE.resetRequestSent\">{{ 'checkEmail' | i18n }}</h3>\n" +
+    "  <h3 class=\"modal-title\" ng-show=\"currentState === MODALSTATE.enterUid || currentState === MODALSTATE.enterPassword\">{{ 'Sign in' | i18n }}</h3>\n" +
+    "  <h3 class=\"modal-title\" ng-show=\"currentState === MODALSTATE.checkEmail || currentState === MODALSTATE.resetRequestSent || currentState === MODALSTATE.enterKey\">{{ 'checkEmail' | i18n }}</h3>\n" +
     "</div>\n" +
     "<div class=\"modal-body\">\n" +
     "  <form class=\"form\" name=\"form.user\" novalidate>\n" +

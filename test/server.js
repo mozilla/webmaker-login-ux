@@ -179,7 +179,15 @@ app.post('/auth/v2/uid-exists', function(req, res) {
 app.post('/auth/v2/authenticateToken', function(req, res) {
   var uid = req.body.uid;
   var token = req.body.token;
-  if ( (uid === 'user@webmaker.org' || uid === 'user') && token === 'token' ) {
+
+  var validUids = [
+    'user@webmaker.org',
+    'user',
+    'unverified',
+    'unverified@webmaker.org'
+  ];
+
+  if ( validUids.indexOf(uid) !== -1 && token === 'token' ) {
     return res.json({
       user: {
         email: 'user@webmaker.org',
