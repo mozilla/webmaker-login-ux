@@ -2,6 +2,11 @@ var module = angular.module('wmLoginAngular', ['templates-wmLoginAngular']);
 
 module.constant('CONFIG', window.angularConfig);
 
+module.constant('wmRegex',{
+  username: /^[abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789\-]{1,20}$/,
+  email: /^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$/
+});
+
 module.factory('focus', function ($rootScope, $timeout) {
   return function (name) {
     $timeout(function () {
@@ -44,6 +49,10 @@ module.factory('wmLoginService', ['$rootScope', '$modal', '$window', '$location'
       apply();
     });
 
+    auth.on('passwordlogin', function (user) {
+      $rootScope._user = user;
+      apply();
+    });
 
     $rootScope.login =  auth.login;
 
@@ -81,10 +90,8 @@ module.directive('wmCreateUser', [
           $scope.wmCreateUser();
         });
       },
-      controller:['$rootScope', '$scope', '$http', '$modal', '$timeout', 'focus', 'wmLoginService',
-      function($rootScope, $scope, $http, $modal, $timeout, focus, wmLoginService) {
-        var usernameRegex = /^[abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789\-]{1,20}$/;
-        var emailRegex = /^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$/;
+      controller:['$rootScope', '$scope', '$http', '$modal', '$timeout', 'focus', 'wmLoginService', 'wmRegex',
+      function($rootScope, $scope, $http, $modal, $timeout, focus, wmLoginService, wmRegex) {
 
         function apply() {
           if (!$rootScope.$$phase) {
@@ -134,7 +141,7 @@ module.directive('wmCreateUser', [
               return;
             }
 
-            var isValid = emailRegex.test($scope.user.email);
+            var isValid = wmRegex.email.test($scope.user.email);
 
             $scope.form.user.email.$setValidity('invalidEmail', isValid);
             $scope.form.user.email.$setValidity('noAccount', true);
@@ -184,7 +191,7 @@ module.directive('wmCreateUser', [
             if (!$scope.user.username) {
               return;
             }
-            if (!usernameRegex.test($scope.user.username)) {
+            if (!wmRegex.username.test($scope.user.username)) {
               $scope.form.user.username.$setValidity('invalidUsername', false);
               return;
             }
@@ -221,9 +228,8 @@ module.directive('wmLogin', [
           $scope.wmTokenLogin();
         });
       },
-      controller:['$rootScope', '$scope', '$http', '$modal', '$timeout', 'wmLoginService',
-        function($rootScope, $scope, $http, $modal, $timeout, wmLoginService) {
-          var emailRegex = /^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$/;
+      controller:['$rootScope', '$scope', '$http', '$modal', '$timeout', 'wmLoginService', 'wmRegex',
+        function($rootScope, $scope, $http, $modal, $timeout, wmLoginService, wmRegex) {
 
           function apply() {
             if (!$rootScope.$$phase) {
@@ -231,13 +237,13 @@ module.directive('wmLogin', [
             }
           }
 
-          $rootScope.wmTokenLogin = function (email) {
+          $rootScope.wmTokenLogin = function (uid) {
             $modal.open({
               templateUrl: 'login-modal.html',
               controller: tokenLoginController,
               resolve: {
-                email: function () {
-                  return email;
+                uid: function () {
+                  return uid;
                 }
               }
             }).opened
@@ -249,57 +255,116 @@ module.directive('wmLogin', [
               });
           };
 
-          function tokenLoginController($scope, $modalInstance, email) {
+          function tokenLoginController($scope, $modalInstance, uid) {
+
+            var MODALSTATE = {
+              enterUid: 0,
+              checkEmail: 1,
+              enterKey: 2,
+              enterPassword: 3,
+              resetRequestSent: 4
+            };
+
+            $scope.MODALSTATE = MODALSTATE;
             $scope.form = {};
             $scope.user = {};
-            $scope.enterEmail = true;
+            $scope.currentState = MODALSTATE.enterUid;
             $scope.sendingRequest = false;
-            $scope.enterToken = false;
 
-            if (email) {
-              $scope.user.loginEmail = email;
+            if (uid) {
+              $scope.user.uid = uid;
             }
 
-            // this is borked, causes $modal to throw when the create user modal attempts to close..
             $scope.switchToSignup = function () {
               disableListeners();
               $modalInstance.close();
-              $rootScope.wmCreateUser($scope.user.loginEmail);
+              $rootScope.wmCreateUser($scope.user.uid);
             };
 
-            $scope.submit = function () {
-              var isValid = emailRegex.test($scope.user.loginEmail);
-              $scope.form.user.loginEmail.$setValidity('invalid', isValid);
+            $scope.submitUid = function () {
+              var input = $scope.user.uid;
+              var isValid = wmRegex.username.test(input) || wmRegex.email.test(input);
+
+              $scope.form.user.uid.$setValidity('invalid', isValid);
+
               if (!isValid) {
                 return;
               }
+
               $scope.sendingRequest = true;
-              wmLoginService.request($scope.user.loginEmail, function (err) {
-                if (err) {
-                  if ( err === "User not found" ) {
-                    $scope.form.user.loginEmail.$setValidity('noAccount', false);
-                  } else {
-                    $scope.form.user.loginEmail.$setValidity('tokenSendFailed', false);
-                    $timeout(function () {
-                      $scope.form.user.loginEmail.$setValidity('tokenSendFailed', true);
-                    }, 10000);
-                  }
-                } else {
-                  $scope.enterEmail = false;
-                  $scope.checkEmail = true;
-                }
+
+              wmLoginService.uidExists(input, function(err, resp) {
                 $scope.sendingRequest = false;
+                $scope.form.user.uid.$setValidity('tokenSendFailed', !err);
+                $scope.form.user.uid.$setValidity('noAccount', resp.exists);
+                if ( err ) {
+                  $timeout(function () {
+                    $scope.form.user.uid.$setValidity('tokenSendFailed', true);
+                  }, 10000);
+                }
+                else if ( resp.exists  ) {
+                  if ( resp.usePasswordLogin ) {
+                    $scope.currentState = MODALSTATE.enterPassword;
+                    return apply();
+                  } else {
+                    return requestToken(resp.verified);
+                  }
+                }
+                apply();
+              });
+
+              function requestToken(isVerified) {
+                $scope.sendingRequest = true;
+                wmLoginService.request($scope.user.uid, function (err) {
+                  if (err) {
+                    if ( err === "User not found" ) {
+                      $scope.form.user.uid.$setValidity('noAccount', false);
+                    } else {
+                      $scope.form.user.uid.$setValidity('tokenSendFailed', false);
+                      $timeout(function () {
+                        $scope.form.user.uid.$setValidity('tokenSendFailed', true);
+                      }, 10000);
+                    }
+                  } else {
+                    if ( isVerified ) {
+                      $scope.currentState = MODALSTATE.enterKey;
+                    } else {
+                      $scope.currentState = MODALSTATE.checkEmail;
+                    }
+                  }
+                  $scope.sendingRequest = false;
+                  apply();
+                });
+              }
+            };
+
+            $scope.submitKey = function() {
+              $scope.sendingRequest = true;
+              wmLoginService.authenticateToken($scope.user.uid, $scope.user.key, 'session', function(err) {
+                $scope.sendingRequest = false;
+                $scope.form.user.key.$setValidity('invalidKey', !err);
+                if ( !err ) {
+                  $scope.user.key = "";
+                }
                 apply();
               });
             };
 
-            $scope.submitKey = function () {
+            $scope.submitPassword = function() {
               $scope.sendingRequest = true;
-              wmLoginService.authenticateToken($scope.user.loginEmail, $scope.user.key, 'session', function(err) {
-                $scope.form.user.key.$setValidity('invalidKey', !err);
+              wmLoginService.verifyPassword($scope.user.uid, $scope.user.password, function(err, result) {
+                console.log( err, result );
                 $scope.sendingRequest = false;
+                $scope.form.user.password.$setValidity('passLoginFailed', err ? false : result );
+                apply();
+              });
+            };
+
+            $scope.requestReset=function() {
+              wmLoginService.requestResetCode($scope.user.uid, function(err) {
+                $scope.form.user.password.$setValidity('resetRequestFailed', !err);
                 if ( !err ) {
-                  $scope.user.key = "";
+                  $scope.currentState = MODALSTATE.resetRequestSent;
                 }
                 apply();
               });
@@ -322,17 +387,18 @@ module.directive('wmLogin', [
             }
 
             $scope.enterKey = function () {
-              $scope.checkEmail = false;
-              $scope.enterToken = true;
-            }
+              $scope.currentState = MODALSTATE.enterKey;
+            };
 
             function disableListeners() {
               wmLoginService.off('login', $scope.continue);
               wmLoginService.off('tokenlogin', $scope.continue);
+              wmLoginService.off('passwordlogin', $scope.continue);
             }
 
             wmLoginService.on('login', $scope.continue);
             wmLoginService.on('tokenlogin', $scope.continue);
+            wmLoginService.on('passwordlogin', $scope.continue);
           };
         }
       ]
@@ -341,8 +407,8 @@ module.directive('wmLogin', [
 ]);
 
 // Legacy Persona login
-module.factory('wmPersonaListener', ['$modal', '$http', 'wmLoginService',
-  function($modal, $http, wmLoginService) {
+module.factory('wmPersonaListener', ['$modal', '$http', 'wmLoginService', 'wmRegex',
+  function($modal, $http, wmLoginService, emRegex) {
     wmLoginService.on('newuser', function (assertion) {
       $modal.open({
         templateUrl: 'legacy-create-user-modal.html',
@@ -360,13 +426,11 @@ module.factory('wmPersonaListener', ['$modal', '$http', 'wmLoginService',
       $scope.form = {};
       $scope.user = {};
 
-      var usernameRegex = /^[abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789\-]{1,20}$/;
-
       $scope.checkUsername = function () {
         if (!$scope.form.user.username) {
           return;
         }
-        if (!usernameRegex.test($scope.form.user.username.$viewValue)) {
+        if (!wmRegex.username.test($scope.form.user.username.$viewValue)) {
           $scope.form.user.username.$setValidity('invalid', false);
           return;
         }
