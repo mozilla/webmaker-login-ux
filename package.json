@@ -19,7 +19,7 @@
     "html2js": "0.0.3",
     "jit-grunt": "0.8.0",
     "nunjucks": "1.0.7",
-    "webmaker-auth-client": "https://github.com/cadecairos/webmaker-auth-client/archive/8deca7378cf23dc4e534c2a6d7e2951e233ab110.tar.gz",
+    "webmaker-auth-client": "https://github.com/cadecairos/webmaker-auth-client/archive/3f42d90bf3c3c8f5d7f8f61268c81894911cd001.tar.gz",
     "webmaker-i18n": "0.3.24",
     "webmaker-locale-mapping": "0.0.4"
   }

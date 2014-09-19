@@ -101,16 +101,19 @@ app.post('/auth/v2/create', function(req, res) {
 });
 
 app.post('/auth/v2/request', function(req, res) {
-  if ( req.body.email === 'error@webmaker.org' ) {
+  if ( req.body.uid === 'error@webmaker.org' || req.body.uid === 'error' ) {
     return res.json(500, {
       error: 'Server Error'
     });
   }
 
   if (
-    req.body.email === 'user@webmaker.org' ||
-    req.body.email === 'fail@webmaker.org' ||
-    req.body.email === 'ratelimit@webmaker.org' ) {
+    req.body.uid === 'user@webmaker.org' ||
+    req.body.uid === 'fail@webmaker.org' ||
+    req.body.uid === 'ratelimit@webmaker.org' ||
+    req.body.uid === 'user' ||
+    req.body.uid === 'fail' ||
+    req.body.uid === 'ratelimit' ) {
     return res.json({
       status: 'Login Token Sent'
     });
@@ -172,7 +175,7 @@ app.post('/auth/v2/uid-exists', function(req, res) {
 });
 
 app.post('/auth/v2/authenticateToken', function(req, res) {
-  if ( req.body.email === 'user@webmaker.org' && req.body.token === 'token' ) {
+  if ( (req.body.uid === 'user@webmaker.org' || req.body.uid === 'user') && req.body.token === 'token' ) {
     return res.json({
       user: {
         email: 'user@webmaker.org',
@@ -182,13 +185,13 @@ app.post('/auth/v2/authenticateToken', function(req, res) {
     });
   }
 
-  if ( req.body.email === 'fail@webmaker.org' ) {
+  if ( req.body.uid === 'fail@webmaker.org' || req.body.uid === 'fail' ) {
     return res.json(500, {
       error: "Server Error"
     });
   }
 
-  if ( req.body.email === 'ratelimit@webmaker.org' ) {
+  if ( req.body.uid === 'ratelimit@webmaker.org' || req.body.uid === 'ratelimit' ) {
     return res.json(429, {
       error: "rate limit exceeded"
     });
