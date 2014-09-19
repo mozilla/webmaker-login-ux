@@ -390,8 +390,10 @@ angular.module("login-modal.html", []).run(["$templateCache", function($template
     "          <label for=\"password\">{{ 'Password' | i18n }}</label>\n" +
     "          <input type=\"password\" class=\"form-control\" required name=\"password\" ng-model=\"user.password\">\n" +
     "        </div>\n" +
-    "        <button class=\"submit-password btn btn-primary\" type=\"button\" ng-disabled=\"sendingRequest\" ng-click=\"user.password && submitPassword()\">{{ 'Submit' | i18n }}</button>\n" +
-    "        <a href=\"#\" ng-click=\"requestReset()\">{{ 'Forgot your password?' | i18n }}</a>\n" +
+    "        <div class=\"cta-links\">\n" +
+    "          <button class=\"submit-password btn btn-primary\" type=\"button\" ng-disabled=\"sendingRequest\" ng-click=\"user.password && submitPassword()\">{{ 'Submit' | i18n }}</button>\n" +
+    "          <a href=\"#\" ng-click=\"requestReset()\">{{ 'Forgot your password?' | i18n }}</a>\n" +
+    "        </div>\n" +
     "      </div>\n" +
     "      <hr />\n" +
     "      <footer class=\"help-footer\">\n" +

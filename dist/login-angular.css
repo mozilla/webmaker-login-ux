@@ -11,7 +11,8 @@
 .modal-content .modal-body label[for=email],
 .modal-content .modal-body label[for=uid],
 .modal-content .modal-body label[for=key],
-.modal-content .modal-body label[for=persona-username] {
+.modal-content .modal-body label[for=persona-username],
+.modal-content .modal-body label[for=password] {
   font-size: 1.333333333rem;
   font-weight: 600;
   color: #454545;
