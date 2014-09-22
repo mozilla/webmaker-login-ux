@@ -11,7 +11,8 @@
 .modal-content .modal-body label[for=email],
 .modal-content .modal-body label[for=uid],
 .modal-content .modal-body label[for=key],
-.modal-content .modal-body label[for=persona-username] {
+.modal-content .modal-body label[for=persona-username],
+.modal-content .modal-body label[for=password] {
   font-size: 1.333333333rem;
   font-weight: 600;
   color: #454545;
@@ -67,6 +68,7 @@
   margin: 1.4rem 0 0 1.2rem;
 }
 .modal-content .modal-body .enterToken .email-container {
+  margin-top: 1rem;
   display: -webkit-flex;
   display: flex;
 }
@@ -92,49 +94,65 @@
   border-left: 1px solid #DDDDDD;
 }
 .modal-content .modal-body .checkEmail hr,
-.modal-content .modal-body .resetRequestSent hr {
-  margin: 4rem 0 1.5rem 0;
+.modal-content .modal-body .resetRequestSent hr,
+.modal-content .modal-body .enterPassword hr {
+  margin: 2rem 0 1.5rem 0;
 }
 .modal-content .modal-body .checkEmail .mailIcon svg,
-.modal-content .modal-body .resetRequestSent .mailIcon svg {
+.modal-content .modal-body .resetRequestSent .mailIcon svg,
+.modal-content .modal-body .enterPassword .mailIcon svg {
   display: block;
   margin: 0 auto;
 }
 @media (min-width: 480px) {
   .modal-content .modal-body .checkEmail .mailIcon svg,
-  .modal-content .modal-body .resetRequestSent .mailIcon svg {
+  .modal-content .modal-body .resetRequestSent .mailIcon svg,
+  .modal-content .modal-body .enterPassword .mailIcon svg {
     float: left;
   }
 }
 .modal-content .modal-body .checkEmail .mailIcon p,
-.modal-content .modal-body .resetRequestSent .mailIcon p {
+.modal-content .modal-body .resetRequestSent .mailIcon p,
+.modal-content .modal-body .enterPassword .mailIcon p {
   text-align: center;
   margin: 2rem 0 1rem 1.5rem;
 }
 @media (min-width: 480px) {
   .modal-content .modal-body .checkEmail .mailIcon p,
-  .modal-content .modal-body .resetRequestSent .mailIcon p {
+  .modal-content .modal-body .resetRequestSent .mailIcon p,
+  .modal-content .modal-body .enterPassword .mailIcon p {
     float: left;
     text-align: left;
     margin: 3.3rem 0 0 1.5rem;
   }
 }
 .modal-content .modal-body .checkEmail .enter-key,
-.modal-content .modal-body .resetRequestSent .enter-key {
-  display: inline-block;
-  float: right;
+.modal-content .modal-body .resetRequestSent .enter-key,
+.modal-content .modal-body .enterPassword .enter-key {
+  margin: -1rem 0 0 0;
+  text-align: right;
 }
 .modal-content .modal-body .checkEmail .help-footer,
-.modal-content .modal-body .resetRequestSent .help-footer {
+.modal-content .modal-body .resetRequestSent .help-footer,
+.modal-content .modal-body .enterPassword .help-footer {
   padding: 0;
+  margin-bottom: -1rem;
   background: none;
   text-align: right;
   color: inherit;
 }
 .modal-content .modal-body .checkEmail .help-footer p,
-.modal-content .modal-body .resetRequestSent .help-footer p {
+.modal-content .modal-body .resetRequestSent .help-footer p,
+.modal-content .modal-body .enterPassword .help-footer p {
   margin: 0;
   padding: 0;
+}
+.modal-content .modal-body .checkEmail .help-footer p.switch-back,
+.modal-content .modal-body .resetRequestSent .help-footer p.switch-back,
+.modal-content .modal-body .enterPassword .help-footer p.switch-back {
+  text-align: left;
+  font-size: 1.2rem;
+  line-height: 1.8rem;
 }
 .modal-content .modal-body .form-control.username {
   width: 100%;
