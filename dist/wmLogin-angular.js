@@ -66,11 +66,11 @@ module.factory('wmLoginService', ['$rootScope', '$modal', '$window', '$location'
       console.error('error', message, xhr);
     });
 
-    // see if we can try to instantly log in with an OTP
     var searchObj = $location.search();
 
-    if (searchObj.email && searchObj.token) {
-      auth.authenticateToken(searchObj.email, searchObj.token, searchObj.validFor);
+    // see if we can try to instantly log in with an OTP
+    if (searchObj.uid && searchObj.token) {
+      auth.authenticateToken(searchObj.uid, searchObj.token, searchObj.validFor);
     }
 
     auth.verify();
@@ -353,7 +353,6 @@ module.directive('wmLogin', [
             $scope.submitPassword = function() {
               $scope.sendingRequest = true;
               wmLoginService.verifyPassword($scope.user.uid, $scope.user.password, function(err, result) {
-                console.log( err, result );
                 $scope.sendingRequest = false;
                 $scope.form.user.password.$setValidity('passLoginFailed', err ? false : result );
                 apply();
@@ -399,6 +398,83 @@ module.directive('wmLogin', [
             wmLoginService.on('login', $scope.continue);
             wmLoginService.on('tokenlogin', $scope.continue);
             wmLoginService.on('passwordlogin', $scope.continue);
+          };
+        }
+      ]
+    };
+  }
+]);
+
+module.directive('wmPasswordReset', [
+  function() {
+    // Prevent multiple dialogs
+    var triggered = false;
+    return {
+      restrict: 'A',
+      controller:['$rootScope', '$scope', '$location', '$modal', 'wmLoginService',
+        function($rootScope, $scope, $location, $modal, wmLoginService) {
+
+          var searchObj = $location.search();
+
+          if (!searchObj.resetCode || !searchObj.uid || !$rootScope._user || triggered) {
+            return;
+          }
+
+          triggered = true;
+
+          function apply() {
+            if (!$rootScope.$$phase) {
+              $rootScope.$apply();
+            }
+          }
+
+          $modal.open({
+            templateUrl: 'reset-modal.html',
+            controller: passwordResetController,
+            resolve: {
+              resetCode: function() {
+                return searchObj.resetCode;
+              },
+              uid: function () {
+                return searchObj.uid;
+              }
+            }
+          });
+
+          function passwordResetController($scope, $modalInstance, resetCode, uid) {
+            $scope.form = {};
+            $scope.password = {};
+            $scope.sendingRequest = false;
+
+            if (!uid || !resetCode) {
+              return $modalinstance.close();
+            }
+
+            function switchToSignin() {
+              $modalInstance.close();
+              $rootScope.wmTokenLogin(uid);
+            };
+
+            $scope.validateConfirmPassword = function() {
+              $scope.form.password.value.$setValidity( 'noMatch', $scope.form.password.value !== $scope.form.password.confirm);
+            };
+
+            $scope.submitReset = function () {
+              wmLoginService.resetPassword( uid, resetCode, $scope.password.value, function(err) {
+                if ( err ) {
+                  $scope.form.password.value.$setValidity("serverError", false);
+                  return apply();
+                }
+                $scope.form.password.value.$setValidity("serverError", true);
+                $location.search('uid', null);
+                $location.search('resetCode', null);
+                switchToSignin();
+              });
+            };
+
+            $scope.cancel = function () {
+              $modalInstance.dismiss('cancel');
+            };
           };
         }
       ]

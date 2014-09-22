@@ -1,4 +1,4 @@
-angular.module('templates-wmLoginAngular', ['create-user-modal.html', 'legacy-create-user-modal.html', 'login-modal.html']);
+angular.module('templates-wmLoginAngular', ['create-user-modal.html', 'legacy-create-user-modal.html', 'login-modal.html', 'reset-modal.html']);
 
 angular.module("create-user-modal.html", []).run(["$templateCache", function($templateCache) {
   $templateCache.put("create-user-modal.html",
@@ -427,6 +427,36 @@ angular.module("login-modal.html", []).run(["$templateCache", function($template
     "        <footer class=\"help-footer\">\n" +
     "          {{ 'you can switch to webmaker login' | i18n }}\n" +
     "        </footer>\n" +
+    "    </div>\n" +
+    "  </form>\n" +
+    "</div>\n" +
+    "");
+}]);
+
+angular.module("reset-modal.html", []).run(["$templateCache", function($templateCache) {
+  $templateCache.put("reset-modal.html",
+    "<div class=\"modal-header\">\n" +
+    "  <button ng-click=\"cancel()\" ng-hide=\"\" type=\"button\" class=\"close\" data-dismiss=\"modal\" aria-hidden=\"true\">&times;</button>\n" +
+    "  <h3 class=\"modal-title\">{{ 'Reset Password' | i18n }}</h3>\n" +
+    "</div>\n" +
+    "<div class=\"modal-body\">\n" +
+    "  <form class=\"form\" name=\"form.password\" novalidate>\n" +
+    "\n" +
+    "    <div class=\"alert alert-danger\" ng-show=\"form.password.value.$error.noMatch\" bind-unsafe-html=\"'passwords do not match' | i18n\"></div>\n" +
+    "    <div class=\"alert alert-danger\" ng-show=\"form.password.value.$error.serverError\" bind-unsafe-html=\"'error setting password' | i18n\"></div>\n" +
+    "\n" +
+    "    <div>\n" +
+    "      <div class=\"form-group\">\n" +
+    "        <label for=\"value\">{{ 'Set a Password' | i18n }}</label>\n" +
+    "        <input ng-model=\"password.value\" type=\"password\" class=\"form-control\" name=\"value\" autocomplete=\"off\" required>\n" +
+    "      </div>\n" +
+    "      <div class=\"form-group\">\n" +
+    "        <label for=\"confirmValue\">{{ 're-enter your password' | i18n }}</label>\n" +
+    "        <input ng-model=\"password.confirmValue\" ng-blur=\"validateConfirmPassword()\" type=\"password\" class=\"form-control\" name=\"confirmValue\" autocomplete=\"off\" required>\n" +
+    "      </div>\n" +
+    "      <div class=\"cta-links clearfix\">\n" +
+    "        <button ng-click=\"submitReset()\" ng-disabled=\"!form.password.value && !form.password.confirm && form.password.value.$invalid\" class=\"reset-password btn btn-primary\" type=\"button\">{{ 'Submit' | i18n }}</button>\n" +
+    "      </div>\n" +
     "    </div>\n" +
     "  </form>\n" +
     "</div>\n" +

@@ -77,5 +77,10 @@
   "TryPopcornMaker": "Try Popcorn Maker now",
   "Appmaker": "Appmaker",
   "AboutAppmaker": "Appmaker is a free tool for creating personal mobile apps, even if you don't know how to code!",
-  "TryAppmaker": "Try Appmaker now"
+  "TryAppmaker": "Try Appmaker now",
+  "passwords do not match": "<i class=\"fa fa-times\"></i>  <strong>Uh oh!</strong> The passwords do not match!",
+  "error setting password": "<i class=\"fa fa-times\"></i>  <strong>Uh oh!</strong> There was an error trying to set your password, try again.",
+  "re-enter your password": "re-enter your password",
+  "Reset Password": "Reset Password",
+  "Set a Password": "Set a Password"
 }
