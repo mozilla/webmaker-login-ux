@@ -416,7 +416,7 @@ module.directive('wmPasswordReset', [
 
           var searchObj = $location.search();
 
-          if (!searchObj.resetCode || !searchObj.uid || !$rootScope._user || triggered) {
+          if (!searchObj.resetCode || !searchObj.uid || triggered) {
             return;
           }
 
