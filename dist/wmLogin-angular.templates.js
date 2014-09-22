@@ -304,6 +304,7 @@ angular.module("login-modal.html", []).run(["$templateCache", function($template
     "<div class=\"modal-body\">\n" +
     "  <form class=\"form\" name=\"form.user\" novalidate>\n" +
     "\n" +
+    "    <div class=\"alert alert-success\" ng-show=\"passwordReset\" bind-unsafe-html=\"'Password Reset Success' | i18n\"></div>\n" +
     "    <div class=\"alert alert-warning\" ng-show=\"form.user.uid.$error.noAccount\" bind-unsafe-html=\"'No account found for your email' | i18n\"></div>\n" +
     "    <div class=\"alert alert-danger\" ng-show=\"form.user.uid.$error.invalid\" bind-unsafe-html=\"'That does not look like an email address or username' | i18n\"></div>\n" +
     "    <div class=\"alert alert-danger\" ng-show=\"form.user.uid.$error.tokenSendFailed\" bind-unsafe-html=\"'problem sending token' | i18n\"></div>\n" +

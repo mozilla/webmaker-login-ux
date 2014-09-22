@@ -45,6 +45,8 @@ module.factory('wmLoginService', ['$rootScope', '$modal', '$window', '$location'
     });
 
     auth.on('tokenlogin', function (user) {
+      $location.search('uid', null);
+      $location.search('token', null);
       $rootScope._user = user;
       apply();
     });
@@ -237,13 +239,16 @@ module.directive('wmLogin', [
             }
           }
 
-          $rootScope.wmTokenLogin = function (uid) {
+          $rootScope.wmTokenLogin = function (uid, passwordReset) {
             $modal.open({
               templateUrl: 'login-modal.html',
               controller: tokenLoginController,
               resolve: {
                 uid: function () {
                   return uid;
+                },
+                passwordReset: function() {
+                  return !!passwordReset;
                 }
               }
             }).opened
@@ -255,7 +260,7 @@ module.directive('wmLogin', [
               });
           };
 
-          function tokenLoginController($scope, $modalInstance, uid) {
+          function tokenLoginController($scope, $modalInstance, uid, passwordReset) {
 
             var MODALSTATE = {
               enterUid: 0,
@@ -270,6 +275,7 @@ module.directive('wmLogin', [
             $scope.user = {};
             $scope.currentState = MODALSTATE.enterUid;
             $scope.sendingRequest = false;
+            $scope.passwordReset = passwordReset;
 
             if (uid) {
               $scope.user.uid = uid;
@@ -303,6 +309,7 @@ module.directive('wmLogin', [
                   }, 10000);
                 }
                 else if ( resp.exists  ) {
+                  $scope.passwordReset = false;
                   if ( resp.usePasswordLogin ) {
                     $scope.currentState = MODALSTATE.enterPassword;
                     return apply();
@@ -452,7 +459,7 @@ module.directive('wmPasswordReset', [
 
             function switchToSignin() {
               $modalInstance.close();
-              $rootScope.wmTokenLogin(uid);
+              $rootScope.wmTokenLogin(uid, true);
             };
 
             $scope.validateConfirmPassword = function() {

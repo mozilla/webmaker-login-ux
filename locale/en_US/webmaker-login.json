@@ -82,5 +82,6 @@
   "error setting password": "<i class=\"fa fa-times\"></i>  <strong>Uh oh!</strong> There was an error trying to set your password, try again.",
   "Confirm your password": "Confirm your password",
   "Reset Password": "Reset Password",
-  "Set a Password": "Set a Password"
+  "Set a Password": "Set a Password",
+  "Password Reset Success": "<i class=\"fa fa-check\"></i> <strong>Success!</strong> You've successfully reset your password, please sign in!"
 }
