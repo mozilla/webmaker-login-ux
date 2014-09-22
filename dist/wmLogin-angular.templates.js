@@ -439,19 +439,19 @@ angular.module("reset-modal.html", []).run(["$templateCache", function($template
     "  <button ng-click=\"cancel()\" ng-hide=\"\" type=\"button\" class=\"close\" data-dismiss=\"modal\" aria-hidden=\"true\">&times;</button>\n" +
     "  <h3 class=\"modal-title\">{{ 'Reset Password' | i18n }}</h3>\n" +
     "</div>\n" +
-    "<div class=\"modal-body\">\n" +
+    "<div class=\"modal-body clearfix\">\n" +
     "  <form class=\"form\" name=\"form.password\" novalidate>\n" +
     "\n" +
     "    <div class=\"alert alert-danger\" ng-show=\"form.password.value.$error.noMatch\" bind-unsafe-html=\"'passwords do not match' | i18n\"></div>\n" +
     "    <div class=\"alert alert-danger\" ng-show=\"form.password.value.$error.serverError\" bind-unsafe-html=\"'error setting password' | i18n\"></div>\n" +
     "\n" +
     "    <div>\n" +
-    "      <div class=\"form-group\">\n" +
+    "      <div class=\"form-group half-width\">\n" +
     "        <label for=\"value\">{{ 'Set a Password' | i18n }}</label>\n" +
     "        <input ng-model=\"password.value\" type=\"password\" class=\"form-control\" name=\"value\" autocomplete=\"off\" required>\n" +
     "      </div>\n" +
-    "      <div class=\"form-group\">\n" +
-    "        <label for=\"confirmValue\">{{ 're-enter your password' | i18n }}</label>\n" +
+    "      <div class=\"form-group half-width\">\n" +
+    "        <label for=\"confirmValue\">{{ 'Confirm your password' | i18n }}</label>\n" +
     "        <input ng-model=\"password.confirmValue\" ng-blur=\"validateConfirmPassword()\" type=\"password\" class=\"form-control\" name=\"confirmValue\" autocomplete=\"off\" required>\n" +
     "      </div>\n" +
     "      <div class=\"cta-links clearfix\">\n" +
