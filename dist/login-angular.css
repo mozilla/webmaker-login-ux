@@ -12,7 +12,9 @@
 .modal-content .modal-body label[for=uid],
 .modal-content .modal-body label[for=key],
 .modal-content .modal-body label[for=persona-username],
-.modal-content .modal-body label[for=password] {
+.modal-content .modal-body label[for=password],
+.modal-content .modal-body label[for=value],
+.modal-content .modal-body label[for=confirmValue] {
   font-size: 1.333333333rem;
   font-weight: 600;
   color: #454545;
@@ -44,6 +46,23 @@
 }
 .modal-content .modal-body .form-group {
   margin-bottom: 1.5rem;
+}
+.modal-content .modal-body .form-group.half-width {
+  width: 100%;
+  float: left;
+}
+@media (min-width: 480px) {
+  .modal-content .modal-body .form-group.half-width {
+    width: 48%;
+  }
+}
+.modal-content .modal-body .form-group.half-width:nth-child(2) {
+  margin-left: 0;
+}
+@media (min-width: 480px) {
+  .modal-content .modal-body .form-group.half-width:nth-child(2) {
+    margin-left: 4%;
+  }
 }
 .modal-content .modal-body .subheadline {
   margin-top: -1rem;

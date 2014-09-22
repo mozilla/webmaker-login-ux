@@ -80,7 +80,7 @@
   "TryAppmaker": "Try Appmaker now",
   "passwords do not match": "<i class=\"fa fa-times\"></i>  <strong>Uh oh!</strong> The passwords do not match!",
   "error setting password": "<i class=\"fa fa-times\"></i>  <strong>Uh oh!</strong> There was an error trying to set your password, try again.",
-  "re-enter your password": "re-enter your password",
+  "Confirm your password": "Confirm your password",
   "Reset Password": "Reset Password",
   "Set a Password": "Set a Password"
 }

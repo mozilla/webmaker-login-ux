@@ -15,7 +15,7 @@
   }
   .modal-body {
     padding: 1rem 3rem;
-    label[for=email], label[for=uid], label[for=key], label[for=persona-username], label[for=password] {
+    label[for=email], label[for=uid], label[for=key], label[for=persona-username], label[for=password] , label[for=value], label[for=confirmValue]{
       .uppercase-label();
     }
     label[for=pre-username] {
@@ -39,6 +39,19 @@
     }
     .form-group {
       margin-bottom: 1.5rem;
+      &.half-width {
+        width: 100%;
+        float: left;
+        @media (min-width: @screen-xs-min) {
+          width: 48%;
+        }
+        &:nth-child(2){
+          margin-left: 0;
+          @media (min-width: @screen-xs-min) {
+            margin-left: 4%;
+          }
+        }
+      }
     }
     .subheadline {
       margin-top: -1rem;
