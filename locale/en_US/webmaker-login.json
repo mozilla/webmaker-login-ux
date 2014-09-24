@@ -63,7 +63,7 @@
   "Change Password": "Change Password",
   "Switch To OTPs": "Switch to One-Time Passwords",
   "webmakerAuthServerError": "An unknown error occured on the server. Try your request again, and if the problem persists, please contact us.",
-  "log in with Persona": "or <a href=\"#\" ng-click=\"usePersona();\" >log in with Persona</a>",
+  "log in with Persona": "or <a href=\"#\" ng-click=\"usePersona();\" tabindex=\"3\">log in with Persona</a>",
   "aboutWebmaker": "Make your own web pages, interactive videos, remixes and mobile apps.",
   "XRay-Goggles": "X-Ray Goggles",
   "AboutGoggles": "X-Ray Goggles allow you to see the building blocks that make up websites on the Internet. Activate the goggles to inspect the code behind any webpage.",

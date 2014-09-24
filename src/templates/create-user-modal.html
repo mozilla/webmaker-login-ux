@@ -14,15 +14,15 @@
     <div ng-show="enterEmail">
       <div class="form-group">
         <label for="email">{{ 'Email' | i18n }}</label>
-        <input ng-model="user.email" ng-blur="checkEmail();" type="text" class="form-control" name="email" autocomplete="off" required>
+        <input ng-model="user.email" ng-blur="checkEmail();" type="text" class="form-control" name="email" autocomplete="off" autofocus tabindex="1" required focus-on="create-user-email">
       </div>
       <div class="terms-checkbox">
         <label>
-          <input ng-model="form.agree" type="checkbox" ng-disabled="form.user.email.$error.accountExists" ng-model="form.agree" name="agreeToTerms"> <span bind-unsafe-html="'webmakerAuthAgreeToTerms' | i18n"></span>
+          <input ng-model="form.agree" type="checkbox" ng-disabled="form.user.email.$error.accountExists" ng-model="form.agree" name="agreeToTerms" tabindex="2"> <span bind-unsafe-html="'webmakerAuthAgreeToTerms' | i18n"></span>
         </label>
       </div>
       <div class="cta-links clearfix">
-        <button ng-click="submitEmail()" ng-disabled="form.user.email.$error.accountExists" class="create-user btn btn-primary" type="button">{{ 'Sign up' | i18n }}</button>
+        <button ng-click="submitEmail()" ng-disabled="form.user.email.$error.accountExists" class="create-user btn btn-primary" type="button" tabindex="3">{{ 'Sign up' | i18n }}</button>
         <p bind-unsafe-html="'log in with Persona' | i18n" ></p>
       </div>
     </div>
@@ -31,9 +31,9 @@
       <div class="form-group">
         <label for="pre-username">{{ 'webmakerAuthChooseUsername' | i18n }}</label>
         <label for="username">webmaker.org/user/</label>
-        <input ng-model="user.username" name="username" ng-change="checkUsername()" class="form-control username" autocomplete="off" required autofocus>
+        <input ng-model="user.username" name="username" ng-change="checkUsername()" class="form-control username" autocomplete="off" required autofocus tabindex="4" focus-on="create-user-username">
       </div>
-      <button ng-disabled="form.user.username.$invalid || sendingRequest" ng-click="submitUsername()" class="create-user btn btn-primary" type="button">{{ 'webmakerAuthCreateAccount' | i18n }}</button>
+      <button ng-disabled="form.user.username.$invalid || sendingRequest" ng-click="submitUsername()" class="create-user btn btn-primary" type="button" tabindex="5">{{ 'webmakerAuthCreateAccount' | i18n }}</button>
     </div>
 
     <div ng-show="welcome">
@@ -67,7 +67,7 @@
           <h4>{{ 'XRay-Goggles' | i18n }}</h4>
           <p>{{ 'AboutGoggles' | i18n }}</p>
           <div class="clearfix">
-            <button class="create-user btn btn-primary" type="button" ng-click="tryApp('goggles')">{{'TryGoggles' | i18n }}</button>
+            <button class="create-user btn btn-primary" type="button" ng-click="tryApp('goggles')" autofocus>{{'TryGoggles' | i18n }}</button>
             <a ng-href="https://webmaker.org/{{lang}}/explore" class="explore-link">{{ 'ExploreWebmaker' | i18n }}</a>
           </div>
         </div>
@@ -111,7 +111,7 @@
           <h4>Thimble</h4>
           <p>{{ 'AboutThimble' | i18n }}</p>
           <div class="clearfix">
-            <button class="create-user btn btn-primary" type="button" ng-click="tryApp('thimble')">{{ 'TryThimbleNow' | i18n }}</button>
+            <button class="create-user btn btn-primary" type="button" ng-click="tryApp('thimble')" autofocus>{{ 'TryThimbleNow' | i18n }}</button>
             <a ng-href="https://webmaker.org/{{lang}}/explore" class="explore-link">{{ 'ExploreWebmaker' | i18n }}</a>
           </div>
         </div>
@@ -150,7 +150,7 @@
           <h4>{{ 'PopcornMaker' | i18n }}</h4>
           <p>{{ 'AboutPopcornMaker' | i18n }}</p>
           <div class="clearfix">
-            <button class="create-user btn btn-primary" type="button" ng-click="tryApp('popcorn')">{{ 'TryPopcornMaker' | i18n }}</button>
+            <button class="create-user btn btn-primary" type="button" ng-click="tryApp('popcorn')" autofocus>{{ 'TryPopcornMaker' | i18n }}</button>
             <a ng-href="https://webmaker.org/{{lang}}/explore" class="explore-link">{{ 'ExploreWebmaker' | i18n }}</a>
           </div>
         </div>
@@ -242,7 +242,7 @@
           <h4>{{ 'Appmaker' | i18n }}</h4>
           <p>{{ 'AboutAppmaker' | i18n }}</p>
           <div class="clearfix">
-            <button class="create-user btn btn-primary" type="button" ng-click="tryApp('apps')">{{ 'TryAppmaker' | i18n }}</button>
+            <button class="create-user btn btn-primary" type="button" ng-click="tryApp('apps')" autofocus>{{ 'TryAppmaker' | i18n }}</button>
             <a ng-href="https://webmaker.org/{{lang}}/explore" class="explore-link">{{ 'ExploreWebmaker' | i18n }}</a>
           </div>
         </div>

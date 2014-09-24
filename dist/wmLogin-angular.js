@@ -7,13 +7,19 @@ module.constant('wmRegex',{
   email: /^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$/
 });
 
-module.factory('focus', function ($rootScope, $timeout) {
-  return function (name) {
-    $timeout(function () {
-      $rootScope.$broadcast('focusOn', name);
-    });
-  };
-});
+module.factory('focus', [ '$timeout',
+  function ($timeout) {
+    return function (selector, delay) {
+      $timeout(function () {
+        var el = angular.element(selector)
+        if ( !el || !el[0] ) {
+          return;
+        }
+        el[0].focus();
+      }, delay);
+    };
+  }
+]);
 
 module.factory('wmLoginService', ['$rootScope', '$modal', '$window', '$location', 'CONFIG',
   function ($rootScope, $modal, $window, $location, CONFIG) {
@@ -47,6 +53,7 @@ module.factory('wmLoginService', ['$rootScope', '$modal', '$window', '$location'
     auth.on('tokenlogin', function (user) {
       $location.search('uid', null);
       $location.search('token', null);
+      $location.search('validFor', null);
       $rootScope._user = user;
       apply();
     });
@@ -110,7 +117,10 @@ module.directive('wmCreateUser', [
                 return email;
               }
             }
-          });
+          }).opened
+            .then(function () {
+              focus('input[focus-on="create-user-email"]', 100);
+            });
         };
 
         function createUserController($scope, $modalInstance, email) {
@@ -135,6 +145,7 @@ module.directive('wmCreateUser', [
             if ($scope.form.agree && $scope.user.email) {
               $scope.enterEmail = false;
               $scope.selectUsername = true;
+              focus('input[focus-on="create-user-username"]', 100);
             }
           };
 
@@ -152,10 +163,9 @@ module.directive('wmCreateUser', [
               return;
             }
 
-            wmLoginService.checkEmail($scope.user.email, function(exists, status) {
-              var errorCheckingEmail = status === 'error-checking-email';
-              $scope.form.user.email.$setValidity('serverError', errorCheckingEmail);
-              $scope.form.user.email.$setValidity('accountExists', !exists);
+            wmLoginService.uidExists($scope.user.email, function(err, resp) {
+              $scope.form.user.email.$setValidity('serverError', !!err);
+              $scope.form.user.email.$setValidity('accountExists', !resp.exists);
               apply();
             });
           };
@@ -230,8 +240,8 @@ module.directive('wmLogin', [
           $scope.wmTokenLogin();
         });
       },
-      controller:['$rootScope', '$scope', '$http', '$modal', '$timeout', 'wmLoginService', 'wmRegex',
-        function($rootScope, $scope, $http, $modal, $timeout, wmLoginService, wmRegex) {
+      controller:['$rootScope', '$scope', '$http', '$modal', '$timeout', 'focus', 'wmLoginService', 'wmRegex',
+        function($rootScope, $scope, $http, $modal, $timeout, focus, wmLoginService, wmRegex) {
 
           function apply() {
             if (!$rootScope.$$phase) {
@@ -253,10 +263,7 @@ module.directive('wmLogin', [
               }
             }).opened
               .then(function () {
-                // hack for focusing the email input after opening
-                $timeout(function () {
-                  focus('login-email');
-                }, 0);
+                focus('input[focus-on="login-uid"]', 100);
               });
           };
 
@@ -312,6 +319,7 @@ module.directive('wmLogin', [
                   $scope.passwordReset = false;
                   if ( resp.usePasswordLogin ) {
                     $scope.currentState = MODALSTATE.enterPassword;
+                    focus('input[focus-on="enter-password"]', 0);
                     return apply();
                   } else {
                     return requestToken(resp.verified);
@@ -335,6 +343,7 @@ module.directive('wmLogin', [
                   } else {
                     if ( isVerified ) {
                       $scope.currentState = MODALSTATE.enterKey;
+                      focus('input[focus-on="enter-key"]', 0);
                     } else {
                       $scope.currentState = MODALSTATE.checkEmail;
                     }

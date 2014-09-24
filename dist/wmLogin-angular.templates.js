@@ -18,15 +18,15 @@ angular.module("create-user-modal.html", []).run(["$templateCache", function($te
     "    <div ng-show=\"enterEmail\">\n" +
     "      <div class=\"form-group\">\n" +
     "        <label for=\"email\">{{ 'Email' | i18n }}</label>\n" +
-    "        <input ng-model=\"user.email\" ng-blur=\"checkEmail();\" type=\"text\" class=\"form-control\" name=\"email\" autocomplete=\"off\" required>\n" +
+    "        <input ng-model=\"user.email\" ng-blur=\"checkEmail();\" type=\"text\" class=\"form-control\" name=\"email\" autocomplete=\"off\" autofocus tabindex=\"1\" required focus-on=\"create-user-email\">\n" +
     "      </div>\n" +
     "      <div class=\"terms-checkbox\">\n" +
     "        <label>\n" +
-    "          <input ng-model=\"form.agree\" type=\"checkbox\" ng-disabled=\"form.user.email.$error.accountExists\" ng-model=\"form.agree\" name=\"agreeToTerms\"> <span bind-unsafe-html=\"'webmakerAuthAgreeToTerms' | i18n\"></span>\n" +
+    "          <input ng-model=\"form.agree\" type=\"checkbox\" ng-disabled=\"form.user.email.$error.accountExists\" ng-model=\"form.agree\" name=\"agreeToTerms\" tabindex=\"2\"> <span bind-unsafe-html=\"'webmakerAuthAgreeToTerms' | i18n\"></span>\n" +
     "        </label>\n" +
     "      </div>\n" +
     "      <div class=\"cta-links clearfix\">\n" +
-    "        <button ng-click=\"submitEmail()\" ng-disabled=\"form.user.email.$error.accountExists\" class=\"create-user btn btn-primary\" type=\"button\">{{ 'Sign up' | i18n }}</button>\n" +
+    "        <button ng-click=\"submitEmail()\" ng-disabled=\"form.user.email.$error.accountExists\" class=\"create-user btn btn-primary\" type=\"button\" tabindex=\"3\">{{ 'Sign up' | i18n }}</button>\n" +
     "        <p bind-unsafe-html=\"'log in with Persona' | i18n\" ></p>\n" +
     "      </div>\n" +
     "    </div>\n" +
@@ -35,9 +35,9 @@ angular.module("create-user-modal.html", []).run(["$templateCache", function($te
     "      <div class=\"form-group\">\n" +
     "        <label for=\"pre-username\">{{ 'webmakerAuthChooseUsername' | i18n }}</label>\n" +
     "        <label for=\"username\">webmaker.org/user/</label>\n" +
-    "        <input ng-model=\"user.username\" name=\"username\" ng-change=\"checkUsername()\" class=\"form-control username\" autocomplete=\"off\" required autofocus>\n" +
+    "        <input ng-model=\"user.username\" name=\"username\" ng-change=\"checkUsername()\" class=\"form-control username\" autocomplete=\"off\" required autofocus tabindex=\"4\" focus-on=\"create-user-username\">\n" +
     "      </div>\n" +
-    "      <button ng-disabled=\"form.user.username.$invalid || sendingRequest\" ng-click=\"submitUsername()\" class=\"create-user btn btn-primary\" type=\"button\">{{ 'webmakerAuthCreateAccount' | i18n }}</button>\n" +
+    "      <button ng-disabled=\"form.user.username.$invalid || sendingRequest\" ng-click=\"submitUsername()\" class=\"create-user btn btn-primary\" type=\"button\" tabindex=\"5\">{{ 'webmakerAuthCreateAccount' | i18n }}</button>\n" +
     "    </div>\n" +
     "\n" +
     "    <div ng-show=\"welcome\">\n" +
@@ -71,7 +71,7 @@ angular.module("create-user-modal.html", []).run(["$templateCache", function($te
     "          <h4>{{ 'XRay-Goggles' | i18n }}</h4>\n" +
     "          <p>{{ 'AboutGoggles' | i18n }}</p>\n" +
     "          <div class=\"clearfix\">\n" +
-    "            <button class=\"create-user btn btn-primary\" type=\"button\" ng-click=\"tryApp('goggles')\">{{'TryGoggles' | i18n }}</button>\n" +
+    "            <button class=\"create-user btn btn-primary\" type=\"button\" ng-click=\"tryApp('goggles')\" autofocus>{{'TryGoggles' | i18n }}</button>\n" +
     "            <a ng-href=\"https://webmaker.org/{{lang}}/explore\" class=\"explore-link\">{{ 'ExploreWebmaker' | i18n }}</a>\n" +
     "          </div>\n" +
     "        </div>\n" +
@@ -115,7 +115,7 @@ angular.module("create-user-modal.html", []).run(["$templateCache", function($te
     "          <h4>Thimble</h4>\n" +
     "          <p>{{ 'AboutThimble' | i18n }}</p>\n" +
     "          <div class=\"clearfix\">\n" +
-    "            <button class=\"create-user btn btn-primary\" type=\"button\" ng-click=\"tryApp('thimble')\">{{ 'TryThimbleNow' | i18n }}</button>\n" +
+    "            <button class=\"create-user btn btn-primary\" type=\"button\" ng-click=\"tryApp('thimble')\" autofocus>{{ 'TryThimbleNow' | i18n }}</button>\n" +
     "            <a ng-href=\"https://webmaker.org/{{lang}}/explore\" class=\"explore-link\">{{ 'ExploreWebmaker' | i18n }}</a>\n" +
     "          </div>\n" +
     "        </div>\n" +
@@ -154,7 +154,7 @@ angular.module("create-user-modal.html", []).run(["$templateCache", function($te
     "          <h4>{{ 'PopcornMaker' | i18n }}</h4>\n" +
     "          <p>{{ 'AboutPopcornMaker' | i18n }}</p>\n" +
     "          <div class=\"clearfix\">\n" +
-    "            <button class=\"create-user btn btn-primary\" type=\"button\" ng-click=\"tryApp('popcorn')\">{{ 'TryPopcornMaker' | i18n }}</button>\n" +
+    "            <button class=\"create-user btn btn-primary\" type=\"button\" ng-click=\"tryApp('popcorn')\" autofocus>{{ 'TryPopcornMaker' | i18n }}</button>\n" +
     "            <a ng-href=\"https://webmaker.org/{{lang}}/explore\" class=\"explore-link\">{{ 'ExploreWebmaker' | i18n }}</a>\n" +
     "          </div>\n" +
     "        </div>\n" +
@@ -246,7 +246,7 @@ angular.module("create-user-modal.html", []).run(["$templateCache", function($te
     "          <h4>{{ 'Appmaker' | i18n }}</h4>\n" +
     "          <p>{{ 'AboutAppmaker' | i18n }}</p>\n" +
     "          <div class=\"clearfix\">\n" +
-    "            <button class=\"create-user btn btn-primary\" type=\"button\" ng-click=\"tryApp('apps')\">{{ 'TryAppmaker' | i18n }}</button>\n" +
+    "            <button class=\"create-user btn btn-primary\" type=\"button\" ng-click=\"tryApp('apps')\" autofocus>{{ 'TryAppmaker' | i18n }}</button>\n" +
     "            <a ng-href=\"https://webmaker.org/{{lang}}/explore\" class=\"explore-link\">{{ 'ExploreWebmaker' | i18n }}</a>\n" +
     "          </div>\n" +
     "        </div>\n" +
@@ -315,10 +315,10 @@ angular.module("login-modal.html", []).run(["$templateCache", function($template
     "    <div ng-show=\"currentState === MODALSTATE.enterUid;\">\n" +
     "      <div class=\"form-group\">\n" +
     "        <label for=\"uid\">{{ 'EmailOrUsername' | i18n }}</label>\n" +
-    "        <input name=\"uid\" class=\"form-control\" ng-model=\"user.uid\" autocomplete=\"on\" required focus-on=\"login-email\">\n" +
+    "        <input name=\"uid\" class=\"form-control\" ng-model=\"user.uid\" autocomplete=\"on\" required tabindex=\"1\" autofocus focus-on=\"login-uid\" ng-keyup=\"$event.keyCode === 13 && !sendingRequest && submitUid()\">\n" +
     "      </div>\n" +
     "      <div class=\"cta-links clearfix\">\n" +
-    "        <button class=\"submit-userid btn btn-primary\" type=\"button\" ng-disabled=\"sendingRequest\" ng-click=\"submitUid()\">{{ 'Sign in' | i18n }}</button>\n" +
+    "        <button class=\"submit-userid btn btn-primary\" type=\"button\" ng-disabled=\"sendingRequest\" ng-click=\"submitUid()\" tabindex=\"2\">{{ 'Sign in' | i18n }}</button>\n" +
     "        <p ng-disabled=\"sendingRequest\" bind-unsafe-html=\"'log in with Persona' | i18n\"></p>\n" +
     "      </div>\n" +
     "    </div>\n" +
@@ -346,11 +346,12 @@ angular.module("login-modal.html", []).run(["$templateCache", function($template
     "        <p>{{ 'tokenMessage' | i18n }}</p>\n" +
     "      </div>\n" +
     "      <div class=\"enter-key\">\n" +
-    "        <a href=\"#\" ng-click=\"enterKey()\">Enter Key <i class=\"fa fa-angle-right\"></i></a>\n" +
+    "        <a href=\"#\" ng-click=\"enterKey()\" tabindex=\"4\">Enter Key <i class=\"fa fa-angle-right\"></i></a>\n" +
     "      </div>\n" +
     "      <hr>\n" +
     "      <footer class=\"help-footer\">\n" +
-    "        <p>Trouble with email?  <a href=\"#\">Get help</a></p>\n" +
+    "      <!-- TODO: What does this link to? -->\n" +
+    "        <p>Trouble with email?  <a href=\"#\" tabindex=\"5\">Get help</a></p>\n" +
     "      </footer>\n" +
     "    </div>\n" +
     "    <!-- checkEmail ends -->\n" +
@@ -379,9 +380,9 @@ angular.module("login-modal.html", []).run(["$templateCache", function($template
     "        <div class=\"key-group\">\n" +
     "          <div class=\"form-group\">\n" +
     "            <label for=\"key\">{{ 'Enter your key to login' | i18n }}</label>\n" +
-    "            <input ng-model=\"user.key\" name=\"key\" class=\"form-control\" required=\"\">\n" +
+    "            <input ng-model=\"user.key\" name=\"key\" class=\"form-control\" type=\"password\" required=\"\" tabindex=\"6\" focus-on=\"enter-key\" ng-keyup=\"$event.keyCode === 13 && user.key && !sendingRequest && submitKey()\">\n" +
     "          </div>\n" +
-    "          <button class=\"submit-userid btn btn-primary\" type=\"button\" ng-disabled=\"sendingRequest\" ng-click=\"user.key && submitKey()\">{{ 'Submit' | i18n }}</button>\n" +
+    "          <button class=\"submit-userid btn btn-primary\" type=\"button\" ng-disabled=\"sendingRequest\" ng-click=\"user.key && submitKey()\" tabindex=\"7\">{{ 'Submit' | i18n }}</button>\n" +
     "        </div>\n" +
     "      </div>\n" +
     "    </div>\n" +
@@ -391,10 +392,10 @@ angular.module("login-modal.html", []).run(["$templateCache", function($template
     "      <div class=\"password-container\">\n" +
     "        <div class=\"form-group\">\n" +
     "          <label for=\"password\">{{ 'Password' | i18n }}</label>\n" +
-    "          <input type=\"password\" class=\"form-control\" required name=\"password\" ng-model=\"user.password\">\n" +
+    "          <input type=\"password\" class=\"form-control\" required name=\"password\" ng-model=\"user.password\" tabindex=\"8\" focus-on=\"enter-password\" ng-keyup=\"$event.keyCode === 13 && user.password && !sendingRequest && submitPassword()\">\n" +
     "        </div>\n" +
     "        <div class=\"cta-links clearfix\">\n" +
-    "          <button class=\"submit-password btn btn-primary\" type=\"button\" ng-disabled=\"sendingRequest\" ng-click=\"user.password && submitPassword()\">{{ 'Submit' | i18n }}</button>\n" +
+    "          <button class=\"submit-password btn btn-primary\" type=\"button\" ng-disabled=\"sendingRequest\" ng-click=\"user.password && submitPassword()\" tabindex=\"9\">{{ 'Submit' | i18n }}</button>\n" +
     "          <p><a href=\"#\" ng-click=\"requestReset()\">{{ 'Forgot your password?' | i18n }}</a></p>\n" +
     "        </div>\n" +
     "      </div>\n" +
