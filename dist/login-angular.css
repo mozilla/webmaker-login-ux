@@ -48,6 +48,7 @@
   margin-bottom: 1.5rem;
 }
 .modal-content .modal-body .form-group.half-width {
+  margin-left: 0;
   width: 100%;
   float: left;
 }
@@ -56,11 +57,11 @@
     width: 48%;
   }
 }
-.modal-content .modal-body .form-group.half-width:nth-child(2) {
+.modal-content .modal-body .form-group.half-width:nth-of-type(3) {
   margin-left: 0;
 }
 @media (min-width: 480px) {
-  .modal-content .modal-body .form-group.half-width:nth-child(2) {
+  .modal-content .modal-body .form-group.half-width:nth-of-type(3) {
     margin-left: 4%;
   }
 }
@@ -197,14 +198,19 @@
 .modal-content .modal-body .btn-primary {
   margin-top: 0.625rem;
 }
+.modal-content .modal-body .password-label {
+  margin-bottom: 0.5rem;
+  font-weight: 400;
+}
 .modal-content .modal-body ul.password-strength li {
-  color: #4d4e53;
+  color: #333;
+  font-weight: 300;
 }
 .modal-content .modal-body ul.password-strength li.invalid {
-  color: #c13832;
+  color: #eb5d52;
 }
 .modal-content .modal-body ul.password-strength li.valid {
-  color: #328f70;
+  color: #3fb58e;
 }
 .modal-content .alert {
   margin-bottom: 1.3rem;

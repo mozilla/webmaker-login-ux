@@ -450,7 +450,7 @@ angular.module("reset-modal.html", []).run(["$templateCache", function($template
     "\n" +
     "    <div>\n" +
     "      <div class=\"form-group\">\n" +
-    "        <p>{{ 'Minimum password requirements' | i18n }}</p>\n" +
+    "        <p class=\"password-label\">{{ 'Minimum password requirements' | i18n }}</p>\n" +
     "        <ul class=\"list-unstyled password-strength\">\n" +
     "          <li id=\"eight-chars\" ng-class=\"{valid: eightCharsState === 'valid', invalid: eightCharsState === 'invalid', 'default': eightCharsState === 'default'}\">{{ 'At least 8 characters' | i18n }}</li>\n" +
     "          <li id=\"one-each-case\" ng-class=\"{valid: oneEachCaseState === 'valid', invalid: oneEachCaseState === 'invalid', 'default': oneEachCaseState === 'default'}\">{{ 'At least 1 upper and lower case character' | i18n }}</li>\n" +

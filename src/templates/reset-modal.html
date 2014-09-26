@@ -11,7 +11,7 @@
 
     <div>
       <div class="form-group">
-        <p>{{ 'Minimum password requirements' | i18n }}</p>
+        <p class="password-label">{{ 'Minimum password requirements' | i18n }}</p>
         <ul class="list-unstyled password-strength">
           <li id="eight-chars" ng-class="{valid: eightCharsState === 'valid', invalid: eightCharsState === 'invalid', 'default': eightCharsState === 'default'}">{{ 'At least 8 characters' | i18n }}</li>
           <li id="one-each-case" ng-class="{valid: oneEachCaseState === 'valid', invalid: oneEachCaseState === 'invalid', 'default': oneEachCaseState === 'default'}">{{ 'At least 1 upper and lower case character' | i18n }}</li>
