@@ -315,7 +315,7 @@ angular.module("login-modal.html", []).run(["$templateCache", function($template
     "    <div ng-show=\"currentState === MODALSTATE.enterUid;\">\n" +
     "      <div class=\"form-group\">\n" +
     "        <label for=\"uid\">{{ 'EmailOrUsername' | i18n }}</label>\n" +
-    "        <input name=\"uid\" class=\"form-control\" ng-model=\"user.uid\" autocomplete=\"on\" required tabindex=\"1\" autofocus focus-on=\"login-uid\" ng-keyup=\"$event.keyCode === 13 && !sendingRequest && submitUid()\">\n" +
+    "        <input name=\"uid\" class=\"form-control\" ng-model=\"user.uid\" autocomplete=\"on\" required tabindex=\"1\" autofocus=\"true\" focus-on=\"login-uid\" ng-keyup=\"$event.keyCode === 13 && !sendingRequest && submitUid()\">\n" +
     "      </div>\n" +
     "      <div class=\"cta-links clearfix\">\n" +
     "        <button class=\"submit-userid btn btn-primary\" type=\"button\" ng-disabled=\"sendingRequest\" ng-click=\"submitUid()\" tabindex=\"2\">{{ 'Sign in' | i18n }}</button>\n" +
@@ -445,19 +445,28 @@ angular.module("reset-modal.html", []).run(["$templateCache", function($template
     "  <form class=\"form\" name=\"form.password\" novalidate>\n" +
     "\n" +
     "    <div class=\"alert alert-danger\" ng-show=\"form.password.value.$error.noMatch\" bind-unsafe-html=\"'passwords do not match' | i18n\"></div>\n" +
+    "    <div class=\"alert alert-danger\" ng-show=\"form.password.value.$error.weakPassword\" bind-unsafe-html=\"'Password too weak' | i18n\"></div>\n" +
     "    <div class=\"alert alert-danger\" ng-show=\"form.password.value.$error.serverError\" bind-unsafe-html=\"'error setting password' | i18n\"></div>\n" +
     "\n" +
     "    <div>\n" +
+    "      <div class=\"form-group\">\n" +
+    "        <p>{{ 'Minimum password requirements' | i18n }}</p>\n" +
+    "        <ul class=\"list-unstyled password-strength\">\n" +
+    "          <li id=\"eight-chars\" ng-class=\"{valid: eightCharsState === 'valid', invalid: eightCharsState === 'invalid', 'default': eightCharsState === 'default'}\">{{ 'At least 8 characters' | i18n }}</li>\n" +
+    "          <li id=\"one-each-case\" ng-class=\"{valid: oneEachCaseState === 'valid', invalid: oneEachCaseState === 'invalid', 'default': oneEachCaseState === 'default'}\">{{ 'At least 1 upper and lower case character' | i18n }}</li>\n" +
+    "          <li id=\"one-number\" ng-class=\"{valid: oneNumberState === 'valid', invalid: oneNumberState === 'invalid', 'default': oneNumberState === 'default'}\">{{ 'At least 1 number' | i18n }}</li>\n" +
+    "        </ul>\n" +
+    "      </div>\n" +
     "      <div class=\"form-group half-width\">\n" +
     "        <label for=\"value\">{{ 'Set a Password' | i18n }}</label>\n" +
-    "        <input ng-model=\"password.value\" type=\"password\" class=\"form-control\" name=\"value\" autocomplete=\"off\" required>\n" +
+    "        <input ng-model=\"password.value\" ng-keyup=\"checkPassword()\" ng-blur=\"checkPassword(true)\" type=\"password\" class=\"form-control\" name=\"value\" autocomplete=\"off\" autofocus=\"true\" tabindex=\"1\" required>\n" +
     "      </div>\n" +
     "      <div class=\"form-group half-width\">\n" +
     "        <label for=\"confirmValue\">{{ 'Confirm your password' | i18n }}</label>\n" +
-    "        <input ng-model=\"password.confirmValue\" ng-blur=\"validateConfirmPassword()\" type=\"password\" class=\"form-control\" name=\"confirmValue\" autocomplete=\"off\" required>\n" +
+    "        <input ng-model=\"password.confirmValue\" ng-keyup=\"validateConfirmPassword()\" ng-blur=\"validateConfirmPassword(true)\"  type=\"password\" class=\"form-control\" name=\"confirmValue\" autocomplete=\"off\" tabindex=\"2\" required>\n" +
     "      </div>\n" +
     "      <div class=\"cta-links clearfix\">\n" +
-    "        <button ng-click=\"submitReset()\" ng-disabled=\"!form.password.value && !form.password.confirm && form.password.value.$invalid\" class=\"reset-password btn btn-primary\" type=\"button\">{{ 'Submit' | i18n }}</button>\n" +
+    "        <button ng-click=\"submitReset()\" ng-disabled=\"!canSubmit()\" class=\"reset-password btn btn-primary\" type=\"button\" tabindex=\"3\">{{ 'Submit' | i18n }}</button>\n" +
     "      </div>\n" +
     "    </div>\n" +
     "  </form>\n" +

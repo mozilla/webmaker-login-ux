@@ -83,5 +83,10 @@
   "Confirm your password": "Confirm your password",
   "Reset Password": "Reset Password",
   "Set a Password": "Set a Password",
-  "Password Reset Success": "<i class=\"fa fa-check\"></i> <strong>Success!</strong> You've successfully reset your password, please sign in!"
+  "Password Reset Success": "<i class=\"fa fa-check\"></i> <strong>Success!</strong> You've successfully reset your password, please sign in!",
+  "Password too weak": "<i class=\"fa fa-times\"></i>  <strong>Uh oh!</strong> The password you've entered is too weak. Make sure it doesn't contain any common words or patterns, also make sure it meets the minimum requirements.",
+  "Minimum password requirements": "Minimum password requirements",
+  "At least 8 characters": "At least 8 characters",
+  "At least 1 upper and lower case character": "At least 1 uppercase and lowercase character",
+  "At least 1 number": "At least 1 number"
 }

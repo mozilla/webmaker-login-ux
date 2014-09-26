@@ -9,14 +9,38 @@ module.constant('wmRegex',{
 
 module.factory('focus', [ '$timeout',
   function ($timeout) {
-    return function (selector, delay) {
+    return function (selector) {
+      // Timeout used to ensure that the DOM has the input that needs to be focused on
       $timeout(function () {
-        var el = angular.element(selector)
+        var el = angular.element(selector);
         if ( !el || !el[0] ) {
           return;
         }
         el[0].focus();
-      }, delay);
+      }, 0);
+    };
+  }
+]);
+
+module.factory('passwordValidator', [
+  function() {
+    return function($scope, password, blur) {
+
+      if ( !password ) {
+        $scope.eightCharsState = $scope.oneEachCaseState =   $scope.oneNumberState = 'default';
+        $scope.isValidPassword = false;
+        return;
+      }
+
+      var lengthValid = password.length >= 8,
+          validCase = password.match(/^.*(?=.*[a-z])(?=.*[A-Z]).*$/),
+          hasNumber = password.match(/\d/);
+
+      $scope.eightCharsState = !lengthValid ? 'invalid' : blur ? 'valid' : '';
+      $scope.oneEachCaseState = !validCase ? 'invalid' : blur ? 'valid' : '';
+      $scope.oneNumberState = !hasNumber ? 'invalid' : blur ? 'valid' : '';
+
+      $scope.isValidPassword = lengthValid && validCase && hasNumber;
     };
   }
 ]);
@@ -119,7 +143,7 @@ module.directive('wmCreateUser', [
             }
           }).opened
             .then(function () {
-              focus('input[focus-on="create-user-email"]', 100);
+              focus('input[focus-on="create-user-email"]');
             });
         };
 
@@ -145,7 +169,7 @@ module.directive('wmCreateUser', [
             if ($scope.form.agree && $scope.user.email) {
               $scope.enterEmail = false;
               $scope.selectUsername = true;
-              focus('input[focus-on="create-user-username"]', 100);
+              focus('input[focus-on="create-user-username"]');
             }
           };
 
@@ -263,7 +287,7 @@ module.directive('wmLogin', [
               }
             }).opened
               .then(function () {
-                focus('input[focus-on="login-uid"]', 100);
+                focus('input[focus-on="login-uid"]');
               });
           };
 
@@ -319,7 +343,7 @@ module.directive('wmLogin', [
                   $scope.passwordReset = false;
                   if ( resp.usePasswordLogin ) {
                     $scope.currentState = MODALSTATE.enterPassword;
-                    focus('input[focus-on="enter-password"]', 0);
+                    focus('input[focus-on="enter-password"]');
                     return apply();
                   } else {
                     return requestToken(resp.verified);
@@ -343,7 +367,7 @@ module.directive('wmLogin', [
                   } else {
                     if ( isVerified ) {
                       $scope.currentState = MODALSTATE.enterKey;
-                      focus('input[focus-on="enter-key"]', 0);
+                      focus('input[focus-on="enter-key"]');
                     } else {
                       $scope.currentState = MODALSTATE.checkEmail;
                     }
@@ -427,8 +451,8 @@ module.directive('wmPasswordReset', [
     var triggered = false;
     return {
       restrict: 'A',
-      controller:['$rootScope', '$scope', '$location', '$modal', 'wmLoginService',
-        function($rootScope, $scope, $location, $modal, wmLoginService) {
+      controller:['$rootScope', '$scope', '$location', '$modal', 'wmLoginService', 'passwordValidator',
+        function($rootScope, $scope, $location, $modal, wmLoginService, passwordValidator) {
 
           var searchObj = $location.search();
 
@@ -462,6 +486,10 @@ module.directive('wmPasswordReset', [
             $scope.password = {};
             $scope.sendingRequest = false;
 
+            $scope.eightChars = angular.element('li.eight-chars');
+            $scope.oneEachCase = angular.element('li.one-each-case');
+            $scope.oneNumber = angular.element('li.one-number');
+
             if (!uid || !resetCode) {
               return $modalinstance.close();
             }
@@ -471,17 +499,42 @@ module.directive('wmPasswordReset', [
               $rootScope.wmTokenLogin(uid, true);
             };
 
-            $scope.validateConfirmPassword = function() {
-              $scope.form.password.value.$setValidity( 'noMatch', $scope.form.password.value !== $scope.form.password.confirm);
+            $scope.checkPassword = function(blur) {
+              passwordValidator($scope, $scope.password.value, blur);
+              apply();
+            };
+
+            $scope.validateConfirmPassword = function(blur) {
+              if ( !$scope.password.confirmValue ) {
+                return $scope.form.password.value.$setValidity( 'noMatch', true );
+              }
+              $scope.passwordsMatch = $scope.password.value === $scope.password.confirmValue;
+              if ( blur ) {
+                $scope.form.password.value.$setValidity( 'noMatch', $scope.passwordsMatch );
+              }
+            };
+
+            $scope.canSubmit = function() {
+              return $scope.password.value && $scope.password.confirmValue && $scope.passwordsMatch;
             };
 
             $scope.submitReset = function () {
               wmLoginService.resetPassword( uid, resetCode, $scope.password.value, function(err) {
                 if ( err ) {
-                  $scope.form.password.value.$setValidity("serverError", false);
+                  try {
+                    err = JSON.parse(err);
+                    if ( err.passed === false ) {
+                      $scope.form.password.value.$setValidity("weakPassword", false);
+                    } else {
+                      $scope.form.password.value.$setValidity("serverError", false);
+                    }
+                  } catch (ex) {
+                    $scope.form.password.value.$setValidity("serverError", false);
+                  }
                   return apply();
                 }
                 $scope.form.password.value.$setValidity("serverError", true);
+                $scope.form.password.value.$setValidity("weakPassword", true);
                 $location.search('uid', null);
                 $location.search('resetCode', null);
                 switchToSignin();
