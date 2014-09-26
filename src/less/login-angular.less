@@ -1,4 +1,6 @@
 @screen-xs-min: 480px;
+@green: #3fb58e;
+@red: #EB5D52;
 
 .uppercase-label() {
   font-size: 1.333333333rem;
@@ -40,12 +42,13 @@
     .form-group {
       margin-bottom: 1.5rem;
       &.half-width {
+        margin-left: 0;
         width: 100%;
         float: left;
         @media (min-width: @screen-xs-min) {
           width: 48%;
         }
-        &:nth-child(2){
+        &:nth-of-type(3){
           margin-left: 0;
           @media (min-width: @screen-xs-min) {
             margin-left: 4%;
@@ -175,15 +178,22 @@
     .btn-primary {
       margin-top: 0.625rem
     }
+
+    .password-label {
+      margin-bottom: 0.5rem;
+      font-weight: 400;
+    }
+
     ul.password-strength {
       li {
-        color: #4d4e53;
+        color: #333;
+        font-weight: 300;
       }
       li.invalid {
-        color: #c13832;
+        color: @red;
       }
       li.valid {
-        color: #328f70;
+        color: @green;
       }
     }
   }
