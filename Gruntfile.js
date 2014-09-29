@@ -3,8 +3,11 @@ module.exports = function (grunt) {
   require('jit-grunt')(grunt, {
     shell: 'grunt-shell-spawn',
     less: 'grunt-contrib-less',
-    express: 'grunt-express-server'
+    express: 'grunt-express-server',
+    jshint: 'grunt-contrib-jshint'
   });
+
+  var jshintConfig = grunt.file.readJSON('.jshintrc');
 
   grunt.initConfig({
     pkg: grunt.file.readJSON('package.json'),
@@ -55,14 +58,43 @@ module.exports = function (grunt) {
           spawn: false
         }
       }
-    }
+    },
 
+    jshint: {
+      src: [
+        'src/wmLogin-angular.js'
+      ],
+      options: jshintConfig
+    },
+
+    uglify: {
+      source:{
+        options: {
+          sourceMap: true,
+          mangle: false
+        },
+        files: {
+          'dist/min/wmLogin-angular.min.js': ['dist/wmLogin-angular.js']
+        }
+      },
+      templates: {
+        options: {
+          sourceMap: false,
+          mangle: false
+        },
+        files: {
+          'dist/min/wmLogin-angular.templates.min.js': ['dist/wmLogin-angular.templates.js']
+        }
+      }
+    }
   });
 
   grunt.registerTask('build', [
+    'jshint',
     'html2js',
     'less:production',
-    'copy'
+    'copy',
+    'uglify'
   ]);
 
   grunt.registerTask('dev', [

@@ -2,6 +2,10 @@
   "name": "wmLogin-angular",
   "version": "0.1.2",
   "description": "Angular Modal directives for Webmaker Login and Account creation",
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:cadecairos/webmaker-login-angular.git"
+  },
   "main": "src/wmLogin-angular.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -13,7 +17,9 @@
     "grunt": "0.4.5",
     "grunt-express-server": "0.4.19",
     "grunt-contrib-copy": "0.5.0",
+    "grunt-contrib-jshint": "0.10.0",
     "grunt-contrib-less": "0.11.4",
+    "grunt-contrib-uglify": "^0.6.0",
     "grunt-contrib-watch": "0.6.1",
     "grunt-html2js": "0.2.8",
     "html2js": "0.0.3",

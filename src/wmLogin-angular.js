@@ -27,7 +27,7 @@ module.factory('passwordValidator', [
     return function($scope, password, blur) {
 
       if ( !password ) {
-        $scope.eightCharsState = $scope.oneEachCaseState =   $scope.oneNumberState = 'default';
+        $scope.eightCharsState = $scope.oneEachCaseState = $scope.oneNumberState = 'default';
         $scope.isValidPassword = false;
         return;
       }
@@ -39,7 +39,6 @@ module.factory('passwordValidator', [
       $scope.eightCharsState = !lengthValid ? 'invalid' : blur ? 'valid' : '';
       $scope.oneEachCaseState = !validCase ? 'invalid' : blur ? 'valid' : '';
       $scope.oneNumberState = !hasNumber ? 'invalid' : blur ? 'valid' : '';
-
       $scope.isValidPassword = lengthValid && validCase && hasNumber;
     };
   }
@@ -423,7 +422,7 @@ module.directive('wmLogin', [
               disableListeners();
               $modalInstance.dismiss('done');
               $rootScope.login();
-            }
+            };
 
             $scope.enterKey = function () {
               $scope.currentState = MODALSTATE.enterKey;
@@ -438,7 +437,7 @@ module.directive('wmLogin', [
             wmLoginService.on('login', $scope.continue);
             wmLoginService.on('tokenlogin', $scope.continue);
             wmLoginService.on('passwordlogin', $scope.continue);
-          };
+          }
         }
       ]
     };
@@ -468,19 +467,6 @@ module.directive('wmPasswordReset', [
             }
           }
 
-          $modal.open({
-            templateUrl: 'reset-modal.html',
-            controller: passwordResetController,
-            resolve: {
-              resetCode: function() {
-                return searchObj.resetCode;
-              },
-              uid: function () {
-                return searchObj.uid;
-              }
-            }
-          });
-
           function passwordResetController($scope, $modalInstance, resetCode, uid) {
             $scope.form = {};
             $scope.password = {};
@@ -491,13 +477,8 @@ module.directive('wmPasswordReset', [
             $scope.oneNumber = angular.element('li.one-number');
 
             if (!uid || !resetCode) {
-              return $modalinstance.close();
+              return $modalInstance.close();
             }
-
-            function switchToSignin() {
-              $modalInstance.close();
-              $rootScope.wmTokenLogin(uid, true);
-            };
 
             $scope.checkPassword = function(blur) {
               passwordValidator($scope, $scope.password.value, blur);
@@ -537,14 +518,28 @@ module.directive('wmPasswordReset', [
                 $scope.form.password.value.$setValidity("weakPassword", true);
                 $location.search('uid', null);
                 $location.search('resetCode', null);
-                switchToSignin();
+                $modalInstance.close();
+                $rootScope.wmTokenLogin(uid, true);
               });
             };
 
             $scope.cancel = function () {
               $modalInstance.dismiss('cancel');
             };
-          };
+          }
+
+          $modal.open({
+            templateUrl: 'reset-modal.html',
+            controller: passwordResetController,
+            resolve: {
+              resetCode: function() {
+                return searchObj.resetCode;
+              },
+              uid: function () {
+                return searchObj.uid;
+              }
+            }
+          });
         }
       ]
     };
@@ -553,7 +548,7 @@ module.directive('wmPasswordReset', [
 
 // Legacy Persona login
 module.factory('wmPersonaListener', ['$modal', '$http', 'wmLoginService', 'wmRegex',
-  function($modal, $http, wmLoginService, emRegex) {
+  function($modal, $http, wmLoginService, wmRegex) {
     wmLoginService.on('newuser', function (assertion) {
       $modal.open({
         templateUrl: 'legacy-create-user-modal.html',
