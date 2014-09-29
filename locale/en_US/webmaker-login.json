@@ -32,7 +32,7 @@
   "checkEmail": "Check your email",
   "tokenMessage": "Please check your email to confirm your account.",
   "That does not look like an email address or username": "<i class=\"fa fa-times\"></i>  <strong>Uh oh!</strong> That doesn't look like an email address or username.",
-  "No account found for your email": "<i class=\"fa fa-times\"></i>  We couldn't find your email address. Did you mean to <a href=\"#\" ng-click=\"switchToSignup();\" class=\"alert-link\">create an account</a>?",
+  "No account found for your uid": "<i class=\"fa fa-times\"></i>  We couldn't find your username or email address. Did you mean to <a href=\"#\" ng-click=\"switchToSignup();\" class=\"alert-link\">create an account</a>?",
   "invalid email or password": "The email and/or password your entered in invalid.",
   "problem sending token": "<i class=\"fa fa-times\"></i>  There was a problem sending a login key to you, please try again.",
   "incorrectToken": "<i class=\"fa fa-times\"></i>  <strong>Uh oh!</strong> That key is not correct.",

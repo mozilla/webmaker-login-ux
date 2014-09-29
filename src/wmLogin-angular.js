@@ -131,13 +131,16 @@ module.directive('wmCreateUser', [
           }
         }
 
-        $rootScope.wmCreateUser = function (email) {
+        $rootScope.wmCreateUser = function (email, username) {
           $modal.open({
             templateUrl: 'create-user-modal.html',
             controller: createUserController,
             resolve: {
               email: function () {
                 return email;
+              },
+              username: function () {
+                return username;
               }
             }
           }).opened
@@ -146,14 +149,13 @@ module.directive('wmCreateUser', [
             });
         };
 
-        function createUserController($scope, $modalInstance, email) {
+        function createUserController($scope, $modalInstance, email, username) {
 
           $scope.form = {};
           $scope.user = {};
 
-          if (email) {
-            $scope.user.email = email;
-          }
+          $scope.user.email = email;
+          $scope.user.username = username;
 
           $scope.enterEmail = true;
           $scope.selectUsername = false;
@@ -312,9 +314,14 @@ module.directive('wmLogin', [
             }
 
             $scope.switchToSignup = function () {
+              var uid = $scope.user.uid,
+                  isEmail = wmRegex.email.test(uid),
+                  email = isEmail ? uid : '',
+                  username = isEmail ? '' : uid;
+
               disableListeners();
               $modalInstance.close();
-              $rootScope.wmCreateUser($scope.user.uid);
+              $rootScope.wmCreateUser(email, username);
             };
 
             $scope.submitUid = function () {
