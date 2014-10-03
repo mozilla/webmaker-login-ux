@@ -81,10 +81,6 @@ module.directive('wmJoinWebmaker', [
 
             var joinController = wmLoginCore.joinWebmaker();
 
-            joinController.on('close', function () {
-              $modalInstance.close();
-            });
-
             joinController.on('sendingRequest', function (state) {
               $scope.sendingRequest = state;
               apply();
@@ -105,8 +101,13 @@ module.directive('wmJoinWebmaker', [
               apply();
             });
 
-            joinController.on('setValidity', function (errorId, state) {
-              $scope.form.user.email.$setValidity(errorId, state);
+            joinController.on('displayAlert', function (alertId) {
+              $scope.form.user.email.$setValidity(alertId, false);
+              apply();
+            });
+
+            joinController.on('hideAlert', function (alertId) {
+              $scope.form.user.email.$setValidity(alertId, true);
               apply();
             });
 

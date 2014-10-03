@@ -28,7 +28,6 @@ module.exports = function SignInController() {
     });
   }
 
-
   return {
     on: function (event, listener) {
       emitter.addListener(event, listener);
@@ -40,10 +39,10 @@ module.exports = function SignInController() {
       }
       emitter.removeListener(event, listener);
     },
-    start: function() {
+    start: function () {
       emit('displayEnterUid');
     },
-    submitUid: function(uid) {
+    submitUid: function (uid) {
       // if uid invalid
       //   emit displayAlert( SIGNIN_ALERTS.invalidUid)
       // else
@@ -60,7 +59,7 @@ module.exports = function SignInController() {
       // else
       //   emit displayCheckEmail
     },
-    submitKey: function(uid, key) {
+    submitKey: function (uid, key) {
       // emit setRequestState(true)
       // submit uid, key
       // emit setRequestState(false)
@@ -69,7 +68,7 @@ module.exports = function SignInController() {
       // else
       // emit loginSuccessful
     },
-    submitPassword: function(uid, password) {
+    submitPassword: function (uid, password) {
       // emit setRequestState(true)
       // submit uid, pass
       // emit setRequestState(false)
@@ -78,7 +77,7 @@ module.exports = function SignInController() {
       // else
       // emit loginSuccessful
     },
-    requestReset: function(uid) {
+    requestReset: function (uid) {
       // emit setRequestState(true)
       // submit uid
       // emit setRequestState(false)

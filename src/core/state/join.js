@@ -22,20 +22,21 @@ module.exports = function JoinController(loginApi) {
     emit('sendingRequest', state);
   }
 
-  function clearAlerts() {
-    Object.keys(JOIN_ALERTS).forEach(function (errId) {
-      emit('setValidity', errId, true);
+  function clearAlerts(alerts) {
+    alerts = Array.isArray(alerts) ? alerts : [alerts];
+    alerts.forEach(function (alert) {
+      emit('hideAlert', alert, true);
     });
   }
 
-  function uidExistsCallback(err, resp, body) {
+  function validateEmailCallback(err, resp, body) {
     setRequestState(false);
     if (err || resp.status !== 200) {
-      return emit('setValidity', JOIN_ALERTS.serverError, false);
+      return emit('displayAlert', JOIN_ALERTS.serverError);
     }
 
     if (body.exists) {
-      return emit('setValidity', JOIN_ALERTS.accountExists, false);
+      return emit('displayAlert', JOIN_ALERTS.accountExists);
     }
 
     emit('displayUsernameInput');
@@ -45,11 +46,11 @@ module.exports = function JoinController(loginApi) {
     setRequestState(false);
 
     if (err || resp.status !== 200) {
-      return emit('setValidity', JOIN_ALERTS.serverError, false);
+      return emit('displayAlert', JOIN_ALERTS.serverError);
     }
 
     if (body.exists) {
-      return emit('setValidity', JOIN_ALERTS.usernameTaken, false);
+      return emit('displayAlert', JOIN_ALERTS.usernameTaken);
     }
 
     emit('displayUsernameInput');
@@ -62,36 +63,41 @@ module.exports = function JoinController(loginApi) {
     },
     off: function (event, listener) {
       if (!listener) {
-        emitter.removeAllListeners(event);
-        return;
+        return emitter.removeAllListeners(event);
       }
       emitter.removeListener(event, listener);
     },
     start: function () {
-      clearAlerts();
       emit('displayEmailInput');
     },
     validateEmail: function (email) {
-      clearAlerts();
+      clearAlerts([
+        JOIN_ALERTS.invalidEmail,
+        JOIN_ALERTS.accountExists,
+        JOIN_ALERTS.serverError
+      ]);
 
       var valid = validation.isEmail(email);
 
       if (!valid) {
-        emit('setValidity', JOIN_ALERTS.invalidUsername, false);
-        return;
+        return emit('displayAlert', JOIN_ALERTS.invalidEmail);
       }
 
       setRequestState(true);
 
-      loginApi.uidExists(email, uidExistsCallback);
+      loginApi.uidExists(email, validateEmailCallback);
     },
     validateUsername: function (username) {
-      clearAlerts();
+      clearAlerts([
+        JOIN_ALERTS.invalidUsername,
+        JOIN_ALERTS.usernameTaken,
+        JOIN_ALERTS.serverError
+      ]);
 
       var valid = validation.isUsername(username);
 
       if (!valid) {
-        return emit('setValidity', JOIN_ALERTS.invalidUsername, false);
+        return emit('displayAlert', JOIN_ALERTS.invalidUsername);
       }
 
       setRequestState(true);
@@ -99,10 +105,13 @@ module.exports = function JoinController(loginApi) {
       loginApi.uidExists(username, usernameExistsCallback);
     },
     submitUser: function (formData) {
-      emit('clearAlerts');
+      clearAlerts([
+        JOIN_ALERTS.agreeToTerms,
+        JOIN_ALERTS.serverError,
+      ])
 
-      if (!validation.join.canSubmit(formData)) {
-        return;
+      if (!validation.join.canSubmit(formData.agreeToTerms)) {
+        return emit('displayAlert', JOIN_ALERTS.agreeToTerms);
       }
 
       setRequestState(true);
@@ -112,8 +121,7 @@ module.exports = function JoinController(loginApi) {
       }, function (err) {
         setRequestState(false);
         if (err) {
-          emit(err.event);
-          return;
+          return emit('displayAlert', JOIN_ALERTS.serverError);
         }
         emit('displayWelcome');
       });

@@ -84,8 +84,8 @@ module.exports = function LoginAPI(options) {
     });
   }
 
-  function createUser(user, emitter) {
-    doRequest(requestTypes.post, loginUrls.createUser, emitter, 'createUser', {
+  function createUser(user, callback) {
+    doRequest(requestTypes.post, loginUrls.createUser, callback, {
       user: user
     });
   }
