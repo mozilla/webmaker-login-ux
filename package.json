@@ -1,32 +1,31 @@
 {
-  "name": "wmLogin-angular",
-  "version": "0.1.2",
-  "description": "Angular Modal directives for Webmaker Login and Account creation",
+  "name": "webmaker-login-ux",
+  "version": "0.0.0",
+  "description": "Extendable library for implemening Webmaker Login UX",
   "repository": {
     "type": "git",
-    "url": "git@github.com:cadecairos/webmaker-login-angular.git"
+    "repository": "git@github.com/cadecairos/webmaker-login-ux.git"
   },
-  "main": "src/wmLogin-angular.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "build": "grunt build",
+    "test": "jstest spec/*_spec.js"
   },
-  "author": "Mozilla Webmaker",
-  "license": "MPL-2.0",
-  "devDependencies": {
-    "express": "3.4.5",
+  "author": "Christopher De Cairos <cade@mozillafoundation.org>",
+  "license": "MIT",
+  "dependencies": {
+    "browser-request": "0.3.2",
+    "cookie-js": "0.0.1",
     "grunt": "0.4.5",
-    "grunt-express-server": "0.4.19",
-    "grunt-contrib-copy": "0.5.0",
+    "grunt-browserify": "3.0.1",
     "grunt-contrib-jshint": "0.10.0",
-    "grunt-contrib-less": "0.11.4",
-    "grunt-contrib-uglify": "^0.6.0",
-    "grunt-contrib-watch": "0.6.1",
-    "grunt-html2js": "0.2.8",
-    "html2js": "0.0.3",
+    "grunt-contrib-uglify": "0.6.0",
+    "grunt-jsbeautifier": "0.2.2",
     "jit-grunt": "0.8.0",
-    "nunjucks": "1.0.7",
-    "webmaker-auth-client": "https://github.com/cadecairos/webmaker-auth-client/archive/bbf68588b0cbabc08dc9ea6aba46bba30deab0f1.tar.gz",
-    "webmaker-i18n": "0.3.24",
-    "webmaker-locale-mapping": "0.0.4"
+    "pass-test": "0.0.5",
+    "request": "2.44.0",
+    "webmaker-analytics" : "0.1.5"
+  },
+  "devDependencies": {
+    "jstest": "1.0.5"
   }
 }

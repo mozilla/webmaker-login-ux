@@ -1,109 +1,82 @@
 module.exports = function (grunt) {
-
   require('jit-grunt')(grunt, {
-    shell: 'grunt-shell-spawn',
-    less: 'grunt-contrib-less',
-    express: 'grunt-express-server',
+    browserify: 'grunt-browserify',
     jshint: 'grunt-contrib-jshint'
   });
 
   var jshintConfig = grunt.file.readJSON('.jshintrc');
 
+  var allJS = [
+    'src/**/*.js',
+    'Gruntfile.js'
+  ];
+
   grunt.initConfig({
-    pkg: grunt.file.readJSON('package.json'),
-
-    html2js: {
-      options: {
-        base: 'src/templates',
-        indentString: '  '
+    browserify: {
+      angular: {
+        src: ['src/adapters/angular.js'],
+        dest: 'dist/ngWebmakerLogin.js'
       },
-      wmLoginAngular: {
-        src: ['src/templates/**/*.html'],
-        dest: 'dist/wmLogin-angular.templates.js'
-      },
-    },
-
-    less: {
-      production: {
-        files: {
-          "dist/login-angular.css": "src/less/login-angular.less"
-        }
+      plain: {
+        src: ['src/adapters/plain.js'],
+        dest: 'dist/webmakerLogin.js'
       }
     },
-
-    copy: {
-      main: {
-        files: [{
-          src: 'src/wmLogin-angular.js',
-          dest: 'dist/wmLogin-angular.js'
-        }]
-      }
-    },
-
-    express: {
-      dev: {
-        options: {
-          script: 'test/server.js',
-          node_env: 'DEV',
-          port: ''
-        }
-      }
-    },
-
-    watch: {
-      src: {
-        files: ['src/**/*', "test/**/*", "locale/**/*"],
-        tasks: ['build', 'express'],
-        options: {
-          spawn: false
-        }
-      }
-    },
-
     jshint: {
-      src: [
-        'src/wmLogin-angular.js'
-      ],
+      files: allJS,
       options: jshintConfig
     },
-
-    uglify: {
-      source:{
+    jsbeautifier: {
+      modify: {
+        src: allJS,
         options: {
-          sourceMap: true,
-          mangle: false
-        },
-        files: {
-          'dist/min/wmLogin-angular.min.js': ['dist/wmLogin-angular.js']
+          config: '.jsbeautifyrc'
         }
       },
-      templates: {
+      verify: {
+        src: allJS,
         options: {
-          sourceMap: false,
+          mode: 'VERIFY_ONLY',
+          config: '.jsbeautifyrc'
+        }
+      }
+    },
+    uglify: {
+      angularAdapter: {
+        options: {
           mangle: false
         },
         files: {
-          'dist/min/wmLogin-angular.templates.min.js': ['dist/wmLogin-angular.templates.js']
+          'dist/min/ngWebmakerLogin.min.js': ['dist/ngWebmakerLogin.js']
+        }
+      },
+      plainJsAdapter: {
+        options: {
+          mangle: false
+        },
+        files: {
+          'dist/min/webmakerLogin.min.js': ['dist/webmakerLogin.js']
         }
       }
     }
   });
 
+  grunt.registerTask('clean', [
+    'jsbeautifier:modify'
+  ]);
+
+  grunt.registerTask('validate', [
+    'jsbeautifier:verify',
+    'jshint'
+  ]);
+
   grunt.registerTask('build', [
-    'jshint',
-    'html2js',
-    'less:production',
-    'copy',
+    'validate',
+    'browserify',
     'uglify'
   ]);
 
-  grunt.registerTask('dev', [
-    'build',
-    'express',
-    'watch'
-  ]);
-
   grunt.registerTask('default', [
-    'dev'
+    'build'
   ]);
 };
