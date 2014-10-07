@@ -1,7 +1,7 @@
 var Emitter = require('./emitter.js');
-var Validation = require('../validation');
+var validation = require('../validation');
 
-module.exports = function SignInController() {
+module.exports = function SignInController(loginApi) {
 
   var emitter = new Emitter();
 
@@ -11,7 +11,19 @@ module.exports = function SignInController() {
     invalidUid: 'invalidUid',
     serverError: 'serverError',
     invalidKey: 'invalidKey',
-    passwordSigninFailed: 'passwordSigninFailed'
+    passwordSigninFailed: 'passwordSigninFailed',
+    resetRequestFailed: 'resetRequestFailed'
+  };
+
+  var SIGNIN_EVENTS = {
+    sendingRequest: 'sendingRequest',
+    displayAlert: 'displayAlert',
+    hideAlert: 'hideAlert',
+    displayEnterUid: 'displayEnterUid',
+    displayEnterPassword: 'displayEnterPassword',
+    displayEnterKey: 'displayEnterKey',
+    displayCheckEmail: 'displayCheckEmail',
+    signedIn: 'signedIn'
   };
 
   function emit(event, data) {
@@ -19,12 +31,21 @@ module.exports = function SignInController() {
   }
 
   function setRequestState(state) {
-    emit('sendingRequest', state);
+    emit(SIGNIN_EVENTS.sendingRequest, state);
+  }
+
+  function displayAlert(alertId) {
+    emit(SIGNIN_EVENTS.displayAlert, alertId);
+  }
+
+  function hideAlert(alertId) {
+    emit(SIGNIN_EVENTS.hideAlert, alertId);
   }
 
   function clearAlerts(alerts) {
-    alerts.forEach(function (alert) {
-      emit('hideAlert', alert);
+    alerts = Array.isArray(alerts) ? alerts : [alerts];
+    alerts.forEach(function (alertId) {
+      hideAlert(alertId);
     });
   }
 
@@ -40,51 +61,102 @@ module.exports = function SignInController() {
       emitter.removeListener(event, listener);
     },
     start: function () {
-      emit('displayEnterUid');
+      emit(SIGNIN_EVENTS.displayEnterUid);
     },
     submitUid: function (uid) {
-      // if uid invalid
-      //   emit displayAlert( SIGNIN_ALERTS.invalidUid)
-      // else
-      //   emit setRequestState(true)
-      // once done emit setRequestState(false)
-      // if not uidExists
-      //   emit displayAlert( SIGNIN_ALERTS.noAccount, false )
-      // else if uid enabled password auth
-      //   emit displayEnterPassword
-      // else
-      //   email login request for uid
-      // if uid.isVerified
-      //   emit displayEnterKey
-      // else
-      //   emit displayCheckEmail
+      clearAlerts([
+        SIGNIN_ALERTS.invalidUid,
+        SIGNIN_ALERTS.serverError,
+        SIGNIN_ALERTS.noAccount
+      ]);
+
+      var valid = validation.isEmail(uid) || validation.isUsername(uid);
+
+      if (!valid) {
+        return displayAlert(SIGNIN_ALERTS.invalidUid);
+      }
+
+      setRequestState(true);
+      loginApi.uidExists(uid, function uidExistsCallback(err, resp, body) {
+        setRequestState(false);
+
+        if (err || resp.status !== 200) {
+          return displayAlert(SIGNIN_ALERTS.serverError);
+        }
+
+        var isVerified = body.isVerified;
+
+        if (!body.exists) {
+          return displayAlert(SIGNIN_ALERTS.noAccount);
+        }
+
+        if (body.usePasswordLogin) {
+          return emit(SIGNIN_EVENTS.displayEnterPassword);
+        }
+
+        loginApi.sendLoginKey(uid, function sendLoginKeyCallback(err, resp, body) {
+          if (err) {
+            return displayAlert(SIGNIN_ALERTS.serverError);
+          }
+
+          if (isVerified) {
+            emit(SIGNIN_EVENTS.displayEnterKey);
+          } else {
+            emit(SIGNIN_EVENTS.displayCheckEmail);
+          }
+        });
+      });
     },
-    submitKey: function (uid, key) {
-      // emit setRequestState(true)
-      // submit uid, key
-      // emit setRequestState(false)
-      // if failed
-      // emit displayAlert(SIGNIN_ALERTS.invalidKey)
-      // else
-      // emit loginSuccessful
+    verifyKey: function (uid, key, rememberMe) {
+      setRequestState(true);
+      var validFor = rememberMe ? 'one-year' : '';
+      loginApi.verifyKey(uid, key, validFor, function verifyKeyCallback(err, resp, body) {
+        setRequestState(false);
+        if (err) {
+          return displayAlert(SIGNIN_ALERTS.serverError);
+        }
+
+        if (!body.user) {
+          return displayAlert(SIGNIN_ALERTS.invalidKey);
+        }
+
+        emit(SIGNIN_EVENTS.signedIn, body.user);
+
+      });
     },
-    submitPassword: function (uid, password) {
-      // emit setRequestState(true)
-      // submit uid, pass
-      // emit setRequestState(false)
-      // if failed
-      // emit displayAlert(SIGNIN_ALERTS.passwordSigninFailed)
-      // else
-      // emit loginSuccessful
+    verifyPassword: function (uid, password, rememberMe) {
+      setRequestState(true);
+      var validFor = rememberMe ? 'one-year' : '';
+      loginApi.verifyPassword(uid, password, validFor, function verifyPasswordCallback(err, resp, body) {
+        setRequestState(false);
+        if (err) {
+          return displayAlert(SIGNIN_ALERTS.serverError);
+        }
+
+        if (!body.user) {
+          return displayAlert(SIGNIN_ALERTS.passwordSigninFailed);
+        }
+
+        emit(SIGNIN_EVENTS.signedIn, body.user);
+      });
     },
     requestReset: function (uid) {
-      // emit setRequestState(true)
-      // submit uid
-      // emit setRequestState(false)
-      // if error
-      //   emit displayAlert(SIGNIN_ALERTS.resetRequestFailed)
-      // else
-      //   emit displayResetSent
+      setRequestState(true);
+      loginApi.requestReset(uid, function requestResetCallback(err, resp, body) {
+        setRequestState(false);
+        if (err) {
+          displayAlert(SIGNIN_ALERTS.serverError);
+        }
+
+        if (!body.status) {
+          displayAlert(SIGNIN_ALERTS.resetRequestFailed);
+        }
+
+        emit(SIGNIN_EVENTS.displayResetSent);
+      });
+    },
+    getUidType: function (uid) {
+      return validation.isEmail(uid) ? 'email' : validation.isUsername(uid) ? 'username' : null;
     }
   };
 };

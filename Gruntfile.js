@@ -1,7 +1,10 @@
 module.exports = function (grunt) {
   require('jit-grunt')(grunt, {
+    copy: 'grunt-contrib-copy',
     browserify: 'grunt-browserify',
-    jshint: 'grunt-contrib-jshint'
+    jshint: 'grunt-contrib-jshint',
+    express: 'grunt-express-server',
+    less: 'grunt-contrib-less'
   });
 
   var jshintConfig = grunt.file.readJSON('.jshintrc');
@@ -12,6 +15,31 @@ module.exports = function (grunt) {
   ];
 
   grunt.initConfig({
+    html2js: {
+      options: {
+        base: 'templates',
+        indentString: ' '
+      },
+      ngWebmakerLogin: {
+        src: ['templates/**/*.html'],
+        dest: 'dist/templates/ngWebmakerLogin.templates.js'
+      },
+    },
+    less: {
+      production: {
+        files: {
+          "dist/css/webmakerLogin.css": "src/less/webmakerLogin.less"
+        }
+      }
+    },
+    copy: {
+      main: {
+        expand: true,
+        src: ['templates/*'],
+        dest: 'dist/',
+        filter: 'isFile',
+      }
+    },
     browserify: {
       angular: {
         src: ['src/adapters/angular.js'],
@@ -47,7 +75,8 @@ module.exports = function (grunt) {
           mangle: false
         },
         files: {
-          'dist/min/ngWebmakerLogin.min.js': ['dist/ngWebmakerLogin.js']
+          'dist/min/ngWebmakerLogin.min.js': ['dist/ngWebmakerLogin.js'],
+          'dist/min/ngWebmakerLogin.templates.min.js': ['dist/templates/ngWebmakerLogin.templates.js']
         }
       },
       plainJsAdapter: {
@@ -58,7 +87,27 @@ module.exports = function (grunt) {
           'dist/min/webmakerLogin.min.js': ['dist/webmakerLogin.js']
         }
       }
-    }
+    },
+
+    express: {
+      dev: {
+        options: {
+          script: 'test/server.js',
+          node_env: 'DEV',
+          port: ''
+        }
+      }
+    },
+
+    watch: {
+      src: {
+        files: ['src/**/*', "test/**/*", "locale/**/*", "templates/**/*"],
+        tasks: ['build', 'express'],
+        options: {
+          spawn: false
+        }
+      }
+    },
   });
 
   grunt.registerTask('clean', [
@@ -71,9 +120,17 @@ module.exports = function (grunt) {
   ]);
 
   grunt.registerTask('build', [
-    'validate',
     'browserify',
+    'copy',
+    'html2js',
+    'less',
     'uglify'
+  ]);
+
+  grunt.registerTask('dev', [
+    'build',
+    'express',
+    'watch',
   ]);
 
   grunt.registerTask('default', [

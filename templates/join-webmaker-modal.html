@@ -5,13 +5,14 @@
 </div>
 <div class="modal-body">
   <form class="form" name="form.user" novalidate>
-    <div class="alert alert-danger" ng-show="submit && !form.agree" bind-unsafe-html="'webmakerAuthAgreeError' | i18n"></div>
-    <div class="alert alert-warning" ng-show="form.user.email.$error.accountExists" bind-unsafe-html="'WebmakerAccountExists' | i18n"></div>
-    <div class="alert alert-danger" ng-show="form.user.email.$error.invalidEmail" bind-unsafe-html="'NotAnEmail' | i18n"></div>
-    <div class="alert alert-danger" ng-show="form.user.username.$error.invalidUsername" bind-unsafe-html="'webmakerAuthUsernameInvalid' | i18n"></div>
-    <div class="alert alert-danger" ng-show="form.user.username.$error.serverError" bind-unsafe-html="'webmakerAuthServerError' | i18n"></div>
-    <div class="alert alert-danger" ng-show="form.user.username.$error.taken" bind-unsafe-html="'webmakerAuthTakenError' | i18n"></div>
-    <div ng-show="enterEmail">
+    <div class="alert alert-danger" ng-show="submit && !form.error.agreeToTerms" bind-unsafe-html="'webmakerAuthAgreeError' | i18n"></div>
+    <div class="alert alert-warning" ng-show="form.$error.accountExists" bind-unsafe-html="'WebmakerAccountExists' | i18n"></div>
+    <div class="alert alert-danger" ng-show="form.$error.invalidEmail" bind-unsafe-html="'NotAnEmail' | i18n"></div>
+    <div class="alert alert-danger" ng-show="form.$error.invalidUsername" bind-unsafe-html="'webmakerAuthUsernameInvalid' | i18n"></div>
+    <div class="alert alert-danger" ng-show="form.$error.serverError" bind-unsafe-html="'webmakerAuthServerError' | i18n"></div>
+    <div class="alert alert-danger" ng-show="form.$error.taken" bind-unsafe-html="'webmakerAuthTakenError' | i18n"></div>
+
+    <div ng-show="currentState === MODALSTATE.inputEmail">
       <div class="form-group">
         <label for="email">{{ 'Email' | i18n }}</label>
         <input ng-model="user.email" ng-blur="checkEmail();" type="text" class="form-control" name="email" autocomplete="off" autofocus tabindex="1" required focus-on="create-user-email">
@@ -27,7 +28,7 @@
       </div>
     </div>
 
-    <div ng-show="selectUsername">
+    <div ng-show="currentState === MODALSTATE.inputUsername">
       <div class="form-group">
         <label for="pre-username">{{ 'webmakerAuthChooseUsername' | i18n }}</label>
         <label for="username">webmaker.org/user/</label>
@@ -36,7 +37,7 @@
       <button ng-disabled="form.user.username.$invalid || sendingRequest" ng-click="submitUsername()" class="create-user btn btn-primary" type="button" tabindex="5">{{ 'webmakerAuthCreateAccount' | i18n }}</button>
     </div>
 
-    <div ng-show="welcome">
+    <div ng-show="currentState === MODALSTATE.welcome">
       <p class="subheadline">{{ 'aboutWebmaker' | i18n }}</p>
         <!-- Goggles -->
 
