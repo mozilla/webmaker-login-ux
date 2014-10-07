@@ -23,16 +23,16 @@ module.exports = function JoinController(loginApi) {
     displayWelcome: 'displayWelcome'
   };
 
-  function emit(event, data) {
-    emitter.emit(event, data);
+  function emit() {
+    emitter.emit.apply(emitter, arguments);
   }
 
   function setRequestState(state) {
-    emit(JOIN_EVENTS.sendingRequest, state);
+    emit(JOIN_EVENTS.sendingRequest, state, !state ? true : false);
   }
 
-  function displayAlert(alertId) {
-    emit(JOIN_EVENTS.displayAlert, alertId);
+  function displayAlert(alertId, forceUpdate) {
+    emit(JOIN_EVENTS.displayAlert, alertId, forceUpdate);
   }
 
   function clearAlerts(alerts) {
@@ -45,25 +45,23 @@ module.exports = function JoinController(loginApi) {
   function validateEmailCallback(err, resp, body) {
     setRequestState(false);
     if (err || resp.status !== 200) {
-      return displayAlert(JOIN_ALERTS.serverError);
+      return displayAlert(JOIN_ALERTS.serverError, true);
     }
 
     if (body.exists) {
-      return displayAlert(JOIN_ALERTS.accountExists);
+      return displayAlert(JOIN_ALERTS.accountExists, true);
     }
-
-    emit(JOIN_EVENTS.displayUsernameInput);
   }
 
   function usernameExistsCallback(err, resp, body) {
     setRequestState(false);
 
     if (err || resp.status !== 200) {
-      return displayAlert(JOIN_ALERTS.serverError);
+      return displayAlert(JOIN_ALERTS.serverError, true);
     }
 
     if (body.exists) {
-      return displayAlert(JOIN_ALERTS.usernameTaken);
+      return displayAlert(JOIN_ALERTS.usernameTaken, true);
     }
 
     emit(JOIN_EVENTS.displayUsernameInput);
@@ -100,6 +98,9 @@ module.exports = function JoinController(loginApi) {
 
       loginApi.uidExists(email, validateEmailCallback);
     },
+    submitEmail: function () {
+      emit(JOIN_EVENTS.displayUsernameInput);
+    },
     validateUsername: function (username) {
       clearAlerts([
         JOIN_ALERTS.invalidUsername,
@@ -122,10 +123,6 @@ module.exports = function JoinController(loginApi) {
         JOIN_ALERTS.agreeToTerms,
         JOIN_ALERTS.serverError,
       ]);
-
-      if (!formData.agreeToTerms) {
-        return displayAlert(JOIN_ALERTS.agreeToTerms);
-      }
 
       setRequestState(true);
       loginApi.createUser({
