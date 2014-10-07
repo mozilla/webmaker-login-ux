@@ -14,61 +14,74 @@ module.exports = function JoinController(loginApi) {
     serverError: 'serverError'
   };
 
+  var JOIN_EVENTS = {
+    sendingRequest: 'sendingRequest',
+    displayAlert: 'displayAlert',
+    hideAlert: 'hideAlert',
+    displayUsernameInput: 'displayUsernameInput',
+    displayEmailInput: 'displayEmailInput',
+    displayWelcome: 'displayWelcome'
+  };
+
   function emit(event, data) {
     emitter.emit(event, data);
   }
 
   function setRequestState(state) {
-    emit('sendingRequest', state);
+    emit(JOIN_EVENTS.sendingRequest, state);
+  }
+
+  function displayAlert(alertId) {
+    emit(JOIN_EVENTS.displayAlert, alertId);
   }
 
   function clearAlerts(alerts) {
     alerts = Array.isArray(alerts) ? alerts : [alerts];
     alerts.forEach(function (alert) {
-      emit('hideAlert', alert, true);
+      emit(JOIN_EVENTS.hideAlert, alert);
     });
   }
 
   function validateEmailCallback(err, resp, body) {
     setRequestState(false);
     if (err || resp.status !== 200) {
-      return emit('displayAlert', JOIN_ALERTS.serverError);
+      return displayAlert(JOIN_ALERTS.serverError);
     }
 
     if (body.exists) {
-      return emit('displayAlert', JOIN_ALERTS.accountExists);
+      return displayAlert(JOIN_ALERTS.accountExists);
     }
 
-    emit('displayUsernameInput');
+    emit(JOIN_EVENTS.displayUsernameInput);
   }
 
   function usernameExistsCallback(err, resp, body) {
     setRequestState(false);
 
     if (err || resp.status !== 200) {
-      return emit('displayAlert', JOIN_ALERTS.serverError);
+      return displayAlert(JOIN_ALERTS.serverError);
     }
 
     if (body.exists) {
-      return emit('displayAlert', JOIN_ALERTS.usernameTaken);
+      return displayAlert(JOIN_ALERTS.usernameTaken);
     }
 
-    emit('displayUsernameInput');
+    emit(JOIN_EVENTS.displayUsernameInput);
 
   }
 
   return {
     on: function (event, listener) {
-      emitter.addListener(event, listener);
+      emitter.on(event, listener);
     },
     off: function (event, listener) {
       if (!listener) {
-        return emitter.removeAllListeners(event);
+        return emitter.off(event);
       }
       emitter.removeListener(event, listener);
     },
     start: function () {
-      emit('displayEmailInput');
+      emit(JOIN_EVENTS.displayEmailInput);
     },
     validateEmail: function (email) {
       clearAlerts([
@@ -80,7 +93,7 @@ module.exports = function JoinController(loginApi) {
       var valid = validation.isEmail(email);
 
       if (!valid) {
-        return emit('displayAlert', JOIN_ALERTS.invalidEmail);
+        return displayAlert(JOIN_ALERTS.invalidEmail);
       }
 
       setRequestState(true);
@@ -97,7 +110,7 @@ module.exports = function JoinController(loginApi) {
       var valid = validation.isUsername(username);
 
       if (!valid) {
-        return emit('displayAlert', JOIN_ALERTS.invalidUsername);
+        return displayAlert(JOIN_ALERTS.invalidUsername);
       }
 
       setRequestState(true);
@@ -108,10 +121,10 @@ module.exports = function JoinController(loginApi) {
       clearAlerts([
         JOIN_ALERTS.agreeToTerms,
         JOIN_ALERTS.serverError,
-      ])
+      ]);
 
-      if (!validation.join.canSubmit(formData.agreeToTerms)) {
-        return emit('displayAlert', JOIN_ALERTS.agreeToTerms);
+      if (!formData.agreeToTerms) {
+        return displayAlert(JOIN_ALERTS.agreeToTerms);
       }
 
       setRequestState(true);
@@ -121,9 +134,9 @@ module.exports = function JoinController(loginApi) {
       }, function (err) {
         setRequestState(false);
         if (err) {
-          return emit('displayAlert', JOIN_ALERTS.serverError);
+          return displayAlert(JOIN_ALERTS.serverError);
         }
-        emit('displayWelcome');
+        emit(JOIN_EVENTS.displayWelcome);
       });
     }
   };

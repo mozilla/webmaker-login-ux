@@ -1,5 +1,9 @@
-var usernameRegex = /^[abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789\-]{1,20}$/,
-  emailRegex = /^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$/;
+var usernameRegex = /^[a-zA-Z0-9\-]{1,20}$/,
+  emailRegex = /^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$/,
+  containsBothCases = /^.*(?=.*[a-z])(?=.*[A-Z]).*$/,
+  containsDigit = /\d/;
+
+var MIN_PASSWORD_LEN = 8;
 
 module.exports = {
   isEmail: function (email) {
@@ -8,21 +12,22 @@ module.exports = {
   isUsername: function (username) {
     return usernameRegex.test(username);
   },
-  join: {
-    canSubmit: function (form) {
-      var canSubmit = true;
-
-      canSubmit = emailRegex.test(form.email);
-      canSubmit = usernameRegex.test(form.username);
-      canSubmit = !! form.agree;
-
-      return canSubmit;
+  passwordsMatch: function (password, confirmation) {
+    return password === confirmation;
+  },
+  checkPasswordStrength: function (password) {
+    if (!password) {
+      return false;
     }
-  },
-  signin: {
 
-  },
-  reset: {
+    var lengthValid = password.length >= MIN_PASSWORD_LEN,
+      caseValid = password.match(containsBothCases),
+      digitValid = password.match(containsDigit);
 
+    return {
+      lengthValid: lengthValid,
+      caseValid: caseValid,
+      digitValid: digitValid
+    };
   }
 };

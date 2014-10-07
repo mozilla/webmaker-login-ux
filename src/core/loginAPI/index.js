@@ -1,5 +1,5 @@
 var request = require('browser-request');
-var refferals = require(refferals);
+// var refferals = require('./refferals.js');
 
 module.exports = function LoginAPI(options) {
   // var referrals = require('./referrals')(options);
@@ -18,81 +18,80 @@ module.exports = function LoginAPI(options) {
   var headers = {
     'X-CSRF-Token': options.csrfToken
   };
-  var requestTypes = {
-    get: 'get',
-    post: 'post'
-  };
 
-  function doRequest(method, uri, callback, payload) {
-    var requestOptions = {
-      method: method,
+  function doRequest(uri, payload, callback) {
+    request({
+      method: 'post',
       uri: uri,
       timeout: timeout,
       withCredentials: withCredentials,
-      headers: headers
-    };
-
-    if (method === requestTypes.post && payload) {
-      requestOptions.json = payload;
-    }
-
-    request(requestOptions, callback);
+      headers: headers,
+      json: payload
+    });
   }
 
   function uidExists(uid, callback) {
-
-    function uidExistsCallback(err, resp, body) {
-      if (err || resp.status !== 200 || resp.status !== 404) {
-        return callback({
-          event: 'serverError'
-        });
-      }
-
-      if (body.exists) {
-        return callback({
-          event: 'errorAccountExists'
-        });
-      }
-      callback();
-    }
-
-    doRequest(requestTypes.post, loginUrls.uidExists, uidExistsCallback, {
+    doRequest(loginUrls.uidExists, {
       uid: uid
-    });
+    }, callback);
   }
 
   function checkUsername(username, callback) {
-
-    function checkUsernameCallback(err, resp, body) {
-      if (err || resp.status !== 200) {
-        return callback({
-          event: 'serverError'
-        });
-      }
-
-      if (body.exists) {
-        return callback({
-          event: 'errorUsernameTaken'
-        });
-      }
-
-      callback();
-    }
-
-    doRequest(requestTypes.post, loginUrls.checkUsername, checkUsernameCallback, {
+    doRequest(loginUrls.checkUsername, {
       username: username
-    });
+    }, callback);
   }
 
   function createUser(user, callback) {
-    doRequest(requestTypes.post, loginUrls.createUser, callback, {
+    doRequest(loginUrls.createUser, {
       user: user
-    });
+    }, callback);
+  }
+
+  function sendLoginKey(uid, callback) {
+    doRequest(loginUrls.request, {
+      uid: uid
+    }, callback);
+  }
+
+  function verifyKey(uid, key, validFor, callback) {
+    doRequest(loginUrls.authenticateToken, {
+      uid: uid,
+      token: key,
+      validFor: validFor
+    }, callback);
+  }
+
+  function verifyPassword(uid, password, validFor, callback) {
+    doRequest(loginUrls.verifyPassword, {
+      uid: uid,
+      password: password,
+      validFor: validFor
+    }, callback);
+  }
+
+  function requestReset(uid, callback) {
+    doRequest(loginUrls.requestResetCode, {
+      uid: uid
+    }, callback);
+  }
+
+  function resetPassword(uid, resetCode, password, callback) {
+    doRequest(loginUrls.resetPassword, {
+      uid: uid,
+      resetCode: resetCode,
+      newPassword: password
+    }, callback);
   }
 
   return {
     uidExists: uidExists,
     checkUsername: checkUsername,
-    createUser: createUser
+    createUser: createUser,
+    sendLoginKey: sendLoginKey,
+    verifyKey: verifyKey,
+    verifyPassword: verifyPassword,
+    requestReset: requestReset,
+    resetPassword: resetPassword
   };
 };

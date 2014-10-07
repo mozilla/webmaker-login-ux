@@ -14,6 +14,9 @@ module.exports = function Emitter() {
         return;
       }
       emitter.removeListener(event, listener);
+    },
+    emit: function () {
+      emitter.emit.apply(emitter, arguments);
     }
   };
 };
