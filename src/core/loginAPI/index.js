@@ -27,7 +27,7 @@ module.exports = function LoginAPI(options) {
       withCredentials: withCredentials,
       headers: headers,
       json: payload
-    });
+    }, callback);
   }
 
   function uidExists(uid, callback) {

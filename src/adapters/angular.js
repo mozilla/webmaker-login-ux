@@ -22,7 +22,7 @@ module.factory('focus', ['$timeout',
           return;
         }
         el[0].focus();
-      }, 0);
+      }, 50);
     };
   }
 ]);
@@ -38,12 +38,6 @@ module.directive('wmJoinWebmaker', [
       },
       controller: ['$rootScope', '$scope', '$modal', '$timeout', 'focus', 'wmLoginCore',
         function ($rootScope, $scope, $modal, $timeout, focus, wmLoginCore) {
-          function apply() {
-            if ($rootScope.$$phase) {
-              $rootScope.$apply();
-            }
-          }
-
           $rootScope.joinWebmaker = function (email, username) {
             $modal.open({
               templateUrl: 'join-webmaker-modal.html',
@@ -84,36 +78,57 @@ module.directive('wmJoinWebmaker', [
             var joinController = wmLoginCore.joinWebmaker();
 
             joinController.on('sendingRequest', function (state) {
-              $scope.sendingRequest = state;
-              apply();
+              $timeout(function () {
+                $scope.sendingRequest = state;
+              }, 0);
             });
 
             joinController.on('displayEmailInput', function () {
-              $scope.currentState = MODALSTATE.inputEmail;
+              $timeout(function () {
+                $scope.currentState = MODALSTATE.inputEmail;
+              }, 0);
             });
 
             joinController.on('displayUsernameInput', function () {
-              $scope.currentState = MODALSTATE.inputUsername;
+              $timeout(function () {
+                $scope.currentState = MODALSTATE.inputUsername;
+              }, 0);
             });
 
             joinController.on('displayWelcome', function () {
-              $scope.welcomeModalIdx = Math.floor(Math.random() * 4);
-              $scope.currentState = MODALSTATE.welcome;
-              apply();
+              $timeout(function () {
+                $scope.welcomeModalIdx = Math.floor(Math.random() * 4);
+                $scope.currentState = MODALSTATE.welcome;
+              }, 0);
             });
 
             joinController.on('displayAlert', function (alertId) {
-              $scope.form.$setValidity(alertId, false);
-              apply();
+              $timeout(function () {
+                $scope.form.user.$setValidity(alertId, false);
+              }, 0);
             });
 
             joinController.on('hideAlert', function (alertId) {
-              $scope.form.user.email.$setValidity(alertId, true);
-              apply();
+              $timeout(function () {
+                $scope.form.user.$setValidity(alertId, true);
+              }, 0);
             });
 
+
             $scope.validateEmail = function () {
+              if (!$scope.user.email) {
+                return;
+              }
+
               joinController.validateEmail($scope.user.email);
+            };
+
+            $scope.canSubmitEmail = function() {
+              return $scope.user.email && $scope.user.agree;
+            }
+
+            $scope.submitEmail = function () {
+              joinController.submitEmail();
             };
 
             $scope.validateUsername = function () {
@@ -121,15 +136,15 @@ module.directive('wmJoinWebmaker', [
             };
 
             $scope.submitUser = function () {
-              $scope.submit = true;
-              if (!$scope.form.agree) {
-                return;
-              }
               joinController.submitUser($scope.user);
             };
 
             $scope.openTool = function (tool) {
               window.location = 'https://' + tool + '.webmaker.org';
+            };
+
+            $scope.cancel = function () {
+              $modalInstance.close();
             };
 
             joinController.start();
@@ -149,12 +164,6 @@ module.directive('wmSignin', [
       },
       controller: ['$rootScope', '$scope', '$modal', '$timeout', 'focus', 'wmLoginCore',
         function ($rootScope, $scope, $modal, $timeout, focus, wmLoginCore) {
-          function apply() {
-            if ($rootScope.$$phase) {
-              $rootScope.$apply();
-            }
-          }
-
           $rootScope.signin = function (uid, passwordWasReset) {
             $modal.open({
               templateUrl: 'signin-modal.html',
@@ -199,38 +208,45 @@ module.directive('wmSignin', [
             var signinController = wmLoginCore.signIn();
 
             signinController.on('sendingRequest', function (state) {
-              $scope.sendingRequest = state;
-              apply();
+              $timeout(function () {
+                $scope.sendingRequest = state;
+              }, 0);
             });
 
             signinController.on('displayEnterUid', function () {
-              $scope.currentState = MODALSTATE.enterUid;
-              apply();
+              $timeout(function () {
+                $scope.currentState = MODALSTATE.enterUid;
+              }, 0);
             });
 
             signinController.on('displayEnterPassword', function () {
-              $scope.currentState = MODALSTATE.enterPassword;
-              apply();
+              $timeout(function () {
+                $scope.currentState = MODALSTATE.enterPassword;
+              }, 0);
             });
 
             signinController.on('displayEnterKey', function () {
-              $scope.currentState = MODALSTATE.enterKey;
-              apply();
+              $timeout(function () {
+                $scope.currentState = MODALSTATE.enterKey;
+              }, 0);
             });
 
             signinController.on('displayCheckEmail', function () {
-              $scope.currentState = MODALSTATE.checkEmail;
-              apply();
+              $timeout(function () {
+                $scope.currentState = MODALSTATE.checkEmail;
+              }, 0);
             });
 
             signinController.on('displayAlert', function (alertId) {
-              $scope.form.user.email.$setValidity(alertId, false);
-              apply();
+              $timeout(function () {
+                $scope.form.user.email.$setValidity(alertId, false);
+              }, 0);
             });
 
             signinController.on('hideAlert', function (alertId) {
-              $scope.form.user.email.$setValidity(alertId, true);
-              apply();
+              $timeout(function () {
+                $scope.form.user.email.$setValidity(alertId, true);
+              }, 0);
             });
 
             $scope.submitUid = function () {
@@ -274,8 +290,8 @@ module.directive('wmPasswordReset', [
     var triggered = false;
     return {
       restrict: 'A',
-      controller: ['$rootScope', '$scope', '$location', '$modal', 'wmLoginCore',
-        function ($rootScope, $scope, $location, $modal, wmLoginCore) {
+      controller: ['$rootScope', '$scope', '$location', '$timeout', '$modal', 'wmLoginCore',
+        function ($rootScope, $scope, $location, $timeout, $modal, wmLoginCore) {
 
           var searchObj = $location.search();
 
@@ -284,12 +300,6 @@ module.directive('wmPasswordReset', [
           }
 
           triggered = true;
-
-          function apply() {
-            if (!$rootScope.$$phase) {
-              $rootScope.$apply();
-            }
-          }
 
           function passwordResetModalController($scope, $modalInstance, resetCode, uid) {
             $scope.form = {};
@@ -303,41 +313,46 @@ module.directive('wmPasswordReset', [
             var resetController = wmLoginCore.resetPassword();
 
             resetController.on('sendingRequest', function (state) {
-              $scope.sendingRequest = state;
-              apply();
+              $timeout(function () {
+                $scope.sendingRequest = state;
+              }, 0);
             });
 
             resetController.on('displayAlert', function (alertId) {
-              $scope.form.password.value.$setValidity(alertId, false);
-              apply();
+              $timeout(function () {
+                $scope.form.password.value.$setValidity(alertId, false);
+              }, 0);
             });
 
             resetController.on('hideAlert', function (alertId) {
-              $scope.form.password.value.$setValidity(alertId, true);
-              apply();
+              $timeout(function () {
+                $scope.form.password.value.$setValidity(alertId, true);
+              }, 0);
             });
 
             resetController.on('passwordCheckResult', function (result, blur) {
-              // set to default statue
-              if (!result) {
-                $scope.eightCharsState = $scope.oneEachCaseState = $scope.oneNumberState = 'default';
-                $scope.isValidPassword = false;
-                return;
-              }
+              $timeout(function () {
+                // set to default statue
+                if (!result) {
+                  $scope.eightCharsState = $scope.oneEachCaseState = $scope.oneNumberState = 'default';
+                  $scope.isValidPassword = false;
+                  return;
+                }
 
-              $scope.eightCharsState = !result.lengthValid ? 'invalid' : blur ? 'valid' : '';
-              $scope.oneEachCaseState = !result.validCase ? 'invalid' : blur ? 'valid' : '';
-              $scope.oneNumberState = !result.hasNumber ? 'invalid' : blur ? 'valid' : '';
-              $scope.isValidPassword = result.lengthValid && result.validCase && result.hasNumber;
-              apply();
+                $scope.eightCharsState = !result.lengthValid ? 'invalid' : blur ? 'valid' : '';
+                $scope.oneEachCaseState = !result.validCase ? 'invalid' : blur ? 'valid' : '';
+                $scope.oneNumberState = !result.hasNumber ? 'invalid' : blur ? 'valid' : '';
+                $scope.isValidPassword = result.lengthValid && result.validCase && result.hasNumber;
+              }, 0);
             });
 
             resetController.on('resetSucceeded', function () {
-              $location.search('uid', null);
-              $location.search('resetCode', null);
-              $modalInstance.close();
-              $rootScope.wmTokenLogin(uid, true);
-              apply();
+              $timeout(function () {
+                $location.search('uid', null);
+                $location.search('resetCode', null);
+                $modalInstance.close();
+                $rootScope.wmTokenLogin(uid, true);
+              }, 0);
             });
 
             $scope.checkPasswordStrength = function (blur) {
