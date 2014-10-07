@@ -47,7 +47,10 @@ module.exports = function (grunt) {
       },
       plain: {
         src: ['src/adapters/plain.js'],
-        dest: 'dist/webmakerLogin.js'
+        dest: 'dist/webmakerLogin.js',
+        options: {
+          transform: ['brfs']
+        }
       }
     },
     jshint: {
