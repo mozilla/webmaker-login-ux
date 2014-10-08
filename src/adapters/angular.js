@@ -3,7 +3,7 @@ var module = angular.module('ngWebmakerLogin', ['templates-ngWebmakerLogin']);
 module.constant('CONFIG', window.angularConfig);
 
 module.factory('wmLoginCore', ['$rootScope', 'CONFIG',
-  function (CONFIG) {
+  function ($rootScope, CONFIG) {
     var LoginCore = require('../core');
 
     return new LoginCore({
@@ -296,7 +296,7 @@ module.directive('wmSignin', [
               $rootScope.joinWebmaker(email, username);
             };
 
-            $scope.usePersona = function() {
+            $scope.usePersona = function () {
               $modalInstance.dismiss();
               $rootScope.personaLogin();
             };
@@ -459,7 +459,20 @@ module.directive('wmLogout', ['wmLoginCore',
         $element.on('click', function () {
           $rootScope.logout();
         });
-      }
+      },
+      controller: ['$rootScope', 'wmLoginCore',
+        function ($rootScope, wmLoginCore) {
+          var logoutController = wmLoginCore.logout();
+
+          logoutController.on('loggedOut', function () {
+            $rootScope._user = null;
+          });
+
+          $rootScope.logout = function () {
+            logoutController.logout();
+          };
+        }
+      ]
     };
   }
 ]);
