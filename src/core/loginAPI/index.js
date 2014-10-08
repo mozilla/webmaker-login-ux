@@ -2,8 +2,6 @@ var request = require('browser-request');
 // var refferals = require('./refferals.js');
 
 module.exports = function LoginAPI(options) {
-  // var referrals = require('./referrals')(options);
-
   if (!window.localStorage) {
     console.error('Local storage must be supported for instant login.');
   }
@@ -90,9 +88,13 @@ module.exports = function LoginAPI(options) {
       assertion: assertion,
       audience: audience,
       user: {
-      //todo: referrer code
+        //todo: referrer code
       }
     }, callback);
+  }
+
+  function logout(callback) {
+    doRequest(loginUrls.logout, null, callback);
   }
 
   return {
@@ -104,6 +106,7 @@ module.exports = function LoginAPI(options) {
     verifyPassword: verifyPassword,
     requestReset: requestReset,
     resetPassword: resetPassword,
-    personaLogin: personaLogin
+    personaLogin: personaLogin,
+    logout: logout
   };
 };

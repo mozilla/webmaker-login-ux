@@ -15,6 +15,9 @@ module.exports = function WebmakerLoginCore(options) {
     },
     personaLogin: function () {
       return new state.PersonaController(loginAPI);
+    },
+    logout: function () {
+      return new state.LogoutController(loginAPI);
     }
   };
 };
