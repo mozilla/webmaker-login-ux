@@ -18,6 +18,7 @@ module.exports = function LoginAPI(options) {
   var headers = {
     'X-CSRF-Token': options.csrfToken
   };
+  var audience = options.audience || (window.location.protocol + '//' + window.location.host);
 
   function doRequest(uri, payload, callback) {
     request({
@@ -84,6 +85,16 @@ module.exports = function LoginAPI(options) {
     }, callback);
   }
 
+  function personaLogin(assertion, callback) {
+    doRequest(loginUrls.authenticate, {
+      assertion: assertion,
+      audience: audience,
+      user: {
+      //todo: referrer code
+      }
+    }, callback);
+  }
+
   return {
     uidExists: uidExists,
     checkUsername: checkUsername,
@@ -92,6 +103,7 @@ module.exports = function LoginAPI(options) {
     verifyKey: verifyKey,
     verifyPassword: verifyPassword,
     requestReset: requestReset,
-    resetPassword: resetPassword
+    resetPassword: resetPassword,
+    personaLogin: personaLogin
   };
 };

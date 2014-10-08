@@ -12,6 +12,9 @@ module.exports = function WebmakerLoginCore(options) {
     },
     resetPassword: function () {
       return new state.ResetController(loginAPI);
+    },
+    personaLogin: function () {
+      return new state.PersonaController(loginAPI);
     }
   };
 };

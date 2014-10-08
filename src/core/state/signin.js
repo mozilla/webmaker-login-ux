@@ -23,11 +23,12 @@ module.exports = function SignInController(loginApi) {
     displayEnterPassword: 'displayEnterPassword',
     displayEnterKey: 'displayEnterKey',
     displayCheckEmail: 'displayCheckEmail',
+    displayResetSent: 'displayResetSent',
     signedIn: 'signedIn'
   };
 
-  function emit(event, data) {
-    emitter.emit(event, data);
+  function emit() {
+    emitter.emit.apply(emitter, arguments);
   }
 
   function setRequestState(state) {
@@ -51,14 +52,10 @@ module.exports = function SignInController(loginApi) {
 
   return {
     on: function (event, listener) {
-      emitter.addListener(event, listener);
+      emitter.on(event, listener);
     },
     off: function (event, listener) {
-      if (!listener) {
-        emitter.removeAllListeners(event);
-        return;
-      }
-      emitter.removeListener(event, listener);
+      emitter.off(event, listener);
     },
     start: function () {
       emit(SIGNIN_EVENTS.displayEnterUid);
@@ -107,7 +104,15 @@ module.exports = function SignInController(loginApi) {
         });
       });
     },
+    displayEnterKey: function () {
+      emit(SIGNIN_EVENTS.displayEnterKey);
+    },
     verifyKey: function (uid, key, rememberMe) {
+      clearAlerts([
+        SIGNIN_ALERTS.serverError,
+        SIGNIN_ALERTS.invalidKey
+      ]);
+
       setRequestState(true);
       var validFor = rememberMe ? 'one-year' : '';
       loginApi.verifyKey(uid, key, validFor, function verifyKeyCallback(err, resp, body) {
@@ -145,13 +150,12 @@ module.exports = function SignInController(loginApi) {
       loginApi.requestReset(uid, function requestResetCallback(err, resp, body) {
         setRequestState(false);
         if (err) {
-          displayAlert(SIGNIN_ALERTS.serverError);
+          return displayAlert(SIGNIN_ALERTS.serverError);
         }
 
         if (!body.status) {
-          displayAlert(SIGNIN_ALERTS.resetRequestFailed);
+          return displayAlert(SIGNIN_ALERTS.resetRequestFailed);
         }
-
         emit(SIGNIN_EVENTS.displayResetSent);
       });
     },

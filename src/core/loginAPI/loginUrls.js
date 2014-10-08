@@ -5,7 +5,7 @@ module.exports = function (options) {
 
   paths = options.paths || {};
   paths.authenticate = options.paths.authenticate || '/authenticate';
-  paths.create = options.paths.create || '/create';
+  paths.legacyCreate = options.paths.legacyCreate || '/create';
   paths.verify = options.paths.verify || '/verify';
   paths.logout = options.paths.logout || '/logout';
   paths.checkUsername = options.paths.checkUsername || '/check-username';
@@ -23,7 +23,7 @@ module.exports = function (options) {
     request: host + paths.request,
     authenticateToken: host + paths.authenticateToken,
     authenticate: host + paths.authenticate,
-    create: host + paths.create,
+    legacyCreate: host + paths.legacyCreate,
     createUser: host + paths.createUser,
     verify: host + paths.verify,
     logout: host + paths.logout,

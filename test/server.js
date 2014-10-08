@@ -126,6 +126,7 @@ app.post('/logout', function(req, res) {
 });
 
 app.post('/authenticate', function(req, res) {
+
   return res.json({
     user: {
       email: 'user@webmaker.org',

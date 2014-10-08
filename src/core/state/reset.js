@@ -14,11 +14,12 @@ module.exports = function ResetController(loginApi) {
     displayAlert: 'displayAlert',
     hideAlert: 'hideAlert',
     resetSucceeded: 'resetSucceeded',
-    passwordCheckResult: 'passwordCheckResult'
+    passwordCheckResult: 'passwordCheckResult',
+    checkConfirmPassword: 'checkConfirmPassword'
   };
 
-  function emit(event, data) {
-    emitter.emit(event, data);
+  function emit() {
+    emitter.emit.apply(emitter, arguments);
   }
 
   function setRequestState(state) {
@@ -35,19 +36,18 @@ module.exports = function ResetController(loginApi) {
 
   return {
     on: function (event, listener) {
-      emitter.addListener(event, listener);
+      emitter.on(event, listener);
     },
     off: function (event, listener) {
-      if (!listener) {
-        return emitter.removeAllListeners(event);
-      }
-      emitter.removeListener(event, listener);
+      emitter.off(event, listener);
     },
     passwordsMatch: function (password, confimValue) {
       if (validation.passwordsMatch(password, confimValue)) {
         hideAlert(RESET_ALERTS.passwordsMustMatch);
+        emit(RESET_EVENTS.checkConfirmPassword, true);
       } else {
         displayAlert(RESET_ALERTS.passwordsMustMatch);
+        emit(RESET_EVENTS.checkConfirmPassword, false);
       }
     },
     checkPasswordStrength: function (password, blur) {
@@ -55,14 +55,12 @@ module.exports = function ResetController(loginApi) {
     },
     submitResetRequest: function (uid, resetCode, password) {
       hideAlert(RESET_ALERTS.serverError);
-
       setRequestState(true);
       loginApi.resetPassword(uid, resetCode, password, function (err, resp, body) {
         setRequestState(false);
-        if (err || resp.status !== 200 || body.status !== 200) {
+        if (err || resp.status !== 200) {
           return emit(RESET_ALERTS.serverError);
         }
-
         emit(RESET_EVENTS.resetSucceeded);
       });
     }

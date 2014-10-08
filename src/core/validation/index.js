@@ -21,8 +21,8 @@ module.exports = {
     }
 
     var lengthValid = password.length >= MIN_PASSWORD_LEN,
-      caseValid = password.match(containsBothCases),
-      digitValid = password.match(containsDigit);
+      caseValid = !! password.match(containsBothCases),
+      digitValid = !! password.match(containsDigit);
 
     return {
       lengthValid: lengthValid,
