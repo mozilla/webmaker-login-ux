@@ -79,7 +79,7 @@
   "AboutAppmaker": "Appmaker is a free tool for creating personal mobile apps, even if you don't know how to code!",
   "TryAppmaker": "Try Appmaker now",
   "passwords do not match": "<i class=\"fa fa-times\"></i>  <strong>Uh oh!</strong> The passwords do not match!",
-  "error setting password": "<i class=\"fa fa-times\"></i>  <strong>Uh oh!</strong> There was an error trying to set your password, try again.",
+  "error setting password": "<i class=\"fa fa-times\"></i>  <strong>Uh oh!</strong> There was an error trying to set your password, please try again.",
   "Confirm your password": "Confirm your password",
   "Reset Password": "Reset Password",
   "Set a Password": "Set a Password",
@@ -88,5 +88,6 @@
   "Minimum password requirements": "Minimum password requirements",
   "At least 8 characters": "At least 8 characters",
   "At least 1 upper and lower case character": "At least 1 uppercase and lowercase character",
-  "At least 1 number": "At least 1 number"
+  "At least 1 number": "At least 1 number",
+  "resetRequestFailed": "<i class=\"fa fa-times\"></i>  <strong>Uh oh!</strong> There was a problem processing your request, please try again."
 }

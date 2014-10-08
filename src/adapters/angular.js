@@ -2,7 +2,7 @@ var module = angular.module('ngWebmakerLogin', ['templates-ngWebmakerLogin']);
 
 module.constant('CONFIG', window.angularConfig);
 
-module.factory('wmLoginCore', ['CONFIG',
+module.factory('wmLoginCore', ['$rootScope', 'CONFIG',
   function (CONFIG) {
     var LoginCore = require('../core');
 
@@ -22,7 +22,7 @@ module.factory('focus', ['$timeout',
           return;
         }
         el[0].focus();
-      }, 50);
+      }, 0);
     };
   }
 ]);
@@ -114,7 +114,6 @@ module.directive('wmJoinWebmaker', [
               }, 0);
             });
 
-
             $scope.validateEmail = function () {
               if (!$scope.user.email) {
                 return;
@@ -123,9 +122,9 @@ module.directive('wmJoinWebmaker', [
               joinController.validateEmail($scope.user.email);
             };
 
-            $scope.canSubmitEmail = function() {
+            $scope.canSubmitEmail = function () {
               return $scope.user.email && $scope.user.agree;
-            }
+            };
 
             $scope.submitEmail = function () {
               joinController.submitEmail();
@@ -160,7 +159,9 @@ module.directive('wmSignin', [
     return {
       restrict: 'A',
       link: function ($scope, $element) {
-        $element.on('click', $scope.signin);
+        $element.on('click', function () {
+          $scope.signin();
+        });
       },
       controller: ['$rootScope', '$scope', '$modal', '$timeout', 'focus', 'wmLoginCore',
         function ($rootScope, $scope, $modal, $timeout, focus, wmLoginCore) {
@@ -176,11 +177,7 @@ module.directive('wmSignin', [
                   return passwordWasReset;
                 }
               }
-            })
-              .opened
-              .then(function () {
-                focus('input[focus-on="create-user-email"]');
-              });
+            });
           };
 
           function signinModalController($scope, $modalInstance, uid, passwordWasReset) {
@@ -216,18 +213,21 @@ module.directive('wmSignin', [
             signinController.on('displayEnterUid', function () {
               $timeout(function () {
                 $scope.currentState = MODALSTATE.enterUid;
+                focus('input[focus-on="login-uid"]');
               }, 0);
             });
 
             signinController.on('displayEnterPassword', function () {
               $timeout(function () {
                 $scope.currentState = MODALSTATE.enterPassword;
+                focus('input[focus-on="enter-password"]');
               }, 0);
             });
 
             signinController.on('displayEnterKey', function () {
               $timeout(function () {
                 $scope.currentState = MODALSTATE.enterKey;
+                focus('input[focus-on="enter-key"]');
               }, 0);
             });
 
@@ -237,20 +237,36 @@ module.directive('wmSignin', [
               }, 0);
             });
 
+            signinController.on('displayResetSent', function () {
+              $timeout(function () {
+                console.log("ASDF");
+                $scope.currentState = MODALSTATE.resetRequestSent;
+              }, 0);
+            });
+
             signinController.on('displayAlert', function (alertId) {
               $timeout(function () {
-                $scope.form.user.email.$setValidity(alertId, false);
+                $scope.form.user.$setValidity(alertId, false);
               }, 0);
             });
 
             signinController.on('hideAlert', function (alertId) {
               $timeout(function () {
-                $scope.form.user.email.$setValidity(alertId, true);
+                $scope.form.user.$setValidity(alertId, true);
               }, 0);
+            });
+
+            signinController.on('signedIn', function (user) {
+              $rootScope._user = user;
+              $modalInstance.close();
             });
 
             $scope.submitUid = function () {
               signinController.submitUid($scope.user.uid);
+            };
+
+            $scope.enterKey = function () {
+              signinController.displayEnterKey();
             };
 
             $scope.submitKey = function () {
@@ -265,6 +281,11 @@ module.directive('wmSignin', [
               signinController.requestReset($scope.user.uid);
             };
 
+            $scope.cancel = function () {
+              $scope.user = {};
+              $modalInstance.close();
+            };
+
             $scope.switchToSignup = function () {
               var uid = $scope.user.uid,
                 type = signinController.getUidType(uid),
@@ -273,6 +294,11 @@ module.directive('wmSignin', [
 
               $modalInstance.close();
               $rootScope.joinWebmaker(email, username);
+            };
+
+            $scope.usePersona = function() {
+              $modalInstance.dismiss();
+              $rootScope.personaLogin();
             };
 
             signinController.start();
@@ -320,14 +346,21 @@ module.directive('wmPasswordReset', [
 
             resetController.on('displayAlert', function (alertId) {
               $timeout(function () {
-                $scope.form.password.value.$setValidity(alertId, false);
+                $scope.form.password.$setValidity(alertId, false);
               }, 0);
             });
 
             resetController.on('hideAlert', function (alertId) {
               $timeout(function () {
-                $scope.form.password.value.$setValidity(alertId, true);
+                $scope.form.password.$setValidity(alertId, true);
               }, 0);
+            });
+
+            resetController.on('checkConfirmPassword', function (status) {
+              $timeout(function () {
+                $scope.passwordsMatch = status;
+              }, 0);
+
             });
 
             resetController.on('passwordCheckResult', function (result, blur) {
@@ -340,9 +373,9 @@ module.directive('wmPasswordReset', [
                 }
 
                 $scope.eightCharsState = !result.lengthValid ? 'invalid' : blur ? 'valid' : '';
-                $scope.oneEachCaseState = !result.validCase ? 'invalid' : blur ? 'valid' : '';
-                $scope.oneNumberState = !result.hasNumber ? 'invalid' : blur ? 'valid' : '';
-                $scope.isValidPassword = result.lengthValid && result.validCase && result.hasNumber;
+                $scope.oneEachCaseState = !result.caseValid ? 'invalid' : blur ? 'valid' : '';
+                $scope.oneNumberState = !result.digitValid ? 'invalid' : blur ? 'valid' : '';
+                $scope.isValidPassword = result.lengthValid && result.caseValid && result.digitValid;
               }, 0);
             });
 
@@ -351,7 +384,7 @@ module.directive('wmPasswordReset', [
                 $location.search('uid', null);
                 $location.search('resetCode', null);
                 $modalInstance.close();
-                $rootScope.wmTokenLogin(uid, true);
+                $rootScope.signin(uid, true);
               }, 0);
             });
 
@@ -366,8 +399,6 @@ module.directive('wmPasswordReset', [
             $scope.submitResetRequest = function () {
               resetController.submitResetRequest(uid, resetCode, $scope.password.value);
             };
-
-            resetController.start();
           }
 
           $modal.open({
@@ -384,6 +415,51 @@ module.directive('wmPasswordReset', [
           });
         }
       ]
+    };
+  }
+]);
+
+// Legacy Persona login
+module.factory('wmPersona', ['$rootScope', 'wmLoginCore',
+  function ($rootScope, wmLoginCore) {
+    var personaController = wmLoginCore.personaLogin();
+
+    $rootScope.personaLogin = function () {
+      personaController.authenticate();
+    };
+
+    personaController.on('signedIn', function (user) {
+      $rootScope._user = user;
+    });
+
+    personaController.on('newUser', function (email) {
+      $rootScope.joinWebmaker(email);
+    });
+  }
+]);
+
+module.directive('wmPersonaLogin', ['wmPersona',
+  function () {
+    return {
+      restrict: 'A',
+      link: function ($scope, $element) {
+        $element.on('click', function () {
+          $scope.personaLogin();
+        });
+      }
+    };
+  }
+]);
+
+module.directive('wmLogout', ['wmLoginCore',
+  function () {
+    return {
+      restrict: 'A',
+      link: function ($rootScope, $element) {
+        $element.on('click', function () {
+          $rootScope.logout();
+        });
+      }
     };
   }
 ]);

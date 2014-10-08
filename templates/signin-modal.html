@@ -7,11 +7,12 @@
   <form class="form" name="form.user" novalidate>
 
     <div class="alert alert-success" ng-show="passwordReset" bind-unsafe-html="'Password Reset Success' | i18n"></div>
-    <div class="alert alert-warning" ng-show="form.user.uid.$error.noAccount" bind-unsafe-html="'No account found for your uid' | i18n"></div>
-    <div class="alert alert-danger" ng-show="form.user.uid.$error.invalid" bind-unsafe-html="'That does not look like an email address or username' | i18n"></div>
-    <div class="alert alert-danger" ng-show="form.user.uid.$error.tokenSendFailed" bind-unsafe-html="'problem sending token' | i18n"></div>
-    <div class="alert alert-danger" ng-show="form.user.key.$error.invalidKey" bind-unsafe-html="'incorrectToken' | i18n"></div>
-    <div class="alert alert-danger" ng-show="form.user.password.$error.passLoginFailed" bind-unsafe-html="'passLoginFailed' | i18n"></div>
+    <div class="alert alert-warning" ng-show="form.user.$error.noAccount" bind-unsafe-html="'No account found for your uid' | i18n"></div>
+    <div class="alert alert-danger" ng-show="form.user.$error.invalid" bind-unsafe-html="'That does not look like an email address or username' | i18n"></div>
+    <div class="alert alert-danger" ng-show="form.user.$error.tokenSendFailed" bind-unsafe-html="'problem sending token' | i18n"></div>
+    <div class="alert alert-danger" ng-show="form.user.$error.invalidKey" bind-unsafe-html="'incorrectToken' | i18n"></div>
+    <div class="alert alert-danger" ng-show="form.user.$error.passwordSigninFailed" bind-unsafe-html="'passLoginFailed' | i18n"></div>
+    <div class="alert alert-danger" ng-show="form.user.$error.resetRequestFailed" bind-unsafe-html="'resetRequestFailed' | i18n"></div>
 
     <!-- Enter uid -->
     <div ng-show="currentState === MODALSTATE.enterUid;">
