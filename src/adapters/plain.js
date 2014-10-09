@@ -80,8 +80,4 @@ var _open_modal = function(modal) {
   document.body.appendChild(modal);
 };
 
-var _close_modal = function(modal) {
-
-};
-
 window.WebmakerLogin = WebmakerLogin;
