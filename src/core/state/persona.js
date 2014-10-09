@@ -30,7 +30,7 @@ module.exports = function PersonaController(loginApi) {
         }
 
         loginApi.personaLogin(assertion, function (err, resp, body) {
-          if (err || resp.status !== 200 || body.error || body.err) {
+          if (err || resp.status !== 200) {
             return;
           }
 

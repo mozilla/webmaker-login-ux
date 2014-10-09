@@ -2,13 +2,36 @@ var module = angular.module('ngWebmakerLogin', ['templates-ngWebmakerLogin']);
 
 module.constant('CONFIG', window.angularConfig);
 
-module.factory('wmLoginCore', ['$rootScope', 'CONFIG',
-  function ($rootScope, CONFIG) {
+module.factory('wmLoginCore', ['$rootScope', '$location', '$timeout', 'CONFIG',
+  function ($rootScope, $location, $timeout, CONFIG) {
     var LoginCore = require('../core');
 
-    return new LoginCore({
+    var core =  new LoginCore({
       csrfToken: CONFIG.csrf
     });
+
+    var searchObj = $location.search();
+
+    // see if we can try to instantly log in with an OTP
+    if (searchObj.uid && searchObj.token) {
+      core.on('signedIn', function(user) {
+        $timeout(function() {
+          $location.search('uid', null);
+          $location.search('token', null);
+          $location.search('validFor', null);
+          $rootScope._user = user;
+        }, 0);
+      });
+      core.on('signinFailed', function(uid) {
+        // TODO: design?
+        $timeout(function() {
+          console.error('login failed for uid: ', uid);
+        },0);
+      });
+      core.instantLogin(searchObj.uid, searchObj.token, searchObj.validFor);
+    }
+
+    return core;
   }
 ]);
 
@@ -95,8 +118,9 @@ module.directive('wmJoinWebmaker', [
               }, 0);
             });
 
-            joinController.on('displayWelcome', function () {
+            joinController.on('displayWelcome', function (user) {
               $timeout(function () {
+                $rootScope._user = user;
                 $scope.welcomeModalIdx = Math.floor(Math.random() * 4);
                 $scope.currentState = MODALSTATE.welcome;
               }, 0);
@@ -146,6 +170,11 @@ module.directive('wmJoinWebmaker', [
               $modalInstance.close();
             };
 
+            $scope.switchToSignin = function() {
+              $modalInstance.close();
+              $rootScope.signin($scope.user.email);
+            };
+
             joinController.start();
           }
         }
@@ -165,23 +194,8 @@ module.directive('wmSignin', [
       },
       controller: ['$rootScope', '$scope', '$modal', '$timeout', 'focus', 'wmLoginCore',
         function ($rootScope, $scope, $modal, $timeout, focus, wmLoginCore) {
-          $rootScope.signin = function (uid, passwordWasReset) {
-            $modal.open({
-              templateUrl: 'signin-modal.html',
-              controller: signinModalController,
-              resolve: {
-                uid: function () {
-                  return uid;
-                },
-                passwordWasReset: function () {
-                  return passwordWasReset;
-                }
-              }
-            });
-          };
 
           function signinModalController($scope, $modalInstance, uid, passwordWasReset) {
-
             var MODALSTATE = {
               enterUid: 0,
               checkEmail: 1,
@@ -297,13 +311,31 @@ module.directive('wmSignin', [
             };
 
             $scope.usePersona = function () {
-              $modalInstance.dismiss();
               $rootScope.personaLogin();
+
+              // the modal code calls scope.$apply, which can throw.
+              // dropping it in this timeout fixes the race condition.
+              $timeout($modalInstance.dismiss, 0);
             };
 
             signinController.start();
 
           }
+
+          $rootScope.signin = function (uid, passwordWasReset) {
+            $modal.open({
+              templateUrl: 'signin-modal.html',
+              controller: signinModalController,
+              resolve: {
+                uid: function () {
+                  return uid;
+                },
+                passwordWasReset: function () {
+                  return passwordWasReset;
+                }
+              }
+            });
+          };
         }
       ]
     };

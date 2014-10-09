@@ -108,6 +108,10 @@ module.exports = function JoinController(loginApi) {
         JOIN_ALERTS.serverError
       ]);
 
+      if ( !username ) {
+        return;
+      }
+
       var valid = validation.isUsername(username);
 
       if (!valid) {
@@ -128,12 +132,12 @@ module.exports = function JoinController(loginApi) {
       loginApi.createUser({
         email: formData.email,
         username: formData.username
-      }, function (err) {
+      }, function (err, resp, body) {
         setRequestState(false);
-        if (err) {
+        if (err || resp.status !== 200) {
           return displayAlert(JOIN_ALERTS.serverError);
         }
-        emit(JOIN_EVENTS.displayWelcome);
+        emit(JOIN_EVENTS.displayWelcome, body.user);
       });
     }
   };
