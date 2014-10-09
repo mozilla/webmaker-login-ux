@@ -89,6 +89,15 @@ WebmakerLogin.prototype.create = function() {
   _run_expressions(modal_fragment, scope);
   _open_modal(modal_fragment);
   var modal = document.querySelector('body > div.modal');
+  modal.querySelector(".close").addEventListener("click", function() {
+    _close_modal();
+  });
+  document.querySelector('body > div.modal > .modal-dialog').addEventListener("click", function(e) {
+    e.stopPropagation();
+  });
+  document.querySelector('body > div.modal').addEventListener("click", function() {
+    _close_modal();
+  });
 };
 
 WebmakerLogin.prototype.login = function() {
