@@ -92,7 +92,7 @@ WebmakerLogin.prototype.create = function() {
     controller.submitEmail();
   });
 
-  modal_fragment.querySelector('input[name="username"]').addEventListener('change', function(e) {
+  modal_fragment.querySelector('input[name="username"]').addEventListener('input', function(e) {
     scope.user.username = e.target.value;
     controller.validateUsername(scope.user.username);
   });
