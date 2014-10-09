@@ -10,11 +10,14 @@ var template = new nunjucks.Environment();
 template.addFilter('i18n', function(key) {
   return lang_data['en-US'][key];
 });
+var template_options = {
+  lang: 'en-US'
+};
 
 var ui = {
-  create: template.renderString(fs.readFileSync(__dirname + '/../../templates/join-webmaker-modal.html', { encoding: 'utf8' })),
-  login: template.renderString(fs.readFileSync(__dirname + '/../../templates/signin-modal.html', { encoding: 'utf8' })),
-  reset: template.renderString(fs.readFileSync(__dirname + '/../../templates/reset-modal.html', { encoding: 'utf8' })),
+  create: template.renderString(fs.readFileSync(__dirname + '/../../templates/join-webmaker-modal.html', { encoding: 'utf8' }), template_options),
+  login: template.renderString(fs.readFileSync(__dirname + '/../../templates/signin-modal.html', { encoding: 'utf8' }), template_options),
+  reset: template.renderString(fs.readFileSync(__dirname + '/../../templates/reset-modal.html', { encoding: 'utf8' }), template_options),
   wrapper: fs.readFileSync(__dirname + '/../../templates/modal-wrapper.html', { encoding: 'utf8' })
 };
 
@@ -30,7 +33,7 @@ WebmakerLogin.prototype.create = function() {
       inputUsername: 1,
       welcome: 2
     },
-    currentState: 0,
+    currentState: -1,
     form: {
       user: {
         $error: {}
@@ -66,7 +69,6 @@ WebmakerLogin.prototype.create = function() {
   });
 
   controller.on('displayAlert', function (alertId) {
-    console.log(alertId);
     scope.form.user.$error[alertId] = true;
     _run_expressions(modal, scope);
   });
@@ -86,6 +88,19 @@ WebmakerLogin.prototype.create = function() {
     _run_expressions(modal, scope);
   });
 
+  modal_fragment.querySelector('button[ng-click="submitEmail()"]').addEventListener('click', function() {
+    controller.submitEmail();
+  });
+
+  modal_fragment.querySelector('input[name="username"]').addEventListener('change', function(e) {
+    scope.user.username = e.target.value;
+    controller.validateUsername(scope.user.username);
+  });
+
+  modal_fragment.querySelector('button[ng-click="submitUser()"]').addEventListener('click', function() {
+    controller.submitUser(scope.user);
+  });
+
   _run_expressions(modal_fragment, scope);
   _open_modal(modal_fragment);
   var modal = document.querySelector('body > div.modal');
@@ -98,6 +113,8 @@ WebmakerLogin.prototype.create = function() {
   document.querySelector('body > div.modal').addEventListener("click", function() {
     _close_modal();
   });
+
+  controller.start();
 };
 
 WebmakerLogin.prototype.login = function() {
