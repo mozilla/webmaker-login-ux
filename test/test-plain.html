@@ -43,6 +43,10 @@
         var client = new WebmakerLogin();
 
         var joinWebmakerButton = document.querySelector("#join-webmaker");
+        var signInButton = document.querySelector("#sign-in");
+        signInButton.addEventListener("click", function() {
+          client.login();
+        });
         joinWebmakerButton.addEventListener("click", function() {
           client.create();
         });
