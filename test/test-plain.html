@@ -31,6 +31,7 @@
           <div class="navbar-form navbar-right test-buttons" logged-out-only="">
             <button wm-join-webmaker wm-password-reset class="navbar-btn btn btn-primary" id="join-webmaker">Join Webmaker</button>
             <button wm-signin class="btn btn-secondary-nav navbar-btn" id="sign-in">Sign in</button>
+            <button wm-signin class="btn btn-secondary-nav navbar-btn hidden" id="sign-out">Sign out</button>
           </div>
         </div>
       </div>
@@ -44,8 +45,12 @@
 
         var joinWebmakerButton = document.querySelector("#join-webmaker");
         var signInButton = document.querySelector("#sign-in");
+        var signOutButton = document.querySelector("#sign-out");
         signInButton.addEventListener("click", function() {
           client.login();
+        });
+        signOutButton.addEventListener("click", function() {
+          client.logout();
         });
         joinWebmakerButton.addEventListener("click", function() {
           client.create();
