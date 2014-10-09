@@ -13,7 +13,7 @@
   "Email": "Enter your email",
   "EmailOrUsername": "Email or username",
   "NotAnEmail": "<i class=\"fa fa-times\"></i>  <strong>Uh oh!</strong> That doesn't look like an email address.",
-  "WebmakerAccountExists": "<i class=\"fa fa-exclamation-circle\"></i>  <strong>Heads up!</strong> That email already has an account. Did you mean to <a href=\"#\" class=\"alert-link\" ng-click=\"switchToLogin();\">sign in</a>?",
+  "WebmakerAccountExists": "<i class=\"fa fa-exclamation-circle\"></i>  <strong>Heads up!</strong> That email already has an account. Did you mean to <a href=\"#\" class=\"alert-link\" ng-click=\"switchToSignin();\">sign in</a>?",
   "ChooseUsername": "Choose Username",
   "Language Preference": "Language Preference",
   "Sign in to Webmaker": "Sign in to Webmaker",

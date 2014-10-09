@@ -43,7 +43,8 @@ module.exports = function LoginAPI(options) {
 
   function createUser(user, callback) {
     doRequest(loginUrls.createUser, {
-      user: user
+      user: user,
+      audience: audience
     }, callback);
   }
 
