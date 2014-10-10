@@ -368,6 +368,12 @@ module.directive('wmPasswordReset', [
             $scope.oneEachCase = angular.element('li.one-each-case');
             $scope.oneNumber = angular.element('li.one-number');
 
+            function clearSearch() {
+              $location.search('uid', null);
+              $location.search('resetCode', null);
+              $modalInstance.close();
+            }
+
             var resetController = wmLoginCore.resetPassword();
 
             resetController.on('sendingRequest', function (state) {
@@ -413,9 +419,7 @@ module.directive('wmPasswordReset', [
 
             resetController.on('resetSucceeded', function () {
               $timeout(function () {
-                $location.search('uid', null);
-                $location.search('resetCode', null);
-                $modalInstance.close();
+                clearSearch();
                 $rootScope.signin(uid, true);
               }, 0);
             });
@@ -424,12 +428,20 @@ module.directive('wmPasswordReset', [
               resetController.checkPasswordStrength($scope.password.value, blur);
             };
 
-            $scope.checkPasswordsMatch = function () {
-              resetController.passwordsMatch($scope.password.value, $scope.password.confirmValue);
+            $scope.checkPasswordsMatch = function (blur) {
+              if (!$scope.password.confirmValue) {
+                return;
+              }
+              resetController.passwordsMatch($scope.password.value, $scope.password.confirmValue, blur);
             };
 
             $scope.submitResetRequest = function () {
               resetController.submitResetRequest(uid, resetCode, $scope.password.value);
+            };
+
+            $scope.cancel = function () {
+              clearSearch();
+              $modalInstance.close();
             };
           }
 

@@ -6,6 +6,7 @@ module.exports = function ResetController(loginApi) {
 
   var RESET_ALERTS = {
     passwordsMustMatch: 'passwordsMustMatch',
+    weakPassword: 'weakPassword',
     serverError: 'serverError'
   };
 
@@ -41,12 +42,14 @@ module.exports = function ResetController(loginApi) {
     off: function (event, listener) {
       emitter.off(event, listener);
     },
-    passwordsMatch: function (password, confimValue) {
+    passwordsMatch: function (password, confimValue, blur) {
       if (validation.passwordsMatch(password, confimValue)) {
         hideAlert(RESET_ALERTS.passwordsMustMatch);
         emit(RESET_EVENTS.checkConfirmPassword, true);
       } else {
-        displayAlert(RESET_ALERTS.passwordsMustMatch);
+        if (blur) {
+          displayAlert(RESET_ALERTS.passwordsMustMatch);
+        }
         emit(RESET_EVENTS.checkConfirmPassword, false);
       }
     },
@@ -55,11 +58,15 @@ module.exports = function ResetController(loginApi) {
     },
     submitResetRequest: function (uid, resetCode, password) {
       hideAlert(RESET_ALERTS.serverError);
+      hideAlert(RESET_ALERTS.weakPassword);
       setRequestState(true);
       loginApi.resetPassword(uid, resetCode, password, function (err, resp, body) {
         setRequestState(false);
         if (err || resp.status !== 200) {
-          return emit(RESET_ALERTS.serverError);
+          if (resp.status === 400) {
+            return displayAlert(RESET_ALERTS.weakPassword);
+          }
+          return displayAlert(RESET_ALERTS.serverError);
         }
         emit(RESET_EVENTS.resetSucceeded);
       });

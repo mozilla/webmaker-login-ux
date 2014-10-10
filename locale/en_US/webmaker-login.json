@@ -220,8 +220,8 @@
     "description": "Alert displayed after successfully resetting a password"
   },
   "Password too weak":  {
-    "message": "<i class=\"fa fa-times\"></i>  <strong>Uh oh!</strong> The password you've entered is too weak. Make sure it doesn't contain any common words or patterns, also make sure it meets the minimum requirements.",
-    "description": "Error message displayed if the Login server determines your password entered is too weak."
+    "message": "<i class=\"fa fa-times\"></i>  <strong>Uh oh!</strong> The password you've entered is too weak. Make sure it doesn't contain any common words or patterns, and doesn't contain your email or username",
+    "description": "Error message displayed if the server determined the password entered is too weak."
   },
   "Minimum password requirements":  {
     "message": "Minimum password requirements",
