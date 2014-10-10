@@ -162,10 +162,6 @@ module.directive('wmJoinWebmaker', [
               joinController.submitUser($scope.user);
             };
 
-            $scope.openTool = function (tool) {
-              window.location = 'https://' + tool + '.webmaker.org';
-            };
-
             $scope.cancel = function () {
               $modalInstance.close();
             };
