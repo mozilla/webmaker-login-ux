@@ -6,7 +6,7 @@ module.factory('wmLoginCore', ['$rootScope', '$location', '$timeout', 'CONFIG',
   function ($rootScope, $location, $timeout, CONFIG) {
     var LoginCore = require('../core');
 
-    var core =  new LoginCore({
+    var core = new LoginCore({
       csrfToken: CONFIG.csrf
     });
 
@@ -14,19 +14,19 @@ module.factory('wmLoginCore', ['$rootScope', '$location', '$timeout', 'CONFIG',
 
     // see if we can try to instantly log in with an OTP
     if (searchObj.uid && searchObj.token) {
-      core.on('signedIn', function(user) {
-        $timeout(function() {
+      core.on('signedIn', function (user) {
+        $timeout(function () {
           $location.search('uid', null);
           $location.search('token', null);
           $location.search('validFor', null);
           $rootScope._user = user;
         }, 0);
       });
-      core.on('signinFailed', function(uid) {
+      core.on('signinFailed', function (uid) {
         // TODO: design?
-        $timeout(function() {
+        $timeout(function () {
           console.error('login failed for uid: ', uid);
-        },0);
+        }, 0);
       });
       core.instantLogin(searchObj.uid, searchObj.token, searchObj.validFor);
     }
@@ -170,7 +170,7 @@ module.directive('wmJoinWebmaker', [
               $modalInstance.close();
             };
 
-            $scope.switchToSignin = function() {
+            $scope.switchToSignin = function () {
               $modalInstance.close();
               $rootScope.signin($scope.user.email);
             };

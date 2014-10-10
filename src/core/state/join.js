@@ -108,7 +108,7 @@ module.exports = function JoinController(loginApi) {
         JOIN_ALERTS.serverError
       ]);
 
-      if ( !username ) {
+      if (!username) {
         return;
       }
 
