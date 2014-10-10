@@ -83,6 +83,13 @@ WebmakerLogin.prototype.create = function() {
     _run_expressions(modal, scope);
   });
 
+  modal_fragment.querySelector('a[ng-click="switchToSignin();"]').addEventListener('click', function() {
+    _close_modal();
+    setTimeout(function() {
+      this.login(scope.user.email);
+    }.bind(this), 0);
+  }.bind(this));
+
   modal_fragment.querySelector('input[name="email"]').addEventListener('blur', function(e) {
     scope.user.email = e.target.value;
     controller.validateEmail(scope.user.email);
