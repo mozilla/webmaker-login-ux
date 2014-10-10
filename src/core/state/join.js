@@ -131,7 +131,8 @@ module.exports = function JoinController(loginApi) {
       setRequestState(true);
       loginApi.createUser({
         email: formData.email,
-        username: formData.username
+        username: formData.username,
+        mailingList: formData.subscribeToList
       }, function (err, resp, body) {
         setRequestState(false);
         if (err || resp.status !== 200) {
