@@ -22,6 +22,11 @@
           <input ng-model="user.agree" type="checkbox" ng-disabled="form.user.$error.accountExists" name="agree" tabindex="2"> <span ng-bind-html="'webmakerAuthAgreeToTerms' | i18n"></span>
         </label>
       </div>
+      <div class="mailing-list-checkbox">
+        <label>
+          <input ng-model="user.subscribeToList" type="checkbox" ng-disabled="form.user.$error.accountExists" name="subscribeToList" tabindex="2"> <span ng-bind-html="'webmakerAuthMailingList' | i18n"></span>
+        </label>
+      </div>
       <div class="cta-links clearfix">
         <button ng-click="submitEmail()" ng-disabled="!canSubmitEmail() || form.user.$error.accountExists || form.user.$error.invalidEmail" class="create-user btn btn-primary" type="button" tabindex="3">{{ 'Sign up' | i18n }}</button>
       </div>
