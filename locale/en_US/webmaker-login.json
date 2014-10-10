@@ -3,7 +3,7 @@
     "message": "Welcome to Webmaker!",
     "description": "Welcome message for the join Webmaker modal dialog. Displayed after successfully creating a new Webmaker account"
   },
-    "webmakerAuthServerError":  {
+  "webmakerAuthServerError":  {
     "message": "An unknown error occured on the server. Try your request again, and if the problem persists, please contact us.",
     "description": "Error message displayed if an error occurs on the server."
   },

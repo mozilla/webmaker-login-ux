@@ -3,12 +3,16 @@ var fs = require('fs');
 var nunjucks = require('nunjucks');
 var wmLoginCore = require('../core');
 
+expressions.filters.i18n = function(key) {
+  return lang_data['en-US'][key].message;
+};
+
 var lang_data = {
   'en-US': require('../../locale/en_US/webmaker-login.json')
 };
 var template = new nunjucks.Environment();
 template.addFilter('i18n', function(key) {
-  return lang_data['en-US'][key];
+  return lang_data['en-US'][key].message;
 });
 var template_options = {
   lang: 'en-US'
@@ -47,6 +51,7 @@ WebmakerLogin.prototype.create = function() {
     }
   };
   var modal_fragment = _create_modal_fragment(ui.create);
+  _translate_ng_bind_html(modal_fragment);
 
   controller.on('sendingRequest', function (state) {
     scope.sendingRequest = state;
@@ -132,6 +137,13 @@ var _create_modal_fragment = function(template) {
   modal_fragment.querySelector('.modal-content').appendChild(range.createContextualFragment(template));
 
   return modal_fragment;
+};
+
+var _translate_ng_bind_html = function(modal_fragment) {
+  var elements = modal_fragment.querySelectorAll('[bind-unsafe-html]');
+  for (var i = 0; i < elements.length; i++) {
+    elements[i].innerHTML = expressions.compile(elements[i].getAttribute('bind-unsafe-html'))();
+  }
 };
 
 var _run_expressions = function(modal, scope) {
