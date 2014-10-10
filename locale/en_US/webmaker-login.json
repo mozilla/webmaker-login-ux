@@ -1,93 +1,246 @@
 {
-  "webmakerAuthWelcome": "Welcome to Webmaker!",
-  "webmakerAuthCreateWelcome": "Create a Webmaker account",
-  "webmakerAuthChooseUsername": "Choose a username",
-  "webmakerAuthTakenError": "<i class=\"fa fa-times\"></i> That username is taken. Try adding your favourite number at the end.",
-  "webmakerAuthUsernameInvalid": "<i class=\"fa fa-times\"></i>  <strong>Uh oh!</strong> All usernames must be between 1-20 characters, and only include \"-\" and alphanumeric symbols",
-  "webmakerAuthUsernameRequiredError": "You must choose a username",
-  "webmakerAuthMailingList": "Send me email updates about Mozilla Webmaker and other projects",
-  "webmakerAuthAgreeToTerms": "I agree to Mozilla Webmaker's <a href='https://webmaker.org/{{lang}}/terms'>Terms</a> and <a href='https://webmaker.org/{{lang}}/privacy'>Privacy Policy</a>",
-  "webmakerAuthAgreeError": "<i class=\"fa fa-times\"></i>  <strong>Oh snap!</strong> You must agree to our terms and conditions.",
-  "webmakerAuthCreateAccount": "Create account",
-  "Cancel": "Cancel",
-  "Email": "Enter your email",
-  "EmailOrUsername": "Email or username",
-  "NotAnEmail": "<i class=\"fa fa-times\"></i>  <strong>Uh oh!</strong> That doesn't look like an email address.",
-  "WebmakerAccountExists": "<i class=\"fa fa-exclamation-circle\"></i>  <strong>Heads up!</strong> That email already has an account. Did you mean to <a href=\"#\" class=\"alert-link\" ng-click=\"switchToSignin();\">sign in</a>?",
-  "ChooseUsername": "Choose Username",
-  "Language Preference": "Language Preference",
-  "Sign in to Webmaker": "Sign in to Webmaker",
-  "Sign in": "Sign in",
-  "Sign up": "Sign up",
-  "Sign out": "Sign out",
-  "Password Reset": "Password Reset",
-  "passLoginFailed": "<i class=\"fa fa-times\"></i> <strong>Authentication failed!</strong>",
-  "resetMessage": "Check your email for a password reset link.",
-  "resetRequestFailed": "<i class=\"fa fa-times\"></i> <strong>Uh oh!</strong> Something went wrong! Try requesting the password reset again.",
-  "Password": "Password",
-  "Forgot your password?": "Forgot your password?",
-  "send me a reset email": "send me a reset email!",
-  "password_reset_complete": "Your password has been reset successfully! You can now try and log in.",
-  "otp_enabled": "You have enabled one-time password logins for your account!",
-  "checkEmail": "Check your email",
-  "tokenMessage": "Please check your email to confirm your account.",
-  "That does not look like an email address or username": "<i class=\"fa fa-times\"></i>  <strong>Uh oh!</strong> That doesn't look like an email address or username.",
-  "No account found for your uid": "<i class=\"fa fa-times\"></i>  We couldn't find your username or email address. Did you mean to <a href=\"#\" ng-click=\"switchToSignup();\" class=\"alert-link\">create an account</a>?",
-  "invalid email or password": "The email and/or password your entered in invalid.",
-  "problem sending token": "<i class=\"fa fa-times\"></i>  There was a problem sending a login key to you, please try again.",
-  "incorrectToken": "<i class=\"fa fa-times\"></i>  <strong>Uh oh!</strong> That key is not correct.",
-  "Enter your key to login": "Visit your email to retrieve your key",
-  "you can switch to webmaker login": "Remember you can switch back to our Webmaker Login experience. We will send you email tokens, instead of having to remember passwords.",
-  "Submit": "Submit",
-  "Enter the Login key": "Enter the Login key we just sent you",
-  "Enter a new password": "Enter a new password",
-  "Error! your password:": "Error! your password:",
-  "Must have a lower case letter": "Must have a lower case letter (a-z)",
-  "Must have an upper case letter": "Must have an upper case letter (A-Z)",
-  "Must contain at least one digit or non word character": "Must contain at least one digit or non word character (1-9 or !@#$)",
-  "Must be at least 8 characters long": "Must be at least 8 characters long",
-  "Must be at less that 120 characters": "Must be at less that 120 characters",
-  "Confirm the new password": "Confirm the new password",
-  "The passwords entered do not match!": "The passwords entered do not match!",
-  "Create Password": "Create Password",
-  "Password Set Successfully": "Password Set Successfully! You will be required to provide it to log in from now on.",
-  "A reset request has been emailed": "A reset request has been emailed to you, follow the instructions in it to reset your password.",
-  "Continue": "Continue",
-  "Trouble with the key": "Trouble with the key? <a href=\"#\">Get help.</a>",
-  "Frustrated with these keys": "Frustrated with these keys?",
-  "Set a password": "Set a password",
-  "Password Reset": "Password Reset",
-  "New Password": "New Password",
-  "Confirm the password entered above": "Confirm the password entered above.",
-  "Your Password Reset Failed": "Your Password Reset Failed! Try reloading the page or resending the reset request.",
-  "Change Password": "Change Password",
-  "Switch To OTPs": "Switch to One-Time Passwords",
-  "webmakerAuthServerError": "An unknown error occured on the server. Try your request again, and if the problem persists, please contact us.",
-  "log in with Persona": "or <a href=\"#\" ng-click=\"usePersona();\" tabindex=\"3\">log in with Persona</a>",
-  "aboutWebmaker": "Make your own web pages, interactive videos, remixes and mobile apps.",
-  "XRay-Goggles": "X-Ray Goggles",
-  "AboutGoggles": "X-Ray Goggles allow you to see the building blocks that make up websites on the Internet. Activate the goggles to inspect the code behind any webpage.",
-  "TryGoggles": "Try the Goggles now",
-  "ExploreWebmaker": "Explore the rest of Webmaker",
-  "Thimble": "Thimble",
-  "AboutThimble": "Thimble makes it ridiculously simple to create and share your own web pages. Write and edit HTML and CSS right in your browser, then instantly preview your work.",
-  "TryThimbleNow": "Try Thimble now",
-  "PopcornMaker": "Popcorn Maker",
-  "AboutPopcornMaker": "Popcorn Maker helps you easily remix web video, audio and images into cool mashups that you can embed on other websites. Popcorn Maker videos are dynamic, full of links and unique with every view.",
-  "TryPopcornMaker": "Try Popcorn Maker now",
-  "Appmaker": "Appmaker",
-  "AboutAppmaker": "Appmaker is a free tool for creating personal mobile apps, even if you don't know how to code!",
-  "TryAppmaker": "Try Appmaker now",
-  "passwords do not match": "<i class=\"fa fa-times\"></i>  <strong>Uh oh!</strong> The passwords do not match!",
-  "error setting password": "<i class=\"fa fa-times\"></i>  <strong>Uh oh!</strong> There was an error trying to set your password, please try again.",
-  "Confirm your password": "Confirm your password",
-  "Reset Password": "Reset Password",
-  "Set a Password": "Set a Password",
-  "Password Reset Success": "<i class=\"fa fa-check\"></i> <strong>Success!</strong> You've successfully reset your password, please sign in!",
-  "Password too weak": "<i class=\"fa fa-times\"></i>  <strong>Uh oh!</strong> The password you've entered is too weak. Make sure it doesn't contain any common words or patterns, also make sure it meets the minimum requirements.",
-  "Minimum password requirements": "Minimum password requirements",
-  "At least 8 characters": "At least 8 characters",
-  "At least 1 upper and lower case character": "At least 1 uppercase and lowercase character",
-  "At least 1 number": "At least 1 number",
-  "resetRequestFailed": "<i class=\"fa fa-times\"></i>  <strong>Uh oh!</strong> There was a problem processing your request, please try again."
+  "webmakerAuthWelcome":  {
+    "message": "Welcome to Webmaker!",
+    "description": "Welcome message for the join Webmaker modal dialog. Displayed after successfully creating a new Webmaker account"
+  },
+    "webmakerAuthServerError":  {
+    "message": "An unknown error occured on the server. Try your request again, and if the problem persists, please contact us.",
+    "description": "Error message displayed if an error occurs on the server."
+  },
+  "webmakerAuthCreateWelcome":  {
+    "message": "Create a Webmaker account",
+    "description": "Header text for the join webmaker modal dialog"
+  },
+  "webmakerAuthChooseUsername":  {
+    "message": "Choose a username",
+    "description": "Label text for the username selection input"
+  },
+  "webmakerAuthTakenError":  {
+    "message": "<i class=\"fa fa-times\"></i> That username is taken. Try adding your favourite number at the end.",
+    "description": "Error message displayed when the entered username is not available for use."
+  },
+  "webmakerAuthUsernameInvalid":  {
+    "message": "<i class=\"fa fa-times\"></i>  <strong>Uh oh!</strong> All usernames must be between 1-20 characters, and only include \"-\" and alphanumeric symbols",
+    "description": "Error message displayed when the username entered contains symbols that are not allowed."
+  },
+  "webmakerAuthMailingList":  {
+    "message": "Send me email updates about Mozilla Webmaker and other projects",
+    "description": "Message about opting in for a Mozilla mailing list"
+  },
+  "webmakerAuthAgreeToTerms":  {
+    "message": "I agree to Mozilla Webmaker's <a href='https://webmaker.org/{{lang}}/terms'>Terms</a> and <a href='https://webmaker.org/{{lang}}/privacy'>Privacy Policy</a>",
+    "description": "I agree to Mozilla Webmaker's terms and privacy policy."
+  },
+  "webmakerAuthAgreeError":  {
+    "message": "<i class=\"fa fa-times\"></i>  <strong>Oh snap!</strong> You must agree to our terms and conditions.",
+    "description": "Error message displayed if the terms and conditions checkbox isn't toggled on."
+  },
+  "webmakerAuthCreateAccount":  {
+    "message": "Create account",
+    "description": "The button text for finishing the join Webmaker process."
+  },
+  "Cancel":  {
+    "message": "Cancel",
+    "description": "Cancel button text"
+  },
+  "Email":  {
+    "message": "Enter your email",
+    "description": "Label text for the email input"
+  },
+  "EmailOrUsername":  {
+    "message": "Email or username",
+    "description": "Label text for the sign in input, asks for the username or email of the user's account."
+  },
+  "NotAnEmail":  {
+    "message": "<i class=\"fa fa-times\"></i>  <strong>Uh Oh!</strong> That doesn't look like an email address.",
+    "description": "Error message when the text entered in an email input is not an email address"
+  },
+  "WebmakerAccountExists":  {
+    "message": "<i class=\"fa fa-exclamation-circle\"></i>  <strong>Heads up!</strong> That email already has an account. Did you mean to <a href=\"#\" class=\"alert-link\" ng-click=\"switchToSignin();\">sign in</a>?",
+    "description": "That email already has an accout. Did you mean to sign in?"
+  },
+  "ChooseUsername":  {
+    "message": "Choose Username",
+    "description": " Label text for selecting a username"
+  },
+  "Language Preference":  {
+    "message": "Language Preference",
+    "description": "Label text for selecting the preferred language for the user."
+  },
+  "Sign in to Webmaker":  {
+    "message": "Sign in to Webmaker",
+    "description": "Header text for the sign in modal dialog"
+  },
+  "Sign in":  {
+    "message": "Sign in",
+    "description": "Sign in Button text"
+  },
+  "Sign up":  {
+    "message": "Sign up",
+    "description": "Sign up button text"
+  },
+  "passLoginFailed":  {
+    "message": "<i class=\"fa fa-times\"></i> <strong>Authentication failed!</strong>",
+    "description": "Error message when a password login attempt fails"
+  },
+  "resetMessage":  {
+    "message": "Check your email for a password reset link.",
+    "description": "Directs the user to check their email for a password reset link"
+  },
+  "resetRequestFailed":  {
+    "message": "<i class=\"fa fa-times\"></i> <strong>Uh oh!</strong> Something went wrong! Try requesting the password reset again.",
+    "description": "Error displayed if a password reset request fails."
+  },
+  "Password":  {
+    "message": "Password",
+    "description": "Label text for the password input"
+  },
+  "Forgot your password?":  {
+    "message": "Forgot your password?",
+    "description": "button text for the password reset function"
+  },
+  "checkEmail":  {
+    "message": "Check your email",
+    "description": "Message instructing the user to check their email"
+  },
+  "tokenMessage":  {
+    "message": "Please check your email to confirm your account.",
+    "description": "Message instructing the user to check their email for an account confirmation link"
+  },
+  "That does not look like an email address or username":  {
+    "message": "<i class=\"fa fa-times\"></i>  <strong>Uh oh!</strong> That doesn't look like an email address or username.",
+    "description": "Error message displayed when the input doesn't match a username or email"
+  },
+  "No account found for your uid":  {
+    "message": "<i class=\"fa fa-times\"></i> We couldn't find your username or email address. Did you mean to <a href=\"#\" ng-click=\"switchToSignup();\" class=\"alert-link\">create an account</a>?",
+    "description": "Error message displayed when the given username or email doesn't have a Webmaker account and asks if they would like to sign up."
+  },
+  "problem sending token":  {
+    "message": "<i class=\"fa fa-times\"></i> There was a problem sending a login key to you, please try again.",
+    "description": "Error message displayed when the request for a login key fails for some reason."
+  },
+  "incorrectToken":  {
+    "message": "<i class=\"fa fa-times\"></i> <strong>Uh oh!</strong> That key is not correct.",
+    "description": "Error message displayed when the token used to log in is rejected."
+  },
+  "Enter your key to login":  {
+    "message": "Visit your email to retrieve your key",
+    "description": "Label text above the login key input field"
+  },
+  "you can switch to webmaker login":  {
+    "message": "Remember you can switch back to our Webmaker Login experience. We will send you email tokens, instead of having to remember passwords.",
+    "description": "Message reminding users that they can switch back to the Webmaker Login Key system instead of using a password."
+  },
+  "Submit":  {
+    "message": "Submit",
+    "description": "Label text for the submit new password button in the Reset Password Modal Dialog"
+  },
+  "log in with Persona":  {
+    "message": "or <a href=\"#\" ng-click=\"usePersona();\" tabindex=\"3\">log in with Persona</a>",
+    "description": "Text for the button that initiates a persona login"
+  },
+  "aboutWebmaker":  {
+    "message": "Make your own web pages, interactive videos, remixes and mobile apps.",
+    "description": "Short description of Webmaker"
+  },
+  "XRay-Goggles":  {
+    "message": "X-Ray Goggles",
+    "description": "The X-Ray Goggles Tool"
+  },
+  "AboutGoggles":  {
+    "message": "X-Ray Goggles allow you to see the building blocks that make up websites on the Internet. Activate the goggles to inspect the code behind any webpage.",
+    "description": "A short description of the X-Ray Goggles"
+  },
+  "TryGoggles":  {
+    "message": "Try the Goggles now",
+    "description": "Text for the button that takes the user to the X-Ray Goggles homepage"
+  },
+  "ExploreWebmaker":  {
+    "message": "Explore the rest of Webmaker",
+    "description": "Text for the button which takes the user to webmaker.org/explore"
+  },
+  "Thimble":  {
+    "message": "Thimble",
+    "description": "Thimble"
+  },
+  "AboutThimble":  {
+    "message": "Thimble makes it ridiculously simple to create and share your own web pages. Write and edit HTML and CSS right in your browser, then instantly preview your work.",
+    "description": "A short description of Thimble"
+  },
+  "TryThimbleNow":  {
+    "message": "Try Thimble now",
+    "description": "Text for the button which takes the user to thimble's homepage"
+  },
+  "PopcornMaker":  {
+    "message": "Popcorn Maker",
+    "description": "Popcorn Maker"
+  },
+  "AboutPopcornMaker":  {
+    "message": "Popcorn Maker helps you easily remix web video, audio and images into cool mashups that you can embed on other websites. Popcorn Maker videos are dynamic, full of links and unique with every view.",
+    "description": "A short description of Popcorn Maker"
+  },
+  "TryPopcornMaker":  {
+    "message": "Try Popcorn Maker now",
+    "description": "Text for the button which takes the user to Popcorn Maker"
+  },
+  "Appmaker":  {
+    "message": "Appmaker",
+    "description": "Appmaker"
+  },
+  "AboutAppmaker":  {
+    "message": "Appmaker is a free tool for creating personal mobile apps, even if you don't know how to code!",
+    "description": "A short description of Appmaker"
+  },
+  "TryAppmaker":  {
+    "message": "Try Appmaker now",
+    "description": "Text for the button which takes the user to Appmaker"
+  },
+  "passwords do not match":  {
+    "message": "<i class=\"fa fa-times\"></i>  <strong>Uh oh!</strong> The passwords do not match!",
+    "description": "Error message displayed when the password input and password confirmation input do not match"
+  },
+  "error setting password":  {
+    "message": "<i class=\"fa fa-times\"></i>  <strong>Uh oh!</strong> There was an error trying to set your password, please try again.",
+    "description": "Error displayed if there was a problem setting the new password"
+  },
+  "Confirm your password":  {
+    "message": "Confirm your password",
+    "description": "Label text for the password confirmation input"
+  },
+  "Reset Password":  {
+    "message": "Reset Password",
+    "description": "Reset Password Modal title"
+  },
+  "Set a Password":  {
+    "message": "Set a Password",
+    "description": "Label text for the password input box (reset password modal)"
+  },
+  "Password Reset Success":  {
+    "message": "<i class=\"fa fa-check\"></i> <strong>Success!</strong> You've successfully reset your password, please sign in!",
+    "description": "Alert displayed after successfully resetting a password"
+  },
+  "Password too weak":  {
+    "message": "<i class=\"fa fa-times\"></i>  <strong>Uh oh!</strong> The password you've entered is too weak. Make sure it doesn't contain any common words or patterns, also make sure it meets the minimum requirements.",
+    "description": "Error message displayed if the Login server determines your password entered is too weak."
+  },
+  "Minimum password requirements":  {
+    "message": "Minimum password requirements",
+    "description": "Text above the list of minimum requirements that a password must satisfy"
+  },
+  "At least 8 characters":  {
+    "message": "At least 8 characters",
+    "description": "A password must contain 8 or more characters"
+  },
+  "At least 1 upper and lower case character":  {
+    "message": "At least 1 uppercase and lowercase character",
+    "description": "A password must contain at least 1 upper and lower case character"
+  },
+  "At least 1 number":  {
+    "message": "At least 1 number",
+    "description": "a password must contain at least one number character"
+  },
+  "resetRequestFailed": {
+    "message": "<i class=\"fa fa-times\"></i>  <strong>Uh oh!</strong> There was a problem processing your request, please try again.",
+    "description": "Error message displayed if the reset request fails for some reason"
+  }
 }
