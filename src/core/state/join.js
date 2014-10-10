@@ -128,11 +128,19 @@ module.exports = function JoinController(loginApi) {
         JOIN_ALERTS.serverError,
       ]);
 
+      var lang = 'en-US';
+      var html = document.querySelector('html');
+
+      if ( html.lang ) {
+        lang = html.lang;
+      }
+
       setRequestState(true);
       loginApi.createUser({
         email: formData.email,
         username: formData.username,
-        mailingList: formData.subscribeToList
+        mailingList: formData.subscribeToList,
+        prefLocale: lang
       }, function (err, resp, body) {
         setRequestState(false);
         if (err || resp.status !== 200) {
