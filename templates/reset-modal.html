@@ -1,5 +1,5 @@
 <div class="modal-header">
-  <button ng-click="cancel()" ng-hide="" type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+  <button ng-click="cancel()" type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
   <h3 class="modal-title">{{ 'Reset Password' | i18n }}</h3>
 </div>
 <div class="modal-body clearfix">
@@ -20,11 +20,11 @@
       </div>
       <div class="form-group half-width">
         <label for="value">{{ 'Set a Password' | i18n }}</label>
-        <input ng-model="password.value" ng-keyup="checkPasswordStrength()" ng-blur="checkPasswordStrength(true)" type="password" class="form-control" name="value" autocomplete="off" autofocus="true" tabindex="1" required>
+        <input ng-model="password.value" ng-change="checkPasswordStrength(); checkPasswordsMatch(false);" ng-blur="checkPasswordStrength(true); checkPasswordsMatch(true);" type="password" class="form-control" name="value" autocomplete="off" autofocus="true" tabindex="1" required>
       </div>
       <div class="form-group half-width">
         <label for="confirmValue">{{ 'Confirm your password' | i18n }}</label>
-        <input ng-model="password.confirmValue" ng-blur="checkPasswordsMatch()"  type="password" class="form-control" name="confirmValue" autocomplete="off" tabindex="2" required>
+        <input ng-model="password.confirmValue" ng-change="checkPasswordsMatch(false)" ng-blur="checkPasswordsMatch(true)"  type="password" class="form-control" name="confirmValue" autocomplete="off" tabindex="2" required>
       </div>
       <div class="cta-links clearfix">
         <button ng-click="submitResetRequest()" ng-disabled="sendingRequest || !password.value || !password.confirmValue || !passwordsMatch || form.password.$error.passwordsMustMatch" class="reset-password btn btn-primary" type="button" tabindex="3">{{ 'Submit' | i18n }}</button>
