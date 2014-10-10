@@ -5,12 +5,12 @@
 </div>
 <div class="modal-body">
   <form class="form" name="form.user" novalidate>
-    <div class="alert alert-danger" ng-show="form.user.$error.agreeToTerms" bind-unsafe-html="'webmakerAuthAgreeError' | i18n"></div>
-    <div class="alert alert-warning" ng-show="form.user.$error.accountExists" bind-unsafe-html="'WebmakerAccountExists' | i18n"></div>
-    <div class="alert alert-danger" ng-show="form.user.$error.invalidEmail" bind-unsafe-html="'NotAnEmail' | i18n"></div>
-    <div class="alert alert-danger" ng-show="form.user.$error.invalidUsername" bind-unsafe-html="'webmakerAuthUsernameInvalid' | i18n"></div>
-    <div class="alert alert-danger" ng-show="form.user.$error.serverError" bind-unsafe-html="'webmakerAuthServerError' | i18n"></div>
-    <div class="alert alert-danger" ng-show="form.user.$error.usernameTaken" bind-unsafe-html="'webmakerAuthTakenError' | i18n"></div>
+    <div class="alert alert-danger" ng-show="form.user.$error.agreeToTerms" ng-bind-html="'webmakerAuthAgreeError' | i18n"></div>
+    <div class="alert alert-warning" ng-show="form.user.$error.accountExists" ng-bind-html="'WebmakerAccountExists' | i18n"></div>
+    <div class="alert alert-danger" ng-show="form.user.$error.invalidEmail" ng-bind-html="'NotAnEmail' | i18n"></div>
+    <div class="alert alert-danger" ng-show="form.user.$error.invalidUsername" ng-bind-html="'webmakerAuthUsernameInvalid' | i18n"></div>
+    <div class="alert alert-danger" ng-show="form.user.$error.serverError" ng-bind-html="'webmakerAuthServerError' | i18n"></div>
+    <div class="alert alert-danger" ng-show="form.user.$error.usernameTaken" ng-bind-html="'webmakerAuthTakenError' | i18n"></div>
 
     <div ng-show="currentState === MODALSTATE.inputEmail">
       <div class="form-group">
@@ -19,7 +19,7 @@
       </div>
       <div class="terms-checkbox">
         <label>
-          <input ng-model="user.agree" type="checkbox" ng-disabled="form.user.$error.accountExists" name="agree" tabindex="2"> <span bind-unsafe-html="'webmakerAuthAgreeToTerms' | i18n"></span>
+          <input ng-model="user.agree" type="checkbox" ng-disabled="form.user.$error.accountExists" name="agree" tabindex="2"> <span ng-bind-html="'webmakerAuthAgreeToTerms' | i18n"></span>
         </label>
       </div>
       <div class="cta-links clearfix">
