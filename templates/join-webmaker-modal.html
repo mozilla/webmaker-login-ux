@@ -33,7 +33,7 @@
         <label for="username">webmaker.org/user/</label>
         <input ng-model="user.username" name="username" ng-change="validateUsername()" class="form-control username" autocomplete="off" required autofocus tabindex="4" focus-on="create-user-username">
       </div>
-      <button ng-disabled="!form.user.username || form.user.$error.invalidUsername || form.user.$error.usernameTaken || sendingRequest" ng-click="submitUser()" class="create-user btn btn-primary" type="button" tabindex="5">{{ 'webmakerAuthCreateAccount' | i18n }}</button>
+      <button ng-disabled="!user.username || form.user.$error.invalidUsername || form.user.$error.usernameTaken || sendingRequest" ng-click="submitUser()" class="create-user btn btn-primary" type="button" tabindex="5">{{ 'webmakerAuthCreateAccount' | i18n }}</button>
     </div>
 
     <div ng-show="currentState === MODALSTATE.welcome">
