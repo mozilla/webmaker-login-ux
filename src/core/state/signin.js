@@ -1,5 +1,6 @@
 var Emitter = require('./emitter.js');
 var validation = require('../validation');
+var analytics = require('webmaker-analytics');
 
 module.exports = function SignInController(loginApi) {
 
@@ -125,6 +126,10 @@ module.exports = function SignInController(loginApi) {
           return displayAlert(SIGNIN_ALERTS.invalidKey);
         }
 
+        analytics.event('Webmaker Login Succeeded', {
+          label: 'key'
+        });
+
         emit(SIGNIN_EVENTS.signedIn, body.user);
 
       });
@@ -142,6 +147,10 @@ module.exports = function SignInController(loginApi) {
           return displayAlert(SIGNIN_ALERTS.passwordSigninFailed);
         }
 
+        analytics.event('Webmaker Login Succeeded', {
+          label: 'password'
+        });
+
         emit(SIGNIN_EVENTS.signedIn, body.user);
       });
     },
@@ -156,6 +165,9 @@ module.exports = function SignInController(loginApi) {
         if (!body.status) {
           return displayAlert(SIGNIN_ALERTS.resetRequestFailed);
         }
+
+        analytics.event('Webmaker Password Reset Requested');
+
         emit(SIGNIN_EVENTS.displayResetSent);
       });
     },

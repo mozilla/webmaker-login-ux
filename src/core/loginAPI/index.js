@@ -105,7 +105,7 @@ module.exports = function LoginAPI(options) {
       assertion: assertion,
       audience: audience,
       user: {
-        //todo: referrer code
+        referrer: refferals.refValue()
       }
     }, callback);
   }
