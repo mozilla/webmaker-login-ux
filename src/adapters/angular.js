@@ -31,6 +31,20 @@ module.factory('wmLoginCore', ['$rootScope', '$location', '$timeout', 'CONFIG',
       core.instantLogin(searchObj.uid, searchObj.token, searchObj.validFor);
     }
 
+    core.on('verified', function (user) {
+      $timeout(function () {
+        $rootScope._user = user;
+      }, 0);
+    });
+
+    core.on('logout', function () {
+      $timeout(function () {
+        $rootScope._user = {};
+      }, 0);
+    });
+
+    core.verify();
+
     return core;
   }
 ]);
