@@ -82,7 +82,7 @@ module.exports = function SignInController(loginApi) {
           return displayAlert(SIGNIN_ALERTS.serverError);
         }
 
-        var isVerified = body.isVerified;
+        var isVerified = body.verified;
 
         if (!body.exists) {
           return displayAlert(SIGNIN_ALERTS.noAccount);
