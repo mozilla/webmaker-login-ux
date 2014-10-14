@@ -131,7 +131,7 @@ module.exports = function JoinController(loginApi) {
       var lang = 'en-US';
       var html = document.querySelector('html');
 
-      if ( html.lang ) {
+      if (html.lang) {
         lang = html.lang;
       }
 

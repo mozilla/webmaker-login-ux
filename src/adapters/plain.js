@@ -3,7 +3,7 @@ var fs = require('fs');
 var nunjucks = require('nunjucks');
 var wmLoginCore = require('../core');
 
-expressions.filters.i18n = function(key) {
+expressions.filters.i18n = function (key) {
   return lang_data['en-US'][key].message;
 };
 
@@ -11,7 +11,7 @@ var lang_data = {
   'en-US': require('../../locale/en_US/webmaker-login.json')
 };
 var template = new nunjucks.Environment();
-template.addFilter('i18n', function(key) {
+template.addFilter('i18n', function (key) {
   return lang_data['en-US'][key].message;
 });
 var template_options = {
@@ -19,17 +19,25 @@ var template_options = {
 };
 
 var ui = {
-  create: template.renderString(fs.readFileSync(__dirname + '/../../templates/join-webmaker-modal.html', { encoding: 'utf8' }), template_options),
-  login: template.renderString(fs.readFileSync(__dirname + '/../../templates/signin-modal.html', { encoding: 'utf8' }), template_options),
-  reset: template.renderString(fs.readFileSync(__dirname + '/../../templates/reset-modal.html', { encoding: 'utf8' }), template_options),
-  wrapper: fs.readFileSync(__dirname + '/../../templates/modal-wrapper.html', { encoding: 'utf8' })
+  create: template.renderString(fs.readFileSync(__dirname + '/../../templates/join-webmaker-modal.html', {
+    encoding: 'utf8'
+  }), template_options),
+  login: template.renderString(fs.readFileSync(__dirname + '/../../templates/signin-modal.html', {
+    encoding: 'utf8'
+  }), template_options),
+  reset: template.renderString(fs.readFileSync(__dirname + '/../../templates/reset-modal.html', {
+    encoding: 'utf8'
+  }), template_options),
+  wrapper: fs.readFileSync(__dirname + '/../../templates/modal-wrapper.html', {
+    encoding: 'utf8'
+  })
 };
 
 var WebmakerLogin = function WebmakerLogin(options) {
   this.wmLogin = new wmLoginCore(options);
 };
 
-WebmakerLogin.prototype.create = function() {
+WebmakerLogin.prototype.create = function () {
   var controller = this.wmLogin.joinWebmaker();
   var scope = {
     MODALSTATE: {
@@ -46,7 +54,7 @@ WebmakerLogin.prototype.create = function() {
     user: {},
     sendingRequest: false,
     welcomeModalIdx: Math.floor(Math.random() * 4),
-    canSubmitEmail: function() {
+    canSubmitEmail: function () {
       return scope.user.email && scope.user.agree;
     }
   };
@@ -83,61 +91,61 @@ WebmakerLogin.prototype.create = function() {
     _run_expressions(modal, scope);
   });
 
-  modal_fragment.querySelector('a[ng-click="switchToSignin();"]').addEventListener('click', function() {
+  modal_fragment.querySelector('a[ng-click="switchToSignin();"]').addEventListener('click', function () {
     _close_modal();
-    setTimeout(function() {
+    setTimeout(function () {
       this.login(scope.user.email);
     }.bind(this), 0);
   }.bind(this));
 
-  modal_fragment.querySelector('input[name="email"]').addEventListener('blur', function(e) {
+  modal_fragment.querySelector('input[name="email"]').addEventListener('blur', function (e) {
     scope.user.email = e.target.value;
     controller.validateEmail(scope.user.email);
   });
 
-  modal_fragment.querySelector('input[name="agree"]').addEventListener('change', function(e) {
+  modal_fragment.querySelector('input[name="agree"]').addEventListener('change', function (e) {
     scope.user.agree = e.target.checked;
     _run_expressions(modal, scope);
   });
 
-  modal_fragment.querySelector('button[ng-click="submitEmail()"]').addEventListener('click', function() {
+  modal_fragment.querySelector('button[ng-click="submitEmail()"]').addEventListener('click', function () {
     controller.submitEmail();
   });
 
-  modal_fragment.querySelector('input[name="username"]').addEventListener('input', function(e) {
+  modal_fragment.querySelector('input[name="username"]').addEventListener('input', function (e) {
     scope.user.username = e.target.value;
     controller.validateUsername(scope.user.username);
   });
 
-  modal_fragment.querySelector('button[ng-click="submitUser()"]').addEventListener('click', function() {
+  modal_fragment.querySelector('button[ng-click="submitUser()"]').addEventListener('click', function () {
     controller.submitUser(scope.user);
   });
 
   _run_expressions(modal_fragment, scope);
   _open_modal(modal_fragment);
   var modal = document.querySelector('body > div.modal');
-  modal.querySelector(".close").addEventListener("click", function() {
+  modal.querySelector(".close").addEventListener("click", function () {
     _close_modal();
   });
-  document.querySelector('body > div.modal > .modal-dialog').addEventListener("click", function(e) {
+  document.querySelector('body > div.modal > .modal-dialog').addEventListener("click", function (e) {
     e.stopPropagation();
   });
-  document.querySelector('body > div.modal').addEventListener("click", function() {
+  document.querySelector('body > div.modal').addEventListener("click", function () {
     _close_modal();
   });
 
   controller.start();
 };
 
-WebmakerLogin.prototype.login = function() {
+WebmakerLogin.prototype.login = function () {
 
 };
 
-WebmakerLogin.prototype.logout = function() {
+WebmakerLogin.prototype.logout = function () {
 
 };
 
-var _create_modal_fragment = function(template) {
+var _create_modal_fragment = function (template) {
   var range = document.createRange();
   range.selectNode(document.body);
   var modal_fragment = range.createContextualFragment(ui.wrapper);
@@ -146,14 +154,14 @@ var _create_modal_fragment = function(template) {
   return modal_fragment;
 };
 
-var _translate_ng_bind_html = function(modal_fragment) {
+var _translate_ng_bind_html = function (modal_fragment) {
   var elements = modal_fragment.querySelectorAll('[bind-unsafe-html]');
   for (var i = 0; i < elements.length; i++) {
     elements[i].innerHTML = expressions.compile(elements[i].getAttribute('bind-unsafe-html'))();
   }
 };
 
-var _run_expressions = function(modal, scope) {
+var _run_expressions = function (modal, scope) {
   var elements = modal.querySelectorAll('[ng-hide],[ng-show],[ng-disabled]');
   for (var i = 0; i < elements.length; i++) {
     if (elements[i].getAttribute('ng-disabled')) {
@@ -182,11 +190,11 @@ var _run_expressions = function(modal, scope) {
   }
 };
 
-var _open_modal = function(modal_fragment) {
+var _open_modal = function (modal_fragment) {
   document.body.appendChild(modal_fragment);
 };
 
-var _close_modal = function() {
+var _close_modal = function () {
   document.body.removeChild(document.querySelector('body > div.modal-backdrop'));
   document.body.removeChild(document.querySelector('body > div.modal'));
 };
