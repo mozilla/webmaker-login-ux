@@ -114,6 +114,10 @@ module.exports = function LoginAPI(options) {
     doRequest(loginUrls.logout, null, callback);
   }
 
+  function verify(callback) {
+    doRequest(loginUrls.verify, null, callback);
+  }
+
   return {
     uidExists: uidExists,
     checkUsername: checkUsername,
@@ -124,6 +128,7 @@ module.exports = function LoginAPI(options) {
     requestReset: requestReset,
     resetPassword: resetPassword,
     personaLogin: personaLogin,
-    logout: logout
+    logout: logout,
+    verify: verify
   };
 };
