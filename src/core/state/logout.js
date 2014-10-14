@@ -1,4 +1,5 @@
 var Emitter = require('./emitter.js');
+var analytics = require('webmaker-analytics');
 
 module.exports = function (loginAPI) {
   var emitter = new Emitter();
@@ -19,6 +20,7 @@ module.exports = function (loginAPI) {
         if (err || resp.status !== 200) {
           return emit('logoutFailed');
         }
+        analytics.event('Webmaker Logout Clicked');
         emit('loggedOut');
       });
     }

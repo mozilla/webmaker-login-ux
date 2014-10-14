@@ -1,5 +1,6 @@
 var Emitter = require('./emitter.js');
 var validation = require('../validation');
+var analytics = require('webmaker-analytics');
 
 module.exports = function JoinController(loginApi) {
 
@@ -146,6 +147,10 @@ module.exports = function JoinController(loginApi) {
         if (err || resp.status !== 200) {
           return displayAlert(JOIN_ALERTS.serverError);
         }
+        analytics.event('Webmaker New User Created', {
+          nonInteraction: true
+        });
+        analytics.conversionGoal('WebmakerNewUserCreated');
         emit(JOIN_EVENTS.displayWelcome, body.user);
       });
     }
