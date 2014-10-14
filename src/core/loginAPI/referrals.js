@@ -1,6 +1,6 @@
 var cookiejs = require('cookie-js');
 
-module.exports = function referrals(options) {
+module.exports = function referrals() {
   var referralCookieSettings = {
     // grab only the first two parts of the hostname
     domain: location.hostname.split('.').slice(-2).join('.'),

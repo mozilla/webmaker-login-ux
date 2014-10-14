@@ -1,5 +1,4 @@
 var request = require('browser-request');
-// var refferals = require('./refferals.js');
 
 module.exports = function LoginAPI(options) {
   if (!window.localStorage) {
@@ -9,6 +8,7 @@ module.exports = function LoginAPI(options) {
   options = options || {};
   options.paths = options.paths || {};
 
+  var refferals = require('./referrals.js')();
   var loginUrls = require('./loginUrls.js')(options);
 
   var withCredentials = options.withCredentials === false ? false : true;
@@ -42,10 +42,14 @@ module.exports = function LoginAPI(options) {
   }
 
   function createUser(user, callback) {
+    user.referrer = refferals.refValue();
     doRequest(loginUrls.createUser, {
       user: user,
       audience: audience
-    }, callback);
+    }, function () {
+      refferals.clearReferrerCookie();
+      callback.apply(null, arguments);
+    });
   }
 
   function sendLoginKey(uid, callback) {
@@ -58,16 +62,28 @@ module.exports = function LoginAPI(options) {
     doRequest(loginUrls.authenticateToken, {
       uid: uid,
       token: key,
-      validFor: validFor
-    }, callback);
+      validFor: validFor,
+      user: {
+        referrer: refferals.refValue()
+      }
+    }, function () {
+      refferals.clearReferrerCookie();
+      callback.apply(null, arguments);
+    });
   }
 
   function verifyPassword(uid, password, validFor, callback) {
     doRequest(loginUrls.verifyPassword, {
       uid: uid,
       password: password,
-      validFor: validFor
-    }, callback);
+      validFor: validFor,
+      user: {
+        referrer: refferals.refValue()
+      }
+    }, function () {
+      refferals.clearReferrerCookie();
+      callback.apply(null, arguments);
+    });
   }
 
   function requestReset(uid, callback) {
