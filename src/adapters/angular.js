@@ -1,13 +1,30 @@
 var module = angular.module('ngWebmakerLogin', ['templates-ngWebmakerLogin']);
 
-module.constant('CONFIG', window.angularConfig);
+module.factory('csrf', ['$rootScope',
+  function ($rootScope) {
+    // Webmaker apps don't use a single method for configuration, yay!
+    if (window.angularConfig) {
+      // Webmaker.org
+      return window.angularConfig.csrf;
+    } else if (window.eventsConfig) {
+      // Webmaker Events (2)
+      return window.eventsConfig.csrf;
+    } else if ($rootScope.WMP.config) {
+      // Webmaker Profile
+      return $rootScope.WMP.config.csrf;
+    }
+    // ruh-roh!
+    console.warn('Could not locate a config containing a CSRF token - POST, PUT and DELETE requests will 401.');
+    return undefined;
+  }
+]);
 
-module.factory('wmLoginCore', ['$rootScope', '$location', '$timeout', 'CONFIG',
-  function ($rootScope, $location, $timeout, CONFIG) {
+module.factory('wmLoginCore', ['$rootScope', '$location', '$timeout', 'csrf',
+  function ($rootScope, $location, $timeout, csrf) {
     var LoginCore = require('../core');
 
     var core = new LoginCore({
-      csrfToken: CONFIG.csrf
+      csrfToken: csrf
     });
 
     var searchObj = $location.search();
