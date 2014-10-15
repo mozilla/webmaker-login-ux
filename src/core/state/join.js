@@ -2,7 +2,7 @@ var Emitter = require('./emitter.js');
 var validation = require('../validation');
 var analytics = require('webmaker-analytics');
 
-module.exports = function JoinController(loginApi) {
+module.exports = function JoinController(loginApi, showCTA) {
 
   var emitter = new Emitter();
 
@@ -21,7 +21,8 @@ module.exports = function JoinController(loginApi) {
     hideAlert: 'hideAlert',
     displayUsernameInput: 'displayUsernameInput',
     displayEmailInput: 'displayEmailInput',
-    displayWelcome: 'displayWelcome'
+    displayWelcome: 'displayWelcome',
+    userCreated: 'userCreated'
   };
 
   function emit() {
@@ -151,7 +152,11 @@ module.exports = function JoinController(loginApi) {
           nonInteraction: true
         });
         analytics.conversionGoal('WebmakerNewUserCreated');
-        emit(JOIN_EVENTS.displayWelcome, body.user);
+        if (showCTA) {
+          emit(JOIN_EVENTS.displayWelcome, body.user);
+        } else {
+          emit(JOIN_EVENTS.userCreated, body.user);
+        }
       });
     }
   };

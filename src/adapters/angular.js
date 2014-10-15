@@ -42,7 +42,7 @@ module.factory('wmLoginCore', ['$rootScope', '$location', '$timeout', 'csrf',
       core.on('signinFailed', function (uid) {
         // TODO: design?
         $timeout(function () {
-          console.error('login failed for uid: ', uid);
+          console.error('login failed for uid: ' + uid);
         }, 0);
       });
       core.instantLogin(searchObj.uid, searchObj.token, searchObj.validFor);
@@ -85,6 +85,9 @@ module.directive('wmJoinWebmaker', [
   function () {
     return {
       restrict: 'A',
+      scope: {
+        showCTA: '=showcta'
+      },
       link: function ($scope, $element) {
         $element.on('click', function () {
           $scope.joinWebmaker();
@@ -92,7 +95,7 @@ module.directive('wmJoinWebmaker', [
       },
       controller: ['$rootScope', '$scope', '$modal', '$timeout', 'focus', 'wmLoginCore',
         function ($rootScope, $scope, $modal, $timeout, focus, wmLoginCore) {
-          $rootScope.joinWebmaker = function (email, username) {
+          $scope.joinWebmaker = function (email, username) {
             $modal.open({
               templateUrl: 'join-webmaker-modal.html',
               controller: joinModalController,
@@ -102,6 +105,9 @@ module.directive('wmJoinWebmaker', [
                 },
                 username: function () {
                   return username;
+                },
+                showCTA: function () {
+                  return !!$scope.showCTA;
                 }
               }
             })
@@ -111,7 +117,7 @@ module.directive('wmJoinWebmaker', [
               });
           };
 
-          function joinModalController($scope, $modalInstance, email, username) {
+          function joinModalController($scope, $modalInstance, email, username, showCTA) {
 
             var MODALSTATE = {
               inputEmail: 0,
@@ -129,7 +135,7 @@ module.directive('wmJoinWebmaker', [
             $scope.user.email = email;
             $scope.user.username = username;
 
-            var joinController = wmLoginCore.joinWebmaker();
+            var joinController = wmLoginCore.joinWebmaker(showCTA);
 
             joinController.on('sendingRequest', function (state) {
               $timeout(function () {
@@ -146,6 +152,13 @@ module.directive('wmJoinWebmaker', [
             joinController.on('displayUsernameInput', function () {
               $timeout(function () {
                 $scope.currentState = MODALSTATE.inputUsername;
+              }, 0);
+            });
+
+            joinController.on('userCreated', function (user) {
+              $timeout(function () {
+                $rootScope._user = user;
+                $modalInstance.close();
               }, 0);
             });
 
