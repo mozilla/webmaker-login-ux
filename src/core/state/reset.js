@@ -1,5 +1,6 @@
 var Emitter = require('./emitter.js');
 var validation = require('../validation');
+var analytics = require * ('webmaker-analytics');
 
 module.exports = function ResetController(loginApi) {
   var emitter = new Emitter();
