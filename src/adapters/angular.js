@@ -19,6 +19,45 @@ module.factory('csrf', ['$rootScope',
   }
 ]);
 
+module.factory('focus', ['$timeout',
+  function ($timeout) {
+    return function (selector) {
+      // Timeout used to ensure that the DOM has the input that needs to be focused on
+      $timeout(function () {
+        var el = angular.element(selector);
+        if (!el || !el[0]) {
+          return;
+        }
+        el[0].focus();
+      }, 0);
+    };
+  }
+]);
+
+module.directive('bindTrustedHtml', ['$compile',
+  function ($compile) {
+    return function (scope, element, attrs) {
+      scope.$watch(
+        function (scope) {
+          // watch the 'bindUnsafeHtml' expression for changes
+          return scope.$eval(attrs.bindTrustedHtml);
+        },
+        function (value) {
+          // when the 'bindUnsafeHtml' expression changes
+          // assign it into the current DOM
+          element.html(value);
+
+          // compile the new DOM and link it to the current
+          // scope.
+          // NOTE: we only compile .childNodes so that
+          // we don't get into infinite loop compiling ourselves
+          $compile(element.contents())(scope);
+        }
+      );
+    };
+  }
+]);
+
 module.factory('wmLoginCore', ['$rootScope', '$location', '$timeout', 'csrf',
   function ($rootScope, $location, $timeout, csrf) {
     var LoginCore = require('../core');
@@ -66,21 +105,6 @@ module.factory('wmLoginCore', ['$rootScope', '$location', '$timeout', 'csrf',
   }
 ]);
 
-module.factory('focus', ['$timeout',
-  function ($timeout) {
-    return function (selector) {
-      // Timeout used to ensure that the DOM has the input that needs to be focused on
-      $timeout(function () {
-        var el = angular.element(selector);
-        if (!el || !el[0]) {
-          return;
-        }
-        el[0].focus();
-      }, 0);
-    };
-  }
-]);
-
 module.directive('wmJoinWebmaker', [
   function () {
     return {
@@ -95,7 +119,7 @@ module.directive('wmJoinWebmaker', [
       },
       controller: ['$rootScope', '$scope', '$modal', '$timeout', 'focus', 'wmLoginCore',
         function ($rootScope, $scope, $modal, $timeout, focus, wmLoginCore) {
-          $scope.joinWebmaker = function (email, username) {
+          $scope.joinWebmaker = $rootScope.joinWebmaker = function (email, username) {
             $modal.open({
               templateUrl: 'join-webmaker-modal.html',
               controller: joinModalController,
@@ -110,11 +134,7 @@ module.directive('wmJoinWebmaker', [
                   return !!$scope.showCTA;
                 }
               }
-            })
-              .opened
-              .then(function () {
-                focus('input[focus-on="create-user-email"]');
-              });
+            });
           };
 
           function joinModalController($scope, $modalInstance, email, username, showCTA) {
@@ -146,6 +166,7 @@ module.directive('wmJoinWebmaker', [
             joinController.on('displayEmailInput', function () {
               $timeout(function () {
                 $scope.currentState = MODALSTATE.inputEmail;
+                focus('input[focus-on="create-user-email"]');
               }, 0);
             });
 
@@ -362,7 +383,7 @@ module.directive('wmSignin', [
 
           }
 
-          $rootScope.signin = function (uid, passwordWasReset) {
+          $scope.signin = $rootScope.signin = function (uid, passwordWasReset) {
             $modal.open({
               templateUrl: 'signin-modal.html',
               controller: signinModalController,

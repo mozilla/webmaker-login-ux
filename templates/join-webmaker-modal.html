@@ -6,7 +6,7 @@
 <div class="modal-body">
   <form class="form" name="form.user" novalidate>
     <div class="alert alert-danger" ng-show="form.user.$error.agreeToTerms" ng-bind-html="'webmakerAuthAgreeError' | i18n"></div>
-    <div class="alert alert-warning" ng-show="form.user.$error.accountExists" ng-bind-html="'WebmakerAccountExists' | i18n"></div>
+    <div class="alert alert-warning" ng-show="form.user.$error.accountExists" bind-trusted-html="'WebmakerAccountExists' | i18n"></div>
     <div class="alert alert-danger" ng-show="form.user.$error.invalidEmail" ng-bind-html="'NotAnEmail' | i18n"></div>
     <div class="alert alert-danger" ng-show="form.user.$error.invalidUsername" ng-bind-html="'webmakerAuthUsernameInvalid' | i18n"></div>
     <div class="alert alert-danger" ng-show="form.user.$error.serverError" ng-bind-html="'webmakerAuthServerError' | i18n"></div>

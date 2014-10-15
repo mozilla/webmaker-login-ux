@@ -61,6 +61,7 @@ WebmakerLogin.prototype.create = function (email_hint, username_hint) {
 
   var modal_fragment = _create_modal_fragment(ui.create);
   _translate_ng_bind_html(modal_fragment);
+  _translate_bind_trusted_html(modal_fragment);
 
   if (email_hint) {
     scope.user.email = email_hint;
@@ -148,7 +149,7 @@ WebmakerLogin.prototype.create = function (email_hint, username_hint) {
   controller.start();
 };
 
-WebmakerLogin.prototype.login = function(uid_hint) {
+WebmakerLogin.prototype.login = function (uid_hint) {
   var controller = this.wmLogin.signIn();
   var scope = {
     MODALSTATE: {
@@ -171,6 +172,7 @@ WebmakerLogin.prototype.login = function(uid_hint) {
 
   var modal_fragment = _create_modal_fragment(ui.login);
   _translate_ng_bind_html(modal_fragment);
+  _translate_bind_trusted_html(modal_fragment);
 
   if (uid_hint) {
     scope.user.uid = uid_hint;
@@ -182,68 +184,68 @@ WebmakerLogin.prototype.login = function(uid_hint) {
     _run_expressions(modal, scope);
   });
 
-  controller.on('displayEnterUid', function() {
+  controller.on('displayEnterUid', function () {
     scope.currentState = scope.MODALSTATE.enterUid;
     _run_expressions(modal, scope);
     modal.querySelector('input[focus-on="login-uid"]').focus();
   });
 
-  controller.on('displayEnterPassword', function() {
+  controller.on('displayEnterPassword', function () {
     scope.currentState = scope.MODALSTATE.enterPassword;
     _run_expressions(modal, scope);
     modal.querySelector('input[focus-on="enter-password"]').focus();
   });
 
-  controller.on('displayEnterKey', function() {
+  controller.on('displayEnterKey', function () {
     scope.currentState = scope.MODALSTATE.enterKey;
     _run_expressions(modal, scope);
     modal.querySelector('input[focus-on="enter-key"]').focus();
   });
 
-  controller.on('displayCheckEmail', function() {
+  controller.on('displayCheckEmail', function () {
     scope.currentState = scope.MODALSTATE.checkEmail;
     _run_expressions(modal, scope);
   });
 
-  controller.on('displayResetSent', function() {
+  controller.on('displayResetSent', function () {
     scope.currentState = scope.MODALSTATE.resetRequestSent;
     _run_expressions(modal, scope);
   });
 
-  controller.on('displayAlert', function(alertId) {
+  controller.on('displayAlert', function (alertId) {
     scope.form.user.$error[alertId] = true;
     _run_expressions(modal, scope);
   });
 
-  controller.on('hideAlert', function(alertId) {
+  controller.on('hideAlert', function (alertId) {
     scope.form.user.$error[alertId] = false;
     _run_expressions(modal, scope);
   });
 
-  controller.on('signedIn', function(user) {
+  controller.on('signedIn', function (user) {
     // Should emit a logged-in event here
     _close_modal();
   });
 
-  modal_fragment.querySelector('input[name="uid"]').addEventListener('input', function(e) {
+  modal_fragment.querySelector('input[name="uid"]').addEventListener('input', function (e) {
     scope.user.uid = e.target.value;
     _run_expressions(modal, scope);
   });
 
-  modal_fragment.querySelector('button[ng-click="submitUid()"]').addEventListener('click', function() {
+  modal_fragment.querySelector('button[ng-click="submitUid()"]').addEventListener('click', function () {
     controller.submitUid(scope.user.uid);
   });
 
-  modal_fragment.querySelector('input[name="key"]').addEventListener('input', function(e) {
+  modal_fragment.querySelector('input[name="key"]').addEventListener('input', function (e) {
     scope.user.key = e.target.value;
     _run_expressions(modal, scope);
   });
 
-  modal_fragment.querySelector('a[ng-click="enterKey()"]').addEventListener('click', function() {
+  modal_fragment.querySelector('a[ng-click="enterKey()"]').addEventListener('click', function () {
     controller.displayEnterKey();
   });
 
-  modal_fragment.querySelector('button[ng-click="user.key && submitKey()"]').addEventListener('click', function() {
+  modal_fragment.querySelector('button[ng-click="user.key && submitKey()"]').addEventListener('click', function () {
     controller.verifyKey(scope.user.uid, scope.user.key, scope.user.rememberMe);
   });
 
@@ -262,13 +264,13 @@ WebmakerLogin.prototype.login = function(uid_hint) {
   _run_expressions(modal_fragment, scope);
   _open_modal(modal_fragment);
   var modal = document.querySelector('body > div.modal');
-  modal.querySelector(".close").addEventListener("click", function() {
+  modal.querySelector(".close").addEventListener("click", function () {
     _close_modal();
   });
-  document.querySelector('body > div.modal > .modal-dialog').addEventListener("click", function(e) {
+  document.querySelector('body > div.modal > .modal-dialog').addEventListener("click", function (e) {
     e.stopPropagation();
   });
-  document.querySelector('body > div.modal').addEventListener("click", function() {
+  document.querySelector('body > div.modal').addEventListener("click", function () {
     _close_modal();
   });
 
@@ -292,6 +294,13 @@ var _translate_ng_bind_html = function (modal_fragment) {
   var elements = modal_fragment.querySelectorAll('[ng-bind-html]');
   for (var i = 0; i < elements.length; i++) {
     elements[i].innerHTML = expressions.compile(elements[i].getAttribute('ng-bind-html'))();
+  }
+};
+
+var _translate_bind_trusted_html = function (modal_fragment) {
+  var elements = modal_fragment.querySelectorAll('[bind-trusted-html]');
+  for (var i = 0; i < elements.length; i++) {
+    elements[i].innerHTML = expressions.compile(elements[i].getAttribute('bind-trusted-html'))();
   }
 };
 

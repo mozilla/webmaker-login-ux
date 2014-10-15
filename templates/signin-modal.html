@@ -7,7 +7,7 @@
   <form class="form" name="form.user" novalidate>
 
     <div class="alert alert-success" ng-show="passwordReset" ng-bind-html="'Password Reset Success' | i18n"></div>
-    <div class="alert alert-warning" ng-show="form.user.$error.noAccount" ng-bind-html="'No account found for your uid' | i18n"></div>
+    <div class="alert alert-warning" ng-show="form.user.$error.noAccount" bind-trusted-html="'No account found for your uid' | i18n"></div>
     <div class="alert alert-danger" ng-show="form.user.$error.invalid" ng-bind-html="'That does not look like an email address or username' | i18n"></div>
     <div class="alert alert-danger" ng-show="form.user.$error.tokenSendFailed" ng-bind-html="'problem sending token' | i18n"></div>
     <div class="alert alert-danger" ng-show="form.user.$error.invalidKey" ng-bind-html="'incorrectToken' | i18n"></div>
@@ -22,7 +22,7 @@
       </div>
       <div class="cta-links clearfix">
         <button class="submit-userid btn btn-primary" type="button" ng-disabled="sendingRequest" ng-click="submitUid()" tabindex="2">{{ 'Sign in' | i18n }}</button>
-        <p ng-disabled="sendingRequest" ng-bind-html="'log in with Persona' | i18n"></p>
+        <p ng-disabled="sendingRequest" bind-trusted-html="'log in with Persona' | i18n"></p>
       </div>
     </div>
     <!-- end enter uid -->
