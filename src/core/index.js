@@ -49,8 +49,8 @@ module.exports = function WebmakerLoginCore(options) {
     off: function (event, listener) {
       emitter.off(event, listener);
     },
-    joinWebmaker: function () {
-      return new state.JoinController(loginAPI);
+    joinWebmaker: function (showCTA) {
+      return new state.JoinController(loginAPI, !! showCTA);
     },
     signIn: function () {
       return new state.SignInController(loginAPI);
