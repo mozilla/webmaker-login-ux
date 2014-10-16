@@ -53,8 +53,7 @@
       </div>
       <hr>
       <footer class="help-footer">
-      <!-- TODO: What does this link to? -->
-        <p>Trouble with email?  <a href="#" tabindex="5">Get help</a></p>
+        <p ng-bind-html="'trouble with email' | i18n"></p>
       </footer>
     </div>
     <!-- checkEmail ends -->
@@ -88,6 +87,10 @@
           <button class="submit-userid btn btn-primary" type="button" ng-disabled="sendingRequest" ng-click="user.key && submitKey()" tabindex="7">{{ 'Submit' | i18n }}</button>
         </div>
       </div>
+      <hr>
+      <footer class="help-footer">
+        <p ng-bind-html="'trouble with email' | i18n"></p>
+      </footer>
     </div>
     <!-- enterToken ends -->
 
@@ -102,7 +105,7 @@
           <p><a href="#" ng-click="requestReset()">{{ 'Forgot your password?' | i18n }}</a></p>
         </div>
       </div>
-      <hr />
+      <hr>
       <footer class="help-footer">
         <p class="switch-back">{{ 'you can switch to webmaker login' | i18n }}</p>
       </footer>
@@ -128,9 +131,9 @@
         </svg>
         <p>{{ 'resetMessage' | i18n }}</p>
       </div>
-      <hr />
+      <hr>
         <footer class="help-footer">
-          {{ 'you can switch to webmaker login' | i18n }}
+          <p class="switch-back">{{ 'you can switch to webmaker login' | i18n }}</p>
         </footer>
     </div>
   </form>

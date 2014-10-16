@@ -139,6 +139,10 @@
     "message": "or <a href=\"#\" ng-click=\"usePersona();\" tabindex=\"3\">log in with Persona</a>",
     "description": "Text for the button that initiates a persona login"
   },
+  "trouble with email":  {
+    "message": "Trouble with email? Check your spam or <a href=\"#\" tabindex=\"5\">get help</a>",
+    "description": "Text that allows users to get help"
+  },
   "aboutWebmaker":  {
     "message": "Make your own web pages, interactive videos, remixes and mobile apps.",
     "description": "Short description of Webmaker"
