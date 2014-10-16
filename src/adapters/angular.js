@@ -173,6 +173,7 @@ module.directive('wmJoinWebmaker', [
             joinController.on('displayUsernameInput', function () {
               $timeout(function () {
                 $scope.currentState = MODALSTATE.inputUsername;
+                focus('input[focus-on="create-user-username"]');
               }, 0);
             });
 
