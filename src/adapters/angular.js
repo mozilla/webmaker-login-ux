@@ -186,7 +186,7 @@ module.directive('wmJoinWebmaker', [
             joinController.on('displayWelcome', function (user) {
               $timeout(function () {
                 $rootScope._user = user;
-                $scope.welcomeModalIdx = Math.floor(Math.random() * 4);
+                $scope.welcomeModalIdx = Math.floor(Math.random() * 2);
                 $scope.currentState = MODALSTATE.welcome;
               }, 0);
             });
