@@ -335,6 +335,7 @@ module.directive('wmSignin', [
             signinController.on('signedIn', function (user) {
               $rootScope._user = user;
               $modalInstance.close();
+              $rootScope.broadcast('signedIn', user);
             });
 
             $scope.submitUid = function () {
@@ -557,8 +558,8 @@ module.directive('wmPersonaLogin', ['wmPersona',
   }
 ]);
 
-module.directive('wmLogout', ['wmLoginCore',
-  function () {
+module.directive('wmLogout', ['$timeout', 'wmLoginCore',
+  function ($timeout) {
     return {
       restrict: 'A',
       link: function ($rootScope, $element) {
@@ -571,7 +572,10 @@ module.directive('wmLogout', ['wmLoginCore',
           var logoutController = wmLoginCore.logout();
 
           logoutController.on('loggedOut', function () {
-            $rootScope._user = null;
+            $timeout(function () {
+              $rootScope._user = null;
+              $rootScope.$broadcast('loggedOut');
+            }, 0);
           });
 
           $rootScope.logout = function () {
