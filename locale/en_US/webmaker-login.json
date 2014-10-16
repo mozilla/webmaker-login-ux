@@ -163,41 +163,17 @@
     "message": "Explore the rest of Webmaker",
     "description": "Text for the button which takes the user to webmaker.org/explore"
   },
-  "Thimble":  {
-    "message": "Thimble",
-    "description": "Thimble"
+  "Resources":  {
+    "message": "Resources",
+    "description": "The Resources section of Webmaker"
   },
-  "AboutThimble":  {
-    "message": "Thimble makes it ridiculously simple to create and share your own web pages. Write and edit HTML and CSS right in your browser, then instantly preview your work.",
-    "description": "A short description of Thimble"
+  "AboutResources":  {
+    "message": "Teach and learn digital skills and web literacy. Webmaker Resources are full of fun things to discover, make and teach.",
+    "description": "A short description about the Resources section"
   },
-  "TryThimbleNow":  {
-    "message": "Try Thimble now",
-    "description": "Text for the button which takes the user to thimble's homepage"
-  },
-  "PopcornMaker":  {
-    "message": "Popcorn Maker",
-    "description": "Popcorn Maker"
-  },
-  "AboutPopcornMaker":  {
-    "message": "Popcorn Maker helps you easily remix web video, audio and images into cool mashups that you can embed on other websites. Popcorn Maker videos are dynamic, full of links and unique with every view.",
-    "description": "A short description of Popcorn Maker"
-  },
-  "TryPopcornMaker":  {
-    "message": "Try Popcorn Maker now",
-    "description": "Text for the button which takes the user to Popcorn Maker"
-  },
-  "Appmaker":  {
-    "message": "Appmaker",
-    "description": "Appmaker"
-  },
-  "AboutAppmaker":  {
-    "message": "Appmaker is a free tool for creating personal mobile apps, even if you don't know how to code!",
-    "description": "A short description of Appmaker"
-  },
-  "TryAppmaker":  {
-    "message": "Try Appmaker now",
-    "description": "Text for the button which takes the user to Appmaker"
+  "VisitResources":  {
+    "message": "Visit Resources",
+    "description": "Text for the button that takes the user to the X-Ray Goggles homepage"
   },
   "passwords do not match":  {
     "message": "<i class=\"fa fa-times\"></i>  <strong>Uh oh!</strong> The passwords do not match!",
