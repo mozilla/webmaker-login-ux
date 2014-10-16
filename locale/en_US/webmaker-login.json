@@ -140,7 +140,7 @@
     "description": "Text for the button that initiates a persona login"
   },
   "trouble with email":  {
-    "message": "Trouble with email? Check your spam or <a href=\"#\" tabindex=\"5\">get help</a>",
+    "message": "Trouble with email? Check your spam or <a href=\"https://support.mozilla.org/questions/new/webmaker\" tabindex=\"5\">get help</a>",
     "description": "Text that allows users to get help"
   },
   "aboutWebmaker":  {
