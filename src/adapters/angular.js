@@ -316,7 +316,6 @@ module.directive('wmSignin', [
 
             signinController.on('displayResetSent', function () {
               $timeout(function () {
-                console.log("ASDF");
                 $scope.currentState = MODALSTATE.resetRequestSent;
               }, 0);
             });
