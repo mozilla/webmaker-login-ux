@@ -1,6 +1,6 @@
-var module = angular.module('ngWebmakerLogin', ['templates-ngWebmakerLogin']);
+var ngModule = angular.module('ngWebmakerLogin', ['templates-ngWebmakerLogin']);
 
-module.factory('csrf', ['$rootScope',
+ngModule.factory('csrf', ['$rootScope',
   function ($rootScope) {
     // Webmaker apps don't use a single method for configuration, yay!
     if (window.angularConfig) {
@@ -19,7 +19,7 @@ module.factory('csrf', ['$rootScope',
   }
 ]);
 
-module.factory('focus', ['$timeout',
+ngModule.factory('focus', ['$timeout',
   function ($timeout) {
     return function (selector) {
       // Timeout used to ensure that the DOM has the input that needs to be focused on
@@ -34,7 +34,7 @@ module.factory('focus', ['$timeout',
   }
 ]);
 
-module.directive('bindTrustedHtml', ['$compile',
+ngModule.directive('bindTrustedHtml', ['$compile',
   function ($compile) {
     return function (scope, element, attrs) {
       scope.$watch(
@@ -58,7 +58,7 @@ module.directive('bindTrustedHtml', ['$compile',
   }
 ]);
 
-module.factory('wmLoginCore', ['$rootScope', '$location', '$timeout', 'csrf',
+ngModule.factory('wmLoginCore', ['$rootScope', '$location', '$timeout', 'csrf',
   function ($rootScope, $location, $timeout, csrf) {
     var LoginCore = require('../core');
 
@@ -105,7 +105,7 @@ module.factory('wmLoginCore', ['$rootScope', '$location', '$timeout', 'csrf',
   }
 ]);
 
-module.directive('wmJoinWebmaker', [
+ngModule.directive('wmJoinWebmaker', [
   function () {
     return {
       restrict: 'A',
@@ -245,7 +245,7 @@ module.directive('wmJoinWebmaker', [
   }
 ]);
 
-module.directive('wmSignin', [
+ngModule.directive('wmSignin', [
   function () {
     return {
       restrict: 'A',
@@ -405,7 +405,7 @@ module.directive('wmSignin', [
   }
 ]);
 
-module.directive('wmPasswordReset', [
+ngModule.directive('wmPasswordReset', [
   function () {
     // Prevent multiple dialogs
     var triggered = false;
@@ -527,7 +527,7 @@ module.directive('wmPasswordReset', [
 ]);
 
 // Legacy Persona login
-module.factory('wmPersona', ['$rootScope', 'wmLoginCore',
+ngModule.factory('wmPersona', ['$rootScope', 'wmLoginCore',
   function ($rootScope, wmLoginCore) {
     var personaController = wmLoginCore.personaLogin();
 
@@ -545,7 +545,7 @@ module.factory('wmPersona', ['$rootScope', 'wmLoginCore',
   }
 ]);
 
-module.directive('wmPersonaLogin', ['wmPersona',
+ngModule.directive('wmPersonaLogin', ['wmPersona',
   function () {
     return {
       restrict: 'A',
@@ -558,7 +558,7 @@ module.directive('wmPersonaLogin', ['wmPersona',
   }
 ]);
 
-module.directive('wmLogout', ['$timeout', 'wmLoginCore',
+ngModule.directive('wmLogout', ['$timeout', 'wmLoginCore',
   function ($timeout) {
     return {
       restrict: 'A',

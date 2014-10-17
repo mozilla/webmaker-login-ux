@@ -6,10 +6,6 @@ var url = require('url');
 var util = require('util');
 var wmLoginCore = require('../core');
 
-expressions.filters.i18n = function (key) {
-  return lang_data['en-US'][key].message;
-};
-
 var lang_data = {
   'en-US': require('../../locale/en_US/webmaker-login.json')
 };
@@ -19,6 +15,9 @@ template.addFilter('i18n', function (key) {
 });
 var template_options = {
   lang: 'en-US'
+};
+expressions.filters.i18n = function (key) {
+  return lang_data['en-US'][key].message;
 };
 
 var ui = {
@@ -34,6 +33,81 @@ var ui = {
   wrapper: fs.readFileSync(__dirname + '/../../templates/modal-wrapper.html', {
     encoding: 'utf8'
   })
+};
+
+var _create_modal_fragment = function (template) {
+  var range = document.createRange();
+  range.selectNode(document.body);
+  var modal_fragment = range.createContextualFragment(ui.wrapper);
+  modal_fragment.querySelector('.modal-content').appendChild(range.createContextualFragment(template));
+
+  return modal_fragment;
+};
+
+var _translate_ng_html_expressions = function (modal_fragment) {
+  var elements = modal_fragment.querySelectorAll('[ng-bind-html]');
+  var i = 0;
+  for (i = 0; i < elements.length; i++) {
+    elements[i].innerHTML = expressions.compile(elements[i].getAttribute('ng-bind-html'))();
+  }
+
+  elements = modal_fragment.querySelectorAll('[bind-trusted-html]');
+  for (i = 0; i < elements.length; i++) {
+    elements[i].innerHTML = expressions.compile(elements[i].getAttribute('bind-trusted-html'))();
+  }
+};
+
+var _run_expressions = function (modal, scope) {
+  var elements = modal.querySelectorAll('[ng-hide],[ng-show],[ng-disabled],[ng-class]');
+  var ng_class;
+
+  for (var i = 0; i < elements.length; i++) {
+    if (elements[i].getAttribute('ng-disabled')) {
+      if (expressions.compile(elements[i].getAttribute('ng-disabled'))(scope)) {
+        elements[i].setAttribute('disabled', true);
+      } else {
+        elements[i].removeAttribute('disabled');
+      }
+    }
+
+    if (elements[i].getAttribute('ng-hide')) {
+      if (expressions.compile(elements[i].getAttribute('ng-hide'))(scope)) {
+        elements[i].classList.add('hide');
+      } else {
+        elements[i].classList.remove('hide');
+      }
+    }
+
+    if (elements[i].getAttribute('ng-show')) {
+      if (expressions.compile(elements[i].getAttribute('ng-show'))(scope)) {
+        elements[i].classList.remove('hide');
+      } else {
+        elements[i].classList.add('hide');
+      }
+    }
+
+    if (elements[i].getAttribute('ng-class')) {
+      ng_class = expressions.compile(elements[i].getAttribute('ng-class'))(scope);
+      /*jshint -W083 */
+      Object.keys(ng_class).forEach(function (klass) {
+        if (ng_class[klass]) {
+          elements[i].classList.add(klass);
+        } else {
+          elements[i].classList.remove(klass);
+        }
+      });
+      /*jshint +W083 */
+    }
+  }
+};
+
+var _open_modal = function (modal_fragment) {
+  document.body.appendChild(modal_fragment);
+};
+
+var _close_modal = function () {
+  document.body.removeChild(document.querySelector('body > div.modal-backdrop'));
+  document.body.removeChild(document.querySelector('body > div.modal'));
 };
 
 var WebmakerLogin = function WebmakerLogin(options) {
@@ -456,78 +530,6 @@ WebmakerLogin.prototype.logout = function () {
   }.bind(this));
 
   controller.logout();
-};
-
-var _create_modal_fragment = function (template) {
-  var range = document.createRange();
-  range.selectNode(document.body);
-  var modal_fragment = range.createContextualFragment(ui.wrapper);
-  modal_fragment.querySelector('.modal-content').appendChild(range.createContextualFragment(template));
-
-  return modal_fragment;
-};
-
-var _translate_ng_html_expressions = function (modal_fragment) {
-  var elements = modal_fragment.querySelectorAll('[ng-bind-html]');
-  for (var i = 0; i < elements.length; i++) {
-    elements[i].innerHTML = expressions.compile(elements[i].getAttribute('ng-bind-html'))();
-  }
-
-  elements = modal_fragment.querySelectorAll('[bind-trusted-html]');
-  for (var i = 0; i < elements.length; i++) {
-    elements[i].innerHTML = expressions.compile(elements[i].getAttribute('bind-trusted-html'))();
-  }
-};
-
-var _run_expressions = function (modal, scope) {
-  var elements = modal.querySelectorAll('[ng-hide],[ng-show],[ng-disabled],[ng-class]');
-  var ng_class;
-
-  for (var i = 0; i < elements.length; i++) {
-    if (elements[i].getAttribute('ng-disabled')) {
-      if (expressions.compile(elements[i].getAttribute('ng-disabled'))(scope)) {
-        elements[i].setAttribute('disabled', true);
-      } else {
-        elements[i].removeAttribute('disabled');
-      }
-    }
-
-    if (elements[i].getAttribute('ng-hide')) {
-      if (expressions.compile(elements[i].getAttribute('ng-hide'))(scope)) {
-        elements[i].classList.add('hide');
-      } else {
-        elements[i].classList.remove('hide');
-      }
-    }
-
-    if (elements[i].getAttribute('ng-show')) {
-      if (expressions.compile(elements[i].getAttribute('ng-show'))(scope)) {
-        elements[i].classList.remove('hide');
-      } else {
-        elements[i].classList.add('hide');
-      }
-    }
-
-    if (elements[i].getAttribute('ng-class')) {
-      ng_class = expressions.compile(elements[i].getAttribute('ng-class'))(scope);
-      Object.keys(ng_class).forEach(function (klass) {
-        if (ng_class[klass]) {
-          elements[i].classList.add(klass);
-        } else {
-          elements[i].classList.remove(klass);
-        }
-      });
-    }
-  }
-};
-
-var _open_modal = function (modal_fragment) {
-  document.body.appendChild(modal_fragment);
-};
-
-var _close_modal = function () {
-  document.body.removeChild(document.querySelector('body > div.modal-backdrop'));
-  document.body.removeChild(document.querySelector('body > div.modal'));
 };
 
 window.WebmakerLogin = WebmakerLogin;

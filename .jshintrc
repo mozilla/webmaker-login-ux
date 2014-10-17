@@ -1,13 +1,6 @@
 {
   "globals": {
-    "module": true,
-    "define": true,
-    "requirejs": true,
-    "require": true,
-    "console": true,
-    "$": true,
-    "angular": true,
-    "window": true
+    "angular": true
   },
   "browser": true,
   "bitwise": true,
@@ -18,6 +11,7 @@
   "indent": 2,
   "latedef": true,
   "newcap": true,
+  "node": true,
   "noempty": true,
   "trailing": true,
   "undef": true,

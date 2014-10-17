@@ -9,8 +9,8 @@
   "bugs": "https://github.com/mozilla/webmaker-login-ux/issues",
   "scripts": {
     "build": "grunt build",
-    "postinstall": "grunt build",
-    "test": "jstest spec/*_spec.js"
+    "lint": "grunt validate",
+    "test": "npm run lint"
   },
   "author": "Mozilla Webmaker <webmaker-staff@mozillafoundation.org>",
   "contributors": [
