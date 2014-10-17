@@ -4,7 +4,7 @@
   "description": "Extendable library for implemening Webmaker Login UX",
   "repository": {
     "type": "git",
-    "repository": "git@github.com/mozilla/webmaker-login-ux.git"
+    "url": "git@github.com/mozilla/webmaker-login-ux.git"
   },
   "bugs": "https://github.com/mozilla/webmaker-login-ux/issues",
   "scripts": {
