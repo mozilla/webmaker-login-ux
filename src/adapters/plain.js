@@ -273,6 +273,13 @@ WebmakerLogin.prototype.login = function (uid_hint) {
     }.bind(this), 0);
   }.bind(this));
 
+  modal_fragment.querySelector('a[ng-click="usePersona();"]').addEventListener('click', function() {
+    _close_modal();
+    setTimeout(function () {
+      this._persona_login();
+    }.bind(this), 0);
+  }.bind(this));
+
   _run_expressions(modal_fragment, scope);
   _open_modal(modal_fragment);
   var modal = document.querySelector('body > div.modal');
@@ -287,6 +294,22 @@ WebmakerLogin.prototype.login = function (uid_hint) {
   });
 
   controller.start();
+};
+
+WebmakerLogin.prototype._persona_login = function() {
+  var controller = this.wmLogin.personaLogin();
+
+  controller.on('signedIn', function (user) {
+    // Should emit a logged-in event here
+  });
+
+  controller.on('newUser', function (email) {
+    setTimeout(function () {
+      this.create(email);
+    }.bind(this), 0);
+  });
+
+  controller.authenticate();
 };
 
 WebmakerLogin.prototype.logout = function () {
