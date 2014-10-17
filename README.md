@@ -1,42 +1,81 @@
 # Webmaker Login UX
 
-## Install
+Webmaker Login UX enables developers to implement a consitent login/logout and signup
+flow for webmaker across different websites and apps. This is acheived through the use
+of an adapter that handles implementation specific details (modal dialog handling,
+angular JS style directive implementation), while the common parts of theimplementation
+(state, request handling, analytics, etc) are handled by a core library.
+
+The adapter and all of the dependencies (JS, HTML templates) are built using Browserify
+into one package that can be included into the target application's build system. Custom CSS to
+override Makerstrap styles are also included and should be imported into the target application.
+
+## Installation
 
 ```
 bower install mozilla/webmaker-login-ux
 ```
 
-## Setup
-
+## Angular Adapter Usage
 1. Add makerstap in your head `<link rel="stylsheet" href="bower_components/makerstrap/dist/makerstrap.complete.min.css"`. There are other ways to do this -- see the makerstrap docs.
-2. Ensure that an `angularConfig` object is defined on `window`, and specifies a csrfToken attribute.
-3. Make sure `angular.js`, `ui-bootstrap`, `webmaker-auth-client.js`, `wmLogin-angular.js` and `wmLogin-angular.templates.js` are all added to your document.
-4. Add the `wmLoginAngular` module to your angular app.
+2. The app must define `window.angularConfig` as an object, and specify a `csrfToken` attribute.
+3. Make sure `angular.js`, `ui-bootstrap`, `ngWebmakerLogin.js` and `ngWebmakerLogin.templates.js` are all added to your document.
+4. Add the `ngWebmakerLogin` module to your angular app.
 
-## Directives
+### ngWebmakerLogin Directives
 
-### wm-create-user
+### wm-join-webmaker
 
-To add a create user modal use the `wm-create-user` attribute:
+Configures the join webmaker modal to display when the element it is used on is clicked:
 
 ```html
-<button wm-create-user>
+<button wm-join-webmaker showcta="true">
 </button>
 ```
 
-### wm-login
+Use the `showcta` attribute to define whether or not the welcome to webmaker CTA's should display after an account is created.
 
-To add a login modal use the `wm-login` attribute
+### wm-signin
+
+Configures the signin modal to display when the element it is used on is clicked
 ```html
-<button wm-login>
+<button wm-signin>
 </button>
+```
+
+### wm-password-reset
+
+Configures the password reset modal to display when the page is loaded with the `resetCode` and `uid`
+search parameters in the url:
+
+```html
+<div wm-pasword-reset></div>
+```
+
+### wm-persona-login
+
+Configures the element it is applied to to trigger a persona log in when clicked. Ensure that the persona include file has been loaded.
+
+```html
+<button wm-persona-login></button>
+```
+
+### wm-logout
+
+Confugures the element it is applied to to trigger a logout when it is clicked.
+
+```html
+<button wm-logout></button>
 ```
 
 ## Development
 
 If you run `grunt dev`, all files and folders will be watched and automatically compiled.
-A test server will also be launched at https://localhost:4321 where you can test out the modal dialogs
+A test server will also be launched at http://localhost:4321 where you can test out the modal dialogs
 with fake data.
+
+Angular adapter test page: http://localhost:4321/
+Plain JavaScript adapter test page: http://localhost:4321/plain
 
 ### Sign In Options:
 
@@ -59,3 +98,8 @@ with fake data.
 |Any|Any|Welcome to Webmaker modal view|
 |Any|"taken"|Username already taken error|
 |Any|"failCreate"|500 response from server|
+
+### Password reset
+
+Add "?uid=user&resetCode=topsecretcode" to the url to trigger the password reset flow.
+Change the values of uid and resetCode to cause a failed reset request.
