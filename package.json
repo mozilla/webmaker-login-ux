@@ -4,14 +4,20 @@
   "description": "Extendable library for implemening Webmaker Login UX",
   "repository": {
     "type": "git",
-    "repository": "git@github.com/cadecairos/webmaker-login-ux.git"
+    "repository": "git@github.com/mozilla/webmaker-login-ux.git"
   },
+  "bugs": "https://github.com/mozilla/webmaker-login-ux/issues",
   "scripts": {
     "build": "grunt build",
     "postinstall": "grunt build",
     "test": "jstest spec/*_spec.js"
   },
-  "author": "Christopher De Cairos <cade@mozillafoundation.org>",
+  "author": "Mozilla Webmaker <webmaker-staff@mozillafoundation.org>",
+  "contributors": [
+    "Christopher De Cairos <cade@mozillafoundation.org>",
+    "Jon Buckley <jbuck@mozillafoundation.org>",
+    "Ricardo Vazquez <ricardo@mozillafoundation.org"
+  ],
   "license": "MIT",
   "dependencies": {
     "angular-expressions": "0.2.1",
