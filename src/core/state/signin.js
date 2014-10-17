@@ -98,7 +98,7 @@ module.exports = function SignInController(loginApi) {
           }
 
           if (isVerified) {
-            emit(SIGNIN_EVENTS.displayEnterKey);
+            emit(SIGNIN_EVENTS.displayEnterKey, false);
           } else {
             emit(SIGNIN_EVENTS.displayCheckEmail);
           }
@@ -106,7 +106,7 @@ module.exports = function SignInController(loginApi) {
       });
     },
     displayEnterKey: function () {
-      emit(SIGNIN_EVENTS.displayEnterKey);
+      emit(SIGNIN_EVENTS.displayEnterKey, true);
     },
     verifyKey: function (uid, key, rememberMe) {
       clearAlerts([

@@ -81,7 +81,8 @@
         </div>
         <div class="key-group">
           <div class="form-group">
-            <label for="key">{{ 'Enter your key to login' | i18n }}</label>
+            <label for="key" ng-show="!verified">{{ 'Visit Email' | i18n }}</label>
+            <label for="key" ng-show="verified">{{ 'Verified Visit Email' | i18n }}</label>
             <input ng-model="user.key" name="key" class="form-control" type="password" required="" tabindex="6" focus-on="enter-key" ng-keyup="$event.keyCode === 13 && user.key && !sendingRequest && submitKey()">
           </div>
           <button class="submit-userid btn btn-primary" type="button" ng-disabled="sendingRequest" ng-click="user.key && submitKey()" tabindex="7">{{ 'Submit' | i18n }}</button>
