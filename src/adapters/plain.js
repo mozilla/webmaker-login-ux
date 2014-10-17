@@ -313,7 +313,13 @@ WebmakerLogin.prototype._persona_login = function() {
 };
 
 WebmakerLogin.prototype.logout = function () {
+  var controller = this.wmLogin.logout();
 
+  controller.on('loggedOut', function () {
+    // Should emit a logged-out event here
+  });
+
+  controller.logout();
 };
 
 var _create_modal_fragment = function (template) {
