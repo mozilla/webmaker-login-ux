@@ -1,6 +1,5 @@
 module.exports = function (grunt) {
   require('jit-grunt')(grunt, {
-    copy: 'grunt-contrib-copy',
     browserify: 'grunt-browserify',
     jshint: 'grunt-contrib-jshint',
     express: 'grunt-express-server',
@@ -30,14 +29,6 @@ module.exports = function (grunt) {
         files: {
           "dist/css/webmakerLogin.css": "src/less/webmakerLogin.less"
         }
-      }
-    },
-    copy: {
-      main: {
-        expand: true,
-        src: ['templates/*'],
-        dest: 'dist/',
-        filter: 'isFile',
       }
     },
     browserify: {
@@ -124,7 +115,6 @@ module.exports = function (grunt) {
 
   grunt.registerTask('build', [
     'browserify',
-    'copy',
     'html2js',
     'less',
     'uglify'
