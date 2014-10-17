@@ -46,6 +46,16 @@
           showCTA: true
         });
 
+        client.on('login', function (user) {
+          console.log('login: ', user);
+        });
+        client.on('logout', function () {
+          console.log('logout');
+        });
+        client.on('verified', function (user, state) {
+          console.log('verified %s: ', state, user);
+        });
+
         var joinWebmakerButton = document.querySelector("#join-webmaker");
         var signInButton = document.querySelector("#sign-in");
         var signOutButton = document.querySelector("#sign-out");

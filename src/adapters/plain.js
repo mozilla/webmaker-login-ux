@@ -1,7 +1,9 @@
 var expressions = require('angular-expressions');
+var EventEmitter = require('events').EventEmitter;
 var fs = require('fs');
 var nunjucks = require('nunjucks');
 var url = require('url');
+var util = require('util');
 var wmLoginCore = require('../core');
 
 expressions.filters.i18n = function (key) {
@@ -35,14 +37,34 @@ var ui = {
 };
 
 var WebmakerLogin = function WebmakerLogin(options) {
-  this.wmLogin = new wmLoginCore(options);
+  var wmLogin = this.wmLogin = new wmLoginCore(options);
   this.showCTA = !!options.showCTA;
+  EventEmitter.call(this);
 
   var query = url.parse(window.location.href, true).query;
   if (query.uid && query.resetCode) {
     this.request_password_reset(query.uid, query.resetCode);
+  } else if (query.uid && query.token) {
+    // :(
+    wmLogin.on('signedIn', function (user) {
+      this.emit('login', user);
+    }.bind(this));
+    wmLogin.on('signinFailed', function (uid) {
+      console.log("Instant signin failed for uid %s", uid);
+    });
   }
+
+  wmLogin.on('verified', function (user, state) {
+    this.emit('verified', user, state);
+  }.bind(this));
+  wmLogin.on('logout', function () {
+    this.emit('logout');
+  }.bind(this));
+
+  wmLogin.verify();
 };
+
+util.inherits(WebmakerLogin, EventEmitter);
 
 WebmakerLogin.prototype.create = function (email_hint, username_hint) {
   var controller = this.wmLogin.joinWebmaker(this.showCTA);
@@ -96,16 +118,16 @@ WebmakerLogin.prototype.create = function (email_hint, username_hint) {
   });
 
   controller.on('userCreated', function (user) {
-    // Should emit a logged-in event here
+    this.emit('login', user);
     _close_modal();
-  });
+  }.bind(this));
 
   controller.on('displayWelcome', function (user) {
-    // Should emit a logged-in event here
+    this.emit('login', user);
     scope.welcomeModalIdx = Math.floor(Math.random() * 2);
     scope.currentState = scope.MODALSTATE.welcome;
     _run_expressions(modal, scope);
-  });
+  }.bind(this));
 
   controller.on('displayAlert', function (alertId) {
     scope.form.user.$error[alertId] = true;
@@ -241,9 +263,9 @@ WebmakerLogin.prototype.login = function (uid_hint, password_was_reset) {
   });
 
   controller.on('signedIn', function (user) {
-    // Should emit a logged-in event here
+    this.emit('login', user);
     _close_modal();
-  });
+  }.bind(this));
 
   modal_fragment.querySelector('input[name="uid"]').addEventListener('input', function (e) {
     scope.user.uid = e.target.value;
@@ -319,8 +341,8 @@ WebmakerLogin.prototype._persona_login = function() {
   var controller = this.wmLogin.personaLogin();
 
   controller.on('signedIn', function (user) {
-    // Should emit a logged-in event here
-  });
+    this.emit('login', user);
+  }.bind(this));
 
   controller.on('newUser', function (email) {
     setTimeout(function () {
@@ -430,8 +452,8 @@ WebmakerLogin.prototype.logout = function () {
   var controller = this.wmLogin.logout();
 
   controller.on('loggedOut', function () {
-    // Should emit a logged-out event here
-  });
+    this.emit('logout');
+  }.bind(this));
 
   controller.logout();
 };
