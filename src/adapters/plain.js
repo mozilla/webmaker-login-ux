@@ -261,6 +261,15 @@ WebmakerLogin.prototype.login = function (uid_hint) {
     controller.verifyKey(scope.user.uid, scope.user.key, scope.user.rememberMe);
   });
 
+  modal_fragment.querySelector('input[name="password"]').addEventListener('blur', function (e) {
+    scope.user.password = e.target.value;
+    _run_expressions(modal, scope);
+  });
+
+  modal_fragment.querySelector('button[ng-click="user.password && submitPassword()"]').addEventListener('click', function () {
+    controller.verifyPassword(scope.user.uid, scope.user.password, scope.user.rememberMe);
+  });
+
   modal_fragment.querySelector('a[ng-click="switchToSignup();"]').addEventListener('click', function () {
     _close_modal();
     setTimeout(function () {
