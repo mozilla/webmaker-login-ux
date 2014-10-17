@@ -41,7 +41,10 @@
     </div>
     <script>
       (function() {
-        var client = new WebmakerLogin();
+        var client = new WebmakerLogin({
+          csrfToken: 'wut',
+          showCTA: true
+        });
 
         var joinWebmakerButton = document.querySelector("#join-webmaker");
         var signInButton = document.querySelector("#sign-in");

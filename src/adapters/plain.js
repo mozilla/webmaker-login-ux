@@ -35,10 +35,11 @@ var ui = {
 
 var WebmakerLogin = function WebmakerLogin(options) {
   this.wmLogin = new wmLoginCore(options);
+  this.showCTA = !!options.showCTA;
 };
 
 WebmakerLogin.prototype.create = function (email_hint, username_hint) {
-  var controller = this.wmLogin.joinWebmaker();
+  var controller = this.wmLogin.joinWebmaker(this.showCTA);
   var scope = {
     MODALSTATE: {
       inputEmail: 0,
@@ -53,15 +54,14 @@ WebmakerLogin.prototype.create = function (email_hint, username_hint) {
     },
     user: {},
     sendingRequest: false,
-    welcomeModalIdx: Math.floor(Math.random() * 4),
+    welcomeModalIdx: 0,
     canSubmitEmail: function () {
       return scope.user.email && scope.user.agree;
     }
   };
 
   var modal_fragment = _create_modal_fragment(ui.create);
-  _translate_ng_bind_html(modal_fragment);
-  _translate_bind_trusted_html(modal_fragment);
+  _translate_ng_html_expressions(modal_fragment);
 
   if (email_hint) {
     scope.user.email = email_hint;
@@ -80,15 +80,23 @@ WebmakerLogin.prototype.create = function (email_hint, username_hint) {
   controller.on('displayEmailInput', function () {
     scope.currentState = scope.MODALSTATE.inputEmail;
     _run_expressions(modal, scope);
+    modal.querySelector('input[focus-on="create-user-email"]').focus();
   });
 
   controller.on('displayUsernameInput', function () {
     scope.currentState = scope.MODALSTATE.inputUsername;
     _run_expressions(modal, scope);
+    modal.querySelector('input[focus-on="create-user-username"]').focus();
+  });
+
+  controller.on('userCreated', function (user) {
+    // Should emit a logged-in event here
+    _close_modal();
   });
 
   controller.on('displayWelcome', function (user) {
     // Should emit a logged-in event here
+    scope.welcomeModalIdx = Math.floor(Math.random() * 2);
     scope.currentState = scope.MODALSTATE.welcome;
     _run_expressions(modal, scope);
   });
@@ -118,6 +126,10 @@ WebmakerLogin.prototype.create = function (email_hint, username_hint) {
   modal_fragment.querySelector('input[name="agree"]').addEventListener('change', function (e) {
     scope.user.agree = e.target.checked;
     _run_expressions(modal, scope);
+  });
+
+  modal_fragment.querySelector('input[name="subscribeToList"]').addEventListener('change', function (e) {
+    scope.user.subscribeToList = e.target.checked;
   });
 
   modal_fragment.querySelector('button[ng-click="submitEmail()"]').addEventListener('click', function () {
@@ -171,8 +183,7 @@ WebmakerLogin.prototype.login = function (uid_hint) {
   };
 
   var modal_fragment = _create_modal_fragment(ui.login);
-  _translate_ng_bind_html(modal_fragment);
-  _translate_bind_trusted_html(modal_fragment);
+  _translate_ng_html_expressions(modal_fragment);
 
   if (uid_hint) {
     scope.user.uid = uid_hint;
@@ -291,15 +302,13 @@ var _create_modal_fragment = function (template) {
   return modal_fragment;
 };
 
-var _translate_ng_bind_html = function (modal_fragment) {
+var _translate_ng_html_expressions = function (modal_fragment) {
   var elements = modal_fragment.querySelectorAll('[ng-bind-html]');
   for (var i = 0; i < elements.length; i++) {
     elements[i].innerHTML = expressions.compile(elements[i].getAttribute('ng-bind-html'))();
   }
-};
 
-var _translate_bind_trusted_html = function (modal_fragment) {
-  var elements = modal_fragment.querySelectorAll('[bind-trusted-html]');
+  elements = modal_fragment.querySelectorAll('[bind-trusted-html]');
   for (var i = 0; i < elements.length; i++) {
     elements[i].innerHTML = expressions.compile(elements[i].getAttribute('bind-trusted-html'))();
   }
