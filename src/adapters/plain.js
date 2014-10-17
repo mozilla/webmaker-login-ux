@@ -38,7 +38,7 @@ var ui = {
 
 var WebmakerLogin = function WebmakerLogin(options) {
   var wmLogin = this.wmLogin = new wmLoginCore(options);
-  this.showCTA = !!options.showCTA;
+  this.showCTA = !! options.showCTA;
   EventEmitter.call(this);
 
   var query = url.parse(window.location.href, true).query;
@@ -206,7 +206,7 @@ WebmakerLogin.prototype.login = function (uid_hint, password_was_reset) {
       }
     },
     user: {},
-    passwordWasReset: !!password_was_reset,
+    passwordWasReset: !! password_was_reset,
     sendingRequest: false
   };
 
@@ -298,7 +298,7 @@ WebmakerLogin.prototype.login = function (uid_hint, password_was_reset) {
     controller.verifyPassword(scope.user.uid, scope.user.password, scope.user.rememberMe);
   });
 
-  modal_fragment.querySelector('a[ng-click="requestReset()"]').addEventListener('click', function() {
+  modal_fragment.querySelector('a[ng-click="requestReset()"]').addEventListener('click', function () {
     controller.requestReset(scope.user.uid);
   });
 
@@ -314,7 +314,7 @@ WebmakerLogin.prototype.login = function (uid_hint, password_was_reset) {
     }.bind(this), 0);
   }.bind(this));
 
-  modal_fragment.querySelector('a[ng-click="usePersona();"]').addEventListener('click', function() {
+  modal_fragment.querySelector('a[ng-click="usePersona();"]').addEventListener('click', function () {
     _close_modal();
     setTimeout(function () {
       this._persona_login();
@@ -337,7 +337,7 @@ WebmakerLogin.prototype.login = function (uid_hint, password_was_reset) {
   controller.start();
 };
 
-WebmakerLogin.prototype._persona_login = function() {
+WebmakerLogin.prototype._persona_login = function () {
   var controller = this.wmLogin.personaLogin();
 
   controller.on('signedIn', function (user) {
@@ -353,7 +353,7 @@ WebmakerLogin.prototype._persona_login = function() {
   controller.authenticate();
 };
 
-WebmakerLogin.prototype.request_password_reset = function(uid, token) {
+WebmakerLogin.prototype.request_password_reset = function (uid, token) {
   var controller = this.wmLogin.resetPassword();
   var scope = {
     form: {
@@ -508,10 +508,9 @@ var _run_expressions = function (modal, scope) {
       }
     }
 
-
     if (elements[i].getAttribute('ng-class')) {
       ng_class = expressions.compile(elements[i].getAttribute('ng-class'))(scope);
-      Object.keys(ng_class).forEach(function(klass) {
+      Object.keys(ng_class).forEach(function (klass) {
         if (ng_class[klass]) {
           elements[i].classList.add(klass);
         } else {
