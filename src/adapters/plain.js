@@ -197,7 +197,7 @@ WebmakerLogin.prototype.login = function (uid_hint) {
   });
 
   controller.on('displayEnterKey', function (verified) {
-    scope.verfied = verified;
+    scope.verified = verified;
     scope.currentState = scope.MODALSTATE.enterKey;
     _run_expressions(modal, scope);
     modal.querySelector('input[focus-on="enter-key"]').focus();
