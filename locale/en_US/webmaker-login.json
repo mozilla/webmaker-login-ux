@@ -4,7 +4,7 @@
     "description": "Welcome message for the join Webmaker modal dialog. Displayed after successfully creating a new Webmaker account"
   },
   "webmakerAuthServerError":  {
-    "message": "An unknown error occured on the server. Try your request again, and if the problem persists, please contact us.",
+    "message": "An unknown error occured on the server. Try your request again. If the problem persists, <a href=\"https://support.mozilla.org/kb/webmaker-account-help\" target=\"_\">get help</a>.",
     "description": "Error message displayed if an error occurs on the server."
   },
   "webmakerAuthCreateWelcome":  {
@@ -76,8 +76,8 @@
     "description": "Sign in Button text"
   },
   "Sign up":  {
-    "message": "Sign up",
-    "description": "Sign up button text"
+    "message": "Join",
+    "description": "Join button text"
   },
   "passLoginFailed":  {
     "message": "<i class=\"fa fa-times\"></i> <strong>Authentication failed!</strong>",
@@ -88,7 +88,7 @@
     "description": "Directs the user to check their email for a password reset link"
   },
   "resetRequestFailed":  {
-    "message": "<i class=\"fa fa-times\"></i> <strong>Uh oh!</strong> Something went wrong! Try requesting the password reset again.",
+    "message": "<i class=\"fa fa-times\"></i> <strong>Uh oh!</strong> Something went wrong! Try requesting the password reset again. Or, <a href=\"https://support.mozilla.org/kb/webmaker-account-help\" target=\"_\">get help</a>.",
     "description": "Error displayed if a password reset request fails."
   },
   "Password":  {
@@ -112,11 +112,11 @@
     "description": "Error message displayed when the input doesn't match a username or email"
   },
   "No account found for your uid":  {
-    "message": "<i class=\"fa fa-times\"></i> We couldn't find your username or email address. Did you mean to <a href=\"#\" ng-click=\"switchToSignup();\" class=\"alert-link\">create an account</a>?",
+    "message": "<i class=\"fa fa-times\"></i> We couldn't find your username or email address. Did you mean to <a href=\"#\" ng-click=\"switchToSignup();\" class=\"alert-link\">create an account</a>? Trouble? <a href=\"https://support.mozilla.org/kb/webmaker-account-help\" target=\"_\">Get help</a>.",
     "description": "Error message displayed when the given username or email doesn't have a Webmaker account and asks if they would like to sign up."
   },
   "problem sending token":  {
-    "message": "<i class=\"fa fa-times\"></i> There was a problem sending a login key to you, please try again.",
+    "message": "<i class=\"fa fa-times\"></i> There was a problem sending a login key to you, please try again. <a href=\"https://support.mozilla.org/kb/webmaker-account-help\" target=\"_\">Get help</a>.",
     "description": "Error message displayed when the request for a login key fails for some reason."
   },
   "incorrectToken":  {
@@ -136,7 +136,7 @@
     "description": "Label to enter key that was sent to user's email"
   },
   "you can switch to webmaker login":  {
-    "message": "Remember you can switch back to our Webmaker Login experience. We will send you email tokens, instead of having to remember passwords.",
+    "message": "You can switch back to our Webmaker Login experience. We will send you login emails so you do not need a password.",
     "description": "Message reminding users that they can switch back to the Webmaker Login Key system instead of using a password."
   },
   "Submit":  {
@@ -164,7 +164,7 @@
     "description": "A short description of the X-Ray Goggles"
   },
   "TryGoggles":  {
-    "message": "Try the Goggles now",
+    "message": "Try Goggles now",
     "description": "Text for the button that takes the user to the X-Ray Goggles homepage"
   },
   "ExploreWebmaker":  {
