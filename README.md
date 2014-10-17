@@ -1,9 +1,9 @@
-# Webmaker Login Angular
+# Webmaker Login UX
 
 ## Install
 
 ```
-bower install cadecairos/makeapi-angular
+bower install mozilla/webmaker-login-ux
 ```
 
 ## Setup
