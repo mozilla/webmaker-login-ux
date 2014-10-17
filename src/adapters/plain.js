@@ -1,6 +1,7 @@
 var expressions = require('angular-expressions');
 var fs = require('fs');
 var nunjucks = require('nunjucks');
+var url = require('url');
 var wmLoginCore = require('../core');
 
 expressions.filters.i18n = function (key) {
@@ -36,6 +37,11 @@ var ui = {
 var WebmakerLogin = function WebmakerLogin(options) {
   this.wmLogin = new wmLoginCore(options);
   this.showCTA = !!options.showCTA;
+
+  var query = url.parse(window.location.href, true).query;
+  if (query.uid && query.resetCode) {
+    this.request_password_reset(query.uid, query.resetCode);
+  }
 };
 
 WebmakerLogin.prototype.create = function (email_hint, username_hint) {
@@ -161,7 +167,7 @@ WebmakerLogin.prototype.create = function (email_hint, username_hint) {
   controller.start();
 };
 
-WebmakerLogin.prototype.login = function (uid_hint) {
+WebmakerLogin.prototype.login = function (uid_hint, password_was_reset) {
   var controller = this.wmLogin.signIn();
   var scope = {
     MODALSTATE: {
@@ -178,7 +184,7 @@ WebmakerLogin.prototype.login = function (uid_hint) {
       }
     },
     user: {},
-    passwordWasReset: false, // should this be a parameter?
+    passwordWasReset: !!password_was_reset,
     sendingRequest: false
   };
 
@@ -270,6 +276,10 @@ WebmakerLogin.prototype.login = function (uid_hint) {
     controller.verifyPassword(scope.user.uid, scope.user.password, scope.user.rememberMe);
   });
 
+  modal_fragment.querySelector('a[ng-click="requestReset()"]').addEventListener('click', function() {
+    controller.requestReset(scope.user.uid);
+  });
+
   modal_fragment.querySelector('a[ng-click="switchToSignup();"]').addEventListener('click', function () {
     _close_modal();
     setTimeout(function () {
@@ -321,6 +331,101 @@ WebmakerLogin.prototype._persona_login = function() {
   controller.authenticate();
 };
 
+WebmakerLogin.prototype.request_password_reset = function(uid, token) {
+  var controller = this.wmLogin.resetPassword();
+  var scope = {
+    form: {
+      password: {
+        $error: {}
+      }
+    },
+    password: {},
+    sendingRequest: false
+  };
+
+  var modal_fragment = _create_modal_fragment(ui.reset);
+  _translate_ng_html_expressions(modal_fragment);
+
+  controller.on('sendingRequest', function (state) {
+    scope.sendingRequest = state;
+    _run_expressions(modal, scope);
+  });
+
+  controller.on('displayAlert', function (alertId) {
+    scope.form.password.$error[alertId] = true;
+    _run_expressions(modal, scope);
+  });
+
+  controller.on('hideAlert', function (alertId) {
+    scope.form.password.$error[alertId] = false;
+    _run_expressions(modal, scope);
+  });
+
+  controller.on('checkConfirmPassword', function (status) {
+    scope.passwordsMatch = status;
+    _run_expressions(modal, scope);
+  });
+
+  controller.on('passwordCheckResult', function (result, blur) {
+    if (!result) {
+      scope.eightCharsState = scope.oneEachCaseState = scope.oneNumberState = 'default';
+      scope.isValidPassword = false;
+      return;
+    }
+
+    scope.eightCharsState = !result.lengthValid ? 'invalid' : blur ? 'valid' : '';
+    scope.oneEachCaseState = !result.caseValid ? 'invalid' : blur ? 'valid' : '';
+    scope.oneNumberState = !result.digitValid ? 'invalid' : blur ? 'valid' : '';
+    scope.isValidPassword = result.lengthValid && result.caseValid && result.digitValid;
+
+    _run_expressions(modal, scope);
+  });
+
+  controller.on('resetSucceeded', function () {
+    _close_modal();
+    setTimeout(function () {
+      this.login(uid, true);
+    }.bind(this), 0);
+  }.bind(this));
+
+  modal_fragment.querySelector('input[name="value"]').addEventListener('input', function (e) {
+    scope.password.value = e.target.value;
+    controller.checkPasswordStrength(scope.password.value, false);
+  });
+
+  modal_fragment.querySelector('input[name="value"]').addEventListener('blur', function (e) {
+    scope.password.value = e.target.value;
+    controller.checkPasswordStrength(scope.password.value, true);
+  });
+
+  modal_fragment.querySelector('input[name="confirmValue"]').addEventListener('input', function (e) {
+    scope.password.confirmValue = e.target.value;
+    controller.passwordsMatch(scope.password.value, scope.password.confirmValue, false);
+  });
+
+  modal_fragment.querySelector('input[name="confirmValue"]').addEventListener('blur', function (e) {
+    scope.password.confirmValue = e.target.value;
+    controller.passwordsMatch(scope.password.value, scope.password.confirmValue, true);
+  });
+
+  modal_fragment.querySelector('button[ng-click="submitResetRequest()"]').addEventListener('click', function (e) {
+    controller.submitResetRequest(uid, token, scope.password.value);
+  });
+
+  _run_expressions(modal_fragment, scope);
+  _open_modal(modal_fragment);
+  var modal = document.querySelector('body > div.modal');
+  modal.querySelector(".close").addEventListener("click", function () {
+    _close_modal();
+  });
+  document.querySelector('body > div.modal > .modal-dialog').addEventListener("click", function (e) {
+    e.stopPropagation();
+  });
+  document.querySelector('body > div.modal').addEventListener("click", function () {
+    _close_modal();
+  });
+};
+
 WebmakerLogin.prototype.logout = function () {
   var controller = this.wmLogin.logout();
 
@@ -353,7 +458,9 @@ var _translate_ng_html_expressions = function (modal_fragment) {
 };
 
 var _run_expressions = function (modal, scope) {
-  var elements = modal.querySelectorAll('[ng-hide],[ng-show],[ng-disabled]');
+  var elements = modal.querySelectorAll('[ng-hide],[ng-show],[ng-disabled],[ng-class]');
+  var ng_class;
+
   for (var i = 0; i < elements.length; i++) {
     if (elements[i].getAttribute('ng-disabled')) {
       if (expressions.compile(elements[i].getAttribute('ng-disabled'))(scope)) {
@@ -377,6 +484,18 @@ var _run_expressions = function (modal, scope) {
       } else {
         elements[i].classList.add('hide');
       }
+    }
+
+
+    if (elements[i].getAttribute('ng-class')) {
+      ng_class = expressions.compile(elements[i].getAttribute('ng-class'))(scope);
+      Object.keys(ng_class).forEach(function(klass) {
+        if (ng_class[klass]) {
+          elements[i].classList.add(klass);
+        } else {
+          elements[i].classList.remove(klass);
+        }
+      });
     }
   }
 };
