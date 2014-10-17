@@ -123,9 +123,13 @@
     "message": "<i class=\"fa fa-times\"></i> <strong>Uh oh!</strong> That key is not correct.",
     "description": "Error message displayed when the token used to log in is rejected."
   },
-  "Enter your key to login":  {
+  "Visit Email":  {
     "message": "Visit your email to retrieve your key",
     "description": "Label text above the login key input field"
+  },
+  "Verified Visit Email":  {
+    "message": "We emailed you a link & key to sign in",
+    "description": "Message instructing the user to check their email for an account confirmation link"
   },
   "Enter key":  {
     "message": "Enter key <i class=\"fa fa-angle-right\"></i>",

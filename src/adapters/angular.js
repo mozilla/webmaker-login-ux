@@ -300,8 +300,9 @@ module.directive('wmSignin', [
               }, 0);
             });
 
-            signinController.on('displayEnterKey', function () {
+            signinController.on('displayEnterKey', function (verified) {
               $timeout(function () {
+                $scope.verified = verified;
                 $scope.currentState = MODALSTATE.enterKey;
                 focus('input[focus-on="enter-key"]');
               }, 0);
