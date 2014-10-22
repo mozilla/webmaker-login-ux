@@ -9831,7 +9831,7 @@ WebmakerLogin.prototype.login = function (uid_hint, password_was_reset) {
   });
 
   modal_fragment.querySelector('button[ng-click="submitUid()"]').addEventListener('click', function () {
-    controller.submitUid(scope.user.uid);
+    controller.submitUid(scope.user.uid, window.location.pathname);
   });
 
   modal_fragment.querySelector('input[name="key"]').addEventListener('input', function (e) {
@@ -10153,9 +10153,10 @@ module.exports = function LoginAPI(options) {
     });
   }
 
-  function sendLoginKey(uid, callback) {
+  function sendLoginKey(uid, path, callback) {
     doRequest(loginUrls.request, {
-      uid: uid
+      uid: uid,
+      path: path
     }, callback);
   }
 
@@ -10743,7 +10744,7 @@ module.exports = function SignInController(loginApi) {
     start: function () {
       emit(SIGNIN_EVENTS.displayEnterUid);
     },
-    submitUid: function (uid) {
+    submitUid: function (uid, path) {
       clearAlerts([
         SIGNIN_ALERTS.invalidUid,
         SIGNIN_ALERTS.serverError,
@@ -10774,7 +10775,7 @@ module.exports = function SignInController(loginApi) {
           return emit(SIGNIN_EVENTS.displayEnterPassword);
         }
 
-        loginApi.sendLoginKey(uid, function sendLoginKeyCallback(err, resp, body) {
+        loginApi.sendLoginKey(uid, path, function sendLoginKeyCallback(err, resp, body) {
           if (err) {
             return displayAlert(SIGNIN_ALERTS.serverError);
           }

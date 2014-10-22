@@ -1381,8 +1381,8 @@ ngModule.directive('wmSignin', [
           $scope.signin();
         });
       },
-      controller: ['$rootScope', '$scope', '$modal', '$timeout', 'focus', 'wmLoginCore',
-        function ($rootScope, $scope, $modal, $timeout, focus, wmLoginCore) {
+      controller: ['$rootScope', '$scope', '$modal', '$timeout', '$location', 'focus', 'wmLoginCore',
+        function ($rootScope, $scope, $modal, $timeout, $location, focus, wmLoginCore) {
 
           function signinModalController($scope, $modalInstance, uid, passwordWasReset) {
             var MODALSTATE = {
@@ -1466,7 +1466,7 @@ ngModule.directive('wmSignin', [
             });
 
             $scope.submitUid = function () {
-              signinController.submitUid($scope.user.uid);
+              signinController.submitUid($scope.user.uid, $location.path());
             };
 
             $scope.enterKey = function () {
@@ -1849,9 +1849,10 @@ module.exports = function LoginAPI(options) {
     });
   }
 
-  function sendLoginKey(uid, callback) {
+  function sendLoginKey(uid, path, callback) {
     doRequest(loginUrls.request, {
-      uid: uid
+      uid: uid,
+      path: path
     }, callback);
   }
 
@@ -2439,7 +2440,7 @@ module.exports = function SignInController(loginApi) {
     start: function () {
       emit(SIGNIN_EVENTS.displayEnterUid);
     },
-    submitUid: function (uid) {
+    submitUid: function (uid, path) {
       clearAlerts([
         SIGNIN_ALERTS.invalidUid,
         SIGNIN_ALERTS.serverError,
@@ -2470,7 +2471,7 @@ module.exports = function SignInController(loginApi) {
           return emit(SIGNIN_EVENTS.displayEnterPassword);
         }
 
-        loginApi.sendLoginKey(uid, function sendLoginKeyCallback(err, resp, body) {
+        loginApi.sendLoginKey(uid, path, function sendLoginKeyCallback(err, resp, body) {
           if (err) {
             return displayAlert(SIGNIN_ALERTS.serverError);
           }
