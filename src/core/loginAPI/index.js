@@ -52,9 +52,10 @@ module.exports = function LoginAPI(options) {
     });
   }
 
-  function sendLoginKey(uid, callback) {
+  function sendLoginKey(uid, path, callback) {
     doRequest(loginUrls.request, {
-      uid: uid
+      uid: uid,
+      path: path
     }, callback);
   }
 

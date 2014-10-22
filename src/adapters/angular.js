@@ -254,8 +254,8 @@ ngModule.directive('wmSignin', [
           $scope.signin();
         });
       },
-      controller: ['$rootScope', '$scope', '$modal', '$timeout', 'focus', 'wmLoginCore',
-        function ($rootScope, $scope, $modal, $timeout, focus, wmLoginCore) {
+      controller: ['$rootScope', '$scope', '$modal', '$timeout', '$location', 'focus', 'wmLoginCore',
+        function ($rootScope, $scope, $modal, $timeout, $location, focus, wmLoginCore) {
 
           function signinModalController($scope, $modalInstance, uid, passwordWasReset) {
             var MODALSTATE = {
@@ -339,7 +339,7 @@ ngModule.directive('wmSignin', [
             });
 
             $scope.submitUid = function () {
-              signinController.submitUid($scope.user.uid);
+              signinController.submitUid($scope.user.uid, $location.path());
             };
 
             $scope.enterKey = function () {

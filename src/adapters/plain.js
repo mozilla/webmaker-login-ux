@@ -347,7 +347,7 @@ WebmakerLogin.prototype.login = function (uid_hint, password_was_reset) {
   });
 
   modal_fragment.querySelector('button[ng-click="submitUid()"]').addEventListener('click', function () {
-    controller.submitUid(scope.user.uid);
+    controller.submitUid(scope.user.uid, window.location.pathname);
   });
 
   modal_fragment.querySelector('input[name="key"]').addEventListener('input', function (e) {
