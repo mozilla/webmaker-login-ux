@@ -1,12 +1,12 @@
 .modal-content {
-  padding: 0 0 2rem 0;
+  padding: 0 0 20px 0;
 }
 .modal-content .modal-header {
-  padding: 2rem 3rem 0 3rem;
+  padding: 20px 30px 0 30px;
   border-bottom-style: none;
 }
 .modal-content .modal-body {
-  padding: 1rem 3rem;
+  padding: 10px 30px;
 }
 .modal-content .modal-body label[for=email],
 .modal-content .modal-body label[for=uid],
@@ -15,14 +15,14 @@
 .modal-content .modal-body label[for=password],
 .modal-content .modal-body label[for=value],
 .modal-content .modal-body label[for=confirmValue] {
-  font-size: 1.333333333rem;
+  font-size: 13.333333333px;
   font-weight: 600;
   color: #454545;
   text-transform: uppercase;
 }
 .modal-content .modal-body label[for=pre-username] {
   display: block;
-  font-size: 1.333333333rem;
+  font-size: 13.333333333px;
   font-weight: 600;
   color: #454545;
   text-transform: uppercase;
@@ -45,7 +45,7 @@
   }
 }
 .modal-content .modal-body .form-group {
-  margin-bottom: 1.5rem;
+  margin-bottom: 15px;
 }
 .modal-content .modal-body .form-group.half-width {
   margin-left: 0;
@@ -66,29 +66,29 @@
   }
 }
 .modal-content .modal-body .subheadline {
-  margin-top: -1rem;
+  margin-top: -10px;
 }
 .modal-content .modal-body .tool-desc {
-  margin: 1.5rem 0 0 0;
+  margin: 15px 0 0 0;
 }
 .modal-content .modal-body .tool-desc .icon {
   float: left;
-  margin-right: 1.875rem;
+  margin-right: 18.75px;
 }
 .modal-content .modal-body .tool-desc .icon svg {
-  width: 13rem;
-  height: 12.3rem;
+  width: 130px;
+  height: 123px;
 }
 .modal-content .modal-body .tool-desc .btn-primary {
   float: left;
 }
 .modal-content .modal-body .tool-desc .explore-link {
   float: left;
-  font-size: 1.3rem;
-  margin: 1.4rem 0 0 1.2rem;
+  font-size: 13px;
+  margin: 14px 0 0 12px;
 }
 .modal-content .modal-body .enterToken .email-container {
-  margin-top: 1rem;
+  margin-top: 10px;
   display: -webkit-flex;
   display: flex;
 }
@@ -110,13 +110,13 @@
 .modal-content .modal-body .enterToken .key-group {
   -webkit-flex: 3;
   flex: 3;
-  padding: 1rem 0 0 2rem;
+  padding: 10px 0 0 20px;
   border-left: 1px solid #DDDDDD;
 }
 .modal-content .modal-body .checkEmail hr,
 .modal-content .modal-body .resetRequestSent hr,
 .modal-content .modal-body .enterPassword hr {
-  margin: 2rem 0 1.5rem 0;
+  margin: 20px 0 15px 0;
 }
 .modal-content .modal-body .checkEmail .mailIcon svg,
 .modal-content .modal-body .resetRequestSent .mailIcon svg,
@@ -135,7 +135,7 @@
 .modal-content .modal-body .resetRequestSent .mailIcon p,
 .modal-content .modal-body .enterPassword .mailIcon p {
   text-align: center;
-  margin: 2rem 0 1rem 1.5rem;
+  margin: 20px 0 10px 15px;
 }
 @media (min-width: 480px) {
   .modal-content .modal-body .checkEmail .mailIcon p,
@@ -143,18 +143,18 @@
   .modal-content .modal-body .enterPassword .mailIcon p {
     float: left;
     text-align: left;
-    margin: 3.3rem 0 0 1.5rem;
+    margin: 33px 0 0 15px;
   }
 }
 .modal-content .modal-body .checkEmail .enter-key,
 .modal-content .modal-body .resetRequestSent .enter-key,
 .modal-content .modal-body .enterPassword .enter-key {
-  margin: -1rem 0 0 0;
+  margin: -10px 0 0 0;
   text-align: right;
 }
 .modal-content .modal-body .help-footer {
   padding: 0;
-  margin-bottom: -1rem;
+  margin-bottom: -10px;
   background: none;
   text-align: right;
   color: inherit;
@@ -187,13 +187,13 @@
   float: left;
 }
 .modal-content .modal-body .cta-links p {
-  margin: 1.3rem 0 0 0.8rem;
+  margin: 13px 0 0 8px;
 }
 .modal-content .modal-body .btn-primary {
-  margin-top: 0.625rem;
+  margin-top: 6.25px;
 }
 .modal-content .modal-body .password-label {
-  margin-bottom: 0.5rem;
+  margin-bottom: 5px;
   font-weight: 400;
 }
 .modal-content .modal-body ul.password-strength li {
@@ -207,10 +207,10 @@
   color: #3fb58e;
 }
 .modal-content .alert {
-  margin-bottom: 1.3rem;
+  margin-bottom: 13px;
 }
 .modal-content p {
-  line-height: 2.2rem;
+  line-height: 22px;
   font-weight: 300;
 }
 .navbar-btn {
