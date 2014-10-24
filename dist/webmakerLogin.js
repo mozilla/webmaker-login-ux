@@ -9603,7 +9603,7 @@ var WebmakerLogin = function WebmakerLogin(options) {
   if (query.uid && query.resetCode) {
     this.request_password_reset(query.uid, query.resetCode);
   } else if (query.uid && query.token) {
-    // :(
+    wmLogin.instantLogin(query.uid, query.token, query.validFor);
     wmLogin.on('signedIn', function (user) {
       this.emit('login', user);
     }.bind(this));
