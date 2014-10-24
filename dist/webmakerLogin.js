@@ -9615,9 +9615,6 @@ var WebmakerLogin = function WebmakerLogin(options) {
   wmLogin.on('verified', function (user) {
     this.emit('verified', user);
   }.bind(this));
-  wmLogin.on('logout', function () {
-    this.emit('logout');
-  }.bind(this));
 
   wmLogin.verify();
 };

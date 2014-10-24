@@ -1224,12 +1224,6 @@ ngModule.factory('wmLoginCore', ['$rootScope', '$location', '$timeout', 'csrf',
       }, 0);
     });
 
-    core.on('logout', function () {
-      $timeout(function () {
-        $rootScope._user = {};
-      }, 0);
-    });
-
     core.verify();
 
     return core;
