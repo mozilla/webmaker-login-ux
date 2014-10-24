@@ -1,10 +1,6 @@
 var request = require('browser-request');
 
 module.exports = function LoginAPI(options) {
-  if (!window.localStorage) {
-    console.error('Local storage must be supported for instant login.');
-  }
-
   options = options || {};
   options.paths = options.paths || {};
 

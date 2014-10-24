@@ -9612,8 +9612,8 @@ var WebmakerLogin = function WebmakerLogin(options) {
     });
   }
 
-  wmLogin.on('verified', function (user, state) {
-    this.emit('verified', user, state);
+  wmLogin.on('verified', function (user) {
+    this.emit('verified', user);
   }.bind(this));
   wmLogin.on('logout', function () {
     this.emit('logout');
@@ -10020,7 +10020,6 @@ window.WebmakerLogin = WebmakerLogin;
 
 },{"../../locale/en_US/webmaker-login.json":1,"../core":19,"angular-expressions":2,"events":6,"nunjucks":16,"url":13,"util":15}],19:[function(require,module,exports){
 var state = require('./state');
-var storage = require('./storage');
 var LoginAPI = require('./loginAPI');
 var Emitter = require('./state/emitter');
 
@@ -10029,14 +10028,6 @@ module.exports = function WebmakerLoginCore(options) {
   var emitter = new Emitter();
 
   function verify() {
-    var storedUser = storage.get();
-
-    if (storedUser) {
-      emitter.emit('verified', storedUser, 'restored');
-    } else {
-      storedUser = {};
-    }
-
     loginAPI.verify(function (err, resp, body) {
       if (err) {
         return emitter.emit('error', err);
@@ -10048,16 +10039,7 @@ module.exports = function WebmakerLoginCore(options) {
         return emitter.emit('error', 'could not parse json from verify route');
       }
 
-      if (storedUser.email && body.email === storedUser.email) {
-        emitter.emit('verified', body.user, 'valid-session');
-        storage.set(body.user);
-      } else if (body.user) {
-        emitter.emit('verified', body.user, 'email-mismatch');
-        storage.set(body.user);
-      } else {
-        emitter.emit('logout');
-        storage.clear();
-      }
+      emitter.emit('verified', body.user);
     });
   }
 
@@ -10098,14 +10080,10 @@ module.exports = function WebmakerLoginCore(options) {
   };
 };
 
-},{"./loginAPI":20,"./state":24,"./state/emitter":23,"./storage":30}],20:[function(require,module,exports){
+},{"./loginAPI":20,"./state":24,"./state/emitter":23}],20:[function(require,module,exports){
 var request = require('browser-request');
 
 module.exports = function LoginAPI(options) {
-  if (!window.localStorage) {
-    console.error('Local storage must be supported for instant login.');
-  }
-
   options = options || {};
   options.paths = options.paths || {};
 
@@ -10509,7 +10487,7 @@ module.exports = function JoinController(loginApi, showCTA) {
   };
 };
 
-},{"../validation":31,"./emitter.js":23,"webmaker-analytics":17}],26:[function(require,module,exports){
+},{"../validation":30,"./emitter.js":23,"webmaker-analytics":17}],26:[function(require,module,exports){
 var Emitter = require('./emitter.js');
 var analytics = require('webmaker-analytics');
 
@@ -10680,7 +10658,7 @@ module.exports = function ResetController(loginApi) {
   };
 };
 
-},{"../validation":31,"./emitter.js":23,"webmaker-analytics":17}],29:[function(require,module,exports){
+},{"../validation":30,"./emitter.js":23,"webmaker-analytics":17}],29:[function(require,module,exports){
 var Emitter = require('./emitter.js');
 var validation = require('../validation');
 var analytics = require('webmaker-analytics');
@@ -10860,36 +10838,7 @@ module.exports = function SignInController(loginApi) {
   };
 };
 
-},{"../validation":31,"./emitter.js":23,"webmaker-analytics":17}],30:[function(require,module,exports){
-var STORAGE_KEY = 'webmaker-login';
-
-module.exports = {
-  get: function (key) {
-    var data = JSON.parse(localStorage.getItem(STORAGE_KEY));
-    if (!data) {
-      return;
-    }
-    if (key) {
-      return data[key];
-    } else {
-      return data;
-    }
-  },
-  set: function (data) {
-    var userObj = JSON.parse(localStorage.getItem(STORAGE_KEY)) || {};
-    for (var key in data) {
-      if (data.hasOwnProperty(key)) {
-        userObj[key] = data[key];
-      }
-    }
-    localStorage.setItem(STORAGE_KEY, JSON.stringify(userObj));
-  },
-  clear: function () {
-    delete localStorage[STORAGE_KEY];
-  }
-};
-
-},{}],31:[function(require,module,exports){
+},{"../validation":30,"./emitter.js":23,"webmaker-analytics":17}],30:[function(require,module,exports){
 var usernameRegex = /^[a-zA-Z0-9\-]{1,20}$/,
   emailRegex = /^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$/,
   containsBothCases = /^.*(?=.*[a-z])(?=.*[A-Z]).*$/,

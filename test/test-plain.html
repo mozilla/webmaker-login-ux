@@ -52,8 +52,8 @@
         client.on('logout', function () {
           console.log('logout');
         });
-        client.on('verified', function (user, state) {
-          console.log('verified %s: ', state, user);
+        client.on('verified', function (user) {
+          console.log('verified: ', user);
         });
 
         var joinWebmakerButton = document.querySelector("#join-webmaker");

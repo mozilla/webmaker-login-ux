@@ -88,6 +88,10 @@ ngModule.factory('wmLoginCore', ['$rootScope', '$location', '$timeout', 'csrf',
     }
 
     core.on('verified', function (user) {
+      if (!user) {
+        return;
+      }
+
       $timeout(function () {
         $rootScope._user = user;
       }, 0);
