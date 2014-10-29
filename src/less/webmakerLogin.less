@@ -4,10 +4,15 @@
 @red: #EB5D52;
 
 .uppercase-label() {
-  font-size: 13.333333333px;
-  font-weight: 600;
-  color: #454545;
-  text-transform: uppercase;
+  font-weight: normal;
+  margin-bottom: 8px;
+  @media (min-width: @screen-xs-min) {
+    margin-bottom: 5px;
+    font-size: 13.333333333px;
+    font-weight: 600;
+    color: #454545;
+    text-transform: uppercase;
+  }
 }
 
 /*********************************************************
@@ -15,7 +20,7 @@
 */
 .modal-backdrop {
   @media (max-width: @screen-xs-max) {
-    background: white;
+    background: #F6F7F7;
     &.in {
       opacity: 1;
     }
@@ -36,6 +41,7 @@
 * Header
 */
 .modal-header {
+    background: white;
     height: 50px;
     line-height: 50px;
     padding: 0;
@@ -59,6 +65,19 @@
     padding: 0 12px;
     font-size: 12px;
     height: 50px;
+    width: 20%;
+  }
+  a, button, span {
+    @media (max-width: @screen-xs-max) {
+      color: @green;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+  }
+  .modal-title-center {
+    width: 60%;
+    float: left;
   }
   .modal-title-left {
     float: left;
@@ -67,6 +86,10 @@
     float: right;
   }
   @media (min-width: @screen-xs-min) {
+    .modal-title-center {
+      width: auto;
+      float: none;
+    }
     font-size: 20px;
     a, button {
       display: none;
@@ -74,11 +97,12 @@
   }
 }
 
-
 .modal-content {
   padding: 0 0 20px 0;
   .modal-body {
-    padding: 10px 30px;
+    @media (min-width: @screen-xs-min) {
+      padding: 10px 30px;
+    }
     label[for=email], label[for=uid], label[for=key], label[for=persona-username], label[for=password] , label[for=value], label[for=confirmValue]{
       .uppercase-label();
     }
@@ -101,8 +125,16 @@
         text-align: left;
       }
     }
+    .form-control {
+      @media (max-width: @screen-xs-max) {
+        padding: 18px 12px;
+      }
+    }
     .form-group {
-      margin-bottom: 15px;
+      margin-bottom: 10px;
+      @media (min-width: @screen-xs-min) {
+        margin-bottom: 15px;
+      }
       &.half-width {
         margin-left: 0;
         width: 100%;
@@ -142,15 +174,19 @@
     }
 
     .enterToken {
+      text-align: center;
+      @media (min-width: @screen-xs-min) {
+        text-align: left;
+      }
       .email-container {
         margin-top: 10px;
-        display: -webkit-flex;
-        display: flex;
+        @media (min-width: @screen-xs-min) {
+          display: -webkit-flex;
+          display: flex;
+        }
       }
       .mailIcon {
         text-align: center;
-        -webkit-flex: 3;
-        flex: 3;
         @media (min-width: @screen-xs-min) {
           -webkit-flex: 1;
           flex: 1;
@@ -161,10 +197,12 @@
         }
       }
       .key-group {
-        -webkit-flex: 3;
-        flex: 3;
-        padding: 10px 0 0 20px;
-        border-left: 1px solid #DDDDDD;
+        @media (min-width: @screen-xs-min) {
+          border-left: 1px solid #DDDDDD;
+          -webkit-flex: 3;
+          flex: 3;
+          padding: 10px 0 0 20px;
+        }
       }
     }
 
@@ -200,10 +238,16 @@
 
     .help-footer {
       padding: 0;
-      margin-bottom: -10px;
       background: none;
-      text-align: right;
+      text-align: center;
       color: inherit;
+      font-size: 13px;
+      color: #999;
+      @media (min-width: @screen-xs-min) {
+        margin-bottom: -10px;
+        font-size: normal;
+        text-align: right;
+      }
       p {
         margin: 0;
         padding: 0;
@@ -229,11 +273,15 @@
       }
     }
     .cta-links {
-      button, p {
-        float: left;
-      }
-      p {
-        margin: 13px 0 0 8px;
+      text-align: center;
+      @media (min-width: @screen-xs-min) {
+        text-align: left;
+        button, p {
+          float: left;
+        }
+        p {
+          margin: 13px 0 0 8px;
+        }
       }
     }
     .btn-primary {

@@ -1,11 +1,15 @@
 <div class="modal-header">
   <button ng-click="cancel()" type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-  <div class="modal-title" ng-show="currentState === MODALSTATE.enterUid || currentState === MODALSTATE.enterPassword">
-    <a href="#" class="modal-title-left">Cancel</a>
-    {{ 'Sign in to Webmaker' | i18n }}
-    <a href="#" class="modal-title-right">Next</a>
-  </div>
-  <h3 class="modal-title" ng-show="currentState === MODALSTATE.checkEmail || currentState === MODALSTATE.resetRequestSent || currentState === MODALSTATE.enterKey">{{ 'checkEmail' | i18n }}</h3>
+  <h3 class="modal-title" ng-show="currentState === MODALSTATE.enterUid || currentState === MODALSTATE.enterPassword">
+    <a href="#" ng-click="cancel()" class="modal-title-left">{{ 'Cancel' | i18n }}</a>
+    <span class="modal-title-center">{{ 'Sign in to Webmaker' | i18n }}</span>
+    <a href="#" ng-disabled="sendingRequest" ng-click="submitUid()" class="modal-title-right">{{ 'Next' | i18n }}</a>
+  </h3>
+  <h3 class="modal-title" ng-show="currentState === MODALSTATE.checkEmail || currentState === MODALSTATE.resetRequestSent || currentState === MODALSTATE.enterKey">
+    <a href="#" ng-click="cancel()" class="modal-title-left">{{ 'Cancel' | i18n }}</a>
+    <span class="modal-title-center">{{ 'checkEmail' | i18n }}</span>
+    <a href="#"  ng-disabled="sendingRequest" ng-click="user.key && submitKey()" tabindex="7" class="modal-title-right">{{ 'Next' | i18n }}</a>
+  </h3>
 </div>
 <div class="modal-body">
   <form class="form" name="form.user" novalidate>
@@ -22,10 +26,10 @@
     <div ng-show="currentState === MODALSTATE.enterUid;">
       <div class="form-group">
         <label for="uid">{{ 'EmailOrUsername' | i18n }}</label>
-        <input name="uid" class="form-control" ng-model="user.uid" autocomplete="on" required tabindex="1" autofocus="true" focus-on="login-uid" ng-keyup="$event.keyCode === 13 && !sendingRequest && submitUid()">
+        <input name="uid" class="form-control" ng-model="user.uid" autocomplete="on" required tabindex="1" autofocus="true" focus-on="login-uid" ng-keyup="$event.keyCode === 13 && !sendingRequest && submitUid()" placeholder="test@example.com">
       </div>
       <div class="cta-links clearfix">
-        <button class="submit-userid btn btn-primary" type="button" ng-disabled="sendingRequest" ng-click="submitUid()" tabindex="2">{{ 'Sign in' | i18n }}</button>
+        <button class="submit-userid btn btn-primary hidden-xs" type="button" ng-disabled="sendingRequest" ng-click="submitUid()" tabindex="2">{{ 'Sign in' | i18n }}</button>
         <p ng-disabled="sendingRequest" bind-trusted-html="'log in with Persona' | i18n"></p>
       </div>
     </div>
@@ -89,7 +93,7 @@
             <label for="key" ng-show="verified">{{ 'Verified Visit Email' | i18n }}</label>
             <input ng-model="user.key" name="key" class="form-control" type="text" required tabindex="6" focus-on="enter-key" ng-keyup="$event.keyCode === 13 && user.key && !sendingRequest && submitKey()">
           </div>
-          <button class="submit-userid btn btn-primary" type="button" ng-disabled="sendingRequest" ng-click="user.key && submitKey()" tabindex="7">{{ 'Submit' | i18n }}</button>
+          <button class="hidden-xs submit-userid btn btn-primary" type="button" ng-disabled="sendingRequest" ng-click="user.key && submitKey()" tabindex="7">{{ 'Submit' | i18n }}</button>
         </div>
       </div>
       <hr>

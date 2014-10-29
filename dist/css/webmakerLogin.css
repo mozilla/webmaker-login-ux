@@ -3,7 +3,7 @@
 */
 @media (max-width: 479px) {
   .modal-backdrop {
-    background: white;
+    background: #F6F7F7;
   }
   .modal-backdrop.in {
     opacity: 1;
@@ -22,6 +22,7 @@
 * Header
 */
 .modal-header {
+  background: white;
   height: 50px;
   line-height: 50px;
   padding: 0;
@@ -49,6 +50,21 @@
   padding: 0 12px;
   font-size: 12px;
   height: 50px;
+  width: 20%;
+}
+@media (max-width: 479px) {
+  .modal-title a,
+  .modal-title button,
+  .modal-title span {
+    color: #3fb58e;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+}
+.modal-title .modal-title-center {
+  width: 60%;
+  float: left;
 }
 .modal-title .modal-title-left {
   float: left;
@@ -60,6 +76,10 @@
   .modal-title {
     font-size: 20px;
   }
+  .modal-title .modal-title-center {
+    width: auto;
+    float: none;
+  }
   .modal-title a,
   .modal-title button {
     display: none;
@@ -68,8 +88,10 @@
 .modal-content {
   padding: 0 0 20px 0;
 }
-.modal-content .modal-body {
-  padding: 10px 30px;
+@media (min-width: 480px) {
+  .modal-content .modal-body {
+    padding: 10px 30px;
+  }
 }
 .modal-content .modal-body label[for=email],
 .modal-content .modal-body label[for=uid],
@@ -78,17 +100,37 @@
 .modal-content .modal-body label[for=password],
 .modal-content .modal-body label[for=value],
 .modal-content .modal-body label[for=confirmValue] {
-  font-size: 13.333333333px;
-  font-weight: 600;
-  color: #454545;
-  text-transform: uppercase;
+  font-weight: normal;
+  margin-bottom: 8px;
+}
+@media (min-width: 480px) {
+  .modal-content .modal-body label[for=email],
+  .modal-content .modal-body label[for=uid],
+  .modal-content .modal-body label[for=key],
+  .modal-content .modal-body label[for=persona-username],
+  .modal-content .modal-body label[for=password],
+  .modal-content .modal-body label[for=value],
+  .modal-content .modal-body label[for=confirmValue] {
+    margin-bottom: 5px;
+    font-size: 13.333333333px;
+    font-weight: 600;
+    color: #454545;
+    text-transform: uppercase;
+  }
 }
 .modal-content .modal-body label[for=pre-username] {
   display: block;
-  font-size: 13.333333333px;
-  font-weight: 600;
-  color: #454545;
-  text-transform: uppercase;
+  font-weight: normal;
+  margin-bottom: 8px;
+}
+@media (min-width: 480px) {
+  .modal-content .modal-body label[for=pre-username] {
+    margin-bottom: 5px;
+    font-size: 13.333333333px;
+    font-weight: 600;
+    color: #454545;
+    text-transform: uppercase;
+  }
 }
 .modal-content .modal-body label[for=username] {
   float: left;
@@ -107,8 +149,18 @@
     text-align: left;
   }
 }
+@media (max-width: 479px) {
+  .modal-content .modal-body .form-control {
+    padding: 18px 12px;
+  }
+}
 .modal-content .modal-body .form-group {
-  margin-bottom: 15px;
+  margin-bottom: 10px;
+}
+@media (min-width: 480px) {
+  .modal-content .modal-body .form-group {
+    margin-bottom: 15px;
+  }
 }
 .modal-content .modal-body .form-group.half-width {
   margin-left: 0;
@@ -150,15 +202,25 @@
   font-size: 13px;
   margin: 14px 0 0 12px;
 }
+.modal-content .modal-body .enterToken {
+  text-align: center;
+}
+@media (min-width: 480px) {
+  .modal-content .modal-body .enterToken {
+    text-align: left;
+  }
+}
 .modal-content .modal-body .enterToken .email-container {
   margin-top: 10px;
-  display: -webkit-flex;
-  display: flex;
+}
+@media (min-width: 480px) {
+  .modal-content .modal-body .enterToken .email-container {
+    display: -webkit-flex;
+    display: flex;
+  }
 }
 .modal-content .modal-body .enterToken .mailIcon {
   text-align: center;
-  -webkit-flex: 3;
-  flex: 3;
 }
 @media (min-width: 480px) {
   .modal-content .modal-body .enterToken .mailIcon {
@@ -170,11 +232,13 @@
   width: 80%;
   margin: 0 auto;
 }
-.modal-content .modal-body .enterToken .key-group {
-  -webkit-flex: 3;
-  flex: 3;
-  padding: 10px 0 0 20px;
-  border-left: 1px solid #DDDDDD;
+@media (min-width: 480px) {
+  .modal-content .modal-body .enterToken .key-group {
+    border-left: 1px solid #DDDDDD;
+    -webkit-flex: 3;
+    flex: 3;
+    padding: 10px 0 0 20px;
+  }
 }
 .modal-content .modal-body .checkEmail hr,
 .modal-content .modal-body .resetRequestSent hr,
@@ -217,10 +281,18 @@
 }
 .modal-content .modal-body .help-footer {
   padding: 0;
-  margin-bottom: -10px;
   background: none;
-  text-align: right;
+  text-align: center;
   color: inherit;
+  font-size: 13px;
+  color: #999;
+}
+@media (min-width: 480px) {
+  .modal-content .modal-body .help-footer {
+    margin-bottom: -10px;
+    font-size: normal;
+    text-align: right;
+  }
 }
 .modal-content .modal-body .help-footer p {
   margin: 0;
@@ -245,12 +317,20 @@
 .modal-content .modal-body .mailing-list-checkbox input[type="checkbox"]:focus {
   outline: 0;
 }
-.modal-content .modal-body .cta-links button,
-.modal-content .modal-body .cta-links p {
-  float: left;
+.modal-content .modal-body .cta-links {
+  text-align: center;
 }
-.modal-content .modal-body .cta-links p {
-  margin: 13px 0 0 8px;
+@media (min-width: 480px) {
+  .modal-content .modal-body .cta-links {
+    text-align: left;
+  }
+  .modal-content .modal-body .cta-links button,
+  .modal-content .modal-body .cta-links p {
+    float: left;
+  }
+  .modal-content .modal-body .cta-links p {
+    margin: 13px 0 0 8px;
+  }
 }
 .modal-content .modal-body .btn-primary {
   margin-top: 6.25px;
