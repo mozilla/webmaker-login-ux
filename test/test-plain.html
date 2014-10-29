@@ -3,12 +3,13 @@
   <head>
     <meta charset="utf-8">
     <title>Webmaker Login Plain JS Test</title>
-
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1, maximum-scale=1">
     <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.css">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
     <link rel="stylesheet" href="/css/webmakerLogin.css">
     <link href="https://stuff.webmaker.org/makerstrap/latest/makerstrap.complete.min.css" rel="stylesheet">
 
+    <script src="https://code.jquery.com/jquery-1.11.0.min.js"></script>
     <script src="https://login.persona.org/include.js"></script>
     <script src="/webmakerLogin.js"></script>
   </head>
@@ -67,6 +68,17 @@
         });
         joinWebmakerButton.addEventListener("click", function() {
           client.create();
+        });
+
+        // Navbar
+        var $collapse = $('.navbar-collapse');
+        $('.navbar-toggle').on('click', function (e) {
+          e.preventDefault();
+          if ($collapse.hasClass('collapse')) {
+            $collapse.removeClass('collapse');
+          } else {
+            $collapse.addClass('collapse')
+          }
         });
       }());
     </script>
