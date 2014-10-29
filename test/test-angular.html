@@ -157,10 +157,10 @@ var app = angular.module('loginTestApp', [ 'localization', 'ui.bootstrap','ngWeb
 
 app.run();
   </script>
-  <nav class="navbar navbar-webmaker">
+  <nav class="navbar navbar-webmaker" ng-init="isCollapsed = true">
     <div class="container">
       <div class="navbar-header">
-        <button class="navbar-toggle" nav-toggle="">
+        <button class="navbar-toggle" nav-toggle="" ng-click="isCollapsed = !isCollapsed">
           <span class="sr-only">Toggle navigation</span>
           <span class="fa fa-bars fa-lg"></span>
         </button>
@@ -168,7 +168,7 @@ app.run();
           <img src="https://webmaker.org/img/logo.png">
         </a>
       </div>
-      <div class="navbar-collapse collapse">
+      <div class="navbar-collapse" ng-class="{collapse: isCollapsed}">
         <form class="navbar-form navbar-right">
           <select style="display: none;" tabindex="-1" class="form-control selectize selectized"><option value="en-us" selected="selected"></option></select><div class="selectize-control form-control selectize single"><div class="selectize-input items has-options full has-items"><div data-value="en-us" class="item">English</div><input style="width: 4px; opacity: 0; position: absolute; left: -10000px;" tabindex="" autocomplete="off" type="text"></div><div style="display: none;" class="selectize-dropdown form-control selectize single"><div class="selectize-dropdown-content"><div data-value="en-us" data-selectable="" class="option selected">English</div><div data-value="fr-ca" data-selectable="" class="option">Français</div></div></div></div>
         </form>
