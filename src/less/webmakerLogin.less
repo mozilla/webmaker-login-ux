@@ -9,6 +9,25 @@
   text-transform: uppercase;
 }
 
+.modal-backdrop {
+  @media (max-width: (@screen-xs-min - 1)) {
+    background: white;
+    &.in {
+      opacity: 1;
+    }
+  }
+}
+
+.modal-dialog,
+.modal-content {
+  @media (max-width: (@screen-xs-min - 1)) {
+    background: none;
+    box-shadow: none;
+    margin: 0;
+    border: none;
+  }
+}
+
 .modal-content {
   padding: 0 0 20px 0;
   .modal-header {

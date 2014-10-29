@@ -1,3 +1,20 @@
+@media (max-width: 479px) {
+  .modal-backdrop {
+    background: white;
+  }
+  .modal-backdrop.in {
+    opacity: 1;
+  }
+}
+@media (max-width: 479px) {
+  .modal-dialog,
+  .modal-content {
+    background: none;
+    box-shadow: none;
+    margin: 0;
+    border: none;
+  }
+}
 .modal-content {
   padding: 0 0 20px 0;
 }
