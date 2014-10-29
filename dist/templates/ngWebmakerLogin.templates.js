@@ -260,7 +260,7 @@ angular.module("signin-modal.html", []).run(["$templateCache", function($templat
   "        <p>{{ 'tokenMessage' | i18n }}</p>\n" +
   "      </div>\n" +
   "      <div class=\"enter-key\">\n" +
-  "        <a href=\"#\" ng-click=\"enterKey()\" tabindex=\"4\" ng-bind-html=\"'Enter key' | i18n\"></a>\n" +
+  "        <a ng-click=\"enterKey()\" tabindex=\"4\" ng-bind-html=\"'Enter key' | i18n\"></a>\n" +
   "      </div>\n" +
   "      <hr>\n" +
   "      <footer class=\"help-footer\">\n" +
@@ -314,7 +314,7 @@ angular.module("signin-modal.html", []).run(["$templateCache", function($templat
   "        </div>\n" +
   "        <div class=\"cta-links clearfix\">\n" +
   "          <button class=\"submit-password btn btn-primary\" type=\"button\" ng-disabled=\"sendingRequest\" ng-click=\"user.password && submitPassword()\" tabindex=\"9\">{{ 'Submit' | i18n }}</button>\n" +
-  "          <p><a href=\"#\" ng-click=\"requestReset()\">{{ 'Forgot your password?' | i18n }}</a></p>\n" +
+  "          <p><a ng-click=\"requestReset()\">{{ 'Forgot your password?' | i18n }}</a></p>\n" +
   "        </div>\n" +
   "      </div>\n" +
   "      <hr>\n" +
