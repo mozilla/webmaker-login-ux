@@ -211,7 +211,11 @@ angular.module("signin-modal.html", []).run(["$templateCache", function($templat
  $templateCache.put("signin-modal.html",
   "<div class=\"modal-header\">\n" +
   "  <button ng-click=\"cancel()\" type=\"button\" class=\"close\" data-dismiss=\"modal\" aria-hidden=\"true\">&times;</button>\n" +
-  "  <h3 class=\"modal-title\" ng-show=\"currentState === MODALSTATE.enterUid || currentState === MODALSTATE.enterPassword\">{{ 'Sign in to Webmaker' | i18n }}</h3>\n" +
+  "  <div class=\"modal-title\" ng-show=\"currentState === MODALSTATE.enterUid || currentState === MODALSTATE.enterPassword\">\n" +
+  "    <a href=\"#\" class=\"modal-title-left\">Cancel</a>\n" +
+  "    {{ 'Sign in to Webmaker' | i18n }}\n" +
+  "    <a href=\"#\" class=\"modal-title-right\">Next</a>\n" +
+  "  </div>\n" +
   "  <h3 class=\"modal-title\" ng-show=\"currentState === MODALSTATE.checkEmail || currentState === MODALSTATE.resetRequestSent || currentState === MODALSTATE.enterKey\">{{ 'checkEmail' | i18n }}</h3>\n" +
   "</div>\n" +
   "<div class=\"modal-body\">\n" +

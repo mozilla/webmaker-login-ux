@@ -1,6 +1,10 @@
 <div class="modal-header">
   <button ng-click="cancel()" type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-  <h3 class="modal-title" ng-show="currentState === MODALSTATE.enterUid || currentState === MODALSTATE.enterPassword">{{ 'Sign in to Webmaker' | i18n }}</h3>
+  <div class="modal-title" ng-show="currentState === MODALSTATE.enterUid || currentState === MODALSTATE.enterPassword">
+    <a href="#" class="modal-title-left">Cancel</a>
+    {{ 'Sign in to Webmaker' | i18n }}
+    <a href="#" class="modal-title-right">Next</a>
+  </div>
   <h3 class="modal-title" ng-show="currentState === MODALSTATE.checkEmail || currentState === MODALSTATE.resetRequestSent || currentState === MODALSTATE.enterKey">{{ 'checkEmail' | i18n }}</h3>
 </div>
 <div class="modal-body">

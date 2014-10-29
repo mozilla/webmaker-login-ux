@@ -1,4 +1,5 @@
 @screen-xs-min: 480px;
+@screen-xs-max: 479px;
 @green: #3fb58e;
 @red: #EB5D52;
 
@@ -9,8 +10,11 @@
   text-transform: uppercase;
 }
 
+/*********************************************************
+* Mobile dialog display
+*/
 .modal-backdrop {
-  @media (max-width: (@screen-xs-min - 1)) {
+  @media (max-width: @screen-xs-max) {
     background: white;
     &.in {
       opacity: 1;
@@ -20,7 +24,7 @@
 
 .modal-dialog,
 .modal-content {
-  @media (max-width: (@screen-xs-min - 1)) {
+  @media (max-width: @screen-xs-max) {
     background: none;
     box-shadow: none;
     margin: 0;
@@ -28,12 +32,51 @@
   }
 }
 
+/*********************************************************
+* Header
+*/
+.modal-header {
+    height: 50px;
+    line-height: 50px;
+    padding: 0;
+    .close {
+      display: none;
+    }
+    @media (min-width: @screen-xs-min) {
+      .close {
+        display: block;
+      }
+      height: auto;
+      padding: 20px 30px 0 30px;
+      border-bottom-style: none;
+    }
+}
+.modal-title {
+  line-height: inherit;
+  font-size: 16px;
+  text-align: center;
+  a, button {
+    padding: 0 12px;
+    font-size: 12px;
+    height: 50px;
+  }
+  .modal-title-left {
+    float: left;
+  }
+  .modal-title-right {
+    float: right;
+  }
+  @media (min-width: @screen-xs-min) {
+    font-size: 20px;
+    a, button {
+      display: none;
+    }
+  }
+}
+
+
 .modal-content {
   padding: 0 0 20px 0;
-  .modal-header {
-    padding: 20px 30px 0 30px;
-    border-bottom-style: none;
-  }
   .modal-body {
     padding: 10px 30px;
     label[for=email], label[for=uid], label[for=key], label[for=persona-username], label[for=password] , label[for=value], label[for=confirmValue]{
