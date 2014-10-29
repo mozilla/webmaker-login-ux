@@ -49,7 +49,7 @@
         <p>{{ 'tokenMessage' | i18n }}</p>
       </div>
       <div class="enter-key">
-        <a href="#" ng-click="enterKey()" tabindex="4" ng-bind-html="'Enter key' | i18n"></a>
+        <a ng-click="enterKey()" tabindex="4" ng-bind-html="'Enter key' | i18n"></a>
       </div>
       <hr>
       <footer class="help-footer">
@@ -103,7 +103,7 @@
         </div>
         <div class="cta-links clearfix">
           <button class="submit-password btn btn-primary" type="button" ng-disabled="sendingRequest" ng-click="user.password && submitPassword()" tabindex="9">{{ 'Submit' | i18n }}</button>
-          <p><a href="#" ng-click="requestReset()">{{ 'Forgot your password?' | i18n }}</a></p>
+          <p><a ng-click="requestReset()">{{ 'Forgot your password?' | i18n }}</a></p>
         </div>
       </div>
       <hr>
