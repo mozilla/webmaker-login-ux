@@ -247,9 +247,13 @@ WebmakerLogin.prototype.create = function (email_hint, username_hint) {
   _run_expressions(modal_fragment, scope);
   _open_modal(modal_fragment);
   var modal = document.querySelector('body > div.modal');
-  modal.querySelector(".close").addEventListener("click", function () {
-    _close_modal();
-  });
+  var closeBtns = modal.querySelectorAll("[ng-click='cancel()']");
+  for (var i = 0; i < closeBtns.length; i++ ) {
+    closeBtns[i].addEventListener("click", function (e) {
+      e.preventDefault();
+      _close_modal();
+    }, false);
+  }
   document.querySelector('body > div.modal > .modal-dialog').addEventListener("click", function (e) {
     e.stopPropagation();
   });

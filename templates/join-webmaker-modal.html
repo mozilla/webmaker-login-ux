@@ -24,12 +24,12 @@
         <label for="email">{{ 'Email' | i18n }}</label>
         <input ng-model="user.email" ng-blur="validateEmail();" type="text" class="form-control" name="email" autocomplete="off" autofocus tabindex="1" required focus-on="create-user-email" placeholder="email">
       </div>
-      <div class="terms-checkbox">
+      <div class="terms-checkbox checkbox">
         <label>
           <input ng-model="user.agree" type="checkbox" ng-disabled="form.user.$error.accountExists" name="agree" tabindex="2"> <span ng-bind-html="'webmakerAuthAgreeToTerms' | i18n"></span>
         </label>
       </div>
-      <div class="mailing-list-checkbox">
+      <div class="mailing-list-checkbox checkbox">
         <label>
           <input ng-model="user.subscribeToList" type="checkbox" ng-disabled="form.user.$error.accountExists" name="subscribeToList" tabindex="2"> <span ng-bind-html="'webmakerAuthMailingList' | i18n"></span>
         </label>

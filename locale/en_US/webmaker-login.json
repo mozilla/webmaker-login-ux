@@ -230,5 +230,13 @@
   "resetRequestFailed": {
     "message": "<i class=\"fa fa-times\"></i>  <strong>Uh oh!</strong> There was a problem processing your request, please try again.",
     "description": "Error message displayed if the reset request fails for some reason"
+  },
+  "Next": {
+    "message": "Next",
+    "description": ""
+  },
+  "Cancel": {
+    "message": "Cancel",
+    "description": ""
   }
 }
