@@ -17,14 +17,15 @@ bower install mozilla/webmaker-login-ux
 ```
 
 ## Angular Adapter Usage
-1. Add makerstap in your head `<link rel="stylsheet" href="bower_components/makerstrap/dist/makerstrap.complete.min.css"`. There are other ways to do this -- see the makerstrap docs.
-2. The app must define `window.angularConfig` as an object, and specify a `csrfToken` attribute.
-3. Make sure `angular.js`, `ui-bootstrap`, `ngWebmakerLogin.js` and `ngWebmakerLogin.templates.js` are all added to your document.
-4. Add the `ngWebmakerLogin` module to your angular app.
+1. Add makerstap in your head `<link rel="stylesheet" href="bower_components/makerstrap/dist/makerstrap.complete.min.css">`. There are other ways to do this -- see the makerstrap docs.
+2. Add webmaker-login-ux css: `<link rel="stylesheet" href="bower_components/webmaker-login-ux/dist/css/webmakerLogin.css">`.
+3. The app must define `window.angularConfig` as an object, and specify a `csrfToken` attribute.
+4. Make sure `angular.js`, `ui-bootstrap`, `ngWebmakerLogin.js` and `ngWebmakerLogin.templates.js` are all added to your document.
+5. Add the `ngWebmakerLogin` module to your angular app.
 
 ### ngWebmakerLogin Directives
 
-### wm-join-webmaker
+#### wm-join-webmaker
 
 Configures the join webmaker modal to display when the element it is used on is clicked:
 
@@ -35,7 +36,7 @@ Configures the join webmaker modal to display when the element it is used on is 
 
 Use the `showcta` attribute to define whether or not the welcome to webmaker CTA's should display after an account is created.
 
-### wm-signin
+#### wm-signin
 
 Configures the signin modal to display when the element it is used on is clicked
 ```html
@@ -43,7 +44,7 @@ Configures the signin modal to display when the element it is used on is clicked
 </button>
 ```
 
-### wm-password-reset
+#### wm-password-reset
 
 Configures the password reset modal to display when the page is loaded with the `resetCode` and `uid`
 search parameters in the url:
@@ -52,7 +53,7 @@ search parameters in the url:
 <div wm-pasword-reset></div>
 ```
 
-### wm-persona-login
+#### wm-persona-login
 
 Configures the element it is applied to to trigger a persona log in when clicked. Ensure that the persona include file has been loaded.
 
@@ -60,12 +61,90 @@ Configures the element it is applied to to trigger a persona log in when clicked
 <button wm-persona-login></button>
 ```
 
-### wm-logout
+#### wm-logout
 
 Confugures the element it is applied to to trigger a logout when it is clicked.
 
 ```html
 <button wm-logout></button>
+```
+
+## Plain JS Adapter Usage
+1. Add makerstrap to your app: `<link rel="stylesheet" href="bower_components/makerstrap/dist/makerstrap.complete.min.css"`. There are other ways to do this -- see the makerstrap docs.
+2. Add webmaker-login-ux css: `<link rel="stylesheet" href="bower_components/webmaker-login-ux/dist/css/webmakerLogin.css">`.
+3. Add webmaker-login-ux js: `<script src="bower_components/webmaker-login-ux/dist/min/webmakerLogin.min.js">`.
+
+### API
+
+#### Constructor
+
+First you need to create an instance of the WebmakerLogin client:
+
+```javascript
+var auth = new window.WebmakerLogin({
+  csrfToken: 'csrf', // optional csrf token
+  showCTA: true // Show a random CTA after signing up for a new account. true/false
+});
+```
+
+#### `verified` Event
+
+After you initialize the client, the `verified` event will be emitted after checking the webmaker-login cookie for user data.
+If the user is signed-in, then the callback will return an object representing the user.
+If the user is signed-out, then the callback will return nothing.
+
+```javascript
+auth.on('verified', function(user) {
+  if (optionalUserObject) {
+    console.log('%s is signed-in', user.username);
+  } else {
+    console.log('signed-out');
+  }
+});
+```
+
+#### Create Account
+
+Initiates the account creation process.
+
+```javascript
+auth.create();
+```
+
+#### Login
+
+Initiates the account sign-in process.
+
+```javascript
+auth.login();
+```
+
+#### `login` Event
+
+After you call `create()` or `login()` and the user finishes either process, the client will emit a `login` event with the signed-in users data.
+
+```javascript
+auth.on('login', function(user) {
+  console.log('%s is signed-in', user.username);
+});
+```
+
+#### Logout
+
+Initiates the account sign-out process.
+
+```javascript
+auth.logout();
+```
+
+#### `logout` Event
+
+After you call `logout()` and the client has successfully cleared the webmaker-login cookie, the client will emit a `logout` event.
+
+```javascript
+auth.on('logout', function() {
+  console.log('signed-out');
+});
 ```
 
 ## Development
