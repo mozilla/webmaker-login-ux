@@ -1274,7 +1274,7 @@ ngModule.directive('wmJoinWebmaker', [
             $scope.currentState = MODALSTATE.inputEmail;
 
             $scope.form = {};
-            $scope.user = {};
+            $scope.user = {agree: true};
             $scope.sendingRequest = false;
 
             $scope.user.email = email;

@@ -30,7 +30,7 @@ angular.module("join-webmaker-modal.html", []).run(["$templateCache", function($
   "      </div>\n" +
   "      <div class=\"terms-checkbox checkbox\">\n" +
   "        <label>\n" +
-  "          <input ng-model=\"user.agree\" type=\"checkbox\" ng-disabled=\"form.user.$error.accountExists\" name=\"agree\" tabindex=\"2\"> <span ng-bind-html=\"'webmakerAuthAgreeToTerms' | i18n\"></span>\n" +
+  "          <input ng-model=\"user.agree\" type=\"checkbox\" ng-disabled=\"form.user.$error.accountExists\" name=\"agree\" tabindex=\"2\" checked> <span ng-bind-html=\"'webmakerAuthAgreeToTerms' | i18n\"></span>\n" +
   "        </label>\n" +
   "      </div>\n" +
   "      <div class=\"mailing-list-checkbox checkbox\">\n" +
