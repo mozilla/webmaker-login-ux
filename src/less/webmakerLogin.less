@@ -125,6 +125,9 @@
         text-align: left;
       }
     }
+    .help-block {
+      font-size: 13px;
+    }
     .form-control {
       @media (max-width: @screen-xs-max) {
         padding: 18px 12px;
@@ -148,14 +151,22 @@
         }
       }
     }
+    .welcome {
+      text-align: center;
+      @media (min-width: @screen-xs-min) {
+        text-align: left;
+      }
+    }
     .subheadline {
       margin-top: -10px;
     }
     .tool-desc {
       margin: 15px 0 0 0;
       .icon {
-        float: left;
-        margin-right: 18.75px;
+        @media (min-width: @screen-xs-min) {
+          float: left;
+          margin-right: 18.75px;
+        }
         svg {
           width: 130px;
           height: 123px;
@@ -165,9 +176,12 @@
         float: left;
       }
       .explore-link {
-        float: left;
+        display: block;
         font-size: 13px;
         margin: 14px 0 0 12px;
+        @media (min-width: @screen-xs-min) {
+          float: left;
+        }
       }
     }
 

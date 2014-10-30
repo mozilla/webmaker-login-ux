@@ -7,11 +7,17 @@ angular.module("join-webmaker-modal.html", []).run(["$templateCache", function($
   "  <h3 class=\"modal-title\" ng-hide=\"welcome && user.username\">\n" +
   "    <a href=\"#\" ng-click=\"cancel()\" class=\"modal-title-left\">{{ 'Cancel' | i18n }}</a>\n" +
   "    <span class=\"modal-title-center\">{{ 'webmakerAuthCreateWelcome' | i18n }}</span>\n" +
-  "    <a href=\"#\" ng-click=\"submitEmail()\" ng-disabled=\"!canSubmitEmail() || form.user.$error.accountExists || form.user.$error.invalidEmail\" tabindex=\"3\" class=\"modal-title-right\">{{ 'Sign up' | i18n }}</a>\n" +
+  "    <button\n" +
+  "      ng-show=\"currentState === MODALSTATE.inputEmail\"\n" +
+  "      href=\"#\" ng-click=\"submitEmail()\" ng-disabled=\"!canSubmitEmail() || form.user.$error.accountExists || form.user.$error.invalidEmail\" tabindex=\"3\" class=\"btn-link modal-title-right\">{{ 'Next' | i18n }}</button>\n" +
+  "    <button\n" +
+  "      ng-show=\"currentState === MODALSTATE.inputUsername\"\n" +
+  "      ng-disabled=\"!user.username || form.user.$error.invalidUsername || form.user.$error.usernameTaken || sendingRequest\" ng-click=\"submitUser()\" class=\"btn-link create-user\" tabindex=\"5\">{{ 'Sign up' | i18n }}</button>\n" +
   "  </h3>\n" +
   "  <h3 class=\"modal-title\" ng-show=\"welcome && user.username\">\n" +
   "    <a href=\"#\" ng-click=\"cancel()\" class=\"modal-title-left\">{{ 'Cancel' | i18n }}</a>\n" +
   "    <span class=\"modal-title-center\">{{ 'webmakerAuthWelcome' | i18n }}</span>\n" +
+  "    <a href=\"#\" ng-click=\"cancel()\" class=\"modal-title-right\">{{ 'Done' | i18n }}</a>\n" +
   "  </h3>\n" +
   "</div>\n" +
   "<div class=\"modal-body\">\n" +
@@ -30,7 +36,7 @@ angular.module("join-webmaker-modal.html", []).run(["$templateCache", function($
   "      </div>\n" +
   "      <div class=\"terms-checkbox checkbox\">\n" +
   "        <label>\n" +
-  "          <input ng-model=\"user.agree\" type=\"checkbox\" ng-disabled=\"form.user.$error.accountExists\" name=\"agree\" tabindex=\"2\" checked> <span ng-bind-html=\"'webmakerAuthAgreeToTerms' | i18n\"></span>\n" +
+  "          <input ng-model=\"user.agree\" type=\"checkbox\" ng-disabled=\"form.user.$error.accountExists\" name=\"agree\" tabindex=\"2\"> <span ng-bind-html=\"'webmakerAuthAgreeToTerms' | i18n\"></span>\n" +
   "        </label>\n" +
   "      </div>\n" +
   "      <div class=\"mailing-list-checkbox checkbox\">\n" +
@@ -46,13 +52,14 @@ angular.module("join-webmaker-modal.html", []).run(["$templateCache", function($
   "    <div ng-show=\"currentState === MODALSTATE.inputUsername\">\n" +
   "      <div class=\"form-group\">\n" +
   "        <label for=\"pre-username\">{{ 'webmakerAuthChooseUsername' | i18n }}</label>\n" +
-  "        <label for=\"username\">webmaker.org/user/</label>\n" +
+  "        <label for=\"username\" class=\"hidden-xs\">webmaker.org/user/</label>\n" +
   "        <input ng-model=\"user.username\" name=\"username\" ng-change=\"validateUsername()\" class=\"form-control username\" autocomplete=\"off\" required autofocus tabindex=\"4\" focus-on=\"create-user-username\" maxlength=\"20\" minlength=\"1\" placeholder=\"username\">\n" +
+  "        <div class=\"visible-xs help-block text-center\">webmaker.org/user/<strong class=\"username-with-url\">{{user.username}}</strong></div>\n" +
   "      </div>\n" +
-  "      <button ng-disabled=\"!user.username || form.user.$error.invalidUsername || form.user.$error.usernameTaken || sendingRequest\" ng-click=\"submitUser()\" class=\"create-user btn btn-primary\" type=\"button\" tabindex=\"5\">{{ 'webmakerAuthCreateAccount' | i18n }}</button>\n" +
+  "      <button ng-disabled=\"!user.username || form.user.$error.invalidUsername || form.user.$error.usernameTaken || sendingRequest\" ng-click=\"submitUser()\" class=\"create-user btn btn-primary hidden-xs\" type=\"button\" tabindex=\"5\">{{ 'webmakerAuthCreateAccount' | i18n }}</button>\n" +
   "    </div>\n" +
   "\n" +
-  "    <div ng-show=\"currentState === MODALSTATE.welcome\">\n" +
+  "    <div ng-show=\"currentState === MODALSTATE.welcome\" class=\"welcome\">\n" +
   "      <p class=\"subheadline\">{{ 'aboutWebmaker' | i18n }}</p>\n" +
   "        <!-- Goggles -->\n" +
   "\n" +

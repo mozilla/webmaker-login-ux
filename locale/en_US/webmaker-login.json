@@ -233,10 +233,14 @@
   },
   "Next": {
     "message": "Next",
-    "description": ""
+    "description": "Go to the next screen"
   },
   "Cancel": {
     "message": "Cancel",
-    "description": ""
+    "description": "Cancel sign up or sign in"
+  },
+  "Done": {
+    "message": "Cancel",
+    "description": "Done, close the window."
   }
 }
