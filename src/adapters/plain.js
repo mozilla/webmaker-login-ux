@@ -148,7 +148,7 @@ WebmakerLogin.prototype.create = function (email_hint, username_hint) {
     currentState: -1,
     form: {
       user: {
-        agree: true
+        agree: true,
         $error: {}
       }
     },
