@@ -7,13 +7,19 @@ var util = require('util');
 var wmLoginCore = require('../core');
 
 function _each(baseEl, selector, cb) {
-  if (!baseEl) return;
+  if (!baseEl) {
+    return;
+  }
   var els = baseEl.querySelectorAll(selector);
-  if (!els) return;
+  if (!els) {
+    return;
+  }
+
+  function doCallback(i) {
+    cb(i, els[i]);
+  }
   for (var i = 0; i < els.length; i++) {
-    (function (i) {
-      cb(i, els[i]);
-    })(i);
+    doCallback(i);
   }
 }
 
@@ -391,7 +397,7 @@ WebmakerLogin.prototype.login = function (uid_hint, password_was_reset) {
     _run_expressions(modal, scope);
   });
 
-  _each(modal_fragment, 'button[ng-click="user.password && submitPassword()"]', function (e) {
+  _each(modal_fragment, 'button[ng-click="user.password && submitPassword()"]', function (i, el) {
     el.addEventListener('click', function () {
       controller.verifyPassword(scope.user.uid, scope.user.password, scope.user.rememberMe);
     });
