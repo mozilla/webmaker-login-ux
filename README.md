@@ -95,7 +95,7 @@ If the user is signed-out, then the callback will return nothing.
 
 ```javascript
 auth.on('verified', function(user) {
-  if (optionalUserObject) {
+  if (user) {
     console.log('%s is signed-in', user.username);
   } else {
     console.log('signed-out');
