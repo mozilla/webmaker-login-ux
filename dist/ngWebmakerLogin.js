@@ -1215,12 +1215,9 @@ ngModule.factory('wmLoginCore', ['$rootScope', '$location', '$timeout', 'csrf',
     }
 
     core.on('verified', function (user) {
-      if (!user) {
-        return;
-      }
-
       $timeout(function () {
         $rootScope._user = user;
+        $rootScope.$broadcast('verified', user);
       }, 0);
     });
 
@@ -1460,7 +1457,7 @@ ngModule.directive('wmSignin', [
             signinController.on('signedIn', function (user) {
               $rootScope._user = user;
               $modalInstance.close();
-              $rootScope.broadcast('signedIn', user);
+              $rootScope.$broadcast('login', user);
             });
 
             $scope.submitUid = function () {
@@ -1699,7 +1696,7 @@ ngModule.directive('wmLogout', ['$timeout', 'wmLoginCore',
           logoutController.on('loggedOut', function () {
             $timeout(function () {
               $rootScope._user = null;
-              $rootScope.$broadcast('loggedOut');
+              $rootScope.$broadcast('logout');
             }, 0);
           });
 
