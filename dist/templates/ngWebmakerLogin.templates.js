@@ -255,6 +255,9 @@ angular.module("signin-modal.html", []).run(["$templateCache", function($templat
   "      ng-show=\"currentState === MODALSTATE.checkEmail\"\n" +
   "      ng-click=\"enterKey()\"\n" +
   "      tabindex=\"4\">{{ 'Next' | i18n }}</a>\n" +
+  "    <a href=\"#\"\n" +
+  "      ng-show=\"currentState === MODALSTATE.resetRequestSent\"\n" +
+  "      ng-click=\"cancel()\" class=\"modal-title-right\">{{ 'Done' | i18n }}</a>\n" +
   "  </h3>\n" +
   "</div>\n" +
   "<div class=\"modal-body\">\n" +
