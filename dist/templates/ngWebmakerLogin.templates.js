@@ -232,12 +232,29 @@ angular.module("signin-modal.html", []).run(["$templateCache", function($templat
   "  <h3 class=\"modal-title\" ng-show=\"currentState === MODALSTATE.enterUid || currentState === MODALSTATE.enterPassword\">\n" +
   "    <button href=\"#\" ng-click=\"cancel()\" class=\"modal-title-left btn-link\">{{ 'Cancel' | i18n }}</button>\n" +
   "    <span class=\"modal-title-center\">{{ 'Sign in to Webmaker' | i18n }}</span>\n" +
-  "    <button ng-disabled=\"sendingRequest\" ng-click=\"submitUid()\" class=\"modal-title-right btn-link\">{{ 'Next' | i18n }}</button>\n" +
+  "    <button ng-show=\"currentState === MODALSTATE.enterUid\"\n" +
+  "      ng-disabled=\"sendingRequest\"\n" +
+  "      ng-click=\"submitUid()\"\n" +
+  "      class=\"modal-title-right btn-link\">{{ 'Next' | i18n }}</button>\n" +
+  "    <button ng-show=\"currentState === MODALSTATE.enterPassword\"\n" +
+  "      class=\"modal-title-right btn-link\"\n" +
+  "      ng-disabled=\"sendingRequest\"\n" +
+  "      ng-click=\"user.password && submitPassword()\" tabindex=\"9\">{{ 'Submit' | i18n }}</button>\n" +
   "  </h3>\n" +
   "  <h3 class=\"modal-title\" ng-show=\"currentState === MODALSTATE.checkEmail || currentState === MODALSTATE.resetRequestSent || currentState === MODALSTATE.enterKey\">\n" +
   "    <a href=\"#\" ng-click=\"cancel()\" class=\"modal-title-left\">{{ 'Cancel' | i18n }}</a>\n" +
   "    <span class=\"modal-title-center\">{{ 'checkEmail' | i18n }}</span>\n" +
-  "    <button ng-disabled=\"sendingRequest\" ng-click=\"user.key && submitKey()\" tabindex=\"7\" class=\"modal-title-right btn-link\">{{ 'Next' | i18n }}</button>\n" +
+  "    <button\n" +
+  "      ng-show=\"currentState === MODALSTATE.enterKey\"\n" +
+  "      ng-disabled=\"sendingRequest\"\n" +
+  "      ng-click=\"user.key && submitKey()\"\n" +
+  "      tabindex=\"7\"\n" +
+  "      class=\"submit-userid modal-title-right btn-link\">{{ 'Next' | i18n }}</button>\n" +
+  "    <a\n" +
+  "      class=\"modal-title-right\"\n" +
+  "      ng-show=\"currentState === MODALSTATE.checkEmail\"\n" +
+  "      ng-click=\"enterKey()\"\n" +
+  "      tabindex=\"4\">{{ 'Next' | i18n }}</a>\n" +
   "  </h3>\n" +
   "</div>\n" +
   "<div class=\"modal-body\">\n" +
@@ -285,7 +302,7 @@ angular.module("signin-modal.html", []).run(["$templateCache", function($templat
   "        </svg>\n" +
   "        <p>{{ 'tokenMessage' | i18n }}</p>\n" +
   "      </div>\n" +
-  "      <div class=\"enter-key\">\n" +
+  "      <div class=\"enter-key hidden-xs-login\">\n" +
   "        <a ng-click=\"enterKey()\" tabindex=\"4\" ng-bind-html=\"'Enter key' | i18n\"></a>\n" +
   "      </div>\n" +
   "      <hr>\n" +
@@ -339,7 +356,7 @@ angular.module("signin-modal.html", []).run(["$templateCache", function($templat
   "          <input type=\"password\" class=\"form-control\" required name=\"password\" ng-model=\"user.password\" tabindex=\"8\" focus-on=\"enter-password\" ng-keyup=\"$event.keyCode === 13 && user.password && !sendingRequest && submitPassword()\">\n" +
   "        </div>\n" +
   "        <div class=\"cta-links clearfix\">\n" +
-  "          <button class=\"submit-password btn btn-primary\" type=\"button\" ng-disabled=\"sendingRequest\" ng-click=\"user.password && submitPassword()\" tabindex=\"9\">{{ 'Submit' | i18n }}</button>\n" +
+  "          <button class=\"submit-password btn btn-primary hidden-xs-login\" type=\"button\" ng-disabled=\"sendingRequest\" ng-click=\"user.password && submitPassword()\" tabindex=\"9\">{{ 'Submit' | i18n }}</button>\n" +
   "          <p><a ng-click=\"requestReset()\">{{ 'Forgot your password?' | i18n }}</a></p>\n" +
   "        </div>\n" +
   "      </div>\n" +

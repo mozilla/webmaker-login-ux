@@ -240,7 +240,7 @@
     "description": "Cancel sign up or sign in"
   },
   "Done": {
-    "message": "Cancel",
+    "message": "Done",
     "description": "Done, close the window."
   }
 }
