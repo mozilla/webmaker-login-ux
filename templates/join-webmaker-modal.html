@@ -1,6 +1,6 @@
 <div class="modal-header">
   <button ng-click="cancel()" ng-hide="" type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-  <h3 class="modal-title" ng-hide="welcome && user.username">
+  <h3 class="modal-title" ng-hide="currentState === MODALSTATE.welcome">
     <a href="#" ng-click="cancel()" class="modal-title-left">{{ 'Cancel' | i18n }}</a>
     <span class="modal-title-center">{{ 'webmakerAuthCreateWelcome' | i18n }}</span>
     <button
@@ -10,7 +10,7 @@
       ng-show="currentState === MODALSTATE.inputUsername"
       ng-disabled="!user.username || form.user.$error.invalidUsername || form.user.$error.usernameTaken || sendingRequest" ng-click="submitUser()" class="btn-link create-user" tabindex="5">{{ 'Sign up' | i18n }}</button>
   </h3>
-  <h3 class="modal-title" ng-show="welcome && user.username">
+  <h3 class="modal-title" ng-show="currentState === MODALSTATE.welcome">
     <a href="#" ng-click="cancel()" class="modal-title-left">{{ 'Cancel' | i18n }}</a>
     <span class="modal-title-center">{{ 'webmakerAuthWelcome' | i18n }}</span>
     <a href="#" ng-click="cancel()" class="modal-title-right">{{ 'Done' | i18n }}</a>

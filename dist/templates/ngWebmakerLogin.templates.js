@@ -4,7 +4,7 @@ angular.module("join-webmaker-modal.html", []).run(["$templateCache", function($
  $templateCache.put("join-webmaker-modal.html",
   "<div class=\"modal-header\">\n" +
   "  <button ng-click=\"cancel()\" ng-hide=\"\" type=\"button\" class=\"close\" data-dismiss=\"modal\" aria-hidden=\"true\">&times;</button>\n" +
-  "  <h3 class=\"modal-title\" ng-hide=\"welcome && user.username\">\n" +
+  "  <h3 class=\"modal-title\" ng-hide=\"currentState === MODALSTATE.welcome\">\n" +
   "    <a href=\"#\" ng-click=\"cancel()\" class=\"modal-title-left\">{{ 'Cancel' | i18n }}</a>\n" +
   "    <span class=\"modal-title-center\">{{ 'webmakerAuthCreateWelcome' | i18n }}</span>\n" +
   "    <button\n" +
@@ -14,7 +14,7 @@ angular.module("join-webmaker-modal.html", []).run(["$templateCache", function($
   "      ng-show=\"currentState === MODALSTATE.inputUsername\"\n" +
   "      ng-disabled=\"!user.username || form.user.$error.invalidUsername || form.user.$error.usernameTaken || sendingRequest\" ng-click=\"submitUser()\" class=\"btn-link create-user\" tabindex=\"5\">{{ 'Sign up' | i18n }}</button>\n" +
   "  </h3>\n" +
-  "  <h3 class=\"modal-title\" ng-show=\"welcome && user.username\">\n" +
+  "  <h3 class=\"modal-title\" ng-show=\"currentState === MODALSTATE.welcome\">\n" +
   "    <a href=\"#\" ng-click=\"cancel()\" class=\"modal-title-left\">{{ 'Cancel' | i18n }}</a>\n" +
   "    <span class=\"modal-title-center\">{{ 'webmakerAuthWelcome' | i18n }}</span>\n" +
   "    <a href=\"#\" ng-click=\"cancel()\" class=\"modal-title-right\">{{ 'Done' | i18n }}</a>\n" +
