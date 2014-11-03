@@ -15,11 +15,8 @@ function _each(baseEl, selector, cb) {
     return;
   }
 
-  function doCallback(i) {
-    cb(i, els[i]);
-  }
   for (var i = 0; i < els.length; i++) {
-    doCallback(i);
+    cb(i, els[i]);
   }
 }
 
@@ -102,6 +99,13 @@ var _run_expressions = function (modal, scope) {
         elements[i].classList.add('hide');
       }
     }
+
+    _each(modal, "[ng-click='cancel()']", function (i, el) {
+      el.addEventListener('click', function (e) {
+        e.preventDefault();
+        _close_modal();
+      }, false);
+    });
 
     if (elements[i].getAttribute('ng-class')) {
       ng_class = expressions.compile(elements[i].getAttribute('ng-class'))(scope);
@@ -269,13 +273,7 @@ WebmakerLogin.prototype.create = function (email_hint, username_hint) {
 
   _run_expressions(modal_fragment, scope);
   _open_modal(modal_fragment);
-  var modal = document.querySelector('body > div.modal');
-  _each(modal, "[ng-click='cancel()']", function (i, el) {
-    el.addEventListener('click', function (e) {
-      e.preventDefault();
-      _close_modal();
-    }, false);
-  });
+
   document.querySelector('body > div.modal > .modal-dialog').addEventListener("click", function (e) {
     e.stopPropagation();
   });

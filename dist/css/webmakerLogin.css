@@ -1,3 +1,8 @@
+@media (max-width: 479px) {
+  .hidden-xs-login {
+    display: none !important;
+  }
+}
 /*********************************************************
 * Mobile dialog display
 */
@@ -60,6 +65,11 @@
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
+  }
+  .modal-title a[disabled],
+  .modal-title button[disabled],
+  .modal-title span[disabled] {
+    color: #CCC;
   }
 }
 .modal-title .modal-title-center {
@@ -154,7 +164,8 @@
 }
 @media (max-width: 479px) {
   .modal-content .modal-body .form-control {
-    padding: 18px 12px;
+    padding: 8px 11px;
+    height: auto;
   }
 }
 .modal-content .modal-body .form-group {

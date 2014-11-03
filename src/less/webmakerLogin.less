@@ -3,6 +3,12 @@
 @green: #3fb58e;
 @red: #EB5D52;
 
+.hidden-xs-login {
+  @media (max-width: @screen-xs-max) {
+    display: none !important;
+  }
+}
+
 .uppercase-label() {
   font-weight: normal;
   margin-bottom: 8px;
@@ -73,6 +79,9 @@
       white-space: nowrap;
       overflow: hidden;
       text-overflow: ellipsis;
+      &[disabled] {
+        color: #CCC;
+      }
     }
   }
   .modal-title-center {
@@ -130,7 +139,8 @@
     }
     .form-control {
       @media (max-width: @screen-xs-max) {
-        padding: 18px 12px;
+        padding: 8px 11px;
+        height: auto;
       }
     }
     .form-group {

@@ -41,18 +41,18 @@
         </label>
       </div>
       <div class="cta-links clearfix">
-        <button ng-click="submitEmail()" ng-disabled="!canSubmitEmail() || form.user.$error.accountExists || form.user.$error.invalidEmail" class="create-user btn btn-primary hidden-xs" type="button" tabindex="3">{{ 'Sign up' | i18n }}</button>
+        <button ng-click="submitEmail()" ng-disabled="!canSubmitEmail() || form.user.$error.accountExists || form.user.$error.invalidEmail" class="create-user btn btn-primary hidden-xs-login" type="button" tabindex="3">{{ 'Sign up' | i18n }}</button>
       </div>
     </div>
 
     <div ng-show="currentState === MODALSTATE.inputUsername">
       <div class="form-group">
         <label for="pre-username">{{ 'webmakerAuthChooseUsername' | i18n }}</label>
-        <label for="username" class="hidden-xs">webmaker.org/user/</label>
+        <label for="username" class="hidden-xs-login">webmaker.org/user/</label>
         <input ng-model="user.username" name="username" ng-change="validateUsername()" class="form-control username" autocomplete="off" required autofocus tabindex="4" focus-on="create-user-username" maxlength="20" minlength="1" placeholder="username">
         <div class="visible-xs help-block text-center">webmaker.org/user/<strong class="username-with-url">{{user.username}}</strong></div>
       </div>
-      <button ng-disabled="!user.username || form.user.$error.invalidUsername || form.user.$error.usernameTaken || sendingRequest" ng-click="submitUser()" class="create-user btn btn-primary hidden-xs" type="button" tabindex="5">{{ 'webmakerAuthCreateAccount' | i18n }}</button>
+      <button ng-disabled="!user.username || form.user.$error.invalidUsername || form.user.$error.usernameTaken || sendingRequest" ng-click="submitUser()" class="create-user btn btn-primary hidden-xs-login" type="button" tabindex="5">{{ 'webmakerAuthCreateAccount' | i18n }}</button>
     </div>
 
     <div ng-show="currentState === MODALSTATE.welcome" class="welcome">
