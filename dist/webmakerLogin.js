@@ -9545,16 +9545,6 @@ var ui = {
   wrapper: "<div class=\"modal-backdrop fade in\"></div>\n<div class=\"modal fade in\" style=\"display: block\">\n  <div class=\"modal-dialog\">\n    <div class=\"modal-content\"></div>\n  </div>\n</div>\n"
 };
 
-var _attach_cancel = function (modal) {
-  _each(modal, "[ng-click='cancel()']", function (i, el) {
-    console.log(el);
-    el.addEventListener('click', function (e) {
-      e.preventDefault();
-      _close_modal();
-    }, false);
-  });
-};
-
 var _create_modal_fragment = function (template) {
   var range = document.createRange();
   range.selectNode(document.body);
@@ -9628,6 +9618,15 @@ var _open_modal = function (modal_fragment) {
 var _close_modal = function () {
   document.body.removeChild(document.querySelector('body > div.modal-backdrop'));
   document.body.removeChild(document.querySelector('body > div.modal'));
+};
+
+var _attach_cancel = function (modal) {
+  _each(modal, "[ng-click='cancel()']", function (i, el) {
+    el.addEventListener('click', function (e) {
+      e.preventDefault();
+      _close_modal();
+    }, false);
+  });
 };
 
 var WebmakerLogin = function WebmakerLogin(options) {
