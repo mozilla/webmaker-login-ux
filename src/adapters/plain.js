@@ -49,6 +49,16 @@ var ui = {
   })
 };
 
+var _attach_cancel = function (modal) {
+  _each(modal, "[ng-click='cancel()']", function (i, el) {
+    console.log(el);
+    el.addEventListener('click', function (e) {
+      e.preventDefault();
+      _close_modal();
+    }, false);
+  });
+};
+
 var _create_modal_fragment = function (template) {
   var range = document.createRange();
   range.selectNode(document.body);
@@ -99,13 +109,6 @@ var _run_expressions = function (modal, scope) {
         elements[i].classList.add('hide');
       }
     }
-
-    _each(modal, "[ng-click='cancel()']", function (i, el) {
-      el.addEventListener('click', function (e) {
-        e.preventDefault();
-        _close_modal();
-      }, false);
-    });
 
     if (elements[i].getAttribute('ng-class')) {
       ng_class = expressions.compile(elements[i].getAttribute('ng-class'))(scope);
@@ -274,6 +277,8 @@ WebmakerLogin.prototype.create = function (email_hint, username_hint) {
   _run_expressions(modal_fragment, scope);
   _open_modal(modal_fragment);
 
+  var modal = document.querySelector('body > div.modal');
+  _attach_cancel(modal);
   document.querySelector('body > div.modal > .modal-dialog').addEventListener("click", function (e) {
     e.stopPropagation();
   });
@@ -427,9 +432,7 @@ WebmakerLogin.prototype.login = function (uid_hint, password_was_reset) {
   _run_expressions(modal_fragment, scope);
   _open_modal(modal_fragment);
   var modal = document.querySelector('body > div.modal');
-  modal.querySelector(".close").addEventListener("click", function () {
-    _close_modal();
-  });
+  _attach_cancel(modal);
   document.querySelector('body > div.modal > .modal-dialog').addEventListener("click", function (e) {
     e.stopPropagation();
   });
@@ -540,9 +543,7 @@ WebmakerLogin.prototype.request_password_reset = function (uid, token) {
   _run_expressions(modal_fragment, scope);
   _open_modal(modal_fragment);
   var modal = document.querySelector('body > div.modal');
-  modal.querySelector(".close").addEventListener("click", function () {
-    _close_modal();
-  });
+  _attach_cancel(modal);
   document.querySelector('body > div.modal > .modal-dialog').addEventListener("click", function (e) {
     e.stopPropagation();
   });
