@@ -8,7 +8,7 @@
     "description": "Error message displayed if an error occurs on the server."
   },
   "webmakerAuthCreateWelcome":  {
-    "message": "Create a Webmaker account",
+    "message": "Create an account",
     "description": "Header text for the join webmaker modal dialog"
   },
   "webmakerAuthChooseUsername":  {
@@ -230,5 +230,17 @@
   "resetRequestFailed": {
     "message": "<i class=\"fa fa-times\"></i>  <strong>Uh oh!</strong> There was a problem processing your request, please try again.",
     "description": "Error message displayed if the reset request fails for some reason"
+  },
+  "Next": {
+    "message": "Next",
+    "description": "Go to the next screen"
+  },
+  "Cancel": {
+    "message": "Cancel",
+    "description": "Cancel sign up or sign in"
+  },
+  "Done": {
+    "message": "Done",
+    "description": "Done, close the window."
   }
 }

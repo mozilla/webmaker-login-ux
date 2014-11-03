@@ -6,6 +6,20 @@ var url = require('url');
 var util = require('util');
 var wmLoginCore = require('../core');
 
+function _each(baseEl, selector, cb) {
+  if (!baseEl) {
+    return;
+  }
+  var els = baseEl.querySelectorAll(selector);
+  if (!els) {
+    return;
+  }
+
+  for (var i = 0; i < els.length; i++) {
+    cb(i, els[i]);
+  }
+}
+
 var lang_data = {
   'en-US': require('../../locale/en_US/webmaker-login.json')
 };
@@ -108,6 +122,15 @@ var _open_modal = function (modal_fragment) {
 var _close_modal = function () {
   document.body.removeChild(document.querySelector('body > div.modal-backdrop'));
   document.body.removeChild(document.querySelector('body > div.modal'));
+};
+
+var _attach_cancel = function (modal) {
+  _each(modal, "[ng-click='cancel()']", function (i, el) {
+    el.addEventListener('click', function (e) {
+      e.preventDefault();
+      _close_modal();
+    }, false);
+  });
 };
 
 var WebmakerLogin = function WebmakerLogin(options) {
@@ -231,25 +254,30 @@ WebmakerLogin.prototype.create = function (email_hint, username_hint) {
     scope.user.subscribeToList = e.target.checked;
   });
 
-  modal_fragment.querySelector('button[ng-click="submitEmail()"]').addEventListener('click', function () {
-    controller.submitEmail();
+  _each(modal_fragment, 'button[ng-click="submitEmail()"]', function (i, el) {
+    el.addEventListener('click', function (e) {
+      controller.submitEmail();
+    });
   });
 
+  var usernameWithUrl = modal_fragment.querySelector('.username-with-url');
   modal_fragment.querySelector('input[name="username"]').addEventListener('input', function (e) {
     scope.user.username = e.target.value;
     controller.validateUsername(scope.user.username);
+    usernameWithUrl.textContent = scope.user.username;
   });
 
-  modal_fragment.querySelector('button[ng-click="submitUser()"]').addEventListener('click', function () {
-    controller.submitUser(scope.user);
+  _each(modal_fragment, 'button[ng-click="submitUser()"]', function (i, el) {
+    el.addEventListener('click', function () {
+      controller.submitUser(scope.user);
+    });
   });
 
   _run_expressions(modal_fragment, scope);
   _open_modal(modal_fragment);
+
   var modal = document.querySelector('body > div.modal');
-  modal.querySelector(".close").addEventListener("click", function () {
-    _close_modal();
-  });
+  _attach_cancel(modal);
   document.querySelector('body > div.modal > .modal-dialog').addEventListener("click", function (e) {
     e.stopPropagation();
   });
@@ -343,21 +371,27 @@ WebmakerLogin.prototype.login = function (uid_hint, password_was_reset) {
     _run_expressions(modal, scope);
   });
 
-  modal_fragment.querySelector('button[ng-click="submitUid()"]').addEventListener('click', function () {
-    controller.submitUid(scope.user.uid, window.location.pathname);
+  _each(modal_fragment, 'button[ng-click="submitUid()"]', function (i, el) {
+    el.addEventListener('click', function () {
+      controller.submitUid(scope.user.uid, window.location.pathname);
+    });
+  });
+  _each(modal_fragment, 'input[name="key"]', function (i, el) {
+    el.addEventListener('input', function (e) {
+      scope.user.key = e.target.value;
+      _run_expressions(modal, scope);
+    });
+  });
+  _each(modal_fragment, 'a[ng-click="enterKey()"]', function (i, el) {
+    el.addEventListener('click', function () {
+      controller.displayEnterKey();
+    });
   });
 
-  modal_fragment.querySelector('input[name="key"]').addEventListener('input', function (e) {
-    scope.user.key = e.target.value;
-    _run_expressions(modal, scope);
-  });
-
-  modal_fragment.querySelector('a[ng-click="enterKey()"]').addEventListener('click', function () {
-    controller.displayEnterKey();
-  });
-
-  modal_fragment.querySelector('button[ng-click="user.key && submitKey()"]').addEventListener('click', function () {
-    controller.verifyKey(scope.user.uid, scope.user.key, scope.user.rememberMe);
+  _each(modal_fragment, 'button[ng-click="user.key && submitKey()"]', function (i, el) {
+    el.addEventListener('click', function () {
+      controller.verifyKey(scope.user.uid, scope.user.key, scope.user.rememberMe);
+    });
   });
 
   modal_fragment.querySelector('input[name="password"]').addEventListener('blur', function (e) {
@@ -365,8 +399,10 @@ WebmakerLogin.prototype.login = function (uid_hint, password_was_reset) {
     _run_expressions(modal, scope);
   });
 
-  modal_fragment.querySelector('button[ng-click="user.password && submitPassword()"]').addEventListener('click', function () {
-    controller.verifyPassword(scope.user.uid, scope.user.password, scope.user.rememberMe);
+  _each(modal_fragment, 'button[ng-click="user.password && submitPassword()"]', function (i, el) {
+    el.addEventListener('click', function () {
+      controller.verifyPassword(scope.user.uid, scope.user.password, scope.user.rememberMe);
+    });
   });
 
   modal_fragment.querySelector('a[ng-click="requestReset()"]').addEventListener('click', function () {
@@ -395,9 +431,7 @@ WebmakerLogin.prototype.login = function (uid_hint, password_was_reset) {
   _run_expressions(modal_fragment, scope);
   _open_modal(modal_fragment);
   var modal = document.querySelector('body > div.modal');
-  modal.querySelector(".close").addEventListener("click", function () {
-    _close_modal();
-  });
+  _attach_cancel(modal);
   document.querySelector('body > div.modal > .modal-dialog').addEventListener("click", function (e) {
     e.stopPropagation();
   });
@@ -508,9 +542,7 @@ WebmakerLogin.prototype.request_password_reset = function (uid, token) {
   _run_expressions(modal_fragment, scope);
   _open_modal(modal_fragment);
   var modal = document.querySelector('body > div.modal');
-  modal.querySelector(".close").addEventListener("click", function () {
-    _close_modal();
-  });
+  _attach_cancel(modal);
   document.querySelector('body > div.modal > .modal-dialog').addEventListener("click", function (e) {
     e.stopPropagation();
   });

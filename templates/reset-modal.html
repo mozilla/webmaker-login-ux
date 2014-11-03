@@ -1,6 +1,10 @@
 <div class="modal-header">
   <button ng-click="cancel()" type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-  <h3 class="modal-title">{{ 'Reset Password' | i18n }}</h3>
+  <h3 class="modal-title">
+    <a href="#" ng-click="cancel()" class="modal-title-left">{{ 'Cancel' | i18n }}</a>
+    <span class="modal-title-center">{{ 'Reset Password' | i18n }}</span>
+    <button ng-click="submitResetRequest()" ng-disabled="sendingRequest || !password.value || !password.confirmValue || !passwordsMatch || form.password.$error.passwordsMustMatch" class="modal-title-right btn-link" type="button" tabindex="3">{{ 'Submit' | i18n }}</button>
+  </h3>
 </div>
 <div class="modal-body clearfix">
   <form class="form" name="form.password" novalidate>
@@ -27,7 +31,7 @@
         <input ng-model="password.confirmValue" ng-change="checkPasswordsMatch(false)" ng-blur="checkPasswordsMatch(true)"  type="password" class="form-control" name="confirmValue" autocomplete="off" tabindex="2" required>
       </div>
       <div class="cta-links clearfix">
-        <button ng-click="submitResetRequest()" ng-disabled="sendingRequest || !password.value || !password.confirmValue || !passwordsMatch || form.password.$error.passwordsMustMatch" class="reset-password btn btn-primary" type="button" tabindex="3">{{ 'Submit' | i18n }}</button>
+        <button ng-click="submitResetRequest()" ng-disabled="sendingRequest || !password.value || !password.confirmValue || !passwordsMatch || form.password.$error.passwordsMustMatch" class="reset-password btn btn-primary hidden-xs-login" type="button" tabindex="3">{{ 'Submit' | i18n }}</button>
       </div>
     </div>
   </form>
