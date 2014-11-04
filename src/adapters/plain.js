@@ -560,3 +560,4 @@ WebmakerLogin.prototype.logout = function () {
 };
 
 window.WebmakerLogin = WebmakerLogin;
+module.exports = WebmakerLogin;

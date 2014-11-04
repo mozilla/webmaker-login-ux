@@ -10056,6 +10056,7 @@ WebmakerLogin.prototype.logout = function () {
 };
 
 window.WebmakerLogin = WebmakerLogin;
+module.exports = WebmakerLogin;
 
 },{"../../locale/en_US/webmaker-login.json":1,"../core":19,"angular-expressions":2,"events":6,"nunjucks":16,"url":13,"util":15}],19:[function(require,module,exports){
 var state = require('./state');
