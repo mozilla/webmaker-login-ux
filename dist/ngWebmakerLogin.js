@@ -1127,22 +1127,30 @@ function isUndefined(arg) {
 },{}],5:[function(require,module,exports){
 var ngModule = angular.module('ngWebmakerLogin', ['templates-ngWebmakerLogin']);
 
-ngModule.factory('csrf', ['$rootScope',
+ngModule.factory('loginOptions', ['$rootScope',
   function ($rootScope) {
     // Webmaker apps don't use a single method for configuration, yay!
     if (window.angularConfig) {
       // Webmaker.org
-      return window.angularConfig.csrf;
+      return {
+        csrfToken: window.angularConfig.csrf,
+        paths: window.angularConfig.loginPaths
+      };
     } else if (window.eventsConfig) {
       // Webmaker Events (2)
-      return window.eventsConfig.csrf;
+      return {
+        csrfToken: window.eventsConfig.csrf,
+        paths: window.eventsConfig.loginPaths
+      };
     } else if ($rootScope.WMP.config) {
       // Webmaker Profile
-      return $rootScope.WMP.config.csrf;
+      return {
+        csrfToken: $rootScope.WMP.config.csrf,
+        paths: $rootScope.WMP.config.loginPaths
+      };
     }
-    // ruh-roh!
-    console.warn('Could not locate a config containing a CSRF token - POST, PUT and DELETE requests will 401.');
-    return undefined;
+    console.warn('Could not locate a config on window.angularConfig, window.eventsConfig or $rootScope.WMP.config');
+    return {};
   }
 ]);
 
@@ -1185,13 +1193,11 @@ ngModule.directive('bindTrustedHtml', ['$compile',
   }
 ]);
 
-ngModule.factory('wmLoginCore', ['$rootScope', '$location', '$timeout', 'csrf',
-  function ($rootScope, $location, $timeout, csrf) {
+ngModule.factory('wmLoginCore', ['$rootScope', '$location', '$timeout', 'loginOptions',
+  function ($rootScope, $location, $timeout, loginOptions) {
     var LoginCore = require('../core');
 
-    var core = new LoginCore({
-      csrfToken: csrf
-    });
+    var core = new LoginCore(loginOptions);
 
     var searchObj = $location.search();
 
