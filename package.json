@@ -6,6 +6,7 @@
     "type": "git",
     "url": "git@github.com/mozilla/webmaker-login-ux.git"
   },
+  "main": "src/adapters/plain.js",
   "bugs": "https://github.com/mozilla/webmaker-login-ux/issues",
   "scripts": {
     "build": "grunt build",
@@ -46,5 +47,8 @@
   },
   "devDependencies": {
     "jstest": "1.0.5"
+  },
+  "browserify": {
+    "transform": [ "brfs" ]
   }
 }
