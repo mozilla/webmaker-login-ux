@@ -16,7 +16,8 @@
   "contributors": [
     "Christopher De Cairos <cade@mozillafoundation.org>",
     "Jon Buckley <jbuck@mozillafoundation.org>",
-    "Ricardo Vazquez <ricardo@mozillafoundation.org"
+    "Ricardo Vazquez <ricardo@mozillafoundation.org",
+    "k88hudson <kate@mozillafoundation.org>"
   ],
   "license": "MIT",
   "dependencies": {
