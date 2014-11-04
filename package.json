@@ -1,6 +1,6 @@
 {
   "name": "webmaker-login-ux",
-  "version": "1.1.4",
+  "version": "1.1.5",
   "description": "Extendable library for implemening Webmaker Login UX",
   "repository": {
     "type": "git",
@@ -47,6 +47,8 @@
     "jit-grunt": "0.8.0"
   },
   "browserify": {
-    "transform": [ "brfs" ]
+    "transform": [
+      "brfs"
+    ]
   }
 }
