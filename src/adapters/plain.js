@@ -450,10 +450,8 @@ WebmakerLogin.prototype._persona_login = function () {
   }.bind(this));
 
   controller.on('newUser', function (email) {
-    setTimeout(function () {
-      this.create(email);
-    }.bind(this), 0);
-  });
+    this.create(email);
+  }.bind(this));
 
   controller.authenticate();
 };
