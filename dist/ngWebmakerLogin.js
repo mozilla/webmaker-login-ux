@@ -1201,6 +1201,8 @@ ngModule.factory('wmLoginCore', ['$rootScope', '$location', '$timeout', 'loginOp
 
     var searchObj = $location.search();
 
+    $rootScope._user = {};
+
     // see if we can try to instantly log in with an OTP
     if (searchObj.uid && searchObj.token) {
       core.on('signedIn', function (user) {
@@ -1222,7 +1224,7 @@ ngModule.factory('wmLoginCore', ['$rootScope', '$location', '$timeout', 'loginOp
 
     core.on('verified', function (user) {
       $timeout(function () {
-        $rootScope._user = user;
+        $rootScope._user = user ? user : {};
         $rootScope.$broadcast('verified', user);
       }, 0);
     });
@@ -1701,7 +1703,7 @@ ngModule.directive('wmLogout', ['$timeout', 'wmLoginCore',
 
           logoutController.on('loggedOut', function () {
             $timeout(function () {
-              $rootScope._user = null;
+              $rootScope._user = {};
               $rootScope.$broadcast('logout');
             }, 0);
           });
