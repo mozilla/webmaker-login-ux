@@ -136,6 +136,7 @@ var _attach_cancel = function (modal) {
 var WebmakerLogin = function WebmakerLogin(options) {
   var wmLogin = this.wmLogin = new wmLoginCore(options);
   this.showCTA = !! options.showCTA;
+  this.disablePersona = options.disablePersona;
   EventEmitter.call(this);
 
   var query = url.parse(window.location.href, true).query;
@@ -306,7 +307,8 @@ WebmakerLogin.prototype.login = function (uid_hint, password_was_reset) {
     },
     user: {},
     passwordWasReset: !! password_was_reset,
-    sendingRequest: false
+    sendingRequest: false,
+    disablePersona: this.disablePersona
   };
 
   var modal_fragment = _create_modal_fragment(ui.login);

@@ -50,7 +50,7 @@
       </div>
       <div class="cta-links clearfix">
         <button class="submit-userid btn btn-primary hidden-xs-login" type="button" ng-disabled="sendingRequest" ng-click="submitUid()" tabindex="2">{{ 'Sign in' | i18n }}</button>
-        <p ng-disabled="sendingRequest" bind-trusted-html="'log in with Persona' | i18n"></p>
+        <p ng-show="!disablePersona" ng-disabled="sendingRequest" bind-trusted-html="'log in with Persona' | i18n"></p>
       </div>
     </div>
     <!-- end enter uid -->

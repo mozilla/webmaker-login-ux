@@ -40,9 +40,11 @@ Use the `showcta` attribute to define whether or not the welcome to webmaker CTA
 
 Configures the signin modal to display when the element it is used on is clicked
 ```html
-<button wm-signin>
+<button wm-signin  disablepersona="false">
 </button>
 ```
+
+Use the `disablepersona` attribute to disable login via Persona.
 
 #### wm-password-reset
 
@@ -83,7 +85,8 @@ First you need to create an instance of the WebmakerLogin client:
 ```javascript
 var auth = new window.WebmakerLogin({
   csrfToken: 'csrf', // optional csrf token
-  showCTA: true // Show a random CTA after signing up for a new account. true/false
+  showCTA: true // Show a random CTA after signing up for a new account. true/false,
+  disablePersona: false // Disable login with persona? true/false
 });
 ```
 

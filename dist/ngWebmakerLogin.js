@@ -1379,6 +1379,9 @@ ngModule.directive('wmSignin', [
   function () {
     return {
       restrict: 'A',
+      scope: {
+        disablePersona: '=disablepersona'
+      },
       link: function ($scope, $element) {
         $element.on('click', function () {
           $scope.signin();
@@ -1386,8 +1389,7 @@ ngModule.directive('wmSignin', [
       },
       controller: ['$rootScope', '$scope', '$modal', '$timeout', '$location', 'focus', 'wmLoginCore',
         function ($rootScope, $scope, $modal, $timeout, $location, focus, wmLoginCore) {
-
-          function signinModalController($scope, $modalInstance, uid, passwordWasReset) {
+          function signinModalController($scope, $modalInstance, uid, passwordWasReset, disablePersona) {
             var MODALSTATE = {
               enterUid: 0,
               checkEmail: 1,
@@ -1400,6 +1402,7 @@ ngModule.directive('wmSignin', [
             $scope.currentState = MODALSTATE.enterUid;
             $scope.passwordWasReset = passwordWasReset;
             $scope.sendingRequest = false;
+            $scope.disablePersona = disablePersona;
 
             $scope.form = {};
             $scope.user = {};
@@ -1514,7 +1517,7 @@ ngModule.directive('wmSignin', [
             signinController.start();
 
           }
-
+          console.log($scope);
           $scope.signin = $rootScope.signin = function (uid, passwordWasReset) {
             $modal.open({
               templateUrl: 'signin-modal.html',
@@ -1525,6 +1528,9 @@ ngModule.directive('wmSignin', [
                 },
                 passwordWasReset: function () {
                   return passwordWasReset;
+                },
+                disablePersona: function () {
+                  return $scope.disablePersona;
                 }
               }
             });
