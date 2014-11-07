@@ -1252,7 +1252,7 @@ ngModule.directive('wmJoinWebmaker', [
           $scope.joinWebmaker = $rootScope.joinWebmaker = function (email, username) {
             $modal.open({
               templateUrl: 'join-webmaker-modal.html',
-              controller: joinModalController,
+              controller: ['$scope', '$modalInstance', 'email', 'username', 'showCTA', joinModalController],
               resolve: {
                 email: function () {
                   return email;
@@ -1518,7 +1518,7 @@ ngModule.directive('wmSignin', [
           $scope.signin = $rootScope.signin = function (uid, passwordWasReset) {
             $modal.open({
               templateUrl: 'signin-modal.html',
-              controller: signinModalController,
+              controller: ['$scope', '$modalInstance', 'uid', 'passwordWasReset', signinModalController],
               resolve: {
                 uid: function () {
                   return uid;
@@ -1640,7 +1640,7 @@ ngModule.directive('wmPasswordReset', [
 
           $modal.open({
             templateUrl: 'reset-modal.html',
-            controller: passwordResetModalController,
+            controller: ['$scope', '$modalInstance', 'resetCode', 'uid', passwordResetModalController],
             resolve: {
               resetCode: function () {
                 return searchObj.resetCode;
