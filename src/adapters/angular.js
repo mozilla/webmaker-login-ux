@@ -390,7 +390,7 @@ ngModule.directive('wmSignin', [
             signinController.start();
 
           }
-          console.log($scope);
+
           $scope.signin = $rootScope.signin = function (uid, passwordWasReset) {
             $modal.open({
               templateUrl: 'signin-modal.html',

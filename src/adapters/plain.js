@@ -136,7 +136,7 @@ var _attach_cancel = function (modal) {
 var WebmakerLogin = function WebmakerLogin(options) {
   var wmLogin = this.wmLogin = new wmLoginCore(options);
   this.showCTA = !! options.showCTA;
-  this.disablePersona = options.disablePersona;
+  this.disablePersona = !! options.disablePersona;
   EventEmitter.call(this);
 
   var query = url.parse(window.location.href, true).query;

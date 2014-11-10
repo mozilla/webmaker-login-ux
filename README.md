@@ -40,11 +40,11 @@ Use the `showcta` attribute to define whether or not the welcome to webmaker CTA
 
 Configures the signin modal to display when the element it is used on is clicked
 ```html
-<button wm-signin  disablepersona="false">
+<button wm-signin disablepersona="true">
 </button>
 ```
 
-Use the `disablepersona` attribute to disable login via Persona.
+Use the `disablepersona` attribute to disable login via Persona. (Defaults to `false`).
 
 #### wm-password-reset
 
