@@ -52,15 +52,7 @@ Configures the password reset modal to display when the page is loaded with the 
 search parameters in the url:
 
 ```html
-<div wm-pasword-reset></div>
-```
-
-#### wm-persona-login
-
-Configures the element it is applied to to trigger a persona log in when clicked. Ensure that the persona include file has been loaded.
-
-```html
-<button wm-persona-login></button>
+<div wm-password-reset></div>
 ```
 
 #### wm-logout

@@ -279,7 +279,7 @@ angular.module("signin-modal.html", []).run(["$templateCache", function($templat
   "      </div>\n" +
   "      <div class=\"cta-links clearfix\">\n" +
   "        <button class=\"submit-userid btn btn-primary hidden-xs-login\" type=\"button\" ng-disabled=\"sendingRequest\" ng-click=\"submitUid()\" tabindex=\"2\">{{ 'Sign in' | i18n }}</button>\n" +
-  "        <p ng-hide=\"disablePersona\" ng-disabled=\"sendingRequest\" bind-trusted-html=\"'log in with Persona' | i18n\"></p>\n" +
+  "        <p wm-persona-login ng-hide=\"disablePersona\" ng-disabled=\"sendingRequest\" bind-trusted-html=\"'log in with Persona' | i18n\"></p>\n" +
   "      </div>\n" +
   "    </div>\n" +
   "    <!-- end enter uid -->\n" +
