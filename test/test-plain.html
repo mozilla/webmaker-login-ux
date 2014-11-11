@@ -42,7 +42,8 @@
       (function() {
         var client = new WebmakerLogin({
           csrfToken: 'wut',
-          showCTA: true
+          showCTA: true,
+          // disablePersona: true
         });
 
         client.on('login', function (user) {
