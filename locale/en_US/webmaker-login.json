@@ -242,5 +242,9 @@
   "Done": {
     "message": "Done",
     "description": "Done, close the window."
+  },
+  "Remember me for one year": {
+    "message": "Remember me for one year",
+    "description": "Message displayed next to the remember me checkbox"
   }
 }

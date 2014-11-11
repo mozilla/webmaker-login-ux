@@ -373,6 +373,13 @@ WebmakerLogin.prototype.login = function (uid_hint, password_was_reset) {
     _run_expressions(modal, scope);
   });
 
+  _each(modal_fragment, 'input[name="rememberMe"]', function (i, el) {
+    el.addEventListener('change', function (e) {
+      scope.user.rememberMe = e.target.checked;
+      _run_expressions(modal, scope);
+    });
+  });
+
   _each(modal_fragment, 'button[ng-click="submitUid()"]', function (i, el) {
     el.addEventListener('click', function () {
       controller.submitUid(scope.user.uid, window.location.pathname);
