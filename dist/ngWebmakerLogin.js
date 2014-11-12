@@ -1411,8 +1411,6 @@ ngModule.directive('wmSignin', [
               $scope.user.uid = uid;
             }
 
-            $scope.user.rememberMe = false;
-
             var signinController = wmLoginCore.signIn();
 
             signinController.on('sendingRequest', function (state) {
