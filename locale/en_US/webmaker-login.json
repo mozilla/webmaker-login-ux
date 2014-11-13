@@ -124,7 +124,7 @@
     "description": "Error message displayed when the token used to log in is rejected."
   },
   "Visit Email":  {
-    "message": "Visit your email to retrieve your key",
+    "message": "Check your email to login. Enter your key here.",
     "description": "Label text above the login key input field"
   },
   "Verified Visit Email":  {
@@ -160,7 +160,7 @@
     "description": "The X-Ray Goggles Tool"
   },
   "AboutGoggles":  {
-    "message": "X-Ray Goggles allow you to see the building blocks that make up websites on the Internet. Activate the goggles to inspect the code behind any webpage.",
+    "message": "X-Ray Goggles allow you to see the building blocks that make up websites on the Internet. Activate Goggles to inspect the code behind any webpage.",
     "description": "A short description of the X-Ray Goggles"
   },
   "TryGoggles":  {
@@ -180,7 +180,7 @@
     "description": "A short description about the Resources section"
   },
   "VisitResources":  {
-    "message": "Visit Resources",
+    "message": "Explore Resources",
     "description": "Text for the button that takes the user to the X-Ray Goggles homepage"
   },
   "passwords do not match":  {
