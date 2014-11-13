@@ -12,11 +12,11 @@ angular.module("join-webmaker-modal.html", []).run(["$templateCache", function($
   "      href=\"#\" ng-click=\"submitEmail()\" ng-disabled=\"!canSubmitEmail() || form.user.$error.accountExists || form.user.$error.invalidEmail\" tabindex=\"3\" class=\"btn-link modal-title-right\">{{ 'Next' | i18n }}</button>\n" +
   "    <button\n" +
   "      ng-show=\"currentState === MODALSTATE.inputUsername\"\n" +
-  "      ng-disabled=\"!user.username || form.user.$error.invalidUsername || form.user.$error.usernameTaken || sendingRequest\" ng-click=\"submitUser()\" class=\"btn-link create-user\" tabindex=\"5\">{{ 'Sign up' | i18n }}</button>\n" +
+  "      ng-disabled=\"!user.username || form.user.$error.invalidUsername || form.user.$error.usernameTaken || sendingRequest\" ng-click=\"submitUser()\" class=\"btn-link create-user modal-title-right\" tabindex=\"5\">{{ 'Sign up' | i18n }}</button>\n" +
   "  </h3>\n" +
   "  <h3 class=\"modal-title\" ng-show=\"currentState === MODALSTATE.welcome\">\n" +
   "    <a href=\"#\" ng-click=\"cancel()\" class=\"modal-title-left\">{{ 'Cancel' | i18n }}</a>\n" +
-  "    <span class=\"modal-title-center\">{{ 'webmakerAuthWelcome' | i18n }}</span>\n" +
+  "    <span>{{ 'webmakerAuthWelcome' | i18n }}</span>\n" +
   "    <a href=\"#\" ng-click=\"cancel()\" class=\"modal-title-right\">{{ 'Done' | i18n }}</a>\n" +
   "  </h3>\n" +
   "</div>\n" +
@@ -32,7 +32,7 @@ angular.module("join-webmaker-modal.html", []).run(["$templateCache", function($
   "    <div ng-show=\"currentState === MODALSTATE.inputEmail\">\n" +
   "      <div class=\"form-group\">\n" +
   "        <label for=\"email\">{{ 'Email' | i18n }}</label>\n" +
-  "        <input ng-model=\"user.email\" ng-blur=\"validateEmail();\" type=\"text\" class=\"form-control\" name=\"email\" autocomplete=\"off\" autofocus tabindex=\"1\" required focus-on=\"create-user-email\" placeholder=\"email\">\n" +
+  "        <input ng-model=\"user.email\" ng-blur=\"validateEmail();\" type=\"text\" class=\"form-control\" name=\"email\" autocomplete=\"off\" autofocus tabindex=\"1\" required focus-on=\"create-user-email\">\n" +
   "      </div>\n" +
   "      <div class=\"terms-checkbox checkbox\">\n" +
   "        <label>\n" +
@@ -53,7 +53,7 @@ angular.module("join-webmaker-modal.html", []).run(["$templateCache", function($
   "      <div class=\"form-group\">\n" +
   "        <label for=\"pre-username\">{{ 'webmakerAuthChooseUsername' | i18n }}</label>\n" +
   "        <label for=\"username\" class=\"hidden-xs-login\">webmaker.org/user/</label>\n" +
-  "        <input ng-model=\"user.username\" name=\"username\" ng-change=\"validateUsername()\" class=\"form-control username\" autocomplete=\"off\" required autofocus tabindex=\"4\" focus-on=\"create-user-username\" maxlength=\"20\" minlength=\"1\" placeholder=\"username\">\n" +
+  "        <input ng-model=\"user.username\" name=\"username\" ng-change=\"validateUsername()\" class=\"form-control username\" autocomplete=\"off\" required autofocus tabindex=\"4\" focus-on=\"create-user-username\" maxlength=\"20\" minlength=\"1\">\n" +
   "        <div class=\"visible-xs help-block text-center\">webmaker.org/user/<strong class=\"username-with-url\">{{user.username}}</strong></div>\n" +
   "      </div>\n" +
   "      <button ng-disabled=\"!user.username || form.user.$error.invalidUsername || form.user.$error.usernameTaken || sendingRequest\" ng-click=\"submitUser()\" class=\"create-user btn btn-primary hidden-xs-login\" type=\"button\" tabindex=\"5\">{{ 'webmakerAuthCreateAccount' | i18n }}</button>\n" +
@@ -342,7 +342,7 @@ angular.module("signin-modal.html", []).run(["$templateCache", function($templat
   "            <label for=\"key\" ng-show=\"verified\">{{ 'Verified Visit Email' | i18n }}</label>\n" +
   "            <input ng-model=\"user.key\" name=\"key\" class=\"form-control\" type=\"text\" required tabindex=\"6\" focus-on=\"enter-key\" ng-keyup=\"$event.keyCode === 13 && user.key && !sendingRequest && submitKey()\">\n" +
   "          </div>\n" +
-  "          <div class=\"form-group\">\n" +
+  "          <div class=\"form-group remember-me-token\">\n" +
   "            <input ng-model=\"user.rememberMe\" name=\"rememberMe\" id=\"remember-me-token\" type=\"checkbox\">\n" +
   "            <label for=\"remember-me-token\">{{ 'Remember me for one year' | i18n }}</label>\n" +
   "          </div>\n" +
@@ -362,7 +362,7 @@ angular.module("signin-modal.html", []).run(["$templateCache", function($templat
   "          <label for=\"password\">{{ 'Password' | i18n }}</label>\n" +
   "          <input type=\"password\" class=\"form-control\" required name=\"password\" ng-model=\"user.password\" tabindex=\"8\" focus-on=\"enter-password\" ng-keyup=\"$event.keyCode === 13 && user.password && !sendingRequest && submitPassword()\">\n" +
   "        </div>\n" +
-  "        <div class=\"form-group\">\n" +
+  "        <div class=\"form-group remember-me-password\">\n" +
   "          <input ng-model=\"user.rememberMe\" name=\"rememberMe\" id=\"remember-me-password\" type=\"checkbox\">\n" +
   "          <label for=\"remember-me-password\">{{ 'Remember me for one year' | i18n }}</label>\n" +
   "        </div>\n" +

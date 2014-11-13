@@ -113,7 +113,7 @@
             <label for="key" ng-show="verified">{{ 'Verified Visit Email' | i18n }}</label>
             <input ng-model="user.key" name="key" class="form-control" type="text" required tabindex="6" focus-on="enter-key" ng-keyup="$event.keyCode === 13 && user.key && !sendingRequest && submitKey()">
           </div>
-          <div class="form-group">
+          <div class="form-group remember-me-token">
             <input ng-model="user.rememberMe" name="rememberMe" id="remember-me-token" type="checkbox">
             <label for="remember-me-token">{{ 'Remember me for one year' | i18n }}</label>
           </div>
@@ -133,7 +133,7 @@
           <label for="password">{{ 'Password' | i18n }}</label>
           <input type="password" class="form-control" required name="password" ng-model="user.password" tabindex="8" focus-on="enter-password" ng-keyup="$event.keyCode === 13 && user.password && !sendingRequest && submitPassword()">
         </div>
-        <div class="form-group">
+        <div class="form-group remember-me-password">
           <input ng-model="user.rememberMe" name="rememberMe" id="remember-me-password" type="checkbox">
           <label for="remember-me-password">{{ 'Remember me for one year' | i18n }}</label>
         </div>

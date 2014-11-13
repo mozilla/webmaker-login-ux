@@ -12,12 +12,13 @@
 .uppercase-label() {
   font-weight: normal;
   margin-bottom: 8px;
+  text-transform: uppercase;
+  font-weight: 600;
   @media (min-width: @screen-xs-min) {
     margin-bottom: 5px;
     font-size: 13.333333333px;
-    font-weight: 600;
+
     color: #454545;
-    text-transform: uppercase;
   }
 }
 
@@ -57,16 +58,17 @@
     @media (min-width: @screen-xs-min) {
       .close {
         display: block;
+        margin: 10px 0 0 0;
       }
       height: auto;
-      padding: 20px 30px 0 30px;
+      padding: 10px 30px 0 30px;
       border-bottom-style: none;
     }
 }
 .modal-title {
   line-height: inherit;
   font-size: 16px;
-  text-align: center;
+  text-align: left;
   a, button {
     padding: 0 12px;
     font-size: 12px;
@@ -79,6 +81,7 @@
       white-space: nowrap;
       overflow: hidden;
       text-overflow: ellipsis;
+      text-align: center;
       &[disabled] {
         color: #CCC;
       }
@@ -110,7 +113,7 @@
   padding: 0 0 20px 0;
   .modal-body {
     @media (min-width: @screen-xs-min) {
-      padding: 10px 30px;
+      padding: 5px 30px;
     }
     label[for=email], label[for=uid], label[for=key], label[for=persona-username], label[for=password] , label[for=value], label[for=confirmValue]{
       .uppercase-label();
@@ -144,7 +147,7 @@
       }
     }
     .form-group {
-      margin-bottom: 15px;
+      margin-bottom: 10px;
 
       &.half-width {
         margin-left: 0;
@@ -196,10 +199,7 @@
     }
 
     .enterToken {
-      text-align: center;
-      @media (min-width: @screen-xs-min) {
-        text-align: left;
-      }
+      text-align: left;
       .email-container {
         margin-top: 10px;
         @media (min-width: @screen-xs-min) {
@@ -209,9 +209,11 @@
       }
       .mailIcon {
         text-align: center;
+        margin: -10px 0 20px 0;
         @media (min-width: @screen-xs-min) {
           -webkit-flex: 1;
           flex: 1;
+          margin: 30px 0 0 0;
         }
         p {
           width: 80%;
@@ -230,9 +232,13 @@
 
     .checkEmail,
     .resetRequestSent,
-    .enterPassword {
+    .enterPassword,
+    .enterToken {
       hr {
-        margin: 20px 0 15px 0;
+        margin: 10px 0 15px 0;
+        @media (min-width: @screen-xs-min) {
+          margin: 20px 0 15px 0;
+        }
       }
       .mailIcon {
         svg {
@@ -265,8 +271,8 @@
       color: inherit;
       font-size: 13px;
       color: #999;
+      margin-bottom: -6px;
       @media (min-width: @screen-xs-min) {
-        margin-bottom: -10px;
         font-size: normal;
         text-align: right;
       }
@@ -286,7 +292,7 @@
       }
     }
 
-    .terms-checkbox, .mailing-list-checkbox {
+    .terms-checkbox, .mailing-list-checkbox, .remember-me-token, .remember-me-password {
       label {
         font-weight: 300;
         font-size: 13px;
@@ -335,6 +341,7 @@
   p {
     line-height: 22px;
     font-weight: 300;
+    text-align: left;
   }
 }
 

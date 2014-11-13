@@ -8,11 +8,11 @@
       href="#" ng-click="submitEmail()" ng-disabled="!canSubmitEmail() || form.user.$error.accountExists || form.user.$error.invalidEmail" tabindex="3" class="btn-link modal-title-right">{{ 'Next' | i18n }}</button>
     <button
       ng-show="currentState === MODALSTATE.inputUsername"
-      ng-disabled="!user.username || form.user.$error.invalidUsername || form.user.$error.usernameTaken || sendingRequest" ng-click="submitUser()" class="btn-link create-user" tabindex="5">{{ 'Sign up' | i18n }}</button>
+      ng-disabled="!user.username || form.user.$error.invalidUsername || form.user.$error.usernameTaken || sendingRequest" ng-click="submitUser()" class="btn-link create-user modal-title-right" tabindex="5">{{ 'Sign up' | i18n }}</button>
   </h3>
   <h3 class="modal-title" ng-show="currentState === MODALSTATE.welcome">
     <a href="#" ng-click="cancel()" class="modal-title-left">{{ 'Cancel' | i18n }}</a>
-    <span class="modal-title-center">{{ 'webmakerAuthWelcome' | i18n }}</span>
+    <span>{{ 'webmakerAuthWelcome' | i18n }}</span>
     <a href="#" ng-click="cancel()" class="modal-title-right">{{ 'Done' | i18n }}</a>
   </h3>
 </div>
@@ -28,7 +28,7 @@
     <div ng-show="currentState === MODALSTATE.inputEmail">
       <div class="form-group">
         <label for="email">{{ 'Email' | i18n }}</label>
-        <input ng-model="user.email" ng-blur="validateEmail();" type="text" class="form-control" name="email" autocomplete="off" autofocus tabindex="1" required focus-on="create-user-email" placeholder="email">
+        <input ng-model="user.email" ng-blur="validateEmail();" type="text" class="form-control" name="email" autocomplete="off" autofocus tabindex="1" required focus-on="create-user-email">
       </div>
       <div class="terms-checkbox checkbox">
         <label>
@@ -49,7 +49,7 @@
       <div class="form-group">
         <label for="pre-username">{{ 'webmakerAuthChooseUsername' | i18n }}</label>
         <label for="username" class="hidden-xs-login">webmaker.org/user/</label>
-        <input ng-model="user.username" name="username" ng-change="validateUsername()" class="form-control username" autocomplete="off" required autofocus tabindex="4" focus-on="create-user-username" maxlength="20" minlength="1" placeholder="username">
+        <input ng-model="user.username" name="username" ng-change="validateUsername()" class="form-control username" autocomplete="off" required autofocus tabindex="4" focus-on="create-user-username" maxlength="20" minlength="1">
         <div class="visible-xs help-block text-center">webmaker.org/user/<strong class="username-with-url">{{user.username}}</strong></div>
       </div>
       <button ng-disabled="!user.username || form.user.$error.invalidUsername || form.user.$error.usernameTaken || sendingRequest" ng-click="submitUser()" class="create-user btn btn-primary hidden-xs-login" type="button" tabindex="5">{{ 'webmakerAuthCreateAccount' | i18n }}</button>

@@ -8,7 +8,7 @@
     "description": "Error message displayed if an error occurs on the server."
   },
   "webmakerAuthCreateWelcome":  {
-    "message": "Create an account",
+    "message": "Create a Webmaker account",
     "description": "Header text for the join webmaker modal dialog"
   },
   "webmakerAuthChooseUsername":  {
