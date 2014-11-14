@@ -29,7 +29,7 @@ module.exports={
     "description": "Message about opting in for a Mozilla mailing list"
   },
   "webmakerAuthAgreeToTerms":  {
-    "message": "I agree to Mozilla Webmaker's <a href='https://webmaker.org/{{lang}}/terms'>Terms</a> and <a href='https://webmaker.org/{{lang}}/privacy'>Privacy Policy</a>",
+    "message": "I agree to Mozilla Webmaker's <a href='https://webmaker.org/terms'>Terms</a> and <a href='https://webmaker.org/privacy'>Privacy Policy</a>",
     "description": "I agree to Mozilla Webmaker's terms and privacy policy."
   },
   "webmakerAuthAgreeError":  {
