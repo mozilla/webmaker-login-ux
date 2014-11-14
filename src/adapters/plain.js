@@ -126,8 +126,8 @@ var _close_modal = function () {
 
 var _attach_cancel = function (modal) {
   _each(modal, "[ng-click='cancel()']", function (i, el) {
-    el.addEventListener('click', function (e) {
-      e.preventDefault();
+    el.addEventListener('click', function (event) {
+      event.preventDefault();
       _close_modal();
     }, false);
   });
@@ -234,7 +234,8 @@ WebmakerLogin.prototype.create = function (email_hint, username_hint) {
     _run_expressions(modal, scope);
   });
 
-  modal_fragment.querySelector('a[ng-click="switchToSignin();"]').addEventListener('click', function () {
+  modal_fragment.querySelector('a[ng-click="switchToSignin();"]').addEventListener('click', function (event) {
+    event.preventDefault();
     _close_modal();
     setTimeout(function () {
       this.login(scope.user.email);
@@ -392,7 +393,8 @@ WebmakerLogin.prototype.login = function (uid_hint, password_was_reset) {
     });
   });
   _each(modal_fragment, 'a[ng-click="enterKey()"]', function (i, el) {
-    el.addEventListener('click', function () {
+    el.addEventListener('click', function (event) {
+      event.preventDefault();
       controller.displayEnterKey();
     });
   });
@@ -414,11 +416,13 @@ WebmakerLogin.prototype.login = function (uid_hint, password_was_reset) {
     });
   });
 
-  modal_fragment.querySelector('a[ng-click="requestReset()"]').addEventListener('click', function () {
+  modal_fragment.querySelector('a[ng-click="requestReset()"]').addEventListener('click', function (event) {
+    event.preventDefault();
     controller.requestReset(scope.user.uid);
   });
 
-  modal_fragment.querySelector('a[ng-click="switchToSignup();"]').addEventListener('click', function () {
+  modal_fragment.querySelector('a[ng-click="switchToSignup();"]').addEventListener('click', function (event) {
+    event.preventDefault();
     _close_modal();
     setTimeout(function () {
       var uid = scope.user.uid;
@@ -430,7 +434,8 @@ WebmakerLogin.prototype.login = function (uid_hint, password_was_reset) {
     }.bind(this), 0);
   }.bind(this));
 
-  modal_fragment.querySelector('a[ng-click="usePersona();"]').addEventListener('click', function () {
+  modal_fragment.querySelector('a[ng-click="usePersona();"]').addEventListener('click', function (event) {
+    event.preventDefault();
     _close_modal();
     setTimeout(function () {
       this._persona_login();
