@@ -343,10 +343,10 @@ angular.module("signin-modal.html", []).run(["$templateCache", function($templat
   "            <input ng-model=\"user.key\" name=\"key\" class=\"form-control\" type=\"text\" required tabindex=\"6\" focus-on=\"enter-key\" ng-keyup=\"$event.keyCode === 13 && user.key && !sendingRequest && submitKey()\">\n" +
   "          </div>\n" +
   "          <div class=\"form-group remember-me-token\">\n" +
-  "            <input ng-model=\"user.rememberMe\" name=\"rememberMe\" id=\"remember-me-token\" type=\"checkbox\">\n" +
+  "            <input ng-model=\"user.rememberMe\" tabindex=\"7\" name=\"rememberMe\" id=\"remember-me-token\" type=\"checkbox\">\n" +
   "            <label for=\"remember-me-token\">{{ 'Remember me for one year' | i18n }}</label>\n" +
   "          </div>\n" +
-  "          <button class=\"hidden-xs-login submit-userid btn btn-primary\" type=\"button\" ng-disabled=\"sendingRequest\" ng-click=\"user.key && submitKey()\" tabindex=\"7\">{{ 'Submit' | i18n }}</button>\n" +
+  "          <button class=\"hidden-xs-login submit-userid btn btn-primary\" type=\"button\" ng-disabled=\"sendingRequest\" ng-click=\"user.key && submitKey()\" tabindex=\"8\">{{ 'Submit' | i18n }}</button>\n" +
   "        </div>\n" +
   "      </div>\n" +
   "      <hr>\n" +
@@ -360,14 +360,14 @@ angular.module("signin-modal.html", []).run(["$templateCache", function($templat
   "      <div class=\"password-container\">\n" +
   "        <div class=\"form-group\">\n" +
   "          <label for=\"password\">{{ 'Password' | i18n }}</label>\n" +
-  "          <input type=\"password\" class=\"form-control\" required name=\"password\" ng-model=\"user.password\" tabindex=\"8\" focus-on=\"enter-password\" ng-keyup=\"$event.keyCode === 13 && user.password && !sendingRequest && submitPassword()\">\n" +
+  "          <input type=\"password\" class=\"form-control\" required name=\"password\" ng-model=\"user.password\" tabindex=\"9\" focus-on=\"enter-password\" ng-keyup=\"$event.keyCode === 13 && user.password && !sendingRequest && submitPassword()\">\n" +
   "        </div>\n" +
   "        <div class=\"form-group remember-me-password\">\n" +
-  "          <input ng-model=\"user.rememberMe\" name=\"rememberMe\" id=\"remember-me-password\" type=\"checkbox\">\n" +
+  "          <input ng-model=\"user.rememberMe\" tabindex=\"10\" name=\"rememberMe\" id=\"remember-me-password\" type=\"checkbox\">\n" +
   "          <label for=\"remember-me-password\">{{ 'Remember me for one year' | i18n }}</label>\n" +
   "        </div>\n" +
   "        <div class=\"cta-links clearfix\">\n" +
-  "          <button class=\"submit-password btn btn-primary hidden-xs-login\" type=\"button\" ng-disabled=\"sendingRequest\" ng-click=\"user.password && submitPassword()\" tabindex=\"9\">{{ 'Submit' | i18n }}</button>\n" +
+  "          <button class=\"submit-password btn btn-primary hidden-xs-login\" type=\"button\" ng-disabled=\"sendingRequest\" ng-click=\"user.password && submitPassword()\" tabindex=\"11\">{{ 'Submit' | i18n }}</button>\n" +
   "          <p><a ng-click=\"requestReset()\">{{ 'Forgot your password?' | i18n }}</a></p>\n" +
   "        </div>\n" +
   "      </div>\n" +
