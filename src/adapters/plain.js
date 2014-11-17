@@ -177,10 +177,7 @@ WebmakerLogin.prototype.create = function (email_hint, username_hint) {
     },
     user: {},
     sendingRequest: false,
-    welcomeModalIdx: 0,
-    canSubmitEmail: function () {
-      return scope.user.email && scope.user.agree;
-    }
+    welcomeModalIdx: 0
   };
 
   var modal_fragment = _create_modal_fragment(ui.create);
@@ -249,6 +246,7 @@ WebmakerLogin.prototype.create = function (email_hint, username_hint) {
 
   modal_fragment.querySelector('input[name="agree"]').addEventListener('change', function (e) {
     scope.user.agree = e.target.checked;
+    controller.agreeToTermsChanged(scope.user.agree);
     _run_expressions(modal, scope);
   });
 
@@ -258,7 +256,7 @@ WebmakerLogin.prototype.create = function (email_hint, username_hint) {
 
   _each(modal_fragment, 'button[ng-click="submitEmail()"]', function (i, el) {
     el.addEventListener('click', function (e) {
-      controller.submitEmail();
+      controller.submitEmail(scope.user.agree);
     });
   });
 

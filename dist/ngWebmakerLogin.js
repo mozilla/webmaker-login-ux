@@ -1342,12 +1342,12 @@ ngModule.directive('wmJoinWebmaker', [
               joinController.validateEmail($scope.user.email);
             };
 
-            $scope.canSubmitEmail = function () {
-              return $scope.user.email && $scope.user.agree;
+            $scope.submitEmail = function () {
+              joinController.submitEmail($scope.user.agree);
             };
 
-            $scope.submitEmail = function () {
-              joinController.submitEmail();
+            $scope.agreeToTermsChanged = function () {
+              joinController.agreeToTermsChanged($scope.user.agree);
             };
 
             $scope.validateUsername = function () {
@@ -2130,8 +2130,16 @@ module.exports = function JoinController(loginApi, showCTA) {
 
       loginApi.uidExists(email, validateEmailCallback);
     },
-    submitEmail: function () {
+    submitEmail: function (agreeToTerms) {
+      if (!agreeToTerms) {
+        return displayAlert(JOIN_ALERTS.agreeToTerms);
+      }
       emit(JOIN_EVENTS.displayUsernameInput);
+    },
+    agreeToTermsChanged: function (agree) {
+      if (agree) {
+        emit(JOIN_EVENTS.hideAlert, JOIN_ALERTS.agreeToTerms);
+      }
     },
     validateUsername: function (username) {
       clearAlerts([

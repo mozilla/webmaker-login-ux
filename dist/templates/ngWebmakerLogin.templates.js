@@ -36,7 +36,7 @@ angular.module("join-webmaker-modal.html", []).run(["$templateCache", function($
   "      </div>\n" +
   "      <div class=\"terms-checkbox checkbox\">\n" +
   "        <label>\n" +
-  "          <input ng-model=\"user.agree\" type=\"checkbox\" ng-disabled=\"form.user.$error.accountExists\" name=\"agree\" tabindex=\"2\"> <span ng-bind-html=\"'webmakerAuthAgreeToTerms' | i18n\"></span>\n" +
+  "          <input ng-model=\"user.agree\" type=\"checkbox\" ng-disabled=\"form.user.$error.accountExists\" ng-change=\"agreeToTermsChanged();\" name=\"agree\" tabindex=\"2\"> <span ng-bind-html=\"'webmakerAuthAgreeToTerms' | i18n\"></span>\n" +
   "        </label>\n" +
   "      </div>\n" +
   "      <div class=\"mailing-list-checkbox checkbox\">\n" +
@@ -45,7 +45,7 @@ angular.module("join-webmaker-modal.html", []).run(["$templateCache", function($
   "        </label>\n" +
   "      </div>\n" +
   "      <div class=\"cta-links clearfix\">\n" +
-  "        <button ng-click=\"submitEmail()\" ng-disabled=\"!canSubmitEmail() || form.user.$error.accountExists || form.user.$error.invalidEmail\" class=\"create-user btn btn-primary hidden-xs-login\" type=\"button\" tabindex=\"3\">{{ 'Sign up' | i18n }}</button>\n" +
+  "        <button ng-click=\"submitEmail()\" ng-disabled=\"!user.email || form.user.$error.accountExists || form.user.$error.invalidEmail\" class=\"create-user btn btn-primary hidden-xs-login\" type=\"button\" tabindex=\"3\">{{ 'Sign up' | i18n }}</button>\n" +
   "      </div>\n" +
   "    </div>\n" +
   "\n" +

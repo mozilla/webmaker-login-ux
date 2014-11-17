@@ -215,12 +215,12 @@ ngModule.directive('wmJoinWebmaker', [
               joinController.validateEmail($scope.user.email);
             };
 
-            $scope.canSubmitEmail = function () {
-              return $scope.user.email && $scope.user.agree;
+            $scope.submitEmail = function () {
+              joinController.submitEmail($scope.user.agree);
             };
 
-            $scope.submitEmail = function () {
-              joinController.submitEmail();
+            $scope.agreeToTermsChanged = function () {
+              joinController.agreeToTermsChanged($scope.user.agree);
             };
 
             $scope.validateUsername = function () {

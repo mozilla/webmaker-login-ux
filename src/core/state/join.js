@@ -100,8 +100,16 @@ module.exports = function JoinController(loginApi, showCTA) {
 
       loginApi.uidExists(email, validateEmailCallback);
     },
-    submitEmail: function () {
+    submitEmail: function (agreeToTerms) {
+      if (!agreeToTerms) {
+        return displayAlert(JOIN_ALERTS.agreeToTerms);
+      }
       emit(JOIN_EVENTS.displayUsernameInput);
+    },
+    agreeToTermsChanged: function (agree) {
+      if (agree) {
+        emit(JOIN_EVENTS.hideAlert, JOIN_ALERTS.agreeToTerms);
+      }
     },
     validateUsername: function (username) {
       clearAlerts([
