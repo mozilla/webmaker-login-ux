@@ -352,6 +352,11 @@
 .modal-content .modal-body .remember-me-password label {
   font-weight: 300;
   font-size: 13px;
+  cursor: pointer;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
 }
 .modal-content .modal-body .terms-checkbox input[type="checkbox"]:focus,
 .modal-content .modal-body .mailing-list-checkbox input[type="checkbox"]:focus,
