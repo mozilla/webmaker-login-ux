@@ -25,7 +25,7 @@ module.exports={
     "description": "Error message displayed when the username entered contains symbols that are not allowed."
   },
   "webmakerAuthMailingList":  {
-    "message": "Send me email updates about Mozilla Webmaker and other projects",
+    "message": "Send me email updates about Webmaker and other Mozilla projects",
     "description": "Message about opting in for a Mozilla mailing list"
   },
   "webmakerAuthAgreeToTerms":  {
