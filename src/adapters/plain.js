@@ -149,7 +149,10 @@ var WebmakerLogin = function WebmakerLogin(options) {
     }.bind(this));
     wmLogin.on('signinFailed', function (uid) {
       console.log("Instant signin failed for uid %s", uid);
-    });
+      this.login(uid, {
+        expired: true
+      });
+    }.bind(this));
   }
 
   wmLogin.on('verified', function (user) {
@@ -291,7 +294,8 @@ WebmakerLogin.prototype.create = function (email_hint, username_hint) {
   controller.start();
 };
 
-WebmakerLogin.prototype.login = function (uid_hint, password_was_reset) {
+WebmakerLogin.prototype.login = function (uid_hint, options) {
+  options = options || {};
   var controller = this.wmLogin.signIn();
   var scope = {
     MODALSTATE: {
@@ -308,7 +312,8 @@ WebmakerLogin.prototype.login = function (uid_hint, password_was_reset) {
       }
     },
     user: {},
-    passwordWasReset: !! password_was_reset,
+    passwordWasReset: !! options.password_was_reset,
+    expiredLoginLink: !! options.expired,
     sendingRequest: false,
     disablePersona: this.disablePersona
   };
@@ -524,7 +529,9 @@ WebmakerLogin.prototype.request_password_reset = function (uid, token) {
   controller.on('resetSucceeded', function () {
     _close_modal();
     setTimeout(function () {
-      this.login(uid, true);
+      this.login(uid, {
+        password_was_reset: true
+      });
     }.bind(this), 0);
   }.bind(this));
 

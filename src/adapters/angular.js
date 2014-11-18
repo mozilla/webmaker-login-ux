@@ -76,13 +76,17 @@ ngModule.factory('wmLoginCore', ['$rootScope', '$location', '$timeout', 'loginOp
 
     $rootScope._user = {};
 
+    function scrubSearch() {
+      $location.search('uid', null);
+      $location.search('token', null);
+      $location.search('validFor', null);
+    }
+
     // see if we can try to instantly log in with an OTP
     if (searchObj.uid && searchObj.token) {
       core.on('signedIn', function (user) {
         $timeout(function () {
-          $location.search('uid', null);
-          $location.search('token', null);
-          $location.search('validFor', null);
+          scrubSearch();
           $rootScope._user = user;
         }, 0);
       });
@@ -90,6 +94,9 @@ ngModule.factory('wmLoginCore', ['$rootScope', '$location', '$timeout', 'loginOp
         // TODO: design?
         $timeout(function () {
           console.error('login failed for uid: ' + uid);
+          scrubSearch();
+          $rootScope.expiredLoginLink = true;
+          $rootScope.signin(uid);
         }, 0);
       });
       core.instantLogin(searchObj.uid, searchObj.token, searchObj.validFor);

@@ -250,5 +250,9 @@
   "Lets Go!": {
     "message": "Let's Go!",
     "description": "Button text for closing the modal dialog after account creation"
+  },
+  "Expired Login Link": {
+    "message": "Uh Oh! Your login link expired. Request a new email to sign in.",
+    "description": "Error message displayed if a login link is expired"
   }
 }

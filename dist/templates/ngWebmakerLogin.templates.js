@@ -271,6 +271,7 @@ angular.module("signin-modal.html", []).run(["$templateCache", function($templat
   "  <form class=\"form\" name=\"form.user\" novalidate>\n" +
   "\n" +
   "    <div class=\"alert alert-success\" ng-show=\"passwordWasReset && currentState === MODALSTATE.enterUid\" ng-bind-html=\"'Password Reset Success' | i18n\"></div>\n" +
+  "    <div class=\"alert alert-danger\" ng-show=\"expiredLoginLink && currentState === MODALSTATE.enterUid\" ng-bind-html=\"'Expired Login Link' | i18n\"></div>\n" +
   "    <div class=\"alert alert-warning\" ng-show=\"form.user.$error.noAccount\" bind-trusted-html=\"'No account found for your uid' | i18n\"></div>\n" +
   "    <div class=\"alert alert-danger\" ng-show=\"form.user.$error.invalid\" ng-bind-html=\"'That does not look like an email address or username' | i18n\"></div>\n" +
   "    <div class=\"alert alert-danger\" ng-show=\"form.user.$error.tokenSendFailed\" ng-bind-html=\"'problem sending token' | i18n\"></div>\n" +
