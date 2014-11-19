@@ -1,7 +1,7 @@
 <div class="modal-header">
-  <button ng-click="cancel()" ng-hide="" type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+  <button ng-click="close()" ng-hide="" type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
   <h3 class="modal-title" ng-hide="currentState === MODALSTATE.welcome">
-    <a href="#" ng-click="cancel()" class="modal-title-left">{{ 'Cancel' | i18n }}</a>
+    <a href="#" ng-click="close()" class="modal-title-left">{{ 'Cancel' | i18n }}</a>
     <span class="modal-title-center">{{ 'webmakerAuthCreateWelcome' | i18n }}</span>
     <button
       ng-show="currentState === MODALSTATE.inputEmail"
@@ -11,9 +11,9 @@
       ng-disabled="!user.username || form.user.$error.invalidUsername || form.user.$error.usernameTaken || sendingRequest" ng-click="submitUser()" class="btn-link create-user modal-title-right" tabindex="5">{{ 'Sign up' | i18n }}</button>
   </h3>
   <h3 class="modal-title" ng-show="currentState === MODALSTATE.welcome">
-    <a href="#" ng-click="cancel()" class="modal-title-left">{{ 'Cancel' | i18n }}</a>
+    <a href="#" ng-click="close()" class="modal-title-left">{{ 'Cancel' | i18n }}</a>
     <span>{{ 'webmakerAuthWelcome' | i18n }}</span>
-    <a href="#" ng-click="cancel()" class="modal-title-right">{{ 'Done' | i18n }}</a>
+    <a href="#" ng-click="close()" class="modal-title-right">{{ 'Done' | i18n }}</a>
   </h3>
 </div>
 <div class="modal-body">
@@ -57,8 +57,8 @@
 
     <div ng-show="currentState === MODALSTATE.welcome" class="welcome">
       <p class="subheadline">{{ 'aboutWebmaker' | i18n }}</p>
-        <!-- Goggles -->
 
+        <!-- Goggles -->
         <div class="tool-desc" ng-show="welcomeModalIdx === 0">
           <div class="icon">
             <?xml version="1.0" encoding="UTF-8" standalone="no"?>
@@ -86,13 +86,12 @@
           <h4>{{ 'XRay-Goggles' | i18n }}</h4>
           <p>{{ 'AboutGoggles' | i18n }}</p>
           <div class="clearfix">
-            <a class="create-user btn btn-primary" type="button" href="https://goggles.webmaker.org" autofocus>{{'TryGoggles' | i18n }}</button>
-            <a href="https://webmaker.org/{{lang}}/explore" class="explore-link">{{ 'ExploreWebmaker' | i18n }}</a>
+            <a class="create-user btn btn-primary" type="button" href="https://goggles.webmaker.org" autofocus>{{'TryGoggles' | i18n }}</a>
+            <a href="https://webmaker.org/explore" class="explore-link">{{ 'ExploreWebmaker' | i18n }}</a>
           </div>
         </div>
 
         <!-- Resources -->
-
         <div class="tool-desc" ng-show="welcomeModalIdx === 1">
           <div class="icon">
             <?xml version="1.0" encoding="UTF-8" standalone="no"?>
@@ -157,8 +156,16 @@
           <h4>{{ 'Resources' | i18n }}</h4>
           <p>{{ 'AboutResources' | i18n }}</p>
           <div class="clearfix">
-            <a class="create-user btn btn-primary" type="button" href="https://webmaker.org/resources" autofocus>{{'VisitResources' | i18n }}</button>
-            <a href="https://webmaker.org/{{lang}}/explore" class="explore-link">{{ 'ExploreWebmaker' | i18n }}</a>
+            <a class="create-user btn btn-primary" type="button" href="https://webmaker.org/resources" autofocus>{{'VisitResources' | i18n }}</a>
+            <a href="https://webmaker.org/explore" class="explore-link">{{ 'ExploreWebmaker' | i18n }}</a>
+          </div>
+        </div>
+
+        <!-- simplified CTA -->
+        <div class="tool-desc" ng-show="simpleCTA">
+          <div class="clearfix">
+            <a class="create-user btn btn-primary" type="button" href="#" ng-click="close()">{{ 'Lets Go!' | i18n }}</a>
+            <a href="https://webmaker.org/explore" class="explore-link">{{ 'ExploreWebmaker' | i18n }}</a>
           </div>
         </div>
     </div>

@@ -1307,17 +1307,14 @@ ngModule.directive('wmJoinWebmaker', [
               }, 0);
             });
 
-            joinController.on('userCreated', function (user) {
+            joinController.on('displayWelcome', function (user, showCTA) {
               $timeout(function () {
                 $rootScope._user = user;
-                $modalInstance.close();
-              }, 0);
-            });
-
-            joinController.on('displayWelcome', function (user) {
-              $timeout(function () {
-                $rootScope._user = user;
-                $scope.welcomeModalIdx = Math.floor(Math.random() * 2);
+                if (showCTA) {
+                  $scope.welcomeModalIdx = Math.floor(Math.random() * 2);
+                } else {
+                  $scope.simpleCTA = true;
+                }
                 $scope.currentState = MODALSTATE.welcome;
               }, 0);
             });
@@ -1358,7 +1355,7 @@ ngModule.directive('wmJoinWebmaker', [
               joinController.submitUser($scope.user);
             };
 
-            $scope.cancel = function () {
+            $scope.close = function () {
               $modalInstance.close();
             };
 
@@ -2051,8 +2048,7 @@ module.exports = function JoinController(loginApi, showCTA) {
     hideAlert: 'hideAlert',
     displayUsernameInput: 'displayUsernameInput',
     displayEmailInput: 'displayEmailInput',
-    displayWelcome: 'displayWelcome',
-    userCreated: 'userCreated'
+    displayWelcome: 'displayWelcome'
   };
 
   function emit() {
@@ -2190,11 +2186,7 @@ module.exports = function JoinController(loginApi, showCTA) {
           nonInteraction: true
         });
         analytics.conversionGoal('WebmakerNewUserCreated');
-        if (showCTA) {
-          emit(JOIN_EVENTS.displayWelcome, body.user);
-        } else {
-          emit(JOIN_EVENTS.userCreated, body.user);
-        }
+        emit(JOIN_EVENTS.displayWelcome, body.user, showCTA);
       });
     }
   };

@@ -246,5 +246,9 @@
   "Remember me for one year": {
     "message": "Remember me for one year",
     "description": "Message displayed next to the remember me checkbox"
+  },
+  "Lets Go!": {
+    "message": "Let's Go!",
+    "description": "Button text for closing the modal dialog after account creation"
   }
 }

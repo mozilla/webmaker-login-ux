@@ -21,8 +21,7 @@ module.exports = function JoinController(loginApi, showCTA) {
     hideAlert: 'hideAlert',
     displayUsernameInput: 'displayUsernameInput',
     displayEmailInput: 'displayEmailInput',
-    displayWelcome: 'displayWelcome',
-    userCreated: 'userCreated'
+    displayWelcome: 'displayWelcome'
   };
 
   function emit() {
@@ -160,11 +159,7 @@ module.exports = function JoinController(loginApi, showCTA) {
           nonInteraction: true
         });
         analytics.conversionGoal('WebmakerNewUserCreated');
-        if (showCTA) {
-          emit(JOIN_EVENTS.displayWelcome, body.user);
-        } else {
-          emit(JOIN_EVENTS.userCreated, body.user);
-        }
+        emit(JOIN_EVENTS.displayWelcome, body.user, showCTA);
       });
     }
   };

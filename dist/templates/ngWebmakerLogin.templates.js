@@ -3,9 +3,9 @@ angular.module('templates-ngWebmakerLogin', ['join-webmaker-modal.html', 'modal-
 angular.module("join-webmaker-modal.html", []).run(["$templateCache", function($templateCache) {
  $templateCache.put("join-webmaker-modal.html",
   "<div class=\"modal-header\">\n" +
-  "  <button ng-click=\"cancel()\" ng-hide=\"\" type=\"button\" class=\"close\" data-dismiss=\"modal\" aria-hidden=\"true\">&times;</button>\n" +
+  "  <button ng-click=\"close()\" ng-hide=\"\" type=\"button\" class=\"close\" data-dismiss=\"modal\" aria-hidden=\"true\">&times;</button>\n" +
   "  <h3 class=\"modal-title\" ng-hide=\"currentState === MODALSTATE.welcome\">\n" +
-  "    <a href=\"#\" ng-click=\"cancel()\" class=\"modal-title-left\">{{ 'Cancel' | i18n }}</a>\n" +
+  "    <a href=\"#\" ng-click=\"close()\" class=\"modal-title-left\">{{ 'Cancel' | i18n }}</a>\n" +
   "    <span class=\"modal-title-center\">{{ 'webmakerAuthCreateWelcome' | i18n }}</span>\n" +
   "    <button\n" +
   "      ng-show=\"currentState === MODALSTATE.inputEmail\"\n" +
@@ -15,9 +15,9 @@ angular.module("join-webmaker-modal.html", []).run(["$templateCache", function($
   "      ng-disabled=\"!user.username || form.user.$error.invalidUsername || form.user.$error.usernameTaken || sendingRequest\" ng-click=\"submitUser()\" class=\"btn-link create-user modal-title-right\" tabindex=\"5\">{{ 'Sign up' | i18n }}</button>\n" +
   "  </h3>\n" +
   "  <h3 class=\"modal-title\" ng-show=\"currentState === MODALSTATE.welcome\">\n" +
-  "    <a href=\"#\" ng-click=\"cancel()\" class=\"modal-title-left\">{{ 'Cancel' | i18n }}</a>\n" +
+  "    <a href=\"#\" ng-click=\"close()\" class=\"modal-title-left\">{{ 'Cancel' | i18n }}</a>\n" +
   "    <span>{{ 'webmakerAuthWelcome' | i18n }}</span>\n" +
-  "    <a href=\"#\" ng-click=\"cancel()\" class=\"modal-title-right\">{{ 'Done' | i18n }}</a>\n" +
+  "    <a href=\"#\" ng-click=\"close()\" class=\"modal-title-right\">{{ 'Done' | i18n }}</a>\n" +
   "  </h3>\n" +
   "</div>\n" +
   "<div class=\"modal-body\">\n" +
@@ -61,8 +61,8 @@ angular.module("join-webmaker-modal.html", []).run(["$templateCache", function($
   "\n" +
   "    <div ng-show=\"currentState === MODALSTATE.welcome\" class=\"welcome\">\n" +
   "      <p class=\"subheadline\">{{ 'aboutWebmaker' | i18n }}</p>\n" +
-  "        <!-- Goggles -->\n" +
   "\n" +
+  "        <!-- Goggles -->\n" +
   "        <div class=\"tool-desc\" ng-show=\"welcomeModalIdx === 0\">\n" +
   "          <div class=\"icon\">\n" +
   "            <?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"no\"?>\n" +
@@ -90,13 +90,12 @@ angular.module("join-webmaker-modal.html", []).run(["$templateCache", function($
   "          <h4>{{ 'XRay-Goggles' | i18n }}</h4>\n" +
   "          <p>{{ 'AboutGoggles' | i18n }}</p>\n" +
   "          <div class=\"clearfix\">\n" +
-  "            <a class=\"create-user btn btn-primary\" type=\"button\" href=\"https://goggles.webmaker.org\" autofocus>{{'TryGoggles' | i18n }}</button>\n" +
-  "            <a href=\"https://webmaker.org/{{lang}}/explore\" class=\"explore-link\">{{ 'ExploreWebmaker' | i18n }}</a>\n" +
+  "            <a class=\"create-user btn btn-primary\" type=\"button\" href=\"https://goggles.webmaker.org\" autofocus>{{'TryGoggles' | i18n }}</a>\n" +
+  "            <a href=\"https://webmaker.org/explore\" class=\"explore-link\">{{ 'ExploreWebmaker' | i18n }}</a>\n" +
   "          </div>\n" +
   "        </div>\n" +
   "\n" +
   "        <!-- Resources -->\n" +
-  "\n" +
   "        <div class=\"tool-desc\" ng-show=\"welcomeModalIdx === 1\">\n" +
   "          <div class=\"icon\">\n" +
   "            <?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"no\"?>\n" +
@@ -161,8 +160,16 @@ angular.module("join-webmaker-modal.html", []).run(["$templateCache", function($
   "          <h4>{{ 'Resources' | i18n }}</h4>\n" +
   "          <p>{{ 'AboutResources' | i18n }}</p>\n" +
   "          <div class=\"clearfix\">\n" +
-  "            <a class=\"create-user btn btn-primary\" type=\"button\" href=\"https://webmaker.org/resources\" autofocus>{{'VisitResources' | i18n }}</button>\n" +
-  "            <a href=\"https://webmaker.org/{{lang}}/explore\" class=\"explore-link\">{{ 'ExploreWebmaker' | i18n }}</a>\n" +
+  "            <a class=\"create-user btn btn-primary\" type=\"button\" href=\"https://webmaker.org/resources\" autofocus>{{'VisitResources' | i18n }}</a>\n" +
+  "            <a href=\"https://webmaker.org/explore\" class=\"explore-link\">{{ 'ExploreWebmaker' | i18n }}</a>\n" +
+  "          </div>\n" +
+  "        </div>\n" +
+  "\n" +
+  "        <!-- simplified CTA -->\n" +
+  "        <div class=\"tool-desc\" ng-show=\"simpleCTA\">\n" +
+  "          <div class=\"clearfix\">\n" +
+  "            <a class=\"create-user btn btn-primary\" type=\"button\" href=\"#\" ng-click=\"close()\">{{ 'Lets Go!' | i18n }}</a>\n" +
+  "            <a href=\"https://webmaker.org/explore\" class=\"explore-link\">{{ 'ExploreWebmaker' | i18n }}</a>\n" +
   "          </div>\n" +
   "        </div>\n" +
   "    </div>\n" +

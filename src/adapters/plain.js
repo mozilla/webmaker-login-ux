@@ -125,7 +125,7 @@ var _close_modal = function () {
 };
 
 var _attach_cancel = function (modal) {
-  _each(modal, "[ng-click='cancel()']", function (i, el) {
+  _each(modal, "[ng-click='close()']", function (i, el) {
     el.addEventListener('click', function (event) {
       event.preventDefault();
       _close_modal();
@@ -181,7 +181,7 @@ WebmakerLogin.prototype.create = function (email_hint, username_hint) {
     },
     user: {},
     sendingRequest: false,
-    welcomeModalIdx: 0
+    welcomeModalIdx: -1
   };
 
   var modal_fragment = _create_modal_fragment(ui.create);
@@ -213,14 +213,13 @@ WebmakerLogin.prototype.create = function (email_hint, username_hint) {
     modal.querySelector('input[focus-on="create-user-username"]').focus();
   });
 
-  controller.on('userCreated', function (user) {
+  controller.on('displayWelcome', function (user, showCTA) {
     this.emit('login', user);
-    _close_modal();
-  }.bind(this));
-
-  controller.on('displayWelcome', function (user) {
-    this.emit('login', user);
-    scope.welcomeModalIdx = Math.floor(Math.random() * 2);
+    if (showCTA) {
+      scope.welcomeModalIdx = Math.floor(Math.random() * 2);
+    } else {
+      scope.simpleCTA = true;
+    }
     scope.currentState = scope.MODALSTATE.welcome;
     _run_expressions(modal, scope);
   }.bind(this));
