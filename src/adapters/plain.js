@@ -156,6 +156,10 @@ var WebmakerLogin = function WebmakerLogin(options) {
     this.emit('verified', user);
   }.bind(this));
 
+  wmLogin.on('error', function (err) {
+    this.emit('error', err);
+  }.bind(this));
+
   wmLogin.verify();
 };
 
