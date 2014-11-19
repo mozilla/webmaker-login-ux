@@ -368,7 +368,7 @@ ngModule.directive('wmSignin', [
               signinController.requestReset($scope.user.uid);
             };
 
-            $scope.cancel = function () {
+            $scope.close = function () {
               $scope.user = {};
               $modalInstance.close();
             };
@@ -515,7 +515,7 @@ ngModule.directive('wmPasswordReset', [
               resetController.submitResetRequest(uid, resetCode, $scope.password.value);
             };
 
-            $scope.cancel = function () {
+            $scope.close = function () {
               clearSearch();
               $modalInstance.close();
             };

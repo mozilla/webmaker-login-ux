@@ -1,7 +1,7 @@
 <div class="modal-header">
-  <button ng-click="cancel()" type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+  <button ng-click="close()" type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
   <h3 class="modal-title" ng-show="currentState === MODALSTATE.enterUid || currentState === MODALSTATE.enterPassword">
-    <button href="#" ng-click="cancel()" class="modal-title-left btn-link">{{ 'Cancel' | i18n }}</button>
+    <button href="#" ng-click="close()" class="modal-title-left btn-link">{{ 'Cancel' | i18n }}</button>
     <span class="modal-title-center">{{ 'Sign in to Webmaker' | i18n }}</span>
     <button ng-show="currentState === MODALSTATE.enterUid"
       ng-disabled="sendingRequest"
@@ -13,7 +13,7 @@
       ng-click="user.password && submitPassword()" tabindex="9">{{ 'Submit' | i18n }}</button>
   </h3>
   <h3 class="modal-title" ng-show="currentState === MODALSTATE.checkEmail || currentState === MODALSTATE.resetRequestSent || currentState === MODALSTATE.enterKey">
-    <a href="#" ng-click="cancel()" class="modal-title-left">{{ 'Cancel' | i18n }}</a>
+    <a href="#" ng-click="close()" class="modal-title-left">{{ 'Cancel' | i18n }}</a>
     <span class="modal-title-center">{{ 'checkEmail' | i18n }}</span>
     <button
       ng-show="currentState === MODALSTATE.enterKey"
@@ -28,7 +28,7 @@
       tabindex="4">{{ 'Next' | i18n }}</a>
     <a href="#"
       ng-show="currentState === MODALSTATE.resetRequestSent"
-      ng-click="cancel()" class="modal-title-right">{{ 'Done' | i18n }}</a>
+      ng-click="close()" class="modal-title-right">{{ 'Done' | i18n }}</a>
   </h3>
 </div>
 <div class="modal-body">

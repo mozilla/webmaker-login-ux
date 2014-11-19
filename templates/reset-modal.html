@@ -1,7 +1,7 @@
 <div class="modal-header">
-  <button ng-click="cancel()" type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+  <button ng-click="close()" type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
   <h3 class="modal-title">
-    <a href="#" ng-click="cancel()" class="modal-title-left">{{ 'Cancel' | i18n }}</a>
+    <a href="#" ng-click="close()" class="modal-title-left">{{ 'Cancel' | i18n }}</a>
     <span class="modal-title-center">{{ 'Reset Password' | i18n }}</span>
     <button ng-click="submitResetRequest()" ng-disabled="sendingRequest || !password.value || !password.confirmValue || !passwordsMatch || form.password.$error.passwordsMustMatch" class="modal-title-right btn-link" type="button" tabindex="3">{{ 'Submit' | i18n }}</button>
   </h3>

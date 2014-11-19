@@ -192,9 +192,9 @@ angular.module("modal-wrapper.html", []).run(["$templateCache", function($templa
 angular.module("reset-modal.html", []).run(["$templateCache", function($templateCache) {
  $templateCache.put("reset-modal.html",
   "<div class=\"modal-header\">\n" +
-  "  <button ng-click=\"cancel()\" type=\"button\" class=\"close\" data-dismiss=\"modal\" aria-hidden=\"true\">&times;</button>\n" +
+  "  <button ng-click=\"close()\" type=\"button\" class=\"close\" data-dismiss=\"modal\" aria-hidden=\"true\">&times;</button>\n" +
   "  <h3 class=\"modal-title\">\n" +
-  "    <a href=\"#\" ng-click=\"cancel()\" class=\"modal-title-left\">{{ 'Cancel' | i18n }}</a>\n" +
+  "    <a href=\"#\" ng-click=\"close()\" class=\"modal-title-left\">{{ 'Cancel' | i18n }}</a>\n" +
   "    <span class=\"modal-title-center\">{{ 'Reset Password' | i18n }}</span>\n" +
   "    <button ng-click=\"submitResetRequest()\" ng-disabled=\"sendingRequest || !password.value || !password.confirmValue || !passwordsMatch || form.password.$error.passwordsMustMatch\" class=\"modal-title-right btn-link\" type=\"button\" tabindex=\"3\">{{ 'Submit' | i18n }}</button>\n" +
   "  </h3>\n" +
@@ -235,9 +235,9 @@ angular.module("reset-modal.html", []).run(["$templateCache", function($template
 angular.module("signin-modal.html", []).run(["$templateCache", function($templateCache) {
  $templateCache.put("signin-modal.html",
   "<div class=\"modal-header\">\n" +
-  "  <button ng-click=\"cancel()\" type=\"button\" class=\"close\" data-dismiss=\"modal\" aria-hidden=\"true\">&times;</button>\n" +
+  "  <button ng-click=\"close()\" type=\"button\" class=\"close\" data-dismiss=\"modal\" aria-hidden=\"true\">&times;</button>\n" +
   "  <h3 class=\"modal-title\" ng-show=\"currentState === MODALSTATE.enterUid || currentState === MODALSTATE.enterPassword\">\n" +
-  "    <button href=\"#\" ng-click=\"cancel()\" class=\"modal-title-left btn-link\">{{ 'Cancel' | i18n }}</button>\n" +
+  "    <button href=\"#\" ng-click=\"close()\" class=\"modal-title-left btn-link\">{{ 'Cancel' | i18n }}</button>\n" +
   "    <span class=\"modal-title-center\">{{ 'Sign in to Webmaker' | i18n }}</span>\n" +
   "    <button ng-show=\"currentState === MODALSTATE.enterUid\"\n" +
   "      ng-disabled=\"sendingRequest\"\n" +
@@ -249,7 +249,7 @@ angular.module("signin-modal.html", []).run(["$templateCache", function($templat
   "      ng-click=\"user.password && submitPassword()\" tabindex=\"9\">{{ 'Submit' | i18n }}</button>\n" +
   "  </h3>\n" +
   "  <h3 class=\"modal-title\" ng-show=\"currentState === MODALSTATE.checkEmail || currentState === MODALSTATE.resetRequestSent || currentState === MODALSTATE.enterKey\">\n" +
-  "    <a href=\"#\" ng-click=\"cancel()\" class=\"modal-title-left\">{{ 'Cancel' | i18n }}</a>\n" +
+  "    <a href=\"#\" ng-click=\"close()\" class=\"modal-title-left\">{{ 'Cancel' | i18n }}</a>\n" +
   "    <span class=\"modal-title-center\">{{ 'checkEmail' | i18n }}</span>\n" +
   "    <button\n" +
   "      ng-show=\"currentState === MODALSTATE.enterKey\"\n" +
@@ -264,7 +264,7 @@ angular.module("signin-modal.html", []).run(["$templateCache", function($templat
   "      tabindex=\"4\">{{ 'Next' | i18n }}</a>\n" +
   "    <a href=\"#\"\n" +
   "      ng-show=\"currentState === MODALSTATE.resetRequestSent\"\n" +
-  "      ng-click=\"cancel()\" class=\"modal-title-right\">{{ 'Done' | i18n }}</a>\n" +
+  "      ng-click=\"close()\" class=\"modal-title-right\">{{ 'Done' | i18n }}</a>\n" +
   "  </h3>\n" +
   "</div>\n" +
   "<div class=\"modal-body\">\n" +

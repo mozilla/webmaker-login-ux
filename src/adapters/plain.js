@@ -124,7 +124,7 @@ var _close_modal = function () {
   document.body.removeChild(document.querySelector('body > div.modal'));
 };
 
-var _attach_cancel = function (modal) {
+var _attach_close = function (modal) {
   _each(modal, "[ng-click='close()']", function (i, el) {
     el.addEventListener('click', function (event) {
       event.preventDefault();
@@ -283,7 +283,7 @@ WebmakerLogin.prototype.create = function (email_hint, username_hint) {
   _open_modal(modal_fragment);
 
   var modal = document.querySelector('body > div.modal');
-  _attach_cancel(modal);
+  _attach_close(modal);
   document.querySelector('body > div.modal > .modal-dialog').addEventListener("click", function (e) {
     e.stopPropagation();
   });
@@ -451,7 +451,7 @@ WebmakerLogin.prototype.login = function (uid_hint, options) {
   _run_expressions(modal_fragment, scope);
   _open_modal(modal_fragment);
   var modal = document.querySelector('body > div.modal');
-  _attach_cancel(modal);
+  _attach_close(modal);
   document.querySelector('body > div.modal > .modal-dialog').addEventListener("click", function (e) {
     e.stopPropagation();
   });
@@ -562,7 +562,7 @@ WebmakerLogin.prototype.request_password_reset = function (uid, token) {
   _run_expressions(modal_fragment, scope);
   _open_modal(modal_fragment);
   var modal = document.querySelector('body > div.modal');
-  _attach_cancel(modal);
+  _attach_close(modal);
   document.querySelector('body > div.modal > .modal-dialog').addEventListener("click", function (e) {
     e.stopPropagation();
   });
