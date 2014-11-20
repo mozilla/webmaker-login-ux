@@ -440,7 +440,7 @@ WebmakerLogin.prototype.login = function (uid_hint, options) {
     }.bind(this), 0);
   }.bind(this));
 
-  modal_fragment.querySelector('a[ng-click="usePersona();"]').addEventListener('click', function (event) {
+  modal_fragment.querySelector('button[ng-click="usePersona();"]').addEventListener('click', function (event) {
     event.preventDefault();
     _close_modal();
     setTimeout(function () {

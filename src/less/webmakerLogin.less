@@ -137,6 +137,9 @@
         text-align: left;
       }
     }
+    .align-left {
+      float: left;
+    }
     .help-block {
       font-size: 13px;
     }
@@ -321,7 +324,14 @@
     .btn-primary {
       margin-top: 6.25px;
     }
-
+    .btn-link {
+      margin: -6px;
+      float: left;
+      @media (min-width: @screen-xs-min) {
+        margin: 7px 0px 0px -6px;
+        float: none;
+      }
+    }
     .password-label {
       margin-bottom: 5px;
       font-weight: 400;

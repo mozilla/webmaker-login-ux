@@ -143,8 +143,12 @@
     "message": "Submit",
     "description": "Label text for the submit new password button in the Reset Password Modal Dialog"
   },
+  "or":  {
+    "message": "or",
+    "description": "Text beside the button that initiates a persona login"
+  },
   "log in with Persona":  {
-    "message": "or <a href=\"#\" ng-click=\"usePersona();\" tabindex=\"3\">log in with Persona</a>",
+    "message": "log in with Persona",
     "description": "Text for the button that initiates a persona login"
   },
   "trouble with email":  {
