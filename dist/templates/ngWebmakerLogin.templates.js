@@ -31,13 +31,15 @@ angular.module("join-webmaker-modal.html", []).run(["$templateCache", function($
   "      <div class=\"alert alert-warning\" ng-show=\"form.user.$error.accountExists\" bind-trusted-html=\"'WebmakerAccountExists' | i18n\"></div>\n" +
   "      <div class=\"alert alert-danger\" ng-show=\"form.user.$error.invalidEmail\" ng-bind-html=\"'NotAnEmail' | i18n\"></div>\n" +
   "      <div class=\"terms-checkbox checkbox\">\n" +
-  "        <label>\n" +
-  "          <input ng-model=\"user.agree\" type=\"checkbox\" ng-disabled=\"form.user.$error.accountExists\" ng-change=\"agreeToTermsChanged();\" name=\"agree\" tabindex=\"2\"> <span ng-bind-html=\"'webmakerAuthAgreeToTerms' | i18n\"></span>\n" +
+  "        <input id=\"agree-to-terms\" ng-model=\"user.agree\" type=\"checkbox\" ng-disabled=\"form.user.$error.accountExists\" ng-change=\"agreeToTermsChanged();\" name=\"agree\" tabindex=\"2\">\n" +
+  "        <label for=\"agree-to-terms\">\n" +
+  "          <span ng-bind-html=\"'webmakerAuthAgreeToTerms' | i18n\"></span>\n" +
   "        </label>\n" +
   "      </div>\n" +
   "      <div class=\"mailing-list-checkbox checkbox\">\n" +
-  "        <label>\n" +
-  "          <input ng-model=\"user.subscribeToList\" type=\"checkbox\" ng-disabled=\"form.user.$error.accountExists\" name=\"subscribeToList\" tabindex=\"2\"> <span ng-bind-html=\"'webmakerAuthMailingList' | i18n\"></span>\n" +
+  "        <input id=\"subscribe-to-list\" ng-model=\"user.subscribeToList\" type=\"checkbox\" ng-disabled=\"form.user.$error.accountExists\" name=\"subscribeToList\" tabindex=\"2\">\n" +
+  "        <label for=\"subscribe-to-list\">\n" +
+  "          <span ng-bind-html=\"'webmakerAuthMailingList' | i18n\"></span>\n" +
   "        </label>\n" +
   "      </div>\n" +
   "      <div class=\"cta-links clearfix\">\n" +
