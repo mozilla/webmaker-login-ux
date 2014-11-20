@@ -24,8 +24,8 @@ angular.module("join-webmaker-modal.html", []).run(["$templateCache", function($
   "  <form class=\"form\" name=\"form.user\" novalidate>\n" +
   "    <div ng-show=\"currentState === MODALSTATE.inputEmail\">\n" +
   "      <div class=\"form-group\">\n" +
-  "        <label for=\"email\">{{ 'Email' | i18n }}</label>\n" +
-  "        <input ng-model=\"user.email\" ng-blur=\"validateEmail();\" type=\"text\" class=\"form-control\" name=\"email\" autocomplete=\"off\" autofocus tabindex=\"1\" required focus-on=\"create-user-email\">\n" +
+  "        <label for=\"webmaker-login-email\">{{ 'Email' | i18n }}</label>\n" +
+  "        <input id=\"webmaker-login-email\" ng-model=\"user.email\" ng-blur=\"validateEmail();\" type=\"text\" class=\"form-control\" name=\"email\" autocomplete=\"off\" autofocus tabindex=\"1\" required focus-on=\"create-user-email\">\n" +
   "      </div>\n" +
   "      <div class=\"alert alert-danger\" ng-show=\"form.user.$error.agreeToTerms\" ng-bind-html=\"'webmakerAuthAgreeError' | i18n\"></div>\n" +
   "      <div class=\"alert alert-warning\" ng-show=\"form.user.$error.accountExists\" bind-trusted-html=\"'WebmakerAccountExists' | i18n\"></div>\n" +
