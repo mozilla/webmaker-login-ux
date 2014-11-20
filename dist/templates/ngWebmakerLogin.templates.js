@@ -169,7 +169,7 @@ angular.module("join-webmaker-modal.html", []).run(["$templateCache", function($
   "        <!-- simplified CTA -->\n" +
   "        <div class=\"tool-desc\" ng-show=\"simpleCTA\">\n" +
   "          <div class=\"clearfix\">\n" +
-  "            <a class=\"create-user btn btn-primary\" type=\"button\" href=\"#\" ng-click=\"close()\">{{ 'Lets Go!' | i18n }}</a>\n" +
+  "            <button class=\"create-user btn btn-primary\" type=\"button\" href=\"#\" ng-click=\"close()\">{{ 'Lets Go!' | i18n }}</button>\n" +
   "            <a href=\"https://webmaker.org/explore\" class=\"explore-link\">{{ 'ExploreWebmaker' | i18n }}</a>\n" +
   "          </div>\n" +
   "        </div>\n" +
