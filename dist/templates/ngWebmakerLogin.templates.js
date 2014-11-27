@@ -9,7 +9,7 @@ angular.module("join-webmaker-modal.html", []).run(["$templateCache", function($
   "    <span class=\"modal-title-center\">{{ 'webmakerAuthCreateWelcome' | i18n }}</span>\n" +
   "    <button\n" +
   "      ng-show=\"currentState === MODALSTATE.inputEmail\"\n" +
-  "      href=\"#\" ng-click=\"submitEmail()\" ng-disabled=\"!canSubmitEmail() || form.user.$error.accountExists || form.user.$error.invalidEmail\" tabindex=\"3\" class=\"btn-link modal-title-right\">{{ 'Next' | i18n }}</button>\n" +
+  "      href=\"#\" ng-click=\"submitEmail()\" ng-disabled=\"!user.email || form.user.$error.accountExists || form.user.$error.invalidEmail\" tabindex=\"3\" class=\"btn-link modal-title-right\">{{ 'Next' | i18n }}</button>\n" +
   "    <button\n" +
   "      ng-show=\"currentState === MODALSTATE.inputUsername\"\n" +
   "      ng-disabled=\"!user.username || form.user.$error.invalidUsername || form.user.$error.usernameTaken || sendingRequest\" ng-click=\"submitUser()\" class=\"btn-link create-user modal-title-right\" tabindex=\"5\">{{ 'Sign up' | i18n }}</button>\n" +
