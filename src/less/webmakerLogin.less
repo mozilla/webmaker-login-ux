@@ -12,7 +12,7 @@
 .uppercase-label() {
   font-weight: normal;
   margin-bottom: 8px;
-  text-transform: uppercase;
+  /*text-transform: uppercase;*/
   font-weight: 600;
   @media (min-width: @screen-xs-min) {
     margin-bottom: 5px;
@@ -93,9 +93,12 @@
   }
   .modal-title-left {
     float: left;
+    text-align: left;
   }
   .modal-title-right {
     float: right;
+    text-align: right;
+    margin-top: -2px;
   }
   @media (min-width: @screen-xs-min) {
     .modal-title-center {
