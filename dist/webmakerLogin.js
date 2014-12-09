@@ -101,7 +101,7 @@ module.exports={
     "description": "button text for the password reset function"
   },
   "checkEmail":  {
-    "message": "Check your email",
+    "message": "Check Your Email",
     "description": "Message instructing the user to check their email"
   },
   "tokenMessage":  {
@@ -249,7 +249,7 @@ module.exports={
     "description": "Done, close the window."
   },
   "Remember me for one year": {
-    "message": "Remember me for one year",
+    "message": "Remember me",
     "description": "Message displayed next to the remember me checkbox"
   },
   "Lets Go!": {

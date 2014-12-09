@@ -360,6 +360,13 @@
   -moz-user-select: none;
   -ms-user-select: none;
   user-select: none;
+  display:inline;
+}
+.modal-content .modal-body .terms-checkbox input[type="checkbox"],
+.modal-content .modal-body .mailing-list-checkbox input[type="checkbox"],
+.modal-content .modal-body .remember-me-token input[type="checkbox"],
+.modal-content .modal-body .remember-me-password input[type="checkbox"] {
+  display:inline;
 }
 .modal-content .modal-body .terms-checkbox input[type="checkbox"]:focus,
 .modal-content .modal-body .mailing-list-checkbox input[type="checkbox"]:focus,
