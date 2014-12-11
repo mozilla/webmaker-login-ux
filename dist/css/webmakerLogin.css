@@ -48,15 +48,16 @@
 }
 .modal-title {
   line-height: inherit;
-  font-size: 16px;
-  text-align: left;
+  font-size: 1.1em;
+  font-weight: 400;
+  text-align: center;
 }
 .modal-title a,
 .modal-title button {
-  padding: 0 12px;
-  font-size: 12px;
-  height: 50px;
-  width: 20%;
+  padding: 5px 20px 0;
+  font-size: 13px;
+  height: 100%;
+  min-width: 40px;
 }
 @media (max-width: 479px) {
   .modal-title a,
@@ -75,8 +76,9 @@
   }
 }
 .modal-title .modal-title-center {
-  width: 60%;
-  float: left;
+  display: inline-block;
+  text-align: center;
+  float: center;
 }
 .modal-title .modal-title-left {
   float: left;
@@ -425,13 +427,6 @@
   -moz-user-select: none;
   -ms-user-select: none;
   user-select: none;
-  display:inline;
-}
-.modal-content .modal-body .terms-checkbox input[type="checkbox"],
-.modal-content .modal-body .mailing-list-checkbox input[type="checkbox"],
-.modal-content .modal-body .remember-me-token input[type="checkbox"],
-.modal-content .modal-body .remember-me-password input[type="checkbox"] {
-  display:inline;
 }
 .modal-content .modal-body .terms-checkbox input[type="checkbox"]:focus,
 .modal-content .modal-body .mailing-list-checkbox input[type="checkbox"]:focus,
