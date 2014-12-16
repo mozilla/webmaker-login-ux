@@ -103,16 +103,21 @@ auth.on('verified', function(user) {
 Initiates the account creation process.
 
 ```javascript
-auth.create();
+auth.create(email_hint, username_hint);
 ```
+
+* email_hint is an optional parameter to pre-fill the email address for account creation
+* username_hint is an optional parameter to pre-fill the username for account creation
 
 #### Login
 
 Initiates the account sign-in process.
 
 ```javascript
-auth.login();
+auth.login(userid_hint);
 ```
+
+* userid_hint is an optional parameter to pre-fill the user id for account login
 
 #### `login` Event
 
