@@ -286,7 +286,7 @@ angular.module("signin-modal.html", []).run(["$templateCache", function($templat
   "        <button class=\"submit-userid btn btn-primary hidden-xs-login\" type=\"button\" ng-disabled=\"sendingRequest\" ng-click=\"submitUid()\" tabindex=\"2\">{{ 'Sign in' | i18n }}</button>\n" +
   "        <div ng-hide=\"disablePersona\">\n" +
   "          <p class=\"align-left\">{{ 'or' | i18n }}</p>\n" +
-  "          <button wm-persona-login class=\"btn btn-link\" ng-disabled=\"sendingRequest\" ng-click=\"usePersona();\" tabindex=\"3\">{{ 'log in with Persona' | i18n }}</button>\n" +
+  "          <button type=\"button\" wm-persona-login class=\"btn btn-link\" ng-disabled=\"sendingRequest\" ng-click=\"usePersona();\" tabindex=\"3\" onclick=\"alert('click');\">{{ 'log in with Persona' | i18n }}</button>\n" +
   "        </div>\n" +
   "      </div>\n" +
   "    </div>\n" +
@@ -356,7 +356,7 @@ angular.module("signin-modal.html", []).run(["$templateCache", function($templat
   "            <input ng-model=\"user.rememberMe\" tabindex=\"7\" name=\"rememberMe\" id=\"remember-me-token\" type=\"checkbox\">\n" +
   "            <label for=\"remember-me-token\">{{ 'Remember me for one year' | i18n }}</label>\n" +
   "          </div>\n" +
-  "          <button class=\"hidden-xs-login submit-userid btn btn-primary\" type=\"button\" ng-disabled=\"sendingRequest\" ng-click=\"user.key && submitKey()\" tabindex=\"8\">{{ 'Submit' | i18n }}</button>\n" +
+  "          <button type=\"button\" class=\"hidden-xs-login submit-userid btn btn-primary\" type=\"button\" ng-disabled=\"sendingRequest\" ng-click=\"user.key && submitKey()\" tabindex=\"8\">{{ 'Submit' | i18n }}</button>\n" +
   "        </div>\n" +
   "      </div>\n" +
   "      <hr>\n" +
@@ -378,7 +378,7 @@ angular.module("signin-modal.html", []).run(["$templateCache", function($templat
   "          <label for=\"remember-me-password\">{{ 'Remember me for one year' | i18n }}</label>\n" +
   "        </div>\n" +
   "        <div class=\"cta-links clearfix\">\n" +
-  "          <button class=\"submit-password btn btn-primary hidden-xs-login\" type=\"button\" ng-disabled=\"sendingRequest\" ng-click=\"user.password && submitPassword()\" tabindex=\"11\">{{ 'Submit' | i18n }}</button>\n" +
+  "          <button type=\"button\" class=\"submit-password btn btn-primary hidden-xs-login\" type=\"button\" ng-disabled=\"sendingRequest\" ng-click=\"user.password && submitPassword()\" tabindex=\"11\">{{ 'Submit' | i18n }}</button>\n" +
   "          <p><a ng-click=\"requestReset()\">{{ 'Forgot your password?' | i18n }}</a></p>\n" +
   "        </div>\n" +
   "      </div>\n" +
