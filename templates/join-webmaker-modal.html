@@ -21,7 +21,7 @@
     <div ng-show="currentState === MODALSTATE.inputEmail">
       <div class="form-group">
         <label for="webmaker-login-email">{{ 'Email' | i18n }}</label>
-        <input id="webmaker-login-email" ng-model="user.email" ng-blur="validateEmail();" type="text" class="form-control" name="email" autocomplete="off" autofocus tabindex="1" required focus-on="create-user-email">
+        <input id="webmaker-login-email" ng-keyup="$event.keyCode === 13 && (validateEmail() || submitEmail())" ng-model="user.email" ng-blur="validateEmail();" type="text" class="form-control" name="email" autocomplete="off" autofocus tabindex="1" required focus-on="create-user-email">
       </div>
       <div class="alert alert-danger" ng-show="form.user.$error.agreeToTerms" ng-bind-html="'webmakerAuthAgreeError' | i18n"></div>
       <div class="alert alert-warning" ng-show="form.user.$error.accountExists" bind-trusted-html="'WebmakerAccountExists' | i18n"></div>
@@ -47,7 +47,7 @@
       <div class="form-group">
         <label for="pre-username">{{ 'webmakerAuthChooseUsername' | i18n }}</label>
         <label for="username" class="hidden-xs-login">webmaker.org/user/</label>
-        <input ng-model="user.username" name="username" ng-change="validateUsername()" class="form-control username" autocomplete="off" required autofocus tabindex="4" focus-on="create-user-username" maxlength="20" minlength="1">
+        <input ng-model="user.username" ng-keyup="$event.keyCode === 13 && !(!user.username || form.user.$error.invalidUsername || form.user.$error.usernameTaken || sendingRequest) && submitUser()" name="username" ng-change="validateUsername()" class="form-control username" autocomplete="off" required autofocus tabindex="4" focus-on="create-user-username" maxlength="20" minlength="1">
         <div class="visible-xs help-block text-center">webmaker.org/user/<strong class="username-with-url">{{user.username}}</strong></div>
       </div>
       <div class="alert alert-danger" ng-show="form.user.$error.invalidUsername" ng-bind-html="'webmakerAuthUsernameInvalid' | i18n"></div>
