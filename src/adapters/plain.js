@@ -448,6 +448,18 @@ WebmakerLogin.prototype.login = function (uid_hint, options) {
     }.bind(this), 0);
   }.bind(this));
 
+  modal_fragment.querySelector('input[ng-keyup="$event.keyCode === 13 && !sendingRequest && submitUid()"]').addEventListener('keyup', function (event) {
+    if (event.keyCode === 13 && !scope.sendingRequest) {
+      controller.submitUid(scope.user.uid, window.location.pathname);
+    }
+  }.bind(this));
+
+  modal_fragment.querySelector('input[ng-keyup="$event.keyCode === 13 && user.key && !sendingRequest && submitKey()"]').addEventListener('keyup', function (event) {
+    if (event.keyCode === 13 && scope.user.key && !scope.sendingRequest) {
+      controller.verifyKey(scope.user.uid, scope.user.key, scope.user.rememberMe);
+    }
+  }.bind(this));
+
   _run_expressions(modal_fragment, scope);
   _open_modal(modal_fragment);
   var modal = document.querySelector('body > div.modal');
