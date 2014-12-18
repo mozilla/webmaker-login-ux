@@ -2,6 +2,12 @@
 @screen-xs-max: 479px;
 @green: #3fb58e;
 @red: #EB5D52;
+@white: #FFF;
+@turquoise: #32B2D2;
+@darkGrey: #638093;
+@mediumGrey: #A5BECE;
+@lightGrey: #E1EBF1;
+@lightGreyUnsaturated: #F5F5F5;
 
 .hidden-xs-login {
   @media (max-width: @screen-xs-max) {
@@ -295,6 +301,81 @@
       width: 100%;
       @media (min-width: @screen-xs-min) {
         width: 70%;
+      }
+    }
+
+    // Styles for the customized checkbox
+    .checkbox {
+      label {
+        div {
+          // Creates the checkbox
+          float: left;
+          width: 24px;
+          height: 24px;
+          margin-right: 6px;
+          border: 1px solid @lightGrey;
+          text-align: center;
+          background-color: @white;
+          span {
+            display: inline-block;
+            position: relative;
+            height: 24px;
+            opacity: 0;
+            &:after {
+              // Creates the checkmark
+              content: "";
+              position: absolute;
+              width: 24px;
+              height: 9px;
+              border-bottom: 3px solid @darkGrey;
+              border-left: 3px solid @darkGrey;
+              top: 30%;
+              transform-origin: bottom left;
+              transform: rotate(-45deg);
+            }
+          }
+          & + span {
+            // Fixes text from wrapping and centers text vertically
+            display: block;
+            overflow: hidden; // Clearfix hack
+            line-height: 24px;
+          }
+        }
+        &:focus {
+          outline: none;
+          div {
+            -moz-box-shadow: 0 0 3px @mediumGrey;
+            -webkit-box-shadow: 0 0 3px @mediumGrey;
+            box-shadow: 0 0 3px @mediumGrey;
+          }
+        }
+        &:hover {
+          span, div {
+            opacity: 0.6;
+          }
+          div {
+            background: @turquoise;
+          }
+        }
+      }
+      input[type="checkbox"] {
+        display: none;
+      }
+      input[type="checkbox"]:disabled + label {
+        div {
+          background-color: @lightGreyUnsaturated !important;
+          span:after {
+            display: none;
+          }
+        }
+      }
+      input[type="checkbox"]:checked + label {
+        span, div {
+          opacity: 1;
+        }
+        div {
+          background:@turquoise;
+        }
       }
     }
 
