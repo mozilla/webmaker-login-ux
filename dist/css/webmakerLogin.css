@@ -80,9 +80,12 @@
 }
 .modal-title .modal-title-left {
   float: left;
+  text-align: left;
 }
 .modal-title .modal-title-right {
   float: right;
+  text-align: right;
+  margin-top: -2px;
 }
 @media (min-width: 480px) {
   .modal-title {
@@ -114,7 +117,7 @@
 .modal-content .modal-body label[for=confirmValue] {
   font-weight: normal;
   margin-bottom: 8px;
-  text-transform: uppercase;
+  /*text-transform: uppercase;*/
   font-weight: 600;
 }
 @media (min-width: 480px) {
@@ -134,7 +137,7 @@
   display: block;
   font-weight: normal;
   margin-bottom: 8px;
-  text-transform: uppercase;
+  /*text-transform: uppercase;*/
   font-weight: 600;
 }
 @media (min-width: 480px) {

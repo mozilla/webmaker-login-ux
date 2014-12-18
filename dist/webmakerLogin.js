@@ -9,11 +9,11 @@ module.exports={
     "description": "Error message displayed if an error occurs on the server."
   },
   "webmakerAuthCreateWelcome":  {
-    "message": "Create a Webmaker account",
+    "message": "Create a Webmaker Account",
     "description": "Header text for the join webmaker modal dialog"
   },
   "webmakerAuthChooseUsername":  {
-    "message": "Choose a username",
+    "message": "Choose A Username",
     "description": "Label text for the username selection input"
   },
   "webmakerAuthTakenError":  {
@@ -37,7 +37,7 @@ module.exports={
     "description": "Error message displayed if the terms and conditions checkbox isn't toggled on."
   },
   "webmakerAuthCreateAccount":  {
-    "message": "Create account",
+    "message": "Create Account",
     "description": "The button text for finishing the join Webmaker process."
   },
   "Cancel":  {
@@ -45,11 +45,11 @@ module.exports={
     "description": "Cancel button text"
   },
   "Email":  {
-    "message": "Enter your email",
+    "message": "Enter Your Email",
     "description": "Label text for the email input"
   },
   "EmailOrUsername":  {
-    "message": "Email or username",
+    "message": "Email or Username",
     "description": "Label text for the sign in input, asks for the username or email of the user's account."
   },
   "NotAnEmail":  {
@@ -69,11 +69,11 @@ module.exports={
     "description": "Label text for selecting the preferred language for the user."
   },
   "Sign in to Webmaker":  {
-    "message": "Sign in to Webmaker",
+    "message": "Sign In To Webmaker",
     "description": "Header text for the sign in modal dialog"
   },
   "Sign in":  {
-    "message": "Sign in",
+    "message": "Sign In",
     "description": "Sign in Button text"
   },
   "Sign up":  {
@@ -101,7 +101,7 @@ module.exports={
     "description": "button text for the password reset function"
   },
   "checkEmail":  {
-    "message": "Check your email",
+    "message": "Check Your Email",
     "description": "Message instructing the user to check their email"
   },
   "tokenMessage":  {
@@ -197,7 +197,7 @@ module.exports={
     "description": "Error displayed if there was a problem setting the new password"
   },
   "Confirm your password":  {
-    "message": "Confirm your password",
+    "message": "Confirm Your Password",
     "description": "Label text for the password confirmation input"
   },
   "Reset Password":  {
@@ -205,7 +205,7 @@ module.exports={
     "description": "Reset Password Modal title"
   },
   "Set a Password":  {
-    "message": "Set a Password",
+    "message": "Set A Password",
     "description": "Label text for the password input box (reset password modal)"
   },
   "Password Reset Success":  {
