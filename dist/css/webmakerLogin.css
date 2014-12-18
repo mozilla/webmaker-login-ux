@@ -349,6 +349,68 @@
     width: 70%;
   }
 }
+.modal-content .modal-body .checkbox label div {
+  float: left;
+  width: 24px;
+  height: 24px;
+  margin-right: 6px;
+  border: 1px solid #e1ebf1;
+  text-align: center;
+  background-color: #ffffff;
+}
+.modal-content .modal-body .checkbox label div span {
+  display: inline-block;
+  position: relative;
+  height: 24px;
+  opacity: 0;
+}
+.modal-content .modal-body .checkbox label div span:after {
+  content: "";
+  position: absolute;
+  width: 24px;
+  height: 9px;
+  border-bottom: 3px solid #638093;
+  border-left: 3px solid #638093;
+  top: 30%;
+  transform-origin: bottom left;
+  transform: rotate(-45deg);
+}
+.modal-content .modal-body .checkbox label div + span {
+  display: block;
+  overflow: hidden;
+  line-height: 24px;
+}
+.modal-content .modal-body .checkbox label:focus {
+  outline: none;
+}
+.modal-content .modal-body .checkbox label:focus div {
+  -moz-box-shadow: 0 0 3px #a5bece;
+  -webkit-box-shadow: 0 0 3px #a5bece;
+  box-shadow: 0 0 3px #a5bece;
+}
+.modal-content .modal-body .checkbox label:hover span,
+.modal-content .modal-body .checkbox label:hover div {
+  opacity: 0.6;
+}
+.modal-content .modal-body .checkbox label:hover div {
+  background: #32b2d2;
+}
+.modal-content .modal-body .checkbox input[type="checkbox"] {
+  display: none;
+}
+.modal-content .modal-body .checkbox input[type="checkbox"]:disabled + label div {
+  background-color: #f5f5f5 !important;
+}
+.modal-content .modal-body .checkbox input[type="checkbox"]:disabled + label div span:after {
+  display: none;
+}
+.modal-content .modal-body .checkbox input[type="checkbox"]:checked + label span,
+.modal-content .modal-body .checkbox input[type="checkbox"]:checked + label div {
+  opacity: 1;
+}
+.modal-content .modal-body .checkbox input[type="checkbox"]:checked + label div {
+  background: #32b2d2;
+}
 .modal-content .modal-body .terms-checkbox label,
 .modal-content .modal-body .mailing-list-checkbox label,
 .modal-content .modal-body .remember-me-token label,
