@@ -245,9 +245,12 @@ WebmakerLogin.prototype.create = function (email_hint, username_hint) {
     }.bind(this), 0);
   }.bind(this));
 
-  modal_fragment.querySelector('input[name="email"]').addEventListener('blur', function (e) {
+  modal_fragment.querySelector('input[name="email"]').addEventListener('keyup', function (e) {
     scope.user.email = e.target.value;
-    controller.validateEmail(scope.user.email);
+
+    if (e.target.value) {
+      controller.validateEmail(scope.user.email);
+    }
   });
 
   modal_fragment.querySelector('input[name="agree"]').addEventListener('change', function (e) {
