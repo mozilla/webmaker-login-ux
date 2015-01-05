@@ -288,7 +288,7 @@ angular.module("signin-modal.html", []).run(["$templateCache", function($templat
   "        <button class=\"submit-userid btn btn-primary hidden-xs-login\" type=\"button\" ng-disabled=\"sendingRequest\" ng-click=\"submitUid()\" tabindex=\"2\">{{ 'Sign in' | i18n }}</button>\n" +
   "        <div ng-hide=\"disablePersona\">\n" +
   "          <p class=\"align-left\">{{ 'or' | i18n }}</p>\n" +
-  "          <button type=\"button\" wm-persona-login class=\"btn btn-link\" ng-disabled=\"sendingRequest\" ng-click=\"usePersona();\" tabindex=\"3\" onclick=\"alert('click');\">{{ 'log in with Persona' | i18n }}</button>\n" +
+  "          <button type=\"button\" wm-persona-login class=\"btn btn-link\" ng-disabled=\"sendingRequest\" ng-click=\"usePersona();\" tabindex=\"3\">{{ 'log in with Persona' | i18n }}</button>\n" +
   "        </div>\n" +
   "      </div>\n" +
   "    </div>\n" +
