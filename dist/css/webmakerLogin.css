@@ -54,7 +54,7 @@
 }
 .modal-title a,
 .modal-title button {
-  padding: 5px 20px 0;
+  padding: 0px 20px;
   font-size: 13px;
   height: 100%;
   min-width: 40px;
@@ -87,7 +87,10 @@
 .modal-title .modal-title-right {
   float: right;
   text-align: right;
+<<<<<<< HEAD
   margin-top: -2px;
+=======
+>>>>>>> e04d79c... issue#85-more:vertical align buttons in top nav
 }
 @media (min-width: 480px) {
   .modal-title {
@@ -427,12 +430,19 @@
   -moz-user-select: none;
   -ms-user-select: none;
   user-select: none;
+  display: inline;
 }
 .modal-content .modal-body .terms-checkbox input[type="checkbox"]:focus,
 .modal-content .modal-body .mailing-list-checkbox input[type="checkbox"]:focus,
 .modal-content .modal-body .remember-me-token input[type="checkbox"]:focus,
 .modal-content .modal-body .remember-me-password input[type="checkbox"]:focus {
   outline: 0;
+}
+.modal-content .modal-body .terms-checkbox input[type="checkbox"],
+.modal-content .modal-body .mailing-list-checkbox input[type="checkbox"],
+.modal-content .modal-body .remember-me-token input[type="checkbox"],
+.modal-content .modal-body .remember-me-password input[type="checkbox"] {
+  display: inline;
 }
 .modal-content .modal-body .cta-links {
   text-align: center;
