@@ -1,16 +1,16 @@
-@screen-xs-min: 480px;
-@screen-xs-max: 479px;
-@green: #3fb58e;
-@red: #EB5D52;
-@white: #FFF;
-@turquoise: #32B2D2;
-@darkGrey: #638093;
-@mediumGrey: #A5BECE;
-@lightGrey: #E1EBF1;
-@lightGreyUnsaturated: #F5F5F5;
+@wlux-screen-xs-min: 480px;
+@wlux-screen-xs-max: 479px;
+@wlux-green: #3fb58e;
+@wlux-red: #EB5D52;
+@wlux-white: #FFF;
+@wlux-turquoise: #32B2D2;
+@wlux-darkGrey: #638093;
+@wlux-mediumGrey: #A5BECE;
+@wlux-lightGrey: #E1EBF1;
+@wlux-lightGreyUnsaturated: #F5F5F5;
 
 .hidden-xs-login {
-  @media (max-width: @screen-xs-max) {
+  @media (max-width: @wlux-screen-xs-max) {
     display: none !important;
   }
 }
@@ -20,7 +20,7 @@
   margin-bottom: 8px;
   /*text-transform: uppercase;*/
   font-weight: 600;
-  @media (min-width: @screen-xs-min) {
+  @media (min-width: @wlux-screen-xs-min) {
     margin-bottom: 5px;
     font-size: 13.333333333px;
 
@@ -32,7 +32,7 @@
 * Mobile dialog display
 */
 .modal-backdrop {
-  @media (max-width: @screen-xs-max) {
+  @media (max-width: @wlux-screen-xs-max) {
     background: #F6F7F7;
     &.in {
       opacity: 1;
@@ -42,7 +42,7 @@
 
 .modal-dialog,
 .modal-content {
-  @media (max-width: @screen-xs-max) {
+  @media (max-width: @wlux-screen-xs-max) {
     background: none;
     box-shadow: none;
     margin: 0;
@@ -61,7 +61,7 @@
     .close {
       display: none;
     }
-    @media (min-width: @screen-xs-min) {
+    @media (min-width: @wlux-screen-xs-min) {
       .close {
         display: block;
         margin: 10px 0 0 0;
@@ -82,8 +82,8 @@
     width: 20%;
   }
   a, button, span {
-    @media (max-width: @screen-xs-max) {
-      color: @green;
+    @media (max-width: @wlux-screen-xs-max) {
+      color: @wlux-green;
       white-space: nowrap;
       overflow: hidden;
       text-overflow: ellipsis;
@@ -106,7 +106,7 @@
     text-align: right;
     margin-top: -2px;
   }
-  @media (min-width: @screen-xs-min) {
+  @media (min-width: @wlux-screen-xs-min) {
     .modal-title-center {
       width: auto;
       float: none;
@@ -121,7 +121,7 @@
 .modal-content {
   padding: 0 0 20px 0;
   .modal-body {
-    @media (min-width: @screen-xs-min) {
+    @media (min-width: @wlux-screen-xs-min) {
       padding: 5px 30px;
     }
     label[for=webmaker-login-email], label[for=uid], label[for=key], label[for=persona-username], label[for=password] , label[for=value], label[for=confirmValue]{
@@ -140,7 +140,7 @@
       text-align: center;
       width: 100%;
       margin-bottom: 0;
-      @media (min-width: @screen-xs-min) {
+      @media (min-width: @wlux-screen-xs-min) {
         text-align: center;
         width: auto;
         text-align: left;
@@ -153,7 +153,7 @@
       font-size: 13px;
     }
     .form-control {
-      @media (max-width: @screen-xs-max) {
+      @media (max-width: @wlux-screen-xs-max) {
         padding: 8px 11px;
         height: auto;
       }
@@ -165,12 +165,12 @@
         margin-left: 0;
         width: 100%;
         float: left;
-        @media (min-width: @screen-xs-min) {
+        @media (min-width: @wlux-screen-xs-min) {
           width: 48%;
         }
         &:nth-of-type(3){
           margin-left: 0;
-          @media (min-width: @screen-xs-min) {
+          @media (min-width: @wlux-screen-xs-min) {
             margin-left: 4%;
           }
         }
@@ -178,7 +178,7 @@
     }
     .welcome {
       text-align: center;
-      @media (min-width: @screen-xs-min) {
+      @media (min-width: @wlux-screen-xs-min) {
         text-align: left;
       }
     }
@@ -188,7 +188,7 @@
     .tool-desc {
       margin: 15px 0 0 0;
       .icon {
-        @media (min-width: @screen-xs-min) {
+        @media (min-width: @wlux-screen-xs-min) {
           float: left;
           margin-right: 18.75px;
         }
@@ -204,7 +204,7 @@
         display: block;
         font-size: 13px;
         margin: 14px 0 0 12px;
-        @media (min-width: @screen-xs-min) {
+        @media (min-width: @wlux-screen-xs-min) {
           float: left;
         }
       }
@@ -214,7 +214,7 @@
       text-align: left;
       .email-container {
         margin-top: 10px;
-        @media (min-width: @screen-xs-min) {
+        @media (min-width: @wlux-screen-xs-min) {
           display: -webkit-flex;
           display: flex;
         }
@@ -222,7 +222,7 @@
       .mailIcon {
         text-align: center;
         margin: -10px 0 20px 0;
-        @media (min-width: @screen-xs-min) {
+        @media (min-width: @wlux-screen-xs-min) {
           -webkit-flex: 1;
           flex: 1;
           margin: 30px 0 0 0;
@@ -233,7 +233,7 @@
         }
       }
       .key-group {
-        @media (min-width: @screen-xs-min) {
+        @media (min-width: @wlux-screen-xs-min) {
           border-left: 1px solid #DDDDDD;
           -webkit-flex: 3;
           flex: 3;
@@ -248,7 +248,7 @@
     .enterToken {
       hr {
         margin: 10px 0 15px 0;
-        @media (min-width: @screen-xs-min) {
+        @media (min-width: @wlux-screen-xs-min) {
           margin: 20px 0 15px 0;
         }
       }
@@ -256,14 +256,14 @@
         svg {
           display: block;
           margin: 0 auto;
-          @media (min-width: @screen-xs-min) {
+          @media (min-width: @wlux-screen-xs-min) {
             float: left;
           }
         }
         p {
           text-align: center;
           margin: 20px 0 10px 15px;
-          @media (min-width: @screen-xs-min) {
+          @media (min-width: @wlux-screen-xs-min) {
             float: left;
             text-align: left;
             margin: 33px 0 0 15px;
@@ -284,7 +284,7 @@
       font-size: 13px;
       color: #999;
       margin-bottom: -6px;
-      @media (min-width: @screen-xs-min) {
+      @media (min-width: @wlux-screen-xs-min) {
         font-size: normal;
         text-align: right;
       }
@@ -299,7 +299,7 @@
 
     .form-control.username {
       width: 100%;
-      @media (min-width: @screen-xs-min) {
+      @media (min-width: @wlux-screen-xs-min) {
         width: 70%;
       }
     }
@@ -313,9 +313,9 @@
           width: 24px;
           height: 24px;
           margin-right: 6px;
-          border: 1px solid @lightGrey;
+          border: 1px solid @wlux-lightGrey;
           text-align: center;
-          background-color: @white;
+          background-color: @wlux-white;
           span {
             display: inline-block;
             position: relative;
@@ -327,8 +327,8 @@
               position: absolute;
               width: 24px;
               height: 9px;
-              border-bottom: 3px solid @darkGrey;
-              border-left: 3px solid @darkGrey;
+              border-bottom: 3px solid @wlux-darkGrey;
+              border-left: 3px solid @wlux-darkGrey;
               top: 30%;
               transform-origin: bottom left;
               transform: rotate(-45deg);
@@ -344,9 +344,9 @@
         &:focus {
           outline: none;
           div {
-            -moz-box-shadow: 0 0 3px @mediumGrey;
-            -webkit-box-shadow: 0 0 3px @mediumGrey;
-            box-shadow: 0 0 3px @mediumGrey;
+            -moz-box-shadow: 0 0 3px @wlux-mediumGrey;
+            -webkit-box-shadow: 0 0 3px @wlux-mediumGrey;
+            box-shadow: 0 0 3px @wlux-mediumGrey;
           }
         }
         &:hover {
@@ -354,7 +354,7 @@
             opacity: 0.6;
           }
           div {
-            background: @turquoise;
+            background: @wlux-turquoise;
           }
         }
       }
@@ -363,7 +363,7 @@
       }
       input[type="checkbox"]:disabled + label {
         div {
-          background-color: @lightGreyUnsaturated !important;
+          background-color: @wlux-lightGreyUnsaturated !important;
           span:after {
             display: none;
           }
@@ -374,7 +374,7 @@
           opacity: 1;
         }
         div {
-          background:@turquoise;
+          background: @wlux-turquoise;
         }
       }
     }
@@ -395,7 +395,7 @@
     }
     .cta-links {
       text-align: center;
-      @media (min-width: @screen-xs-min) {
+      @media (min-width: @wlux-screen-xs-min) {
         text-align: left;
         button, p {
           float: left;
@@ -411,7 +411,7 @@
     .btn-link {
       margin: -6px;
       float: left;
-      @media (min-width: @screen-xs-min) {
+      @media (min-width: @wlux-screen-xs-min) {
         margin: 7px 0px 0px -6px;
         float: none;
       }
@@ -427,10 +427,10 @@
         font-weight: 300;
       }
       li.invalid {
-        color: @red;
+        color: @wlux-red;
       }
       li.valid {
-        color: @green;
+        color: @wlux-green;
       }
     }
   }
