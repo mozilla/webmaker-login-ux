@@ -283,7 +283,7 @@ angular.module("signin-modal.html", []).run(["$templateCache", function($templat
   "        <input name=\"uid\" class=\"form-control\" ng-model=\"user.uid\" autocomplete=\"on\" required tabindex=\"1\" autofocus=\"true\" focus-on=\"login-uid\" ng-keyup=\"$event.keyCode === 13 && !sendingRequest && submitUid()\">\n" +
   "      </div>\n" +
   "      <div class=\"alert alert-warning\" ng-show=\"form.user.$error.noAccount\" bind-trusted-html=\"'No account found for your uid' | i18n\"></div>\n" +
-  "      <div class=\"alert alert-danger\" ng-show=\"form.user.$error.invalid\" ng-bind-html=\"'That does not look like an email address or username' | i18n\"></div>\n" +
+  "      <div class=\"alert alert-danger\" ng-show=\"form.user.$error.invalidUid\" ng-bind-html=\"'That does not look like an email address or username' | i18n\"></div>\n" +
   "      <div class=\"cta-links clearfix\">\n" +
   "        <button class=\"submit-userid btn btn-primary hidden-xs-login\" type=\"button\" ng-disabled=\"sendingRequest\" ng-click=\"submitUid()\" tabindex=\"2\">{{ 'Sign in' | i18n }}</button>\n" +
   "        <div ng-hide=\"disablePersona\">\n" +
