@@ -414,6 +414,12 @@
 .modal-content .modal-body .checkbox input[type="checkbox"]:checked + label div {
   background: #32b2d2;
 }
+.modal-content .modal-body .terms-checkbox,
+.modal-content .modal-body .mailing-list-checkbox,
+.modal-content .modal-body .remember-me-token,
+.modal-content .modal-body .remember-me-password {
+  padding: 0;
+}
 .modal-content .modal-body .terms-checkbox label,
 .modal-content .modal-body .mailing-list-checkbox label,
 .modal-content .modal-body .remember-me-token label,
