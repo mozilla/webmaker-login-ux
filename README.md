@@ -103,16 +103,21 @@ auth.on('verified', function(user) {
 Initiates the account creation process.
 
 ```javascript
-auth.create();
+auth.create(email_hint, username_hint);
 ```
+
+* email_hint is an optional parameter to pre-fill the email address for account creation
+* username_hint is an optional parameter to pre-fill the username for account creation
 
 #### Login
 
 Initiates the account sign-in process.
 
 ```javascript
-auth.login();
+auth.login(userid_hint);
 ```
+
+* userid_hint is an optional parameter to pre-fill the user id for account login
 
 #### `login` Event
 
@@ -148,8 +153,9 @@ If you run `grunt dev`, all files and folders will be watched and automatically 
 A test server will also be launched at http://localhost:4321 where you can test out the modal dialogs
 with fake data.
 
-Angular adapter test page: http://localhost:4321/
-Plain JavaScript adapter test page: http://localhost:4321/plain
+Angular adapter test page: [http://localhost:4321/](http://localhost:4321/)
+
+Plain JavaScript adapter test page: [http://localhost:4321/plain](http://localhost:4321/plain)
 
 ### Sign In Options:
 
@@ -175,5 +181,5 @@ Plain JavaScript adapter test page: http://localhost:4321/plain
 
 ### Password reset
 
-Add "?uid=user&resetCode=topsecretcode" to the url to trigger the password reset flow.
+Add `?uid=user&resetCode=topsecretcode` to the url to trigger the password reset flow.
 Change the values of uid and resetCode to cause a failed reset request.

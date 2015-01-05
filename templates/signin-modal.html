@@ -49,7 +49,7 @@
         <button class="submit-userid btn btn-primary hidden-xs-login" type="button" ng-disabled="sendingRequest" ng-click="submitUid()" tabindex="2">{{ 'Sign in' | i18n }}</button>
         <div ng-hide="disablePersona">
           <p class="align-left">{{ 'or' | i18n }}</p>
-          <button wm-persona-login class="btn btn-link" ng-disabled="sendingRequest" ng-click="usePersona();" tabindex="3">{{ 'log in with Persona' | i18n }}</button>
+          <button type="button" wm-persona-login class="btn btn-link" ng-disabled="sendingRequest" ng-click="usePersona();" tabindex="3" onclick="alert('click');">{{ 'log in with Persona' | i18n }}</button>
         </div>
       </div>
     </div>
@@ -115,11 +115,14 @@
           </div>
           <div class="alert alert-danger" ng-show="form.user.$error.tokenSendFailed" ng-bind-html="'problem sending token' | i18n"></div>
           <div class="alert alert-danger" ng-show="form.user.$error.invalidKey" ng-bind-html="'incorrectToken' | i18n"></div>
-          <div class="form-group remember-me-token">
-            <input ng-model="user.rememberMe" tabindex="7" name="rememberMe" id="remember-me-token" type="checkbox">
-            <label for="remember-me-token">{{ 'Remember me for one year' | i18n }}</label>
+          <div class="remember-me-token checkbox">
+            <input id="remember-me-token" ng-model="user.rememberMe" type="checkbox" name="rememberMe" tabindex="7">
+            <label for="remember-me-token" tabindex="7">
+              <div><span></span></div>
+              <span ng-bind-html="'Remember me for one year' | i18n"></span>
+            </label>
           </div>
-          <button class="hidden-xs-login submit-userid btn btn-primary" type="button" ng-disabled="sendingRequest" ng-click="user.key && submitKey()" tabindex="8">{{ 'Submit' | i18n }}</button>
+          <button type="button" class="hidden-xs-login submit-userid btn btn-primary" type="button" ng-disabled="sendingRequest" ng-click="user.key && submitKey()" tabindex="8">{{ 'Submit' | i18n }}</button>
         </div>
       </div>
       <hr>
@@ -136,12 +139,15 @@
           <input type="password" class="form-control" required name="password" ng-model="user.password" tabindex="9" focus-on="enter-password" ng-keyup="$event.keyCode === 13 && user.password && !sendingRequest && submitPassword()">
         </div>
         <div class="alert alert-danger" ng-show="form.user.$error.passwordSigninFailed" ng-bind-html="'passLoginFailed' | i18n"></div>
-        <div class="form-group remember-me-password">
-          <input ng-model="user.rememberMe" tabindex="10" name="rememberMe" id="remember-me-password" type="checkbox">
-          <label for="remember-me-password">{{ 'Remember me for one year' | i18n }}</label>
+        <div class="remember-me-password checkbox">
+          <input id="remember-me-password" ng-model="user.rememberMe" type="checkbox" name="rememberMe" tabindex="10">
+          <label for="remember-me-password" tabindex="10">
+            <div><span></span></div>
+            <span ng-bind-html="'Remember me for one year' | i18n"></span>
+          </label>
         </div>
         <div class="cta-links clearfix">
-          <button class="submit-password btn btn-primary hidden-xs-login" type="button" ng-disabled="sendingRequest" ng-click="user.password && submitPassword()" tabindex="11">{{ 'Submit' | i18n }}</button>
+          <button type="button" class="submit-password btn btn-primary hidden-xs-login" type="button" ng-disabled="sendingRequest" ng-click="user.password && submitPassword()" tabindex="11">{{ 'Submit' | i18n }}</button>
           <p><a ng-click="requestReset()">{{ 'Forgot your password?' | i18n }}</a></p>
         </div>
       </div>

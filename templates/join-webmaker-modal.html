@@ -21,20 +21,22 @@
     <div ng-show="currentState === MODALSTATE.inputEmail">
       <div class="form-group">
         <label for="webmaker-login-email">{{ 'Email' | i18n }}</label>
-        <input id="webmaker-login-email" ng-model="user.email" ng-blur="validateEmail();" type="text" class="form-control" name="email" autocomplete="off" autofocus tabindex="1" required focus-on="create-user-email">
+        <input id="webmaker-login-email" ng-model="user.email" ng-keyup="validateEmail();" type="text" class="form-control" name="email" autocomplete="off" autofocus tabindex="1" required focus-on="create-user-email">
       </div>
       <div class="alert alert-danger" ng-show="form.user.$error.agreeToTerms" ng-bind-html="'webmakerAuthAgreeError' | i18n"></div>
       <div class="alert alert-warning" ng-show="form.user.$error.accountExists" bind-trusted-html="'WebmakerAccountExists' | i18n"></div>
       <div class="alert alert-danger" ng-show="form.user.$error.invalidEmail" ng-bind-html="'NotAnEmail' | i18n"></div>
       <div class="terms-checkbox checkbox">
         <input id="agree-to-terms" ng-model="user.agree" type="checkbox" ng-disabled="form.user.$error.accountExists" ng-change="agreeToTermsChanged();" name="agree" tabindex="2">
-        <label for="agree-to-terms">
+        <label for="agree-to-terms" tabindex="2">
+          <div><span></span></div>
           <span ng-bind-html="'webmakerAuthAgreeToTerms' | i18n"></span>
         </label>
       </div>
       <div class="mailing-list-checkbox checkbox">
         <input id="subscribe-to-list" ng-model="user.subscribeToList" type="checkbox" ng-disabled="form.user.$error.accountExists" name="subscribeToList" tabindex="2">
-        <label for="subscribe-to-list">
+        <label for="subscribe-to-list" tabindex="2">
+          <div><span></span></div>
           <span ng-bind-html="'webmakerAuthMailingList' | i18n"></span>
         </label>
       </div>

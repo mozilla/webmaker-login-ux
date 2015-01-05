@@ -25,20 +25,22 @@ angular.module("join-webmaker-modal.html", []).run(["$templateCache", function($
   "    <div ng-show=\"currentState === MODALSTATE.inputEmail\">\n" +
   "      <div class=\"form-group\">\n" +
   "        <label for=\"webmaker-login-email\">{{ 'Email' | i18n }}</label>\n" +
-  "        <input id=\"webmaker-login-email\" ng-model=\"user.email\" ng-blur=\"validateEmail();\" type=\"text\" class=\"form-control\" name=\"email\" autocomplete=\"off\" autofocus tabindex=\"1\" required focus-on=\"create-user-email\">\n" +
+  "        <input id=\"webmaker-login-email\" ng-model=\"user.email\" ng-keyup=\"validateEmail();\" type=\"text\" class=\"form-control\" name=\"email\" autocomplete=\"off\" autofocus tabindex=\"1\" required focus-on=\"create-user-email\">\n" +
   "      </div>\n" +
   "      <div class=\"alert alert-danger\" ng-show=\"form.user.$error.agreeToTerms\" ng-bind-html=\"'webmakerAuthAgreeError' | i18n\"></div>\n" +
   "      <div class=\"alert alert-warning\" ng-show=\"form.user.$error.accountExists\" bind-trusted-html=\"'WebmakerAccountExists' | i18n\"></div>\n" +
   "      <div class=\"alert alert-danger\" ng-show=\"form.user.$error.invalidEmail\" ng-bind-html=\"'NotAnEmail' | i18n\"></div>\n" +
   "      <div class=\"terms-checkbox checkbox\">\n" +
   "        <input id=\"agree-to-terms\" ng-model=\"user.agree\" type=\"checkbox\" ng-disabled=\"form.user.$error.accountExists\" ng-change=\"agreeToTermsChanged();\" name=\"agree\" tabindex=\"2\">\n" +
-  "        <label for=\"agree-to-terms\">\n" +
+  "        <label for=\"agree-to-terms\" tabindex=\"2\">\n" +
+  "          <div><span></span></div>\n" +
   "          <span ng-bind-html=\"'webmakerAuthAgreeToTerms' | i18n\"></span>\n" +
   "        </label>\n" +
   "      </div>\n" +
   "      <div class=\"mailing-list-checkbox checkbox\">\n" +
   "        <input id=\"subscribe-to-list\" ng-model=\"user.subscribeToList\" type=\"checkbox\" ng-disabled=\"form.user.$error.accountExists\" name=\"subscribeToList\" tabindex=\"2\">\n" +
-  "        <label for=\"subscribe-to-list\">\n" +
+  "        <label for=\"subscribe-to-list\" tabindex=\"2\">\n" +
+  "          <div><span></span></div>\n" +
   "          <span ng-bind-html=\"'webmakerAuthMailingList' | i18n\"></span>\n" +
   "        </label>\n" +
   "      </div>\n" +
@@ -286,7 +288,7 @@ angular.module("signin-modal.html", []).run(["$templateCache", function($templat
   "        <button class=\"submit-userid btn btn-primary hidden-xs-login\" type=\"button\" ng-disabled=\"sendingRequest\" ng-click=\"submitUid()\" tabindex=\"2\">{{ 'Sign in' | i18n }}</button>\n" +
   "        <div ng-hide=\"disablePersona\">\n" +
   "          <p class=\"align-left\">{{ 'or' | i18n }}</p>\n" +
-  "          <button wm-persona-login class=\"btn btn-link\" ng-disabled=\"sendingRequest\" ng-click=\"usePersona();\" tabindex=\"3\">{{ 'log in with Persona' | i18n }}</button>\n" +
+  "          <button type=\"button\" wm-persona-login class=\"btn btn-link\" ng-disabled=\"sendingRequest\" ng-click=\"usePersona();\" tabindex=\"3\" onclick=\"alert('click');\">{{ 'log in with Persona' | i18n }}</button>\n" +
   "        </div>\n" +
   "      </div>\n" +
   "    </div>\n" +
@@ -352,11 +354,14 @@ angular.module("signin-modal.html", []).run(["$templateCache", function($templat
   "          </div>\n" +
   "          <div class=\"alert alert-danger\" ng-show=\"form.user.$error.tokenSendFailed\" ng-bind-html=\"'problem sending token' | i18n\"></div>\n" +
   "          <div class=\"alert alert-danger\" ng-show=\"form.user.$error.invalidKey\" ng-bind-html=\"'incorrectToken' | i18n\"></div>\n" +
-  "          <div class=\"form-group remember-me-token\">\n" +
-  "            <input ng-model=\"user.rememberMe\" tabindex=\"7\" name=\"rememberMe\" id=\"remember-me-token\" type=\"checkbox\">\n" +
-  "            <label for=\"remember-me-token\">{{ 'Remember me for one year' | i18n }}</label>\n" +
+  "          <div class=\"remember-me-token checkbox\">\n" +
+  "            <input id=\"remember-me-token\" ng-model=\"user.rememberMe\" type=\"checkbox\" name=\"rememberMe\" tabindex=\"7\">\n" +
+  "            <label for=\"remember-me-token\" tabindex=\"7\">\n" +
+  "              <div><span></span></div>\n" +
+  "              <span ng-bind-html=\"'Remember me for one year' | i18n\"></span>\n" +
+  "            </label>\n" +
   "          </div>\n" +
-  "          <button class=\"hidden-xs-login submit-userid btn btn-primary\" type=\"button\" ng-disabled=\"sendingRequest\" ng-click=\"user.key && submitKey()\" tabindex=\"8\">{{ 'Submit' | i18n }}</button>\n" +
+  "          <button type=\"button\" class=\"hidden-xs-login submit-userid btn btn-primary\" type=\"button\" ng-disabled=\"sendingRequest\" ng-click=\"user.key && submitKey()\" tabindex=\"8\">{{ 'Submit' | i18n }}</button>\n" +
   "        </div>\n" +
   "      </div>\n" +
   "      <hr>\n" +
@@ -373,12 +378,15 @@ angular.module("signin-modal.html", []).run(["$templateCache", function($templat
   "          <input type=\"password\" class=\"form-control\" required name=\"password\" ng-model=\"user.password\" tabindex=\"9\" focus-on=\"enter-password\" ng-keyup=\"$event.keyCode === 13 && user.password && !sendingRequest && submitPassword()\">\n" +
   "        </div>\n" +
   "        <div class=\"alert alert-danger\" ng-show=\"form.user.$error.passwordSigninFailed\" ng-bind-html=\"'passLoginFailed' | i18n\"></div>\n" +
-  "        <div class=\"form-group remember-me-password\">\n" +
-  "          <input ng-model=\"user.rememberMe\" tabindex=\"10\" name=\"rememberMe\" id=\"remember-me-password\" type=\"checkbox\">\n" +
-  "          <label for=\"remember-me-password\">{{ 'Remember me for one year' | i18n }}</label>\n" +
+  "        <div class=\"remember-me-password checkbox\">\n" +
+  "          <input id=\"remember-me-password\" ng-model=\"user.rememberMe\" type=\"checkbox\" name=\"rememberMe\" tabindex=\"10\">\n" +
+  "          <label for=\"remember-me-password\" tabindex=\"10\">\n" +
+  "            <div><span></span></div>\n" +
+  "            <span ng-bind-html=\"'Remember me for one year' | i18n\"></span>\n" +
+  "          </label>\n" +
   "        </div>\n" +
   "        <div class=\"cta-links clearfix\">\n" +
-  "          <button class=\"submit-password btn btn-primary hidden-xs-login\" type=\"button\" ng-disabled=\"sendingRequest\" ng-click=\"user.password && submitPassword()\" tabindex=\"11\">{{ 'Submit' | i18n }}</button>\n" +
+  "          <button type=\"button\" class=\"submit-password btn btn-primary hidden-xs-login\" type=\"button\" ng-disabled=\"sendingRequest\" ng-click=\"user.password && submitPassword()\" tabindex=\"11\">{{ 'Submit' | i18n }}</button>\n" +
   "          <p><a ng-click=\"requestReset()\">{{ 'Forgot your password?' | i18n }}</a></p>\n" +
   "        </div>\n" +
   "      </div>\n" +

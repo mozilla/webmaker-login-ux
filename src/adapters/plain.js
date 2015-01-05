@@ -245,9 +245,12 @@ WebmakerLogin.prototype.create = function (email_hint, username_hint) {
     }.bind(this), 0);
   }.bind(this));
 
-  modal_fragment.querySelector('input[name="email"]').addEventListener('blur', function (e) {
+  modal_fragment.querySelector('input[name="email"]').addEventListener('keyup', function (e) {
     scope.user.email = e.target.value;
-    controller.validateEmail(scope.user.email);
+
+    if (e.target.value) {
+      controller.validateEmail(scope.user.email);
+    }
   });
 
   modal_fragment.querySelector('input[name="agree"]').addEventListener('change', function (e) {
@@ -411,7 +414,7 @@ WebmakerLogin.prototype.login = function (uid_hint, options) {
     });
   });
 
-  modal_fragment.querySelector('input[name="password"]').addEventListener('blur', function (e) {
+  modal_fragment.querySelector('input[name="password"]').addEventListener('input', function (e) {
     scope.user.password = e.target.value;
     _run_expressions(modal, scope);
   });
@@ -446,6 +449,24 @@ WebmakerLogin.prototype.login = function (uid_hint, options) {
     setTimeout(function () {
       this._persona_login();
     }.bind(this), 0);
+  }.bind(this));
+
+  modal_fragment.querySelector('input[ng-keyup="$event.keyCode === 13 && !sendingRequest && submitUid()"]').addEventListener('keyup', function (event) {
+    if (event.keyCode === 13 && !scope.sendingRequest) {
+      controller.submitUid(scope.user.uid, window.location.pathname);
+    }
+  }.bind(this));
+
+  modal_fragment.querySelector('input[ng-keyup="$event.keyCode === 13 && user.key && !sendingRequest && submitKey()"]').addEventListener('keyup', function (event) {
+    if (event.keyCode === 13 && scope.user.key && !scope.sendingRequest) {
+      controller.verifyKey(scope.user.uid, scope.user.key, scope.user.rememberMe);
+    }
+  }.bind(this));
+
+  modal_fragment.querySelector('input[ng-keyup="$event.keyCode === 13 && user.password && !sendingRequest && submitPassword()"]').addEventListener('keyup', function (event) {
+    if (event.keyCode === 13 && scope.user.password && !scope.sendingRequest) {
+      controller.verifyPassword(scope.user.uid, scope.user.password, scope.user.rememberMe);
+    }
   }.bind(this));
 
   _run_expressions(modal_fragment, scope);
