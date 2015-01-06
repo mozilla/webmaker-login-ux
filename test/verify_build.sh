@@ -8,6 +8,7 @@ set -o pipefail
 STATUS=`git status --porcelain -z dist/`
 
 if [ "$STATUS" != "" ]; then
+  git status --porcelain dist/
   echo 'Error: the compiled source does not match the committed build'
   echo 'You should run `grunt build` and commit the results to clear this error'
   exit 1
