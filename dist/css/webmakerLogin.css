@@ -48,8 +48,6 @@
 }
 .modal-title {
   line-height: inherit;
-  font-size: 16px;
-  text-align: left;
   font-size: 1.1em;
   font-weight: 400;
   text-align: center;
@@ -89,10 +87,7 @@
 .modal-title .modal-title-right {
   float: right;
   text-align: right;
-<<<<<<< HEAD
   margin-top: -2px;
-=======
->>>>>>> e04d79c... issue#85-more:vertical align buttons in top nav
 }
 @media (min-width: 480px) {
   .modal-title {
