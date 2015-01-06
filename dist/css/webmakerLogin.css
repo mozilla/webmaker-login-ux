@@ -435,12 +435,6 @@
 .modal-content .modal-body .remember-me-password input[type="checkbox"]:focus {
   outline: 0;
 }
-.modal-content .modal-body .terms-checkbox input[type="checkbox"],
-.modal-content .modal-body .mailing-list-checkbox input[type="checkbox"],
-.modal-content .modal-body .remember-me-token input[type="checkbox"],
-.modal-content .modal-body .remember-me-password input[type="checkbox"] {
-  display: inline;
-}
 .modal-content .modal-body .cta-links {
   text-align: center;
 }
