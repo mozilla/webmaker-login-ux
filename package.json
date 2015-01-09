@@ -1,6 +1,6 @@
 {
   "name": "webmaker-login-ux",
-  "version": "1.3.3",
+  "version": "1.3.4",
   "description": "Extendable library for implemening Webmaker Login UX",
   "repository": {
     "type": "git",
