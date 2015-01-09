@@ -9702,13 +9702,18 @@ WebmakerLogin.prototype.create = function (email_hint, username_hint) {
   var modal_fragment = _create_modal_fragment(ui.create);
   _translate_ng_html_expressions(modal_fragment);
 
+  var usernameWithUrl = modal_fragment.querySelector('.username-with-url');
+
   if (email_hint) {
     scope.user.email = email_hint;
     modal_fragment.querySelector('input[name="email"]').value = email_hint;
+    controller.validateEmail(scope.user.email);
   }
   if (username_hint) {
     scope.user.username = username_hint;
     modal_fragment.querySelector('input[name="username"]').value = username_hint;
+    controller.validateUsername(scope.user.username);
+    usernameWithUrl.textContent = scope.user.username;
   }
 
   controller.on('sendingRequest', function (state) {
@@ -9781,7 +9786,6 @@ WebmakerLogin.prototype.create = function (email_hint, username_hint) {
     });
   });
 
-  var usernameWithUrl = modal_fragment.querySelector('.username-with-url');
   modal_fragment.querySelector('input[name="username"]').addEventListener('input', function (e) {
     scope.user.username = e.target.value;
     controller.validateUsername(scope.user.username);

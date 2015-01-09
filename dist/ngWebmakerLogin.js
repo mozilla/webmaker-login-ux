@@ -1289,10 +1289,16 @@ ngModule.directive('wmJoinWebmaker', [
             $scope.user = {};
             $scope.sendingRequest = false;
 
-            $scope.user.email = email;
-            $scope.user.username = username;
-
             var joinController = wmLoginCore.joinWebmaker(showCTA);
+
+            if (email) {
+              $scope.user.email = email;
+              joinController.validateEmail(email);
+            }
+            if (username) {
+              $scope.user.username = username;
+              joinController.validateUsername(username);
+            }
 
             joinController.on('sendingRequest', function (state) {
               $timeout(function () {
