@@ -168,7 +168,7 @@ var WebmakerLogin = function WebmakerLogin(options) {
 
 util.inherits(WebmakerLogin, EventEmitter);
 
-WebmakerLogin.prototype.create = function (email_hint, username_hint) {
+WebmakerLogin.prototype.create = function (email_hint, username_hint, agreeToTerms_hint) {
   var controller = this.wmLogin.joinWebmaker(this.showCTA);
   var scope = {
     MODALSTATE: {
@@ -195,14 +195,14 @@ WebmakerLogin.prototype.create = function (email_hint, username_hint) {
   if (email_hint) {
     scope.user.email = email_hint;
     modal_fragment.querySelector('input[name="email"]').value = email_hint;
-    controller.validateEmail(scope.user.email);
   }
   if (username_hint) {
     scope.user.username = username_hint;
     modal_fragment.querySelector('input[name="username"]').value = username_hint;
-    controller.validateUsername(scope.user.username);
     usernameWithUrl.textContent = scope.user.username;
   }
+
+  scope.user.agree = agreeToTerms_hint;
 
   controller.on('sendingRequest', function (state) {
     scope.sendingRequest = state;
@@ -213,6 +213,13 @@ WebmakerLogin.prototype.create = function (email_hint, username_hint) {
     scope.currentState = scope.MODALSTATE.inputEmail;
     _run_expressions(modal, scope);
     modal.querySelector('input[focus-on="create-user-email"]').focus();
+    if (scope.user.email !== undefined && controller.validateEmail(scope.user.email) && scope.user.agree !== undefined) {
+      controller.submitEmail(scope.user.agree);
+      if (scope.user.agree) {
+        scope.skippedEmail = "true";
+        controller.validateUsername(scope.user.username);
+      }
+    }
   });
 
   controller.on('displayUsernameInput', function () {

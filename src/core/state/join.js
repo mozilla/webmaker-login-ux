@@ -92,12 +92,14 @@ module.exports = function JoinController(loginApi, showCTA) {
       var valid = validation.isEmail(email);
 
       if (!valid) {
-        return displayAlert(JOIN_ALERTS.invalidEmail);
+        displayAlert(JOIN_ALERTS.invalidEmail);
+        return false;
       }
 
       setRequestState(true);
 
       loginApi.uidExists(email, validateEmailCallback);
+      return true;
     },
     submitEmail: function (agreeToTerms) {
       if (!agreeToTerms) {
