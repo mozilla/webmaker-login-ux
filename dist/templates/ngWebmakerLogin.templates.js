@@ -59,6 +59,13 @@ angular.module("join-webmaker-modal.html", []).run(["$templateCache", function($
   "      <div class=\"alert alert-danger\" ng-show=\"form.user.$error.invalidUsername\" ng-bind-html=\"'webmakerAuthUsernameInvalid' | i18n\"></div>\n" +
   "      <div class=\"alert alert-danger\" ng-show=\"form.user.$error.serverError\" ng-bind-html=\"'webmakerAuthServerError' | i18n\"></div>\n" +
   "      <div class=\"alert alert-danger\" ng-show=\"form.user.$error.usernameTaken\" ng-bind-html=\"'webmakerAuthTakenError' | i18n\"></div>\n" +
+  "      <div ng-show=\"skippedEmail\" class=\"mailing-list-checkbox checkbox\">\n" +
+  "        <input id=\"subscribe-to-list\" ng-model=\"user.subscribeToList\" type=\"checkbox\" ng-disabled=\"form.user.$error.accountExists\" name=\"subscribeToList\" tabindex=\"2\">\n" +
+  "        <label for=\"subscribe-to-list\" tabindex=\"2\">\n" +
+  "          <div><span></span></div>\n" +
+  "          <span ng-bind-html=\"'webmakerAuthMailingList' | i18n\"></span>\n" +
+  "        </label>\n" +
+  "      </div>\n" +
   "      <button ng-disabled=\"!user.username || form.user.$error.invalidUsername || form.user.$error.usernameTaken || sendingRequest\" ng-click=\"submitUser()\" class=\"create-user btn btn-primary hidden-xs-login\" type=\"button\" tabindex=\"5\">{{ 'webmakerAuthCreateAccount' | i18n }}</button>\n" +
   "    </div>\n" +
   "\n" +

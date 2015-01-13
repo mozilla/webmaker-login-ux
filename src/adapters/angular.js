@@ -129,10 +129,10 @@ ngModule.directive('wmJoinWebmaker', [
       },
       controller: ['$rootScope', '$scope', '$modal', '$timeout', 'focus', 'wmLoginCore',
         function ($rootScope, $scope, $modal, $timeout, focus, wmLoginCore) {
-          $scope.joinWebmaker = $rootScope.joinWebmaker = function (email, username) {
+          $scope.joinWebmaker = $rootScope.joinWebmaker = function (email, username, agreeToTerms) {
             $modal.open({
               templateUrl: 'join-webmaker-modal.html',
-              controller: ['$scope', '$modalInstance', 'email', 'username', 'showCTA', joinModalController],
+              controller: ['$scope', '$modalInstance', 'email', 'username', 'showCTA', 'agreeToTerms', joinModalController],
               resolve: {
                 email: function () {
                   return email;
@@ -142,12 +142,15 @@ ngModule.directive('wmJoinWebmaker', [
                 },
                 showCTA: function () {
                   return !!$scope.showCTA;
+                },
+                agreeToTerms: function () {
+                  return agreeToTerms;
                 }
               }
             });
           };
 
-          function joinModalController($scope, $modalInstance, email, username, showCTA) {
+          function joinModalController($scope, $modalInstance, email, username, showCTA, agreeToTerms) {
 
             var MODALSTATE = {
               inputEmail: 0,
@@ -166,12 +169,12 @@ ngModule.directive('wmJoinWebmaker', [
 
             if (email) {
               $scope.user.email = email;
-              joinController.validateEmail(email);
             }
             if (username) {
               $scope.user.username = username;
-              joinController.validateUsername(username);
             }
+
+            $scope.user.agree = agreeToTerms;
 
             joinController.on('sendingRequest', function (state) {
               $timeout(function () {
@@ -183,6 +186,13 @@ ngModule.directive('wmJoinWebmaker', [
               $timeout(function () {
                 $scope.currentState = MODALSTATE.inputEmail;
                 focus('input[focus-on="create-user-email"]');
+                if ($scope.user.email !== undefined && joinController.validateEmail($scope.user.email) && $scope.user.agree !== undefined) {
+                  joinController.submitEmail($scope.user.agree);
+                  if ($scope.user.agree) {
+                    $scope.skippedEmail = true;
+                    joinController.validateUsername(username);
+                  }
+                }
               }, 0);
             });
 
