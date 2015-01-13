@@ -32,14 +32,14 @@ angular.module("join-webmaker-modal.html", []).run(["$templateCache", function($
   "      <div class=\"alert alert-danger\" ng-show=\"form.user.$error.invalidEmail\" ng-bind-html=\"'NotAnEmail' | i18n\"></div>\n" +
   "      <div class=\"terms-checkbox checkbox\">\n" +
   "        <input id=\"agree-to-terms\" ng-model=\"user.agree\" type=\"checkbox\" ng-disabled=\"form.user.$error.accountExists\" ng-change=\"agreeToTermsChanged();\" name=\"agree\" tabindex=\"2\">\n" +
-  "        <label for=\"agree-to-terms\" tabindex=\"2\">\n" +
+  "        <label for=\"agree-to-terms\">\n" +
   "          <div><span></span></div>\n" +
   "          <span ng-bind-html=\"'webmakerAuthAgreeToTerms' | i18n\"></span>\n" +
   "        </label>\n" +
   "      </div>\n" +
   "      <div class=\"mailing-list-checkbox checkbox\">\n" +
-  "        <input id=\"subscribe-to-list\" ng-model=\"user.subscribeToList\" type=\"checkbox\" ng-disabled=\"form.user.$error.accountExists\" name=\"subscribeToList\" tabindex=\"2\">\n" +
-  "        <label for=\"subscribe-to-list\" tabindex=\"2\">\n" +
+  "        <input id=\"subscribe-to-list\" ng-model=\"user.subscribeToList\" type=\"checkbox\" ng-disabled=\"form.user.$error.accountExists\" name=\"subscribeToList\" tabindex=\"3\">\n" +
+  "        <label for=\"subscribe-to-list\">\n" +
   "          <div><span></span></div>\n" +
   "          <span ng-bind-html=\"'webmakerAuthMailingList' | i18n\"></span>\n" +
   "        </label>\n" +
@@ -61,7 +61,7 @@ angular.module("join-webmaker-modal.html", []).run(["$templateCache", function($
   "      <div class=\"alert alert-danger\" ng-show=\"form.user.$error.usernameTaken\" ng-bind-html=\"'webmakerAuthTakenError' | i18n\"></div>\n" +
   "      <div ng-show=\"skippedEmail\" class=\"mailing-list-checkbox checkbox\">\n" +
   "        <input id=\"subscribe-to-list\" ng-model=\"user.subscribeToList\" type=\"checkbox\" ng-disabled=\"form.user.$error.accountExists\" name=\"subscribeToList\" tabindex=\"2\">\n" +
-  "        <label for=\"subscribe-to-list\" tabindex=\"2\">\n" +
+  "        <label for=\"subscribe-to-list\">\n" +
   "          <div><span></span></div>\n" +
   "          <span ng-bind-html=\"'webmakerAuthMailingList' | i18n\"></span>\n" +
   "        </label>\n" +
@@ -293,7 +293,7 @@ angular.module("signin-modal.html", []).run(["$templateCache", function($templat
   "          <div class=\"alert alert-danger\" ng-show=\"form.user.$error.invalidKey\" ng-bind-html=\"'incorrectToken' | i18n\"></div>\n" +
   "          <div class=\"remember-me-token checkbox\">\n" +
   "            <input id=\"remember-me-token\" ng-model=\"user.rememberMe\" type=\"checkbox\" name=\"rememberMe\" tabindex=\"7\">\n" +
-  "            <label for=\"remember-me-token\" tabindex=\"7\">\n" +
+  "            <label for=\"remember-me-token\">\n" +
   "              <div><span></span></div>\n" +
   "              <span ng-bind-html=\"'Remember me for one year' | i18n\"></span>\n" +
   "            </label>\n" +
@@ -317,7 +317,7 @@ angular.module("signin-modal.html", []).run(["$templateCache", function($templat
   "        <div class=\"alert alert-danger\" ng-show=\"form.user.$error.passwordSigninFailed\" ng-bind-html=\"'passLoginFailed' | i18n\"></div>\n" +
   "        <div class=\"remember-me-password checkbox\">\n" +
   "          <input id=\"remember-me-password\" ng-model=\"user.rememberMe\" type=\"checkbox\" name=\"rememberMe\" tabindex=\"10\">\n" +
-  "          <label for=\"remember-me-password\" tabindex=\"10\">\n" +
+  "          <label for=\"remember-me-password\">\n" +
   "            <div><span></span></div>\n" +
   "            <span ng-bind-html=\"'Remember me for one year' | i18n\"></span>\n" +
   "          </label>\n" +

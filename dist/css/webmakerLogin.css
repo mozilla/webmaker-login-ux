@@ -389,8 +389,6 @@
   outline: none;
 }
 .modal-content .modal-body .checkbox label:focus div {
-  -moz-box-shadow: 0 0 3px #a5bece;
-  -webkit-box-shadow: 0 0 3px #a5bece;
   box-shadow: 0 0 3px #a5bece;
 }
 .modal-content .modal-body .checkbox label:hover span,
@@ -401,7 +399,12 @@
   background: #32b2d2;
 }
 .modal-content .modal-body .checkbox input[type="checkbox"] {
-  display: none;
+  position: absolute;
+  left: -9000px;
+}
+.modal-content .modal-body .checkbox input[type="checkbox"]:focus + label div {
+  border: 2px solid #E1EBF1;
+  box-shadow: 0 0 3px #a5bece;
 }
 .modal-content .modal-body .checkbox input[type="checkbox"]:disabled + label div {
   background-color: #f5f5f5 !important;
