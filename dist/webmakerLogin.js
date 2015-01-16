@@ -165,7 +165,7 @@ module.exports={
     "description": "The X-Ray Goggles Tool"
   },
   "AboutGoggles":  {
-    "message": "X-Ray Goggles allow you to see the building blocks that make up websites on the Internet. Activate the goggles to inspect the code behind any webpage.",
+    "message": "X-Ray Goggles allow you to see and change the building blocks that make up websites on the Internet. Activate the goggles to play with the code behind any webpage.",
     "description": "A short description of the X-Ray Goggles"
   },
   "TryGoggles":  {
