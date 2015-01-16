@@ -231,7 +231,7 @@ WebmakerLogin.prototype.create = function (email_hint, username_hint, agreeToTer
   controller.on('displayWelcome', function (user, showCTA) {
     this.emit('login', user);
     if (showCTA) {
-      scope.welcomeModalIdx = Math.floor(Math.random() * 2);
+      scope.welcomeModalIdx = 0;
     } else {
       scope.simpleCTA = true;
     }
