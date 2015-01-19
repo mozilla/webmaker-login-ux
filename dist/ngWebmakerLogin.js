@@ -1334,7 +1334,7 @@ ngModule.directive('wmJoinWebmaker', [
               $timeout(function () {
                 $rootScope._user = user;
                 if (showCTA) {
-                  $scope.welcomeModalIdx = Math.floor(Math.random() * 2);
+                  $scope.welcomeModalIdx = 0;
                 } else {
                   $scope.simpleCTA = true;
                 }
