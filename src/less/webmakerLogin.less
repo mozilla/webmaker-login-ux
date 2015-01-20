@@ -346,8 +346,6 @@
         &:focus {
           outline: none;
           div {
-            -moz-box-shadow: 0 0 3px @wlux-mediumGrey;
-            -webkit-box-shadow: 0 0 3px @wlux-mediumGrey;
             box-shadow: 0 0 3px @wlux-mediumGrey;
           }
         }
@@ -361,7 +359,14 @@
         }
       }
       input[type="checkbox"] {
-        display: none;
+        position: absolute;
+        left: -9000px;
+      }
+      input[type="checkbox"]:focus + label {
+        div {
+            border: 2px solid #E1EBF1;
+            box-shadow: 0 0 3px @wlux-mediumGrey;
+        }
       }
       input[type="checkbox"]:disabled + label {
         div {

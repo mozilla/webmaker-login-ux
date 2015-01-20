@@ -117,7 +117,7 @@
           <div class="alert alert-danger" ng-show="form.user.$error.invalidKey" ng-bind-html="'incorrectToken' | i18n"></div>
           <div class="remember-me-token checkbox">
             <input id="remember-me-token" ng-model="user.rememberMe" type="checkbox" name="rememberMe" tabindex="7">
-            <label for="remember-me-token" tabindex="7">
+            <label for="remember-me-token">
               <div><span></span></div>
               <span ng-bind-html="'Remember me for one year' | i18n"></span>
             </label>
@@ -141,7 +141,7 @@
         <div class="alert alert-danger" ng-show="form.user.$error.passwordSigninFailed" ng-bind-html="'passLoginFailed' | i18n"></div>
         <div class="remember-me-password checkbox">
           <input id="remember-me-password" ng-model="user.rememberMe" type="checkbox" name="rememberMe" tabindex="10">
-          <label for="remember-me-password" tabindex="10">
+          <label for="remember-me-password">
             <div><span></span></div>
             <span ng-bind-html="'Remember me for one year' | i18n"></span>
           </label>
