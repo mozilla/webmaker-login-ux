@@ -3,7 +3,8 @@ module.exports = function (grunt) {
     browserify: 'grunt-browserify',
     jshint: 'grunt-contrib-jshint',
     express: 'grunt-express-server',
-    less: 'grunt-contrib-less'
+    less: 'grunt-contrib-less',
+    autoprefixer: 'grunt-autoprefixer'
   });
 
   var jshintConfig = grunt.file.readJSON('.jshintrc');
@@ -14,6 +15,15 @@ module.exports = function (grunt) {
   ];
 
   grunt.initConfig({
+    autoprefixer: {
+      options: {
+        browsers: ['last 2 versions', 'android >= 4.2']
+      },
+      production: {
+        src: 'dist/css/webmakerLogin.css',
+        dest: 'dist/css/webmakerLogin.css'
+      }
+    },
     html2js: {
       options: {
         base: 'templates',
@@ -117,6 +127,7 @@ module.exports = function (grunt) {
     'browserify',
     'html2js',
     'less',
+    'autoprefixer',
     'uglify'
   ]);
 
