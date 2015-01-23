@@ -309,9 +309,11 @@
     // Styles for the customized checkbox
     .checkbox {
       label {
+        display: flex;
+        align-items: center;
+
         div {
           // Creates the checkbox
-          float: left;
           width: 24px;
           height: 24px;
           margin-right: 6px;
@@ -396,7 +398,6 @@
         -moz-user-select: none;
         -ms-user-select: none;
         user-select: none;
-        display:inline;
       }
       input[type="checkbox"]:focus {
         outline: 0;

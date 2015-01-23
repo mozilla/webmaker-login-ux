@@ -245,6 +245,8 @@
 @media (min-width: 480px) {
   .modal-content .modal-body .enterToken .email-container {
     display: -webkit-flex;
+    display: -webkit-box;
+    display: -ms-flexbox;
     display: flex;
   }
 }
@@ -255,7 +257,9 @@
 @media (min-width: 480px) {
   .modal-content .modal-body .enterToken .mailIcon {
     -webkit-flex: 1;
-    flex: 1;
+    -webkit-box-flex: 1;
+        -ms-flex: 1;
+            flex: 1;
     margin: 30px 0 0 0;
   }
 }
@@ -267,7 +271,9 @@
   .modal-content .modal-body .enterToken .key-group {
     border-left: 1px solid #DDDDDD;
     -webkit-flex: 3;
-    flex: 3;
+    -webkit-box-flex: 3;
+        -ms-flex: 3;
+            flex: 3;
     padding: 10px 0 0 20px;
   }
 }
@@ -354,8 +360,17 @@
     width: 70%;
   }
 }
+.modal-content .modal-body .checkbox label {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+  -webkit-align-items: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
 .modal-content .modal-body .checkbox label div {
-  float: left;
   width: 24px;
   height: 24px;
   margin-right: 6px;
@@ -377,8 +392,10 @@
   border-bottom: 3px solid #638093;
   border-left: 3px solid #638093;
   top: 30%;
-  transform-origin: bottom left;
-  transform: rotate(-45deg);
+  -webkit-transform-origin: bottom left;
+          transform-origin: bottom left;
+  -webkit-transform: rotate(-45deg);
+          transform: rotate(-45deg);
 }
 .modal-content .modal-body .checkbox label div + span {
   display: block;
@@ -436,7 +453,6 @@
   -moz-user-select: none;
   -ms-user-select: none;
   user-select: none;
-  display: inline;
 }
 .modal-content .modal-body .terms-checkbox input[type="checkbox"]:focus,
 .modal-content .modal-body .mailing-list-checkbox input[type="checkbox"]:focus,
