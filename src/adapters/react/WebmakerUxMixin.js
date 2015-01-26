@@ -5,6 +5,7 @@ var WebmakerUxMixin = {
 
     var auth = new WebmakerLoginUx({
       audience: this.props.audience,
+      host: this.props.host,
       paths: this.props.paths,
       csrfToken: this.props.csrftoken,
       disablePersona: this.props.disablePersona
