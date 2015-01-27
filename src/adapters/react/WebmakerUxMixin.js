@@ -28,12 +28,16 @@ var WebmakerUxMixin = {
     this.props.onLoggedIn(user);
   },
 
-  loggedOut: function (evt) {
+  loggedOut: function () {
     this.props.onLoggedOut();
   },
 
-  login: function (evt) {
+  login: function () {
     this.auth.login();
+  },
+
+  logout: function () {
+    this.auth.logout();
   }
 };
 
