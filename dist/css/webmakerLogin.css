@@ -408,10 +408,6 @@
 .modal-content .modal-body .checkbox label:focus div {
   box-shadow: 0 0 3px #a5bece;
 }
-.modal-content .modal-body .checkbox label:hover span,
-.modal-content .modal-body .checkbox label:hover div {
-  opacity: 0.6;
-}
 .modal-content .modal-body .checkbox label:hover div {
   background: #32b2d2;
 }
