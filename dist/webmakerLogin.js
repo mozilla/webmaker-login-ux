@@ -9,7 +9,7 @@ module.exports={
     "description": "Error message displayed if an error occurs on the server."
   },
   "webmakerAuthCreateWelcome":  {
-    "message": "Create A Webmaker Account",
+    "message": "Create a Webmaker account",
     "description": "Header text for the join webmaker modal dialog"
   },
   "webmakerAuthChooseUsername":  {
