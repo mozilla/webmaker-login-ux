@@ -100,7 +100,7 @@ angular.module("join-webmaker-modal.html", []).run(["$templateCache", function($
   "          <h4>{{ 'XRay-Goggles' | i18n }}</h4>\n" +
   "          <p>{{ 'AboutGoggles' | i18n }}</p>\n" +
   "          <div class=\"clearfix\">\n" +
-  "            <a class=\"create-user btn btn-primary\" type=\"button\" href=\"https://goggles.webmaker.org\" autofocus>{{'TryGoggles' | i18n }}</a>\n" +
+  "            <a class=\"create-user btn btn-primary\" type=\"button\" href=\"https://webmaker.org/goggles\" autofocus>{{'TryGoggles' | i18n }}</a>\n" +
   "            <a href=\"https://webmaker.org/explore\" class=\"explore-link\">{{ 'ExploreWebmaker' | i18n }}</a>\n" +
   "          </div>\n" +
   "        </div>\n" +
