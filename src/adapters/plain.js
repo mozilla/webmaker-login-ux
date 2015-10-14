@@ -595,12 +595,17 @@ WebmakerLogin.prototype.request_password_reset = function (uid, token) {
   _open_modal(modal_fragment);
   var modal = document.querySelector('body > div.modal');
   _attach_close(modal);
-  document.querySelector('body > div.modal > .modal-dialog').addEventListener("click", function (e) {
-    e.stopPropagation();
+  document.querySelector('body > div.modal > .modal-dialog > .modal-content > .modal-body > form.form > div > div.cta-links > button.reset-password').addEventListener("click", function (e) {
+    if (e.target.disabled === false) {
+      controller.submitResetRequest(uid, token, scope.password.value);
+    } else {
+      e.stopPropagation();
+    }
   });
+  /*
   document.querySelector('body > div.modal').addEventListener("click", function () {
     _close_modal();
-  });
+  }); */
 };
 
 WebmakerLogin.prototype.logout = function () {
