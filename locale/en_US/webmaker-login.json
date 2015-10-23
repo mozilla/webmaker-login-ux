@@ -8,7 +8,7 @@
     "description": "Error message displayed if an error occurs on the server."
   },
   "webmakerAuthCreateWelcome":  {
-    "message": "Create a Webmaker account",
+    "message": "Create A Webmaker Account",
     "description": "Header text for the join webmaker modal dialog"
   },
   "webmakerAuthChooseUsername":  {
@@ -69,6 +69,10 @@
   },
   "Sign in to Webmaker":  {
     "message": "Sign In To Webmaker",
+    "description": "Header text for the sign in modal dialog"
+  },
+  "Sign in to VideoRemix":  {
+    "message": "Sign In To VideoRemix",
     "description": "Header text for the sign in modal dialog"
   },
   "Sign in":  {
