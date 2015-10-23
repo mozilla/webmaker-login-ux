@@ -219,23 +219,23 @@ angular.module("signin-modal.html", []).run(["$templateCache", function($templat
   "        <label for=\"uid\">{{ 'EmailOrUsername' | i18n }}</label>\n" +
   "        <input name=\"uid\" class=\"form-control\" ng-model=\"user.uid\" autocomplete=\"on\" required tabindex=\"1\" autofocus=\"true\" focus-on=\"login-uid\" ng-keyup=\"$event.keyCode === 13 && !sendingRequest && submitUid()\">\n" +
   "        <label for=\"password\">{{ 'Password' | i18n }}</label>\n" +
-  "        <input type=\"password\" class=\"form-control\" required name=\"password\" ng-model=\"user.password\" tabindex=\"9\" focus-on=\"enter-password\" ng-keyup=\"$event.keyCode === 13 && user.password && !sendingRequest && submitPassword()\">\n" +
+  "        <input type=\"password\" class=\"form-control\" required name=\"password\" ng-model=\"user.password\" tabindex=\"2\" focus-on=\"enter-password\" ng-keyup=\"$event.keyCode === 13 && user.password && !sendingRequest && submitPassword()\">\n" +
   "      </div>\n" +
   "      <div class=\"alert alert-warning\" ng-show=\"form.user.$error.noAccount\" bind-trusted-html=\"'No account found for your uid' | i18n\"></div>\n" +
   "       <div class=\"alert alert-danger\" ng-show=\"form.user.$error.passwordSigninFailed\" ng-bind-html=\"'passLoginFailed' | i18n\"></div>\n" +
   "      <div class=\"alert alert-danger\" ng-show=\"form.user.$error.invalidUid\" ng-bind-html=\"'That does not look like an email address or username' | i18n\"></div>\n" +
   "       <div class=\"remember-me-password checkbox\">\n" +
   "          <input id=\"remember-me-password\" ng-model=\"user.rememberMe\" type=\"checkbox\" name=\"rememberMe\" tabindex=\"10\">\n" +
-  "          <label for=\"remember-me-password\" tabindex=\"10\">\n" +
+  "          <label for=\"remember-me-password\" tabindex=\"3\">\n" +
   "            <div><span></span></div>\n" +
   "            <span ng-bind-html=\"'Remember me for one year' | i18n\"></span>\n" +
   "          </label>\n" +
   "        </div>\n" +
   "      <div class=\"cta-links clearfix\">\n" +
-  "        <button type=\"button\" class=\"submit-password btn btn-primary hidden-xs-login\" type=\"button\" ng-disabled=\"sendingRequest\" ng-click=\"user.password && submitPassword()\" tabindex=\"11\">{{ 'Submit' | i18n }}</button>\n" +
+  "        <button type=\"button\" class=\"submit-password btn btn-primary hidden-xs-login\" type=\"button\" ng-disabled=\"sendingRequest\" ng-click=\"user.password && submitPassword()\" tabindex=\"4\">{{ 'Submit' | i18n }}</button>\n" +
   "        <div ng-hide=\"disablePersona\">\n" +
   "          <p class=\"align-left\">{{ 'or' | i18n }}</p>\n" +
-  "          <button type=\"button\" wm-persona-login class=\"btn btn-link\" ng-disabled=\"sendingRequest\" ng-click=\"usePersona();\" tabindex=\"3\">{{ 'log in with Persona' | i18n }}</button>\n" +
+  "          <button type=\"button\" wm-persona-login class=\"btn btn-link\" ng-disabled=\"sendingRequest\" ng-click=\"usePersona();\" tabindex=\"5\">{{ 'log in with Persona' | i18n }}</button>\n" +
   "        </div>\n" +
   "      </div>\n" +
   "    </div>\n" +
