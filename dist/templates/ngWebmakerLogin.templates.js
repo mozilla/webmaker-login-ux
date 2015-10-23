@@ -178,7 +178,7 @@ angular.module("signin-modal.html", []).run(["$templateCache", function($templat
   "  <button ng-click=\"close()\" type=\"button\" class=\"close\" data-dismiss=\"modal\" aria-hidden=\"true\">&times;</button>\n" +
   "  <h3 class=\"modal-title\" ng-show=\"currentState === MODALSTATE.enterUid || currentState === MODALSTATE.enterPassword\">\n" +
   "    <button href=\"#\" ng-click=\"close()\" class=\"modal-title-left btn-link\">{{ 'Cancel' | i18n }}</button>\n" +
-  "    <span class=\"modal-title-center\">{{ 'Sign in to Webmaker' | i18n }}</span>\n" +
+  "    <span class=\"modal-title-center\">{{ 'Sign in to VideoRemix' | i18n }}</span>\n" +
   "    <button ng-show=\"currentState === MODALSTATE.enterUid\"\n" +
   "      ng-disabled=\"sendingRequest\"\n" +
   "      ng-click=\"submitUid()\"\n" +
@@ -218,11 +218,21 @@ angular.module("signin-modal.html", []).run(["$templateCache", function($templat
   "      <div class=\"form-group\">\n" +
   "        <label for=\"uid\">{{ 'EmailOrUsername' | i18n }}</label>\n" +
   "        <input name=\"uid\" class=\"form-control\" ng-model=\"user.uid\" autocomplete=\"on\" required tabindex=\"1\" autofocus=\"true\" focus-on=\"login-uid\" ng-keyup=\"$event.keyCode === 13 && !sendingRequest && submitUid()\">\n" +
+  "        <label for=\"password\">{{ 'Password' | i18n }}</label>\n" +
+  "        <input type=\"password\" class=\"form-control\" required name=\"password\" ng-model=\"user.password\" tabindex=\"9\" focus-on=\"enter-password\" ng-keyup=\"$event.keyCode === 13 && user.password && !sendingRequest && submitPassword()\">\n" +
   "      </div>\n" +
   "      <div class=\"alert alert-warning\" ng-show=\"form.user.$error.noAccount\" bind-trusted-html=\"'No account found for your uid' | i18n\"></div>\n" +
+  "       <div class=\"alert alert-danger\" ng-show=\"form.user.$error.passwordSigninFailed\" ng-bind-html=\"'passLoginFailed' | i18n\"></div>\n" +
   "      <div class=\"alert alert-danger\" ng-show=\"form.user.$error.invalidUid\" ng-bind-html=\"'That does not look like an email address or username' | i18n\"></div>\n" +
+  "       <div class=\"remember-me-password checkbox\">\n" +
+  "          <input id=\"remember-me-password\" ng-model=\"user.rememberMe\" type=\"checkbox\" name=\"rememberMe\" tabindex=\"10\">\n" +
+  "          <label for=\"remember-me-password\" tabindex=\"10\">\n" +
+  "            <div><span></span></div>\n" +
+  "            <span ng-bind-html=\"'Remember me for one year' | i18n\"></span>\n" +
+  "          </label>\n" +
+  "        </div>\n" +
   "      <div class=\"cta-links clearfix\">\n" +
-  "        <button class=\"submit-userid btn btn-primary hidden-xs-login\" type=\"button\" ng-disabled=\"sendingRequest\" ng-click=\"submitUid()\" tabindex=\"2\">{{ 'Sign in' | i18n }}</button>\n" +
+  "        <button type=\"button\" class=\"submit-password btn btn-primary hidden-xs-login\" type=\"button\" ng-disabled=\"sendingRequest\" ng-click=\"user.password && submitPassword()\" tabindex=\"11\">{{ 'Submit' | i18n }}</button>\n" +
   "        <div ng-hide=\"disablePersona\">\n" +
   "          <p class=\"align-left\">{{ 'or' | i18n }}</p>\n" +
   "          <button type=\"button\" wm-persona-login class=\"btn btn-link\" ng-disabled=\"sendingRequest\" ng-click=\"usePersona();\" tabindex=\"3\">{{ 'log in with Persona' | i18n }}</button>\n" +
@@ -293,7 +303,7 @@ angular.module("signin-modal.html", []).run(["$templateCache", function($templat
   "          <div class=\"alert alert-danger\" ng-show=\"form.user.$error.invalidKey\" ng-bind-html=\"'incorrectToken' | i18n\"></div>\n" +
   "          <div class=\"remember-me-token checkbox\">\n" +
   "            <input id=\"remember-me-token\" ng-model=\"user.rememberMe\" type=\"checkbox\" name=\"rememberMe\" tabindex=\"7\">\n" +
-  "            <label for=\"remember-me-token\">\n" +
+  "            <label for=\"remember-me-token\" tabindex=\"7\">\n" +
   "              <div><span></span></div>\n" +
   "              <span ng-bind-html=\"'Remember me for one year' | i18n\"></span>\n" +
   "            </label>\n" +
@@ -317,7 +327,7 @@ angular.module("signin-modal.html", []).run(["$templateCache", function($templat
   "        <div class=\"alert alert-danger\" ng-show=\"form.user.$error.passwordSigninFailed\" ng-bind-html=\"'passLoginFailed' | i18n\"></div>\n" +
   "        <div class=\"remember-me-password checkbox\">\n" +
   "          <input id=\"remember-me-password\" ng-model=\"user.rememberMe\" type=\"checkbox\" name=\"rememberMe\" tabindex=\"10\">\n" +
-  "          <label for=\"remember-me-password\">\n" +
+  "          <label for=\"remember-me-password\" tabindex=\"10\">\n" +
   "            <div><span></span></div>\n" +
   "            <span ng-bind-html=\"'Remember me for one year' | i18n\"></span>\n" +
   "          </label>\n" +
