@@ -140,7 +140,7 @@
     "description": "Label to enter key that was sent to user's email"
   },
   "you can switch to webmaker login":  {
-    "message": "You can switch back to our Webmaker Login experience. We will send you login emails so you do not need a password.",
+    "message": "You can switch back to our VideoRemix Login experience. We will send you login emails so you do not need a password.",
     "description": "Message reminding users that they can switch back to the Webmaker Login Key system instead of using a password."
   },
   "Submit":  {
@@ -236,7 +236,7 @@
     "description": "a password must contain at least one number character"
   },
   "resetRequestFailed": {
-    "message": "<i class=\"fa fa-times\"></i>  <strong>Uh oh!</strong> There was a problem processing your request, please try again.",
+    "message": "<i class=\"fa fa-times\"></i>  <strong>Uh oh!</strong> There was a problem processing your request, please enter correct details & please try again.",
     "description": "Error message displayed if the reset request fails for some reason"
   },
   "Next": {
