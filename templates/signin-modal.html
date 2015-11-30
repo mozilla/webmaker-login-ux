@@ -1,5 +1,5 @@
 <div class="modal-header">
-  <button ng-click="close()" type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+  <button ng-click="close()" type="button" class="close" ng-hide="true" data-dismiss="modal" aria-hidden="true">&times;</button>
   <h3 class="modal-title" ng-show="currentState === MODALSTATE.enterUid || currentState === MODALSTATE.enterPassword">
     <button href="#" ng-click="close()" class="modal-title-left btn-link">{{ 'Cancel' | i18n }}</button>
     <span class="modal-title-center">{{ 'Sign in to VideoRemix' | i18n }}</span>

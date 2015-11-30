@@ -464,7 +464,7 @@ WebmakerLogin.prototype.login = function (uid_hint, options) {
 
   modal_fragment.querySelector('input[ng-keyup="$event.keyCode === 13 && !sendingRequest && submitUid()"]').addEventListener('keyup', function (event) {
     if (event.keyCode === 13 && !scope.sendingRequest) {
-      controller.submitUid(scope.user.uid, window.location.pathname);
+      //controller.submitUid(scope.user.uid, window.location.pathname);
     }
   }.bind(this));
 
@@ -487,9 +487,10 @@ WebmakerLogin.prototype.login = function (uid_hint, options) {
   document.querySelector('body > div.modal > .modal-dialog').addEventListener("click", function (e) {
     e.stopPropagation();
   });
+  /* Prevent click modal to close
   document.querySelector('body > div.modal').addEventListener("click", function () {
     _close_modal();
-  });
+  }); */
 
   controller.start();
 };

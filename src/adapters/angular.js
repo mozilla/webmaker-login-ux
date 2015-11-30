@@ -425,7 +425,9 @@ ngModule.directive('wmSignin', [
                 disablePersona: function () {
                   return $scope.disablePersona;
                 }
-              }
+              },
+              backdrop: 'static', /*  this prevent user interaction with the background  */
+              keyboard: false
             });
           };
         }
