@@ -9948,9 +9948,7 @@ WebmakerLogin.prototype.login = function (uid_hint, options) {
 
   _each(modal_fragment, 'button[ng-click="user.password && submitPassword()"]', function (i, el) {
     el.addEventListener('click', function () {
-      if (scope.user.uid && scope.user.password) {
-        controller.verifyPassword(scope.user.uid, scope.user.password, scope.user.rememberMe);
-      }
+      controller.verifyPassword(scope.user.uid, scope.user.password, scope.user.rememberMe);
     });
   });
 
