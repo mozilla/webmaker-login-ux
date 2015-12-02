@@ -56,7 +56,7 @@
           </label>
         </div>
       <div class="cta-links clearfix">
-        <button type="button" class="submit-password btn btn-primary hidden-xs-login" type="button" ng-disabled="sendingRequest" ng-click="user.password && submitPassword()" tabindex="5">{{ 'Submit' | i18n }}</button> <p><a ng-show= "user.uid" ng-click="requestReset()">{{ 'Forgot your password?' | i18n }}</a></p>
+        <button type="button" class="submit-password btn btn-primary hidden-xs-login" type="button" ng-disabled="sendingRequest" ng-click="user.password && submitPassword()" tabindex="5">{{ 'Submit' | i18n }}</button> <p><a ng-click="requestReset()">{{ 'Forgot your password?' | i18n }}</a></p>
         <div ng-hide="true">
           <p class="align-left">{{ 'or' | i18n }}</p>
           <button type="button" wm-persona-login class="btn btn-link" ng-disabled="sendingRequest" ng-click="usePersona();" tabindex="6">{{ 'log in with Persona' | i18n }}</button>
