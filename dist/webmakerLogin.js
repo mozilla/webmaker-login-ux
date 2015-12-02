@@ -10165,7 +10165,7 @@ module.exports = function WebmakerLoginCore(options) {
     });
   }
 
-  window.addEventListener('focus', verify);
+  //window.addEventListener('focus', verify);
 
   return {
     on: function (event, listener) {
