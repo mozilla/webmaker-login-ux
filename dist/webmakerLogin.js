@@ -237,7 +237,7 @@ module.exports={
     "description": "a password must contain at least one number character"
   },
   "resetRequestFailed": {
-    "message": "<i class=\"fa fa-times\"></i>  <strong>Uh oh!</strong> There was a problem processing your request, please enter correct details & try again.",
+    "message": "<i class=\"fa fa-times\"></i>  <strong>Uh oh!</strong> There was a problem processing your request, Please enter your Email or Username & try again.",
     "description": "Error message displayed if the reset request fails for some reason"
   },
   "Next": {
