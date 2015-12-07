@@ -353,7 +353,7 @@ angular.module("signin-modal.html", []).run(["$templateCache", function($templat
   "            <g id=\"Page-1\" stroke=\"none\" stroke-width=\"1\" fill=\"none\" fill-rule=\"evenodd\" sketch:type=\"MSPage\">\n" +
   "              <g id=\"AC4\" sketch:type=\"MSArtboardGroup\" transform=\"translate(-126.000000, -92.000000)\">\n" +
   "                <g id=\"Mail-Icon\" sketch:type=\"MSLayerGroup\" transform=\"translate(126.000000, 92.000000)\">\n" +
-  "                    <circle id=\"Oval-1\" fill=\"#3FB58E\" sketch:type=\"MSShapeGroup\" cx=\"47\" cy=\"47\" r=\"47\"></circle>\n" +
+  "                    <circle id=\"Oval-1\" fill=\"#EB5054\" sketch:type=\"MSShapeGroup\" cx=\"47\" cy=\"47\" r=\"47\"></circle>\n" +
   "                    <rect id=\"Rectangle-1\" fill=\"#FFFFFF\" sketch:type=\"MSShapeGroup\" x=\"18\" y=\"27\" width=\"59\" height=\"41\" rx=\"3\"></rect>\n" +
   "                    <path d=\"M21.0069321,27 C19.3462494,27 17.9900756,28.3368135 17.9778938,29.9953973 C17.9778938,29.9953973 17.9712616,30.8538058 17.9707031,31.0256348 C17.9688241,31.6037734 44.3277476,50.7739169 44.3277476,50.7739169 C45.6547338,51.7409595 47.981989,52.0459954 49.4771883,51.3411914 C49.4771883,51.3411914 52.3180561,50.8603167 59.4023438,44.0800781 C61.1871084,42.3719134 77.0395508,31.2178814 77.0395508,30.1010742 C77.0395508,29.644898 77.0391066,29.9910722 77.0391066,29.9910722 C77.0175086,28.3391486 75.6568485,27 73.9930679,27 L21.0069321,27 Z\" id=\"Rectangle-95\" fill=\"#F3F3F3\" sketch:type=\"MSShapeGroup\"></path>\n" +
   "                    <path d=\"M17.7634277,31.0032813 L46.7917565,50.276875 L75.0556641,31.3201563 L46.5782176,55.1035938 L17.7634277,31.0032813 Z\" id=\"Path-1\" fill=\"#D8D8D8\" sketch:type=\"MSShapeGroup\"></path>\n" +
@@ -364,9 +364,9 @@ angular.module("signin-modal.html", []).run(["$templateCache", function($templat
   "        <p>{{ 'resetMessage' | i18n }}</p>\n" +
   "      </div>\n" +
   "      <hr>\n" +
-  "        <footer class=\"help-footer\">\n" +
+  "        <!-- footer class=\"help-footer\">\n" +
   "          <p class=\"switch-back\">{{ 'you can switch to webmaker login' | i18n }}</p>\n" +
-  "        </footer>\n" +
+  "        </footer -->\n" +
   "    </div>\n" +
   "  </form>\n" +
   "</div>\n" +
