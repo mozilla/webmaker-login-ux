@@ -339,7 +339,7 @@ angular.module("signin-modal.html", []).run(["$templateCache", function($templat
   "      </div>\n" +
   "      <hr>\n" +
   "      <footer class=\"help-footer\">\n" +
-  "        <p class=\"switch-back\">{{ 'you can switch to webmaker login' | i18n }}</p>\n" +
+  "        <!-- p class=\"switch-back\">{{ 'you can switch to webmaker login' | i18n }}</p -->\n" +
   "      </footer>\n" +
   "    </div>\n" +
   "\n" +
