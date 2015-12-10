@@ -178,7 +178,7 @@ angular.module("signin-modal.html", []).run(["$templateCache", function($templat
   "  <button ng-click=\"close()\" type=\"button\" class=\"close\" ng-hide=\"true\" data-dismiss=\"modal\" aria-hidden=\"true\">&times;</button>\n" +
   "  <h3 class=\"modal-title\" ng-show=\"currentState === MODALSTATE.enterUid || currentState === MODALSTATE.enterPassword\">\n" +
   "    <button href=\"#\" ng-click=\"close()\" class=\"modal-title-left btn-link\">{{ 'Cancel' | i18n }}</button>\n" +
-  "    <span class=\"modal-title-center\">{{ 'Sign in to VideoRemix' | i18n }}</span>\n" +
+  "    <span class=\"modal-title-center\">{{ 'Sign in' | i18n }}</span>\n" +
   "    <button ng-show=\"currentState === MODALSTATE.enterUid\"\n" +
   "      ng-disabled=\"sendingRequest\"\n" +
   "      ng-click=\"submitUid()\"\n" +
