@@ -2553,10 +2553,14 @@ module.exports = function SignInController(loginApi) {
         setRequestState(false);
         if (err) {
           return displayAlert(SIGNIN_ALERTS.serverError);
+        } else {
+          hideAlert(SIGNIN_ALERTS.serverError);
         }
 
         if (!body.status) {
           return displayAlert(SIGNIN_ALERTS.resetRequestFailed);
+        } else {
+          hideAlert(SIGNIN_ALERTS.resetRequestFailed);
         }
 
         analytics.event('Webmaker Password Reset Requested');

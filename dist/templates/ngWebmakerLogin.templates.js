@@ -363,10 +363,6 @@ angular.module("signin-modal.html", []).run(["$templateCache", function($templat
   "        </svg>\n" +
   "        <p>{{ 'resetMessage' | i18n }}</p>\n" +
   "      </div>\n" +
-  "      <hr>\n" +
-  "        <!-- footer class=\"help-footer\">\n" +
-  "          <p class=\"switch-back\">{{ 'you can switch to webmaker login' | i18n }}</p>\n" +
-  "        </footer -->\n" +
   "    </div>\n" +
   "  </form>\n" +
   "</div>\n" +
