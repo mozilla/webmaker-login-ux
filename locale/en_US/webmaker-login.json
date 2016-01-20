@@ -48,8 +48,8 @@
     "description": "Label text for the email input"
   },
   "EmailOrUsername":  {
-    "message": "Email or Username",
-    "description": "Label text for the sign in input, asks for the username or email of the user's account."
+    "message": "Username (your email)",
+    "description": "Label text for the sign in input, asks for the email of the user's account."
   },
   "NotAnEmail":  {
     "message": "<i class=\"fa fa-times\"></i>  <strong>Uh Oh!</strong> That doesn't look like an email address.",
