@@ -233,6 +233,8 @@ angular.module("signin-modal.html", []).run(["$templateCache", function($templat
   "        </div>\n" +
   "      <div class=\"cta-links clearfix\">\n" +
   "        <button type=\"button\" class=\"submit-password btn btn-primary hidden-xs-login\" type=\"button\" ng-disabled=\"sendingRequest\" ng-click=\"user.password && submitPassword()\" tabindex=\"5\">{{ 'Submit' | i18n }}</button> <p><a ng-click=\"requestReset()\">{{ 'Forgot your password?' | i18n }}</a></p>\n" +
+  "        <p class=\"align-left\" style=\"margin-left: 200px;\"><a target=\"_blank\" href=\"https://digistrats.zendesk.com/\">{{ 'Contact Support' | i18n }}</a></p>\n" +
+  "\n" +
   "        <div ng-hide=\"true\">\n" +
   "          <p class=\"align-left\">{{ 'or' | i18n }}</p>\n" +
   "          <button type=\"button\" wm-persona-login class=\"btn btn-link\" ng-disabled=\"sendingRequest\" ng-click=\"usePersona();\" tabindex=\"6\">{{ 'log in with Persona' | i18n }}</button>\n" +

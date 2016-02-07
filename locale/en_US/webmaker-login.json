@@ -262,5 +262,9 @@
   "Expired Login Link": {
     "message": "Uh Oh! Your login link expired. Request a new email to sign in.",
     "description": "Error message displayed if a login link is expired"
+  },
+  "Contact Support": {
+    "message": "Contact Support",
+    "description": "Digital Zendesk Link"
   }
 }
