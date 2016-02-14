@@ -25,7 +25,8 @@ module.exports = function SignInController(loginApi) {
     displayEnterKey: 'displayEnterKey',
     displayCheckEmail: 'displayCheckEmail',
     displayResetSent: 'displayResetSent',
-    signedIn: 'signedIn'
+    signedIn: 'signedIn',
+    displayEnterEmail: 'displayEnterEmail'
   };
 
   function emit() {
@@ -153,6 +154,10 @@ module.exports = function SignInController(loginApi) {
 
         emit(SIGNIN_EVENTS.signedIn, body.user);
       });
+    },
+    requestEmail: function(uid) {
+      setRequestState(false);
+      emit(SIGNIN_EVENTS.displayEnterEmail);
     },
     requestReset: function (uid) {
       setRequestState(true);

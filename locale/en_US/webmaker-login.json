@@ -39,6 +39,10 @@
     "message": "Create Account",
     "description": "The button text for finishing the join Webmaker process."
   },
+   "Back":  {
+    "message": "Back",
+    "description": "Back text"
+  },
   "Cancel":  {
     "message": "Cancel",
     "description": "Cancel button text"
@@ -102,6 +106,14 @@
   "Forgot your password?":  {
     "message": "Forgot your password?",
     "description": "button text for the password reset function"
+  },
+  "Reset your password?":  {
+    "message": "Reset your password?",
+    "description": "link text for the password reset function"
+  },
+  "Click to Reset your password":  {
+    "message": "Click to Reset your password",
+    "description": "Link text for the password reset function"
   },
   "checkEmail":  {
     "message": "Check Your Email",
@@ -204,7 +216,7 @@
     "description": "Label text for the password confirmation input"
   },
   "Reset Password":  {
-    "message": "Reset Password",
+    "message": "Click to Reset Password",
     "description": "Reset Password Modal title"
   },
   "Set a Password":  {
@@ -236,7 +248,7 @@
     "description": "a password must contain at least one number character"
   },
   "resetRequestFailed": {
-    "message": "<i class=\"fa fa-times\"></i>  <strong>Uh oh!</strong> There was a problem processing your request, Please enter your Email or Username & try again.",
+    "message": "<i class=\"fa fa-times\"></i>  <strong>Uh oh!</strong> There was a problem processing your request, Please enter your Email & try again.",
     "description": "Error message displayed if the reset request fails for some reason"
   },
   "Next": {

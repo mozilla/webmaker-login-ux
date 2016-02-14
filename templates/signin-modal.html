@@ -12,6 +12,9 @@
       ng-disabled="sendingRequest"
       ng-click="user.password && submitPassword()" tabindex="9">{{ 'Submit' | i18n }}</button>
   </h3>
+   <h3 class="modal-title" ng-show="currentState === MODALSTATE.enterEmail">
+    Reset Password
+   </h3>
   <h3 class="modal-title" ng-show="currentState === MODALSTATE.checkEmail || currentState === MODALSTATE.resetRequestSent || currentState === MODALSTATE.enterKey">
     <a href="#" ng-click="close()" class="modal-title-left">{{ 'Cancel' | i18n }}</a>
     <span class="modal-title-center">{{ 'checkEmail' | i18n }}</span>
@@ -56,7 +59,7 @@
           </label>
         </div>
       <div class="cta-links clearfix">
-        <button type="button" class="submit-password btn btn-primary hidden-xs-login" type="button" ng-disabled="sendingRequest" ng-click="user.password && submitPassword()" tabindex="5">{{ 'Submit' | i18n }}</button> <p><a ng-click="requestReset()">{{ 'Forgot your password?' | i18n }}</a></p>
+        <button type="button" class="submit-password btn btn-primary hidden-xs-login" type="button" ng-disabled="sendingRequest" ng-click="user.password && submitPassword()" tabindex="5">{{ 'Submit' | i18n }}</button> <p><a ng-click="requestEmail()">{{ 'Reset your password?' | i18n }}</a></p>
         <p class="align-left" style="margin-left: 200px;"><a target="_blank" href="https://digistrats.zendesk.com/">{{ 'Contact Support' | i18n }}</a></p>
 
         <div ng-hide="true">
@@ -66,6 +69,25 @@
       </div>
     </div>
     <!-- end enter uid -->
+
+    <!-- Enter Email -->
+    <div ng-show="currentState === MODALSTATE.enterEmail;">
+
+      <div class="form-group">
+        <label for="uid">{{ 'EmailOrUsername' | i18n }}</label>
+        <input name="myuid" class="form-control" ng-model="user.uid" autocomplete="on" required tabindex="1" autofocus="true" focus-on="login-uid2">
+
+      </div>
+      <div class="alert alert-warning" ng-show="form.user.$error.noAccount" bind-trusted-html="'No account found for your uid' | i18n"></div>
+       <div class="alert alert-danger" ng-show="form.user.$error.passwordSigninFailed" ng-bind-html="'passLoginFailed' | i18n"></div>
+      <div class="alert alert-danger" ng-show="form.user.$error.invalidUid" ng-bind-html="'That does not look like an email address or username' | i18n"></div>
+      <div class="cta-links clearfix">
+        <p><a ng-click="requestReset()">{{ 'Click to Reset your password' | i18n }}</a></p>
+        <p class="align-left" style="margin-left: 319px;"><a href="">{{ 'Back' | i18n }}</a></p>
+
+      </div>
+    </div>
+    <!-- end enter Email -->
 
     <!-- checkEmail begins -->
     <div class="checkEmail" ng-show="currentState === MODALSTATE.checkEmail">

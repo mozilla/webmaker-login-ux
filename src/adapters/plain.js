@@ -317,7 +317,8 @@ WebmakerLogin.prototype.login = function (uid_hint, options) {
       checkEmail: 1,
       enterKey: 2,
       enterPassword: 3,
-      resetRequestSent: 4
+      resetRequestSent: 4,
+      enterEmail: 5,
     },
     currentState: 0,
     form: {
@@ -347,6 +348,12 @@ WebmakerLogin.prototype.login = function (uid_hint, options) {
 
   controller.on('displayEnterUid', function () {
     scope.currentState = scope.MODALSTATE.enterUid;
+    _run_expressions(modal, scope);
+    modal.querySelector('input[focus-on="login-uid"]').focus();
+  });
+
+  controller.on('displayEnterEmail', function () {
+    scope.currentState = scope.MODALSTATE.enterEmail;
     _run_expressions(modal, scope);
     modal.querySelector('input[focus-on="login-uid"]').focus();
   });
@@ -390,6 +397,11 @@ WebmakerLogin.prototype.login = function (uid_hint, options) {
   }.bind(this));
 
   modal_fragment.querySelector('input[name="uid"]').addEventListener('input', function (e) {
+    scope.user.uid = e.target.value;
+    _run_expressions(modal, scope);
+  });
+
+  modal_fragment.querySelector('input[name="myuid"]').addEventListener('input', function (e) {
     scope.user.uid = e.target.value;
     _run_expressions(modal, scope);
   });
@@ -441,6 +453,11 @@ WebmakerLogin.prototype.login = function (uid_hint, options) {
     controller.requestReset(scope.user.uid);
   });
 
+  modal_fragment.querySelector('a[ng-click="requestEmail()"]').addEventListener('click', function (event) {
+    event.preventDefault();
+    controller.requestEmail(scope.user.uid);
+  });
+
   modal_fragment.querySelector('a[ng-click="switchToSignup();"]').addEventListener('click', function (event) {
     event.preventDefault();
     _close_modal();
@@ -464,7 +481,7 @@ WebmakerLogin.prototype.login = function (uid_hint, options) {
 
   modal_fragment.querySelector('input[ng-keyup="$event.keyCode === 13 && !sendingRequest && submitUid()"]').addEventListener('keyup', function (event) {
     if (event.keyCode === 13 && !scope.sendingRequest) {
-      //controller.submitUid(scope.user.uid, window.location.pathname);
+      controller.submitUid(scope.user.uid, window.location.pathname);
     }
   }.bind(this));
 

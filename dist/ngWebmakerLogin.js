@@ -1415,11 +1415,13 @@ ngModule.directive('wmSignin', [
               checkEmail: 1,
               enterKey: 2,
               enterPassword: 3,
-              resetRequestSent: 4
+              resetRequestSent: 4,
+              enterEmail: 5
             };
 
             $scope.MODALSTATE = MODALSTATE;
             $scope.currentState = MODALSTATE.enterUid;
+            $scope.enterEmail = enterEmail;
             $scope.passwordWasReset = passwordWasReset;
             $scope.sendingRequest = false;
             $scope.disablePersona = disablePersona;
@@ -1443,6 +1445,13 @@ ngModule.directive('wmSignin', [
               $timeout(function () {
                 $scope.currentState = MODALSTATE.enterUid;
                 focus('input[focus-on="login-uid"]');
+              }, 0);
+            });
+
+            signinController.on('displayEnterEmail', function () {
+              $timeout(function () {
+                $scope.currentState = MODALSTATE.enterEmail;
+                focus('input[focus-on="login-uid2"]');
               }, 0);
             });
 
@@ -1499,6 +1508,10 @@ ngModule.directive('wmSignin', [
               signinController.displayEnterKey();
             };
 
+            $scope.enterEmail = function(){
+              signinController.displayEnterEmail();
+            };
+
             $scope.submitKey = function () {
               signinController.verifyKey($scope.user.uid, $scope.user.key, $scope.user.rememberMe);
             };
@@ -1518,6 +1531,7 @@ ngModule.directive('wmSignin', [
 
             $scope.switchToSignup = function () {
               var uid = $scope.user.uid,
+                myid = $scope.user.id,
                 type = signinController.getUidType(uid),
                 email = type === 'email' ? uid : '',
                 username = type === 'username' ? uid : '';
@@ -1657,6 +1671,7 @@ ngModule.directive('wmPasswordReset', [
             };
 
             $scope.submitResetRequest = function () {
+              var uid = $scope.user.uid;
               resetController.submitResetRequest(uid, resetCode, $scope.password.value);
             };
 
@@ -1899,6 +1914,12 @@ module.exports = function LoginAPI(options) {
     }, callback);
   }
 
+  function requestEmail(uid,callback) {
+    doRequest(loginUrls.requestResetCode, {
+      uid: uid
+    }, callback);
+  }
+
   function resetPassword(uid, resetCode, password, callback) {
     doRequest(loginUrls.resetPassword, {
       uid: uid,
@@ -1933,6 +1954,7 @@ module.exports = function LoginAPI(options) {
     verifyKey: verifyKey,
     verifyPassword: verifyPassword,
     requestReset: requestReset,
+    requestEmail: requestEmail,
     resetPassword: resetPassword,
     personaLogin: personaLogin,
     logout: logout,
@@ -2418,7 +2440,8 @@ module.exports = function SignInController(loginApi) {
     displayEnterKey: 'displayEnterKey',
     displayCheckEmail: 'displayCheckEmail',
     displayResetSent: 'displayResetSent',
-    signedIn: 'signedIn'
+    signedIn: 'signedIn',
+    displayEnterEmail: 'displayEnterEmail'
   };
 
   function emit() {
@@ -2546,6 +2569,10 @@ module.exports = function SignInController(loginApi) {
 
         emit(SIGNIN_EVENTS.signedIn, body.user);
       });
+    },
+    requestEmail: function(uid) {
+      setRequestState(false);
+      emit(SIGNIN_EVENTS.displayEnterEmail);
     },
     requestReset: function (uid) {
       setRequestState(true);
