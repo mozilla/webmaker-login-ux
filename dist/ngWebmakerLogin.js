@@ -2505,7 +2505,7 @@ module.exports = function SignInController(loginApi) {
         }
 
         if (body.usePasswordLogin) {
-          return emit(SIGNIN_EVENTS.displayEnterPassword);
+          return false; //emit(SIGNIN_EVENTS.displayEnterPassword);
         }
 
         loginApi.sendLoginKey(uid, path, function sendLoginKeyCallback(err, resp, body) {
