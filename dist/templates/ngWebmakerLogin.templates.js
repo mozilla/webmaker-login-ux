@@ -235,7 +235,7 @@ angular.module("signin-modal.html", []).run(["$templateCache", function($templat
   "          </label>\n" +
   "        </div>\n" +
   "      <div class=\"cta-links clearfix\">\n" +
-  "        <button type=\"button\" class=\"submit-password btn btn-primary hidden-xs-login\" type=\"button\" ng-disabled=\"sendingRequest\" ng-click=\"user.password && submitPassword()\" tabindex=\"5\">{{ 'Submit' | i18n }}</button><br> <p><a ng-click=\"requestEmail()\">{{ 'Reset your password?' | i18n }}</a> / <a target=\"_blank\" href=\"https://digistrats.zendesk.com/\">{{ 'Contact Support' | i18n }}</a></p>\n" +
+  "        <button type=\"button\" class=\"submit-password btn btn-primary\" type=\"button\" ng-disabled=\"sendingRequest\" ng-click=\"user.password && submitPassword()\" tabindex=\"5\">{{ 'Submit' | i18n }}</button><br> <p><a ng-click=\"requestEmail()\">{{ 'Reset your password?' | i18n }}</a> / <a target=\"_blank\" href=\"https://digistrats.zendesk.com/\">{{ 'Contact Support' | i18n }}</a></p>\n" +
   "\n" +
   "        <div ng-hide=\"true\">\n" +
   "          <p class=\"align-left\">{{ 'or' | i18n }}</p>\n" +
