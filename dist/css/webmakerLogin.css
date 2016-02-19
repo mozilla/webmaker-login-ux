@@ -1,4 +1,61 @@
 @import url('https://fonts.googleapis.com/css?family=Muli');
+@media screen and (min-device-width: 320px) and (max-device-width: 375px) and (orientation: portrait) {
+  .modal.in .modal-dialog {
+    width: 100% !important;
+    left: 0 !important;
+    margin: 0 !important;
+    padding: 29px !important;
+    height: 100% !important;
+  }
+  .modal-content {
+    width: 100% !important;
+    padding: 0 !important;
+    border-left: 0px !important;
+  }
+  #modal-introduction {
+    display: none;
+  }
+}
+@media screen and (min-device-width: 768px) and (max-device-width: 1024px) and (orientation: portrait) {
+  .fade.in {
+    overflow: hidden !important;
+  }
+  .modal.in .modal-dialog {
+    width: 70% !important;
+    margin-top: 50% !important;
+    margin-left: 0 !important;
+    margin-right: 13% !important;
+    margin-bottom: 0 !important;
+    line-height: 43px !important;
+    float: right  !important;
+    padding: 0 !important;
+    left: 0 !important;
+    height: 73% !important;
+    top: 0 !important;
+  }
+  .modal-content {
+    border-left: 0px solid rgba(255, 255, 255, 0.2) !important;
+    border-top: 1px solid rgba(255, 255, 255, 0.2) !important;
+    padding-left: 29px !important;
+    padding-right: 45px !important;
+    height: 100% !important;
+    top: 0 !important;
+  }
+  .modal-content .modal-body {
+    top: 19px !important;
+    clear: both !important;
+    float: right !important;
+    display: block !important;
+    position: relative !important;
+    width: 93% !important;
+    height: 100% !important;
+  }
+  #modal-introduction {
+    padding-left: 16% !important;
+    width: 91% !important;
+    margin-top: 15% !important;
+  }
+}
 @media (max-width: 479px) {
   .hidden-xs-login {
     display: none !important;
@@ -650,7 +707,7 @@ strong {
 }
 .modal-content .modal-body .cta-links button,
 .modal-content .modal-body .cta-links p {
-  width: 35%;
+  width: 133px;
   height: 31px;
 }
 .modal-content .modal-body {
@@ -710,4 +767,8 @@ a:focus {
   top: 0;
   letter-spacing: 1px;
   z-index: 99999999;
+  font-weight: 100;
+}
+#text-login-info {
+  font-weight: 500;
 }
