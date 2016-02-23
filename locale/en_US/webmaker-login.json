@@ -1,15 +1,15 @@
 {
   "webmakerAuthWelcome":  {
-    "message": "Welcome to Webmaker!",
-    "description": "Welcome message for the join Webmaker modal dialog. Displayed after successfully creating a new Webmaker account"
+    "message": "Welcome!",
+    "description": "Welcome message for the join modal dialog. Displayed after successfully creating a new account"
   },
   "webmakerAuthServerError":  {
     "message": "An unknown error occurred on the server. Try your request again. If the problem persists, <a class=\"alert-link\" href=\"https://support.mozilla.org/kb/webmaker-account-help\" target=\"_\">get help</a>.",
     "description": "Error message displayed if an error occurs on the server."
   },
   "webmakerAuthCreateWelcome":  {
-    "message": "Create A Webmaker Account",
-    "description": "Header text for the join webmaker modal dialog"
+    "message": "Create An Account",
+    "description": "Header text for the join modal dialog"
   },
   "webmakerAuthChooseUsername":  {
     "message": "Choose A Username",
@@ -24,12 +24,12 @@
     "description": "Error message displayed when the username entered contains symbols that are not allowed."
   },
   "webmakerAuthMailingList":  {
-    "message": "Send me email updates about Webmaker and other Mozilla projects",
+    "message": "Send me email updates about and other projects",
     "description": "Message about opting in for a Mozilla mailing list"
   },
   "webmakerAuthAgreeToTerms":  {
-    "message": "I agree to Mozilla Webmaker's <a href='https://webmaker.org/terms'>Terms</a> and <a href='https://webmaker.org/privacy'>Privacy Policy</a>",
-    "description": "I agree to Mozilla Webmaker's terms and privacy policy."
+    "message": "I agree to <a href='#'>Terms</a> and <a href='#'>Privacy Policy</a>",
+    "description": "I agree to terms and privacy policy."
   },
   "webmakerAuthAgreeError":  {
     "message": "<i class=\"fa fa-times\"></i>  <strong>Oh snap!</strong> You must agree to our terms and conditions.",
@@ -37,7 +37,7 @@
   },
   "webmakerAuthCreateAccount":  {
     "message": "Create Account",
-    "description": "The button text for finishing the join Webmaker process."
+    "description": "The button text for finishing the join process."
   },
    "Back":  {
     "message": "Back",
@@ -72,11 +72,11 @@
     "description": "Label text for selecting the preferred language for the user."
   },
   "Sign in to Webmaker":  {
-    "message": "Sign In To Webmaker",
+    "message": "Sign In",
     "description": "Header text for the sign in modal dialog"
   },
   "Sign in to VideoRemix":  {
-    "message": "Sign In To VideoRemix",
+    "message": "Sign In",
     "description": "Header text for the sign in modal dialog"
   },
   "Sign in":  {
@@ -129,7 +129,7 @@
   },
   "No account found for your uid":  {
     "message": "<i class=\"fa fa-times\"></i> We couldn't find your username or email address. Did you mean to <a href=\"#\" ng-click=\"switchToSignup();\" class=\"alert-link\">create an account</a>? Trouble? <a class=\"alert-link\" href=\"https://support.mozilla.org/kb/webmaker-account-help\" target=\"_\">Get help</a>.",
-    "description": "Error message displayed when the given username or email doesn't have a Webmaker account and asks if they would like to sign up."
+    "description": "Error message displayed when the given username or email doesn't have an account and asks if they would like to sign up."
   },
   "problem sending token":  {
     "message": "<i class=\"fa fa-times\"></i> There was a problem sending a login key to you, please try again. <a class=\"alert-link\" href=\"https://support.mozilla.org/kb/webmaker-account-help\" target=\"_\">Get help</a>.",
@@ -153,7 +153,7 @@
   },
   "you can switch to webmaker login":  {
     "message": "You can switch back to our VideoRemix Login experience. We will send you login emails so you do not need a password.",
-    "description": "Message reminding users that they can switch back to the Webmaker Login Key system instead of using a password."
+    "description": "Message reminding users that they can switch back to the Login Key system instead of using a password."
   },
   "Submit":  {
     "message": "Submit",
@@ -168,12 +168,12 @@
     "description": "Text for the button that initiates a persona login"
   },
   "trouble with email":  {
-    "message": "Trouble with email? Check your spam or <a href=\"https://support.mozilla.org/kb/webmaker-account-help\" tabindex=\"5\" target=\"_\">get help</a>",
+    "message": "Trouble with email? Check your spam or <a href=\"https://digistrats.zendesk.com/hc/en-us\" tabindex=\"5\" target=\"_\">get help</a>",
     "description": "Text that allows users to get help"
   },
   "aboutWebmaker":  {
     "message": "Make your own web pages, interactive videos, remixes and mobile apps.",
-    "description": "Short description of Webmaker"
+    "description": "Short description"
   },
   "XRay-Goggles":  {
     "message": "X-Ray Goggles",
@@ -188,15 +188,15 @@
     "description": "Text for the button that takes the user to the X-Ray Goggles homepage"
   },
   "ExploreWebmaker":  {
-    "message": "Explore the rest of Webmaker",
-    "description": "Text for the button which takes the user to webmaker.org/explore"
+    "message": "Explore the rest",
+    "description": "Text for the button which takes the user to explore"
   },
   "Resources":  {
     "message": "Resources",
-    "description": "The Resources section of Webmaker"
+    "description": "The Resources section"
   },
   "AboutResources":  {
-    "message": "Teach and learn digital skills and web literacy. Webmaker Resources are full of fun things to discover, make and teach.",
+    "message": "Teach and learn digital skills and web literacy. Resources are full of fun things to discover, make and teach.",
     "description": "A short description about the Resources section"
   },
   "VisitResources":  {
