@@ -4,7 +4,7 @@
     "description": "Welcome message for the join modal dialog. Displayed after successfully creating a new account"
   },
   "webmakerAuthServerError":  {
-    "message": "An unknown error occurred on the server. Try your request again. If the problem persists, <a class=\"alert-link\" href=\"https://support.mozilla.org/kb/webmaker-account-help\" target=\"_\">get help</a>.",
+    "message": "An unknown error occurred on the server. Try your request again. If the problem persists, <a class=\"alert-link\" href=\"https://digistrats.zendesk.com/\" target=\"_\">get help</a>.",
     "description": "Error message displayed if an error occurs on the server."
   },
   "webmakerAuthCreateWelcome":  {
@@ -96,7 +96,7 @@
     "description": "Directs the user to check their email for a password reset link"
   },
   "resetRequestFailed":  {
-    "message": "<i class=\"fa fa-times\"></i> <strong>Uh oh!</strong> Something went wrong! Try requesting the password reset again. Or, <a class=\"alert-link\" href=\"https://support.mozilla.org/kb/webmaker-account-help\" target=\"_\">get help</a>.",
+    "message": "<i class=\"fa fa-times\"></i> <strong>Uh oh!</strong> Something went wrong! Try requesting the password reset again. Or, <a class=\"alert-link\" href=\"https://digistrats.zendesk.com/\" target=\"_\">get help</a>.",
     "description": "Error displayed if a password reset request fails."
   },
   "Password":  {
@@ -128,11 +128,11 @@
     "description": "Error message displayed when the input doesn't match a username or email"
   },
   "No account found for your uid":  {
-    "message": "<i class=\"fa fa-times\"></i> We couldn't find your username or email address. Did you mean to <a href=\"#\" ng-click=\"switchToSignup();\" class=\"alert-link\">create an account</a>? Trouble? <a class=\"alert-link\" href=\"https://support.mozilla.org/kb/webmaker-account-help\" target=\"_\">Get help</a>.",
+    "message": "<i class=\"fa fa-times\"></i> We couldn't find your email address. Did you mean to <a href=\"#\" ng-click=\"switchToSignup();\" class=\"alert-link\">create an account</a>? Trouble? <a class=\"alert-link\" href=\"https://digistrats.zendesk.com/\" target=\"_\">Get help</a>.",
     "description": "Error message displayed when the given username or email doesn't have an account and asks if they would like to sign up."
   },
   "problem sending token":  {
-    "message": "<i class=\"fa fa-times\"></i> There was a problem sending a login key to you, please try again. <a class=\"alert-link\" href=\"https://support.mozilla.org/kb/webmaker-account-help\" target=\"_\">Get help</a>.",
+    "message": "<i class=\"fa fa-times\"></i> There was a problem sending a login key to you, please try again. <a class=\"alert-link\" href=\"https://digistrats.zendesk.com/\" target=\"_\">Get help</a>.",
     "description": "Error message displayed when the request for a login key fails for some reason."
   },
   "incorrectToken":  {
