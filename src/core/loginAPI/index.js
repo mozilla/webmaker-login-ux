@@ -89,6 +89,12 @@ module.exports = function LoginAPI(options) {
     }, callback);
   }
 
+  function requestEmail(uid,callback) {
+    doRequest(loginUrls.requestResetCode, {
+      uid: uid
+    }, callback);
+  }
+
   function resetPassword(uid, resetCode, password, callback) {
     doRequest(loginUrls.resetPassword, {
       uid: uid,
@@ -123,6 +129,7 @@ module.exports = function LoginAPI(options) {
     verifyKey: verifyKey,
     verifyPassword: verifyPassword,
     requestReset: requestReset,
+    requestEmail: requestEmail,
     resetPassword: resetPassword,
     personaLogin: personaLogin,
     logout: logout,

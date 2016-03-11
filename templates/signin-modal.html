@@ -1,8 +1,8 @@
 <div class="modal-header">
-  <button ng-click="close()" type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+  <button ng-click="close()" type="button" class="close" ng-hide="true" data-dismiss="modal" aria-hidden="true">&times;</button>
   <h3 class="modal-title" ng-show="currentState === MODALSTATE.enterUid || currentState === MODALSTATE.enterPassword">
     <button href="#" ng-click="close()" class="modal-title-left btn-link">{{ 'Cancel' | i18n }}</button>
-    <span class="modal-title-center">{{ 'Sign in to Webmaker' | i18n }}</span>
+    <span class="modal-title-center">{{ 'Sign in' | i18n }}</span>
     <button ng-show="currentState === MODALSTATE.enterUid"
       ng-disabled="sendingRequest"
       ng-click="submitUid()"
@@ -12,6 +12,9 @@
       ng-disabled="sendingRequest"
       ng-click="user.password && submitPassword()" tabindex="9">{{ 'Submit' | i18n }}</button>
   </h3>
+   <h3 class="modal-title" ng-show="currentState === MODALSTATE.enterEmail">
+    Reset Password
+   </h3>
   <h3 class="modal-title" ng-show="currentState === MODALSTATE.checkEmail || currentState === MODALSTATE.resetRequestSent || currentState === MODALSTATE.enterKey">
     <a href="#" ng-click="close()" class="modal-title-left">{{ 'Cancel' | i18n }}</a>
     <span class="modal-title-center">{{ 'checkEmail' | i18n }}</span>
@@ -42,18 +45,49 @@
       <div class="form-group">
         <label for="uid">{{ 'EmailOrUsername' | i18n }}</label>
         <input name="uid" class="form-control" ng-model="user.uid" autocomplete="on" required tabindex="1" autofocus="true" focus-on="login-uid" ng-keyup="$event.keyCode === 13 && !sendingRequest && submitUid()">
+        <label for="password">{{ 'Password' | i18n }}</label>
+        <input type="password" class="form-control" required name="password" ng-model="user.password" tabindex="2" focus-on="enter-password" ng-keyup="$event.keyCode === 13 && user.password && !sendingRequest && submitPassword()">
       </div>
       <div class="alert alert-warning" ng-show="form.user.$error.noAccount" bind-trusted-html="'No account found for your uid' | i18n"></div>
+       <div class="alert alert-danger" ng-show="form.user.$error.passwordSigninFailed" ng-bind-html="'passLoginFailed' | i18n"></div>
       <div class="alert alert-danger" ng-show="form.user.$error.invalidUid" ng-bind-html="'That does not look like an email address or username' | i18n"></div>
+       <div class="remember-me-password checkbox">
+          <input id="remember-me-password" ng-model="user.rememberMe" type="checkbox" name="rememberMe" tabindex="3">
+          <label for="remember-me-password" tabindex="4">
+            <div><span></span></div>
+            <span ng-bind-html="'Remember me for one year' | i18n"></span>
+          </label>
+        </div>
       <div class="cta-links clearfix">
-        <button class="submit-userid btn btn-primary hidden-xs-login" type="button" ng-disabled="sendingRequest" ng-click="submitUid()" tabindex="2">{{ 'Sign in' | i18n }}</button>
-        <div ng-hide="disablePersona">
+        <button type="button" class="submit-password btn btn-primary hidden-xs-login" type="button" ng-disabled="sendingRequest" ng-click="user.password && submitPassword()" tabindex="5">{{ 'Submit' | i18n }}</button> <p><a ng-click="requestEmail()">{{ 'Reset your password?' | i18n }}</a></p>
+        <p class="align-left" style="margin-left: 200px;"><a target="_blank" href="https://digistrats.zendesk.com/">{{ 'Contact Support' | i18n }}</a></p>
+
+        <div ng-hide="true">
           <p class="align-left">{{ 'or' | i18n }}</p>
-          <button type="button" wm-persona-login class="btn btn-link" ng-disabled="sendingRequest" ng-click="usePersona();" tabindex="3">{{ 'log in with Persona' | i18n }}</button>
+          <button type="button" wm-persona-login class="btn btn-link" ng-disabled="sendingRequest" ng-click="usePersona();" tabindex="6">{{ 'log in with Persona' | i18n }}</button>
         </div>
       </div>
     </div>
     <!-- end enter uid -->
+
+    <!-- Enter Email -->
+    <div ng-show="currentState === MODALSTATE.enterEmail;">
+
+      <div class="form-group">
+        <label for="uid">{{ 'EmailOrUsername' | i18n }}</label>
+        <input name="myuid" class="form-control" ng-model="user.uid" autocomplete="on" required tabindex="1" autofocus="true" focus-on="login-uid2">
+
+      </div>
+      <div class="alert alert-warning" ng-show="form.user.$error.noAccount" bind-trusted-html="'No account found for your uid' | i18n"></div>
+       <div class="alert alert-danger" ng-show="form.user.$error.passwordSigninFailed" ng-bind-html="'passLoginFailed' | i18n"></div>
+      <div class="alert alert-danger" ng-show="form.user.$error.invalidUid" ng-bind-html="'That does not look like an email address or username' | i18n"></div>
+      <div class="cta-links clearfix">
+        <p><a ng-click="requestReset()">{{ 'Click to Reset your password' | i18n }}</a></p>
+        <p class="align-left" style="margin-left: 319px;"><a href="">{{ 'Back' | i18n }}</a></p>
+
+      </div>
+    </div>
+    <!-- end enter Email -->
 
     <!-- checkEmail begins -->
     <div class="checkEmail" ng-show="currentState === MODALSTATE.checkEmail">
@@ -98,7 +132,7 @@
               <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" sketch:type="MSPage">
                   <g id="AC4" sketch:type="MSArtboardGroup" transform="translate(-126.000000, -92.000000)">
                       <g id="Mail-Icon" sketch:type="MSLayerGroup" transform="translate(126.000000, 92.000000)">
-                          <circle id="Oval-1" fill="#3FB58E" sketch:type="MSShapeGroup" cx="47" cy="47" r="47"></circle>
+                          <circle id="Oval-1" fill="#EB5054" sketch:type="MSShapeGroup" cx="47" cy="47" r="47"></circle>
                           <rect id="Rectangle-1" fill="#FFFFFF" sketch:type="MSShapeGroup" x="18" y="27" width="59" height="41" rx="3"></rect>
                           <path d="M21.0069321,27 C19.3462494,27 17.9900756,28.3368135 17.9778938,29.9953973 C17.9778938,29.9953973 17.9712616,30.8538058 17.9707031,31.0256348 C17.9688241,31.6037734 44.3277476,50.7739169 44.3277476,50.7739169 C45.6547338,51.7409595 47.981989,52.0459954 49.4771883,51.3411914 C49.4771883,51.3411914 52.3180561,50.8603167 59.4023438,44.0800781 C61.1871084,42.3719134 77.0395508,31.2178814 77.0395508,30.1010742 C77.0395508,29.644898 77.0391066,29.9910722 77.0391066,29.9910722 C77.0175086,28.3391486 75.6568485,27 73.9930679,27 L21.0069321,27 Z" id="Rectangle-95" fill="#F3F3F3" sketch:type="MSShapeGroup"></path>
                           <path d="M17.7634277,31.0032813 L46.7917565,50.276875 L75.0556641,31.3201563 L46.5782176,55.1035938 L17.7634277,31.0032813 Z" id="Path-1" fill="#D8D8D8" sketch:type="MSShapeGroup"></path>
@@ -117,7 +151,7 @@
           <div class="alert alert-danger" ng-show="form.user.$error.invalidKey" ng-bind-html="'incorrectToken' | i18n"></div>
           <div class="remember-me-token checkbox">
             <input id="remember-me-token" ng-model="user.rememberMe" type="checkbox" name="rememberMe" tabindex="7">
-            <label for="remember-me-token">
+            <label for="remember-me-token" tabindex="7">
               <div><span></span></div>
               <span ng-bind-html="'Remember me for one year' | i18n"></span>
             </label>
@@ -141,7 +175,7 @@
         <div class="alert alert-danger" ng-show="form.user.$error.passwordSigninFailed" ng-bind-html="'passLoginFailed' | i18n"></div>
         <div class="remember-me-password checkbox">
           <input id="remember-me-password" ng-model="user.rememberMe" type="checkbox" name="rememberMe" tabindex="10">
-          <label for="remember-me-password">
+          <label for="remember-me-password" tabindex="10">
             <div><span></span></div>
             <span ng-bind-html="'Remember me for one year' | i18n"></span>
           </label>
@@ -153,7 +187,7 @@
       </div>
       <hr>
       <footer class="help-footer">
-        <p class="switch-back">{{ 'you can switch to webmaker login' | i18n }}</p>
+        <!-- p class="switch-back">{{ 'you can switch to webmaker login' | i18n }}</p -->
       </footer>
     </div>
 
@@ -167,7 +201,7 @@
             <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" sketch:type="MSPage">
               <g id="AC4" sketch:type="MSArtboardGroup" transform="translate(-126.000000, -92.000000)">
                 <g id="Mail-Icon" sketch:type="MSLayerGroup" transform="translate(126.000000, 92.000000)">
-                    <circle id="Oval-1" fill="#3FB58E" sketch:type="MSShapeGroup" cx="47" cy="47" r="47"></circle>
+                    <circle id="Oval-1" fill="#EB5054" sketch:type="MSShapeGroup" cx="47" cy="47" r="47"></circle>
                     <rect id="Rectangle-1" fill="#FFFFFF" sketch:type="MSShapeGroup" x="18" y="27" width="59" height="41" rx="3"></rect>
                     <path d="M21.0069321,27 C19.3462494,27 17.9900756,28.3368135 17.9778938,29.9953973 C17.9778938,29.9953973 17.9712616,30.8538058 17.9707031,31.0256348 C17.9688241,31.6037734 44.3277476,50.7739169 44.3277476,50.7739169 C45.6547338,51.7409595 47.981989,52.0459954 49.4771883,51.3411914 C49.4771883,51.3411914 52.3180561,50.8603167 59.4023438,44.0800781 C61.1871084,42.3719134 77.0395508,31.2178814 77.0395508,30.1010742 C77.0395508,29.644898 77.0391066,29.9910722 77.0391066,29.9910722 C77.0175086,28.3391486 75.6568485,27 73.9930679,27 L21.0069321,27 Z" id="Rectangle-95" fill="#F3F3F3" sketch:type="MSShapeGroup"></path>
                     <path d="M17.7634277,31.0032813 L46.7917565,50.276875 L75.0556641,31.3201563 L46.5782176,55.1035938 L17.7634277,31.0032813 Z" id="Path-1" fill="#D8D8D8" sketch:type="MSShapeGroup"></path>
@@ -177,10 +211,6 @@
         </svg>
         <p>{{ 'resetMessage' | i18n }}</p>
       </div>
-      <hr>
-        <footer class="help-footer">
-          <p class="switch-back">{{ 'you can switch to webmaker login' | i18n }}</p>
-        </footer>
     </div>
   </form>
 </div>

@@ -71,8 +71,8 @@ module.exports = function ResetController(loginApi) {
         }
 
         analytics.event('Webmaker Password Reset Succeeded');
-
-        emit(RESET_EVENTS.resetSucceeded);
+        window.location = '/';
+        //emit(RESET_EVENTS.resetSucceeded);
       });
     }
   };
