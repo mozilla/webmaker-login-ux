@@ -46,7 +46,7 @@
         <label for="uid">{{ 'EmailOrUsername' | i18n }}</label>
         <input name="uid" class="form-control" ng-model="user.uid" autocomplete="on" required tabindex="1" autofocus="true" focus-on="login-uid" ng-keyup="$event.keyCode === 13 && !sendingRequest && submitUid()">
         <label for="password">{{ 'Password' | i18n }}</label>
-        <input type="password" class="form-control" required name="password" ng-model="user.password" tabindex="2" focus-on="enter-password" ng-keyup="$event.keyCode === 13 && user.password && !sendingRequest && submitPassword()">
+        <input type="password" class="form-control" required name="password" ng-model="user.password" tabindex="2" focus-on="enter-password" ng-keyup="$event.keyCode === 13 && submitPassword()">
       </div>
       <div class="alert alert-warning" ng-show="form.user.$error.noAccount" bind-trusted-html="'No account found for your uid' | i18n"></div>
        <div class="alert alert-danger" ng-show="form.user.$error.passwordSigninFailed" ng-bind-html="'passLoginFailed' | i18n"></div>

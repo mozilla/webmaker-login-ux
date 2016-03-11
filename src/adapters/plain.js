@@ -491,8 +491,8 @@ WebmakerLogin.prototype.login = function (uid_hint, options) {
     }
   }.bind(this));
 
-  modal_fragment.querySelector('input[ng-keyup="$event.keyCode === 13 && user.password && !sendingRequest && submitPassword()"]').addEventListener('keyup', function (event) {
-    if (event.keyCode === 13 && scope.user.password && !scope.sendingRequest) {
+  modal_fragment.querySelector('input[ng-keyup="$event.keyCode === 13 && submitPassword()"]').addEventListener('keyup', function (event) {
+    if (event.keyCode === 13 && !scope.sendingRequest) {
       controller.verifyPassword(scope.user.uid, scope.user.password, scope.user.rememberMe);
     }
   }.bind(this));
