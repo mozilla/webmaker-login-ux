@@ -259,7 +259,7 @@ angular.module("signin-modal.html", []).run(["$templateCache", function($templat
   "      <div class=\"alert alert-danger\" ng-show=\"form.user.$error.invalidUid\" ng-bind-html=\"'That does not look like an email address or username' | i18n\"></div>\n" +
   "      <div class=\"cta-links clearfix\">\n" +
   "        <p><a ng-click=\"requestReset()\">{{ 'Click to Reset your password' | i18n }}</a></p>\n" +
-  "        <p class=\"align-left\" style=\"margin-left: 319px;\"><a href=\"\">{{ 'Back' | i18n }}</a></p>\n" +
+  "        <p class=\"align-left\" style=\"margin-left: 309px;\"><a href=\"\">{{ 'Back' | i18n }}</a></p>\n" +
   "\n" +
   "      </div>\n" +
   "    </div>\n" +
