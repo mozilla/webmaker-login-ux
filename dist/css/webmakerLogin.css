@@ -15,7 +15,7 @@
     padding: 0 !important;
     border-left: 0px !important;
   }
-  #modal-introduction {
+  .modal-description {
     display: none;
   }
 }
@@ -35,7 +35,7 @@
     padding: 0 !important;
     border-left: 0px !important;
   }
-  #modal-introduction {
+  .modal-description {
     display: none;
   }
 }
@@ -632,16 +632,16 @@
 }
 .modal.in .modal-dialog {
   width: 25%;
-  margin-top: 11%;
+  margin-top: auto;
   margin-left: 0;
   margin-right: 19%;
-  margin-bottom: 0;
+  margin-bottom: auto;
   line-height: 43px;
   float: right;
-  padding: 0;
+  padding: 10% 0px;
   left: 0;
   clear: both;
-  height: 44%;
+  height: 100%;
   top: 0;
 }
 .modal-content {
@@ -730,7 +730,7 @@ strong {
 }
 .modal-content .modal-body .cta-links button,
 .modal-content .modal-body .cta-links p {
-  width: 133px;
+  width: 44%;
   height: 31px;
 }
 .modal-content .modal-body {
@@ -794,4 +794,23 @@ a:focus {
 }
 #text-login-info {
   font-weight: 500;
+}
+.modal-description {
+  font-family: "Muli", sans-serif;
+  color: #fff;
+  width: 50%;
+  padding: 358px 125px;
+  vertical-align: middle;
+  position: relative;
+  height: 100%;
+  margin-top: auto;
+  margin-bottom: auto;
+  float: left;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+p.subtitle-descrition {
+  font-weight: 600;
 }
