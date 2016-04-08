@@ -832,4 +832,7 @@ p.subtitle-descrition {
   .vrlogo {
     display: none !important;
   }
+  .hidden-xs-login {
+    display: block !important;
+  }
 }
