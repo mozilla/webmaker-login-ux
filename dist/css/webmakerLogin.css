@@ -665,6 +665,16 @@
 .form-control:focus {
   border-color: rgba(255, 255, 255, 0.5);
 }
+.vrlogo {
+  position: absolute;
+  width: 149px;
+  height: 151px;
+  margin-top: 239px;
+  margin-left: 116px;
+  background: url(https://s3.amazonaws.com/vremix/resources/vr_icon_white.svg);
+  background-size: 97px;
+  background-repeat: no-repeat;
+}
 .fade.in {
   opacity: 1;
   background: url(https://cdn.videoremix.io/tutorial_images/vr.png) no-repeat center;
@@ -773,7 +783,7 @@ a:focus {
 }
 .modal-content .modal-body .cta-links p {
   display: block;
-  width: 202px;
+  width: 100%;
   margin: 22px 0 0 0;
 }
 #modal-introduction {
@@ -811,6 +821,15 @@ a:focus {
       -ms-flex-pack: center;
           justify-content: center;
 }
+.modal-description b {
+  font-weight: 600;
+}
 p.subtitle-descrition {
   font-weight: 600;
+}
+/* MOBILE FIXES */
+@media screen and (max-width: 900px) {
+  .vrlogo {
+    display: none !important;
+  }
 }

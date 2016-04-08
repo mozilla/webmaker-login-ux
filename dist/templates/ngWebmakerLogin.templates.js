@@ -125,6 +125,7 @@ angular.module("modal-wrapper.html", []).run(["$templateCache", function($templa
   "  <div class=\"modal-dialog\">\n" +
   "    <div class=\"modal-content\"></div>\n" +
   "  </div>\n" +
+  "  <div class=\"vrlogo\"></div>\n" +
   "  <div class=\"modal-description\"><b>Cloud-Based. Personalization. No Rendering. </b><br>\n" +
   "  <br>\n" +
   "  VideoRemix is a dynamic & revolutionary video solution for cloud-based video creation, editing, & personalization. Create personalize videos with NO rendering!\n" +
@@ -262,7 +263,7 @@ angular.module("signin-modal.html", []).run(["$templateCache", function($templat
   "      <div class=\"alert alert-danger\" ng-show=\"form.user.$error.invalidUid\" ng-bind-html=\"'That does not look like an email address or username' | i18n\"></div>\n" +
   "      <div class=\"cta-links clearfix\">\n" +
   "        <p><a ng-click=\"requestReset()\">{{ 'Click to Reset your password' | i18n }}</a></p>\n" +
-  "        <p class=\"align-left\" style=\"margin-left: 319px;\"><a href=\"\">{{ 'Back' | i18n }}</a></p>\n" +
+  "        <p class=\"align-left\"><a href=\"\">{{ 'Back' | i18n }}</a></p>\n" +
   "\n" +
   "      </div>\n" +
   "    </div>\n" +
