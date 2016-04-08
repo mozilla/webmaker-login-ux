@@ -264,7 +264,6 @@ angular.module("signin-modal.html", []).run(["$templateCache", function($templat
   "      <div class=\"cta-links clearfix\">\n" +
   "        <p><a ng-click=\"requestReset()\">{{ 'Click to Reset your password' | i18n }}</a></p>\n" +
   "        <p class=\"align-left\"><a href=\"\">{{ 'Back' | i18n }}</a></p>\n" +
-  "\n" +
   "      </div>\n" +
   "    </div>\n" +
   "    <!-- end enter Email -->\n" +
