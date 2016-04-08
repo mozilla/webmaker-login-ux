@@ -833,6 +833,6 @@ p.subtitle-descrition {
     display: none !important;
   }
   .hidden-xs-login {
-    display: block !important;
+    display: inline !important;
   }
 }
