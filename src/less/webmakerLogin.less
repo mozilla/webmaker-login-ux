@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css?family=Muli');
+
 @wlux-screen-xs-min: 480px;
 @wlux-screen-xs-max: 479px;
 @wlux-green: #3fb58e;
@@ -8,6 +10,93 @@
 @wlux-mediumGrey: #A5BECE;
 @wlux-lightGrey: #E1EBF1;
 @wlux-lightGreyUnsaturated: #F5F5F5;
+@font-family-sans-serif-v2: "Muli", sans-serif;
+@white: #FFFFFF;
+
+@media screen and  (min-device-width: 320px) and (max-device-width: 375px) and (orientation: portrait){
+  .fade.in {
+    overflow: hidden !important;
+  }
+  .modal.in .modal-dialog {
+    width: 100% !important;
+    left: 0 !important;
+    margin: 0 !important;
+    padding: 29px !important;
+    height: 100% !important;
+  }
+  .modal-content {
+    width: 100% !important;
+    padding: 0 !important;
+    border-left: 0px !important;
+  }
+  .modal-description{
+    display: none;
+  }
+
+}
+
+@media screen and  (min-device-width: 414px) and (max-device-width: 600px) and (orientation: portrait){
+  .fade.in {
+    overflow: hidden !important;
+  }
+  .modal.in .modal-dialog {
+    width: 100% !important;
+    left: 0 !important;
+    margin: 0 !important;
+    padding: 29px !important;
+    height: 100% !important;
+  }
+  .modal-content {
+    width: 100% !important;
+    padding: 0 !important;
+    border-left: 0px !important;
+  }
+  .modal-description{
+    display: none;
+  }
+
+}
+
+@media screen and  (min-device-width: 768px) and (max-device-width: 1024px) and (orientation: portrait){
+  .fade.in {
+    overflow: hidden !important;
+  }
+  .modal.in .modal-dialog {
+    width: 70% !important;
+    margin-top: 50% !important;
+    margin-left: 0 !important;
+    margin-right: 13% !important;
+    margin-bottom: 0 !important;
+    line-height: 43px !important;
+    float: right  !important;
+    padding: 0 !important;
+    left: 0 !important;
+    height: 73% !important;
+    top: 0 !important;
+  }
+  .modal-content {
+    border-left: 0px solid rgba(255, 255, 255, 0.2) !important;
+    border-top: 1px solid rgba(255, 255, 255, 0.2) !important;
+    padding-left: 29px !important;
+    padding-right: 45px !important;
+    height: 100% !important;
+    top: 0 !important;
+  }
+  .modal-content .modal-body {
+    top: 19px !important;
+    clear: both !important;
+    float: right !important;
+    display: block !important;
+    position: relative !important;
+    width: 93% !important;
+    height: 100% !important;
+  }
+  #modal-introduction {
+    padding-left: 16% !important;
+    width: 91% !important;
+    margin-top: 15% !important;
+  }
+}
 
 .hidden-xs-login {
   @media (max-width: @wlux-screen-xs-max) {
@@ -32,7 +121,7 @@
 * Mobile dialog display
 */
 .modal-backdrop {
-  @media (max-width: @wlux-screen-xs-max) {
+  @media (max-width: 479px) {
     background: #F6F7F7;
     &.in {
       opacity: 1;
@@ -165,10 +254,10 @@
 
       &.half-width {
         margin-left: 0;
-        width: 100%;
+        width: 100% !important;
         float: left;
         @media (min-width: @wlux-screen-xs-min) {
-          width: 48%;
+          width: 100% !important;
         }
         &:nth-of-type(3){
           margin-left: 0;
@@ -481,3 +570,249 @@
     max-width: 100%;
   }
 }
+
+
+
+
+/* LOGIN PAGE */
+
+.form-control {
+    display: block;
+    width: 100%;
+    height: 37px;
+    padding: 6px 0px;
+    font-size: 10pt;
+    line-height: 1.428571;
+    color: #FFF;
+    background-color: transparent;
+    background-image: none;
+    border: 0;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 0;
+    -webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,0.075);
+    box-shadow: 0px;
+    -webkit-transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s;
+    transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s;
+}
+
+.modal.in .modal-dialog {
+  width: 25%;
+  margin-top: auto;
+  margin-left: 0;
+  margin-right: 19%;
+  margin-bottom: auto;
+  line-height: 43px;
+  float: right;
+  padding: 10% 0px;
+  left: 0;
+  clear: both;
+  height: 100%;
+  top: 0;
+}
+
+.modal-content {
+  font-family: @font-family-sans-serif-v2;
+  font-weight: 200;
+  color: @white;
+  font-size: 8pt;
+  background: transparent;
+  box-shadow: 0 0 0 0;
+  border: 0px;
+  border-left: 1px solid rgba(255, 255, 255, 0.2);
+  padding-left: 29px;
+  text-transform: uppercase;
+  height: 100%;
+  top: 0;
+  }
+
+
+.modal-header {
+  background: transparent !important;
+  display: none;
+}
+.form-control:focus {
+  border-color: rgba(255, 255, 255, 0.5);
+}
+.vrlogo {
+  position: absolute;
+  width: 149px;
+  height: 151px;
+  margin-top: 239px;
+  margin-left: 116px;
+  background: url(https://cdn.videoremix.io/resources/vr_icon_white.svg);
+  background-size: 97px;
+  background-repeat: no-repeat;
+}
+
+
+.fade.in {
+    opacity: 1;
+    background: url(https://cdn.videoremix.io/resources/bg-login-v4.jpeg) no-repeat center;
+    background-size: cover;
+}
+
+.modal-content .modal-body .checkbox label div {
+  width: 17px !important;
+  height: 17px !important;
+}
+
+.modal-content .modal-body label[for=webmaker-login-email], .modal-content .modal-body label[for=uid], .modal-content .modal-body label[for=key], .modal-content .modal-body label[for=persona-username], .modal-content .modal-body label[for=password], .modal-content .modal-body label[for=value], .modal-content .modal-body label[for=confirmValue] {
+  color:#FFF !important;
+  font-weight: 200 !important;
+  font-size:8pt !important;
+  letter-spacing: 1.2px;
+}
+.modal-title .modal-title-center {
+  display:none !important;
+}
+.modal-content .modal-body .btn-primary {
+  border: none;
+  outline: none;
+  padding: 0.55em 1.3em 0.6em;
+  cursor: pointer;
+  font-family: 'Open Sans', sans-serif;
+  color: @white;
+  font-size: 0.9em;
+  border-radius: 1.3em;
+  -webkit-border-radius: 1.3em;
+  -moz-border-radius: 1.3em;
+  -o-border-radius: 1.3em;
+  transition: 0.5s all;
+  -webkit-transition: 0.5s all;
+  -moz-transition: 0.5s all;
+  -o-transition: 0.5s all;
+  font-weight: 200;
+  text-transform: uppercase;
+}
+
+b, strong {
+  font-weight: 200;
+  font-family: @font-family-sans-serif-v2;
+}
+
+.alert-danger {
+  background-color: rgba(0,0,0,0.3);
+  }
+
+.modal-content .alert {
+  vertical-align: baseline;
+  padding-left: 21%;
+  padding-right: 14%;
+  margin-top: 0;
+  height: auto;
+  line-height: 20px;
+  letter-spacing: 0.5px;
+}
+
+.modal-content .modal-body .form-group {
+  margin-bottom: 15px !important;
+}
+
+.modal-content .modal-body .cta-links button, .modal-content .modal-body .cta-links p {
+  width: 44%;
+  height: 31px;
+}
+.modal-content .modal-body {
+  top: 0;
+  clear: both;
+  float: right;
+  display: block;
+  position: relative;
+  width: 100%;
+  height: 100%;
+  }
+
+
+.modal-content .modal-body .checkbox label div span:after {
+    content: "";
+    position: absolute;
+    width: 17px;
+    height: 9px;
+    border-bottom: 3px solid @white;
+    border-left: 3px solid @white;
+    top: 9%;
+    -webkit-transform-origin: bottom left;
+    transform-origin: bottom left;
+    -webkit-transform: rotate(-45deg);
+    transform: rotate(-45deg);
+}
+
+.modal-content .modal-body .checkbox label div {
+  background-color:transparent !important;
+}
+
+.modal-content .modal-body .cta-links {
+    padding-top: 32px;
+}
+
+a {
+  color: @white;
+  font-family: @font-family-sans-serif-v2;
+}
+
+a:hover, a:focus {
+    color: #DDD;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.modal-content .modal-body .cta-links p {
+    display: block;
+    width: 100%;
+    margin: 22px 0 0 0;
+}
+
+#modal-introduction {
+  float: left;
+  left: 0;
+  padding-left: 19%;
+  color: @white;
+  line-height: 2;
+  position: relative;
+  width: 48%;
+  margin-top: 15%;
+  margin-left: 0;
+  clear: both;
+  top: 0;
+  letter-spacing: 1px;
+  z-index: 99999999;
+  font-weight: 100;
+}
+
+#text-login-info {
+  font-weight: 500;
+}
+
+.modal-description {
+    font-family: @font-family-sans-serif-v2;
+    color: #fff;
+    width: 50%;
+    padding: 358px 125px;
+    vertical-align: middle;
+    position: relative;
+    height: 100%;
+    margin-top: auto;
+    margin-bottom: auto;
+    float: left;
+    justify-content: center;
+  b {
+    font-weight: 600;
+  }
+}
+
+p.subtitle-descrition {
+    font-weight: 600;
+}
+
+/* MOBILE FIXES */
+@media screen and (max-width: 900px) {
+  .vrlogo {
+    display: none !important;
+
+  }
+  .hidden-xs-login {
+    display: inline !important;
+  }
+}
+
+

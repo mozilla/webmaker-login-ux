@@ -125,6 +125,11 @@ angular.module("modal-wrapper.html", []).run(["$templateCache", function($templa
   "  <div class=\"modal-dialog\">\n" +
   "    <div class=\"modal-content\"></div>\n" +
   "  </div>\n" +
+  "  <div class=\"vrlogo\"></div>\n" +
+  "  <div class=\"modal-description\"><b>Cloud-Based. Personalization. No Rendering. </b><br>\n" +
+  "  <br>\n" +
+  "  VideoRemix is a dynamic & revolutionary video solution for cloud-based video creation, editing, & personalization. Create personalize videos with NO rendering!\n" +
+  "  </div>\n" +
   "</div>\n" +
   "");
 }]);
@@ -164,7 +169,7 @@ angular.module("reset-modal.html", []).run(["$templateCache", function($template
   "        <input ng-model=\"password.confirmValue\" ng-change=\"checkPasswordsMatch(false)\" ng-blur=\"checkPasswordsMatch(true)\"  type=\"password\" class=\"form-control\" name=\"confirmValue\" autocomplete=\"off\" tabindex=\"2\" required>\n" +
   "      </div>\n" +
   "      <div class=\"cta-links clearfix\">\n" +
-  "        <button ng-click=\"submitResetRequest()\" ng-disabled=\"sendingRequest || !password.value || !password.confirmValue || !passwordsMatch || form.password.$error.passwordsMustMatch\" class=\"reset-password btn btn-primary hidden-xs-login\" type=\"button\" tabindex=\"3\">{{ 'Submit' | i18n }}</button>\n" +
+  "        <button style=\"display: inline !important\" ng-click=\"submitResetRequest()\" ng-disabled=\"sendingRequest || !password.value || !password.confirmValue || !passwordsMatch || form.password.$error.passwordsMustMatch\" class=\"reset-password btn btn-primary hidden-xs-login\" type=\"button\" tabindex=\"3\">{{ 'Submit' | i18n }}</button>\n" +
   "      </div>\n" +
   "    </div>\n" +
   "  </form>\n" +
@@ -219,10 +224,10 @@ angular.module("signin-modal.html", []).run(["$templateCache", function($templat
   "    <!-- Enter uid -->\n" +
   "    <div ng-show=\"currentState === MODALSTATE.enterUid;\">\n" +
   "      <div class=\"form-group\">\n" +
-  "        <label for=\"uid\">{{ 'EmailOrUsername' | i18n }}</label>\n" +
-  "        <input name=\"uid\" class=\"form-control\" ng-model=\"user.uid\" autocomplete=\"on\" required tabindex=\"1\" autofocus=\"true\" focus-on=\"login-uid\" ng-keyup=\"$event.keyCode === 13 && !sendingRequest && submitUid()\">\n" +
-  "        <label for=\"password\">{{ 'Password' | i18n }}</label>\n" +
-  "        <input type=\"password\" class=\"form-control\" required name=\"password\" ng-model=\"user.password\" tabindex=\"2\" focus-on=\"enter-password\" ng-keyup=\"$event.keyCode === 13 && user.password && !sendingRequest && submitPassword()\">\n" +
+  "        <label for=\"uid\">&nbsp;</label>\n" +
+  "        <input name=\"uid\" placeholder=\"USERNAME OR EMAIL\" class=\"form-control\" ng-model=\"user.uid\" autocomplete=\"on\" required tabindex=\"1\" autofocus=\"true\" focus-on=\"login-uid\" ng-keyup=\"$event.keyCode === 13 && !sendingRequest && submitUid()\">\n" +
+  "        <label for=\"password\">&nbsp;</label>\n" +
+  "        <input type=\"password\" placeholder=\"PASSWORD\" class=\"form-control\" required name=\"password\" ng-model=\"user.password\" tabindex=\"2\" focus-on=\"enter-password\" ng-keyup=\"$event.keyCode === 13 && user.password && !sendingRequest && submitPassword()\">\n" +
   "      </div>\n" +
   "      <div class=\"alert alert-warning\" ng-show=\"form.user.$error.noAccount\" bind-trusted-html=\"'No account found for your uid' | i18n\"></div>\n" +
   "       <div class=\"alert alert-danger\" ng-show=\"form.user.$error.passwordSigninFailed\" ng-bind-html=\"'passLoginFailed' | i18n\"></div>\n" +
@@ -235,8 +240,7 @@ angular.module("signin-modal.html", []).run(["$templateCache", function($templat
   "          </label>\n" +
   "        </div>\n" +
   "      <div class=\"cta-links clearfix\">\n" +
-  "        <button type=\"button\" class=\"submit-password btn btn-primary hidden-xs-login\" type=\"button\" ng-disabled=\"sendingRequest\" ng-click=\"user.password && submitPassword()\" tabindex=\"5\">{{ 'Submit' | i18n }}</button> <p><a ng-click=\"requestEmail()\">{{ 'Reset your password?' | i18n }}</a></p>\n" +
-  "        <p class=\"align-left\" style=\"margin-left: 200px;\"><a target=\"_blank\" href=\"https://digistrats.zendesk.com/\">{{ 'Contact Support' | i18n }}</a></p>\n" +
+  "        <button type=\"button\" class=\"submit-password btn btn-primary\" type=\"button\" ng-disabled=\"sendingRequest\" ng-click=\"user.password && submitPassword()\" tabindex=\"5\">{{ 'Submit' | i18n }}</button><br> <p><a ng-click=\"requestEmail()\">{{ 'Reset your password?' | i18n }}</a> / <a target=\"_blank\" href=\"https://digistrats.zendesk.com/\">{{ 'Contact Support' | i18n }}</a></p>\n" +
   "\n" +
   "        <div ng-hide=\"true\">\n" +
   "          <p class=\"align-left\">{{ 'or' | i18n }}</p>\n" +
@@ -259,8 +263,7 @@ angular.module("signin-modal.html", []).run(["$templateCache", function($templat
   "      <div class=\"alert alert-danger\" ng-show=\"form.user.$error.invalidUid\" ng-bind-html=\"'That does not look like an email address or username' | i18n\"></div>\n" +
   "      <div class=\"cta-links clearfix\">\n" +
   "        <p><a ng-click=\"requestReset()\">{{ 'Click to Reset your password' | i18n }}</a></p>\n" +
-  "        <p class=\"align-left\" style=\"margin-left: 309px;\"><a href=\"\">{{ 'Back' | i18n }}</a></p>\n" +
-  "\n" +
+  "        <p class=\"align-left\"><a href=\"\">{{ 'Back' | i18n }}</a></p>\n" +
   "      </div>\n" +
   "    </div>\n" +
   "    <!-- end enter Email -->\n" +
