@@ -125,6 +125,11 @@ angular.module("modal-wrapper.html", []).run(["$templateCache", function($templa
   "  <div class=\"modal-dialog\">\n" +
   "    <div class=\"modal-content\"></div>\n" +
   "  </div>\n" +
+  "  <div class=\"vrlogo\"></div>\n" +
+  "  <div class=\"modal-description\"><b>Cloud-Based. Personalization. No Rendering. </b><br>\n" +
+  "  <br>\n" +
+  "  VideoRemix is a dynamic & revolutionary video solution for cloud-based video creation, editing, & personalization. Create personalize videos with NO rendering!\n" +
+  "  </div>\n" +
   "</div>\n" +
   "");
 }]);
@@ -164,7 +169,7 @@ angular.module("reset-modal.html", []).run(["$templateCache", function($template
   "        <input ng-model=\"password.confirmValue\" ng-change=\"checkPasswordsMatch(false)\" ng-blur=\"checkPasswordsMatch(true)\"  type=\"password\" class=\"form-control\" name=\"confirmValue\" autocomplete=\"off\" tabindex=\"2\" required>\n" +
   "      </div>\n" +
   "      <div class=\"cta-links clearfix\">\n" +
-  "        <button ng-click=\"submitResetRequest()\" ng-disabled=\"sendingRequest || !password.value || !password.confirmValue || !passwordsMatch || form.password.$error.passwordsMustMatch\" class=\"reset-password btn btn-primary hidden-xs-login\" type=\"button\" tabindex=\"3\">{{ 'Submit' | i18n }}</button>\n" +
+  "        <button style=\"display: inline !important\" ng-click=\"submitResetRequest()\" ng-disabled=\"sendingRequest || !password.value || !password.confirmValue || !passwordsMatch || form.password.$error.passwordsMustMatch\" class=\"reset-password btn btn-primary hidden-xs-login\" type=\"button\" tabindex=\"3\">{{ 'Submit' | i18n }}</button>\n" +
   "      </div>\n" +
   "    </div>\n" +
   "  </form>\n" +
@@ -175,10 +180,10 @@ angular.module("reset-modal.html", []).run(["$templateCache", function($template
 angular.module("signin-modal.html", []).run(["$templateCache", function($templateCache) {
  $templateCache.put("signin-modal.html",
   "<div class=\"modal-header\">\n" +
-  "  <button ng-click=\"close()\" type=\"button\" class=\"close\" data-dismiss=\"modal\" aria-hidden=\"true\">&times;</button>\n" +
+  "  <button ng-click=\"close()\" type=\"button\" class=\"close\" ng-hide=\"true\" data-dismiss=\"modal\" aria-hidden=\"true\">&times;</button>\n" +
   "  <h3 class=\"modal-title\" ng-show=\"currentState === MODALSTATE.enterUid || currentState === MODALSTATE.enterPassword\">\n" +
   "    <button href=\"#\" ng-click=\"close()\" class=\"modal-title-left btn-link\">{{ 'Cancel' | i18n }}</button>\n" +
-  "    <span class=\"modal-title-center\">{{ 'Sign in to Webmaker' | i18n }}</span>\n" +
+  "    <span class=\"modal-title-center\">{{ 'Sign in' | i18n }}</span>\n" +
   "    <button ng-show=\"currentState === MODALSTATE.enterUid\"\n" +
   "      ng-disabled=\"sendingRequest\"\n" +
   "      ng-click=\"submitUid()\"\n" +
@@ -188,6 +193,9 @@ angular.module("signin-modal.html", []).run(["$templateCache", function($templat
   "      ng-disabled=\"sendingRequest\"\n" +
   "      ng-click=\"user.password && submitPassword()\" tabindex=\"9\">{{ 'Submit' | i18n }}</button>\n" +
   "  </h3>\n" +
+  "   <h3 class=\"modal-title\" ng-show=\"currentState === MODALSTATE.enterEmail\">\n" +
+  "    Reset Password\n" +
+  "   </h3>\n" +
   "  <h3 class=\"modal-title\" ng-show=\"currentState === MODALSTATE.checkEmail || currentState === MODALSTATE.resetRequestSent || currentState === MODALSTATE.enterKey\">\n" +
   "    <a href=\"#\" ng-click=\"close()\" class=\"modal-title-left\">{{ 'Cancel' | i18n }}</a>\n" +
   "    <span class=\"modal-title-center\">{{ 'checkEmail' | i18n }}</span>\n" +
@@ -216,20 +224,49 @@ angular.module("signin-modal.html", []).run(["$templateCache", function($templat
   "    <!-- Enter uid -->\n" +
   "    <div ng-show=\"currentState === MODALSTATE.enterUid;\">\n" +
   "      <div class=\"form-group\">\n" +
-  "        <label for=\"uid\">{{ 'EmailOrUsername' | i18n }}</label>\n" +
-  "        <input name=\"uid\" class=\"form-control\" ng-model=\"user.uid\" autocomplete=\"on\" required tabindex=\"1\" autofocus=\"true\" focus-on=\"login-uid\" ng-keyup=\"$event.keyCode === 13 && !sendingRequest && submitUid()\">\n" +
+  "        <label for=\"uid\">&nbsp;</label>\n" +
+  "        <input name=\"uid\" placeholder=\"USERNAME OR EMAIL\" class=\"form-control\" ng-model=\"user.uid\" autocomplete=\"on\" required tabindex=\"1\" autofocus=\"true\" focus-on=\"login-uid\" ng-keyup=\"$event.keyCode === 13 && !sendingRequest && submitUid()\">\n" +
+  "        <label for=\"password\">&nbsp;</label>\n" +
+  "        <input type=\"password\" placeholder=\"PASSWORD\" class=\"form-control\" required name=\"password\" ng-model=\"user.password\" tabindex=\"2\" focus-on=\"enter-password\" ng-keyup=\"$event.keyCode === 13 && user.password && !sendingRequest && submitPassword()\">\n" +
   "      </div>\n" +
   "      <div class=\"alert alert-warning\" ng-show=\"form.user.$error.noAccount\" bind-trusted-html=\"'No account found for your uid' | i18n\"></div>\n" +
+  "       <div class=\"alert alert-danger\" ng-show=\"form.user.$error.passwordSigninFailed\" ng-bind-html=\"'passLoginFailed' | i18n\"></div>\n" +
   "      <div class=\"alert alert-danger\" ng-show=\"form.user.$error.invalidUid\" ng-bind-html=\"'That does not look like an email address or username' | i18n\"></div>\n" +
+  "       <div class=\"remember-me-password checkbox\">\n" +
+  "          <input id=\"remember-me-password\" ng-model=\"user.rememberMe\" type=\"checkbox\" name=\"rememberMe\" tabindex=\"3\">\n" +
+  "          <label for=\"remember-me-password\" tabindex=\"4\">\n" +
+  "            <div><span></span></div>\n" +
+  "            <span ng-bind-html=\"'Remember me for one year' | i18n\"></span>\n" +
+  "          </label>\n" +
+  "        </div>\n" +
   "      <div class=\"cta-links clearfix\">\n" +
-  "        <button class=\"submit-userid btn btn-primary hidden-xs-login\" type=\"button\" ng-disabled=\"sendingRequest\" ng-click=\"submitUid()\" tabindex=\"2\">{{ 'Sign in' | i18n }}</button>\n" +
-  "        <div ng-hide=\"disablePersona\">\n" +
+  "        <button type=\"button\" class=\"submit-password btn btn-primary\" type=\"button\" ng-disabled=\"sendingRequest\" ng-click=\"user.password && submitPassword()\" tabindex=\"5\">{{ 'Submit' | i18n }}</button><br> <p><a ng-click=\"requestEmail()\">{{ 'Reset your password?' | i18n }}</a> / <a target=\"_blank\" href=\"https://digistrats.zendesk.com/\">{{ 'Contact Support' | i18n }}</a></p>\n" +
+  "\n" +
+  "        <div ng-hide=\"true\">\n" +
   "          <p class=\"align-left\">{{ 'or' | i18n }}</p>\n" +
-  "          <button type=\"button\" wm-persona-login class=\"btn btn-link\" ng-disabled=\"sendingRequest\" ng-click=\"usePersona();\" tabindex=\"3\">{{ 'log in with Persona' | i18n }}</button>\n" +
+  "          <button type=\"button\" wm-persona-login class=\"btn btn-link\" ng-disabled=\"sendingRequest\" ng-click=\"usePersona();\" tabindex=\"6\">{{ 'log in with Persona' | i18n }}</button>\n" +
   "        </div>\n" +
   "      </div>\n" +
   "    </div>\n" +
   "    <!-- end enter uid -->\n" +
+  "\n" +
+  "    <!-- Enter Email -->\n" +
+  "    <div ng-show=\"currentState === MODALSTATE.enterEmail;\">\n" +
+  "\n" +
+  "      <div class=\"form-group\">\n" +
+  "        <label for=\"uid\">{{ 'EmailOrUsername' | i18n }}</label>\n" +
+  "        <input name=\"myuid\" class=\"form-control\" ng-model=\"user.uid\" autocomplete=\"on\" required tabindex=\"1\" autofocus=\"true\" focus-on=\"login-uid2\">\n" +
+  "\n" +
+  "      </div>\n" +
+  "      <div class=\"alert alert-warning\" ng-show=\"form.user.$error.noAccount\" bind-trusted-html=\"'No account found for your uid' | i18n\"></div>\n" +
+  "       <div class=\"alert alert-danger\" ng-show=\"form.user.$error.passwordSigninFailed\" ng-bind-html=\"'passLoginFailed' | i18n\"></div>\n" +
+  "      <div class=\"alert alert-danger\" ng-show=\"form.user.$error.invalidUid\" ng-bind-html=\"'That does not look like an email address or username' | i18n\"></div>\n" +
+  "      <div class=\"cta-links clearfix\">\n" +
+  "        <p><a ng-click=\"requestReset()\">{{ 'Click to Reset your password' | i18n }}</a></p>\n" +
+  "        <p class=\"align-left\"><a href=\"\">{{ 'Back' | i18n }}</a></p>\n" +
+  "      </div>\n" +
+  "    </div>\n" +
+  "    <!-- end enter Email -->\n" +
   "\n" +
   "    <!-- checkEmail begins -->\n" +
   "    <div class=\"checkEmail\" ng-show=\"currentState === MODALSTATE.checkEmail\">\n" +
@@ -274,7 +311,7 @@ angular.module("signin-modal.html", []).run(["$templateCache", function($templat
   "              <g id=\"Page-1\" stroke=\"none\" stroke-width=\"1\" fill=\"none\" fill-rule=\"evenodd\" sketch:type=\"MSPage\">\n" +
   "                  <g id=\"AC4\" sketch:type=\"MSArtboardGroup\" transform=\"translate(-126.000000, -92.000000)\">\n" +
   "                      <g id=\"Mail-Icon\" sketch:type=\"MSLayerGroup\" transform=\"translate(126.000000, 92.000000)\">\n" +
-  "                          <circle id=\"Oval-1\" fill=\"#3FB58E\" sketch:type=\"MSShapeGroup\" cx=\"47\" cy=\"47\" r=\"47\"></circle>\n" +
+  "                          <circle id=\"Oval-1\" fill=\"#EB5054\" sketch:type=\"MSShapeGroup\" cx=\"47\" cy=\"47\" r=\"47\"></circle>\n" +
   "                          <rect id=\"Rectangle-1\" fill=\"#FFFFFF\" sketch:type=\"MSShapeGroup\" x=\"18\" y=\"27\" width=\"59\" height=\"41\" rx=\"3\"></rect>\n" +
   "                          <path d=\"M21.0069321,27 C19.3462494,27 17.9900756,28.3368135 17.9778938,29.9953973 C17.9778938,29.9953973 17.9712616,30.8538058 17.9707031,31.0256348 C17.9688241,31.6037734 44.3277476,50.7739169 44.3277476,50.7739169 C45.6547338,51.7409595 47.981989,52.0459954 49.4771883,51.3411914 C49.4771883,51.3411914 52.3180561,50.8603167 59.4023438,44.0800781 C61.1871084,42.3719134 77.0395508,31.2178814 77.0395508,30.1010742 C77.0395508,29.644898 77.0391066,29.9910722 77.0391066,29.9910722 C77.0175086,28.3391486 75.6568485,27 73.9930679,27 L21.0069321,27 Z\" id=\"Rectangle-95\" fill=\"#F3F3F3\" sketch:type=\"MSShapeGroup\"></path>\n" +
   "                          <path d=\"M17.7634277,31.0032813 L46.7917565,50.276875 L75.0556641,31.3201563 L46.5782176,55.1035938 L17.7634277,31.0032813 Z\" id=\"Path-1\" fill=\"#D8D8D8\" sketch:type=\"MSShapeGroup\"></path>\n" +
@@ -293,7 +330,7 @@ angular.module("signin-modal.html", []).run(["$templateCache", function($templat
   "          <div class=\"alert alert-danger\" ng-show=\"form.user.$error.invalidKey\" ng-bind-html=\"'incorrectToken' | i18n\"></div>\n" +
   "          <div class=\"remember-me-token checkbox\">\n" +
   "            <input id=\"remember-me-token\" ng-model=\"user.rememberMe\" type=\"checkbox\" name=\"rememberMe\" tabindex=\"7\">\n" +
-  "            <label for=\"remember-me-token\">\n" +
+  "            <label for=\"remember-me-token\" tabindex=\"7\">\n" +
   "              <div><span></span></div>\n" +
   "              <span ng-bind-html=\"'Remember me for one year' | i18n\"></span>\n" +
   "            </label>\n" +
@@ -317,7 +354,7 @@ angular.module("signin-modal.html", []).run(["$templateCache", function($templat
   "        <div class=\"alert alert-danger\" ng-show=\"form.user.$error.passwordSigninFailed\" ng-bind-html=\"'passLoginFailed' | i18n\"></div>\n" +
   "        <div class=\"remember-me-password checkbox\">\n" +
   "          <input id=\"remember-me-password\" ng-model=\"user.rememberMe\" type=\"checkbox\" name=\"rememberMe\" tabindex=\"10\">\n" +
-  "          <label for=\"remember-me-password\">\n" +
+  "          <label for=\"remember-me-password\" tabindex=\"10\">\n" +
   "            <div><span></span></div>\n" +
   "            <span ng-bind-html=\"'Remember me for one year' | i18n\"></span>\n" +
   "          </label>\n" +
@@ -329,7 +366,7 @@ angular.module("signin-modal.html", []).run(["$templateCache", function($templat
   "      </div>\n" +
   "      <hr>\n" +
   "      <footer class=\"help-footer\">\n" +
-  "        <p class=\"switch-back\">{{ 'you can switch to webmaker login' | i18n }}</p>\n" +
+  "        <!-- p class=\"switch-back\">{{ 'you can switch to webmaker login' | i18n }}</p -->\n" +
   "      </footer>\n" +
   "    </div>\n" +
   "\n" +
@@ -343,7 +380,7 @@ angular.module("signin-modal.html", []).run(["$templateCache", function($templat
   "            <g id=\"Page-1\" stroke=\"none\" stroke-width=\"1\" fill=\"none\" fill-rule=\"evenodd\" sketch:type=\"MSPage\">\n" +
   "              <g id=\"AC4\" sketch:type=\"MSArtboardGroup\" transform=\"translate(-126.000000, -92.000000)\">\n" +
   "                <g id=\"Mail-Icon\" sketch:type=\"MSLayerGroup\" transform=\"translate(126.000000, 92.000000)\">\n" +
-  "                    <circle id=\"Oval-1\" fill=\"#3FB58E\" sketch:type=\"MSShapeGroup\" cx=\"47\" cy=\"47\" r=\"47\"></circle>\n" +
+  "                    <circle id=\"Oval-1\" fill=\"#EB5054\" sketch:type=\"MSShapeGroup\" cx=\"47\" cy=\"47\" r=\"47\"></circle>\n" +
   "                    <rect id=\"Rectangle-1\" fill=\"#FFFFFF\" sketch:type=\"MSShapeGroup\" x=\"18\" y=\"27\" width=\"59\" height=\"41\" rx=\"3\"></rect>\n" +
   "                    <path d=\"M21.0069321,27 C19.3462494,27 17.9900756,28.3368135 17.9778938,29.9953973 C17.9778938,29.9953973 17.9712616,30.8538058 17.9707031,31.0256348 C17.9688241,31.6037734 44.3277476,50.7739169 44.3277476,50.7739169 C45.6547338,51.7409595 47.981989,52.0459954 49.4771883,51.3411914 C49.4771883,51.3411914 52.3180561,50.8603167 59.4023438,44.0800781 C61.1871084,42.3719134 77.0395508,31.2178814 77.0395508,30.1010742 C77.0395508,29.644898 77.0391066,29.9910722 77.0391066,29.9910722 C77.0175086,28.3391486 75.6568485,27 73.9930679,27 L21.0069321,27 Z\" id=\"Rectangle-95\" fill=\"#F3F3F3\" sketch:type=\"MSShapeGroup\"></path>\n" +
   "                    <path d=\"M17.7634277,31.0032813 L46.7917565,50.276875 L75.0556641,31.3201563 L46.5782176,55.1035938 L17.7634277,31.0032813 Z\" id=\"Path-1\" fill=\"#D8D8D8\" sketch:type=\"MSShapeGroup\"></path>\n" +
@@ -353,10 +390,6 @@ angular.module("signin-modal.html", []).run(["$templateCache", function($templat
   "        </svg>\n" +
   "        <p>{{ 'resetMessage' | i18n }}</p>\n" +
   "      </div>\n" +
-  "      <hr>\n" +
-  "        <footer class=\"help-footer\">\n" +
-  "          <p class=\"switch-back\">{{ 'you can switch to webmaker login' | i18n }}</p>\n" +
-  "        </footer>\n" +
   "    </div>\n" +
   "  </form>\n" +
   "</div>\n" +
