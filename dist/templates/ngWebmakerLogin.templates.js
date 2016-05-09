@@ -52,9 +52,8 @@ angular.module("join-webmaker-modal.html", []).run(["$templateCache", function($
   "    <div ng-show=\"currentState === MODALSTATE.inputUsername\">\n" +
   "      <div class=\"form-group\">\n" +
   "        <label for=\"pre-username\">{{ 'webmakerAuthChooseUsername' | i18n }}</label>\n" +
-  "        <label for=\"username\" class=\"hidden-xs-login\">webmaker.org/user/</label>\n" +
   "        <input ng-model=\"user.username\" name=\"username\" ng-change=\"validateUsername()\" class=\"form-control username\" autocomplete=\"off\" required autofocus tabindex=\"4\" focus-on=\"create-user-username\" maxlength=\"20\" minlength=\"1\">\n" +
-  "        <div class=\"visible-xs help-block text-center\">webmaker.org/user/<strong class=\"username-with-url\">{{user.username}}</strong></div>\n" +
+  "        <div class=\"visible-xs help-block text-center\"><strong class=\"username-with-url\">{{user.username}}</strong></div>\n" +
   "      </div>\n" +
   "      <div class=\"alert alert-danger\" ng-show=\"form.user.$error.invalidUsername\" ng-bind-html=\"'webmakerAuthUsernameInvalid' | i18n\"></div>\n" +
   "      <div class=\"alert alert-danger\" ng-show=\"form.user.$error.serverError\" ng-bind-html=\"'webmakerAuthServerError' | i18n\"></div>\n" +
