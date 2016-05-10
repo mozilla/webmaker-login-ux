@@ -34,7 +34,7 @@
       ng-click="close()" class="modal-title-right">{{ 'Done' | i18n }}</a>
   </h3>
 </div>
-<div class="modal-body">
+<div class="modal-body wm-login-ux">
   <form class="form" name="form.user" novalidate>
     <div class="alert alert-success" ng-show="passwordWasReset && currentState === MODALSTATE.enterUid" ng-bind-html="'Password Reset Success' | i18n"></div>
     <div class="alert alert-danger" ng-show="expiredLoginLink && currentState === MODALSTATE.enterUid" ng-bind-html="'Expired Login Link' | i18n"></div>

@@ -6,7 +6,7 @@
     <button ng-click="submitResetRequest()" ng-disabled="sendingRequest || !password.value || !password.confirmValue || !passwordsMatch || form.password.$error.passwordsMustMatch" class="modal-title-right btn-link" type="button" tabindex="3">{{ 'Submit' | i18n }}</button>
   </h3>
 </div>
-<div class="modal-body clearfix">
+<div class="modal-body clearfix wm-login-ux">
   <form class="form" name="form.password" novalidate>
 
     <div class="alert alert-danger" ng-show="form.password.$error.passwordsMustMatch" ng-bind-html="'passwords do not match' | i18n"></div>

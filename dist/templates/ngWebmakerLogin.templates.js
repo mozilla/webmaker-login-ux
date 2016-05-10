@@ -20,7 +20,7 @@ angular.module("join-webmaker-modal.html", []).run(["$templateCache", function($
   "    <a href=\"#\" ng-click=\"close()\" class=\"modal-title-right\">{{ 'Done' | i18n }}</a>\n" +
   "  </h3>\n" +
   "</div>\n" +
-  "<div class=\"modal-body\">\n" +
+  "<div class=\"modal-body wm-login-ux\">\n" +
   "  <form class=\"form\" name=\"form.user\" novalidate>\n" +
   "    <div ng-show=\"currentState === MODALSTATE.inputEmail\">\n" +
   "      <div class=\"form-group\">\n" +
@@ -144,7 +144,7 @@ angular.module("reset-modal.html", []).run(["$templateCache", function($template
   "    <button ng-click=\"submitResetRequest()\" ng-disabled=\"sendingRequest || !password.value || !password.confirmValue || !passwordsMatch || form.password.$error.passwordsMustMatch\" class=\"modal-title-right btn-link\" type=\"button\" tabindex=\"3\">{{ 'Submit' | i18n }}</button>\n" +
   "  </h3>\n" +
   "</div>\n" +
-  "<div class=\"modal-body clearfix\">\n" +
+  "<div class=\"modal-body clearfix wm-login-ux\">\n" +
   "  <form class=\"form\" name=\"form.password\" novalidate>\n" +
   "\n" +
   "    <div class=\"alert alert-danger\" ng-show=\"form.password.$error.passwordsMustMatch\" ng-bind-html=\"'passwords do not match' | i18n\"></div>\n" +
@@ -215,7 +215,7 @@ angular.module("signin-modal.html", []).run(["$templateCache", function($templat
   "      ng-click=\"close()\" class=\"modal-title-right\">{{ 'Done' | i18n }}</a>\n" +
   "  </h3>\n" +
   "</div>\n" +
-  "<div class=\"modal-body\">\n" +
+  "<div class=\"modal-body wm-login-ux\">\n" +
   "  <form class=\"form\" name=\"form.user\" novalidate>\n" +
   "    <div class=\"alert alert-success\" ng-show=\"passwordWasReset && currentState === MODALSTATE.enterUid\" ng-bind-html=\"'Password Reset Success' | i18n\"></div>\n" +
   "    <div class=\"alert alert-danger\" ng-show=\"expiredLoginLink && currentState === MODALSTATE.enterUid\" ng-bind-html=\"'Expired Login Link' | i18n\"></div>\n" +
