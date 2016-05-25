@@ -57,10 +57,10 @@
 }
 @media screen and  (width: 1280px) and (height: 800px){
   .vrlogo {
-      margin-top: 209px !important;
+    margin-top: 209px !important;
   }
   .modal-description {
-      padding: 331px 154px !important;
+    padding: 331px 154px !important;
   }
 }
 
@@ -150,22 +150,22 @@
 * Header
 */
 .modal-header {
-    background: white;
-    height: 50px;
-    line-height: 50px;
-    padding: 0;
+  background: white;
+  height: 50px;
+  line-height: 50px;
+  padding: 0;
+  .close {
+    display: none;
+  }
+  @media (min-width: @wlux-screen-xs-min) {
     .close {
-      display: none;
+      display: block;
+      margin: 10px 0 0 0;
     }
-    @media (min-width: @wlux-screen-xs-min) {
-      .close {
-        display: block;
-        margin: 10px 0 0 0;
-      }
-      height: auto;
-      padding: 10px 30px 0 30px;
-      border-bottom-style: none;
-    }
+    height: auto;
+    padding: 10px 30px 0 30px;
+    border-bottom-style: none;
+  }
 }
 .modal-title {
   line-height: inherit;
@@ -460,8 +460,8 @@
       }
       input[type="checkbox"]:focus + label {
         div {
-            border: 2px solid #E1EBF1;
-            box-shadow: 0 0 3px @wlux-mediumGrey;
+          border: 2px solid #E1EBF1;
+          box-shadow: 0 0 3px @wlux-mediumGrey;
         }
       }
       input[type="checkbox"]:disabled + label {
@@ -527,8 +527,9 @@
 
     ul.password-strength {
       li {
-        color: #333;
+        color: #777;
         font-weight: 300;
+        line-height: normal;
       }
       li.invalid {
         color: @wlux-red;
@@ -584,22 +585,22 @@
 /* LOGIN PAGE */
 
 .wm-login-ux .form-control {
-    display: block;
-    width: 100%;
-    height: 37px;
-    padding: 6px 0px;
-    font-size: 10pt;
-    line-height: 1.428571;
-    color: #FFF;
-    background-color: transparent;
-    background-image: none;
-    border: 0;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.2);
-    border-radius: 0;
-    -webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,0.075);
-    box-shadow: 0px;
-    -webkit-transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s;
-    transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s;
+  display: block;
+  width: 100%;
+  height: 37px;
+  padding: 6px 0px;
+  font-size: 10pt;
+  line-height: 1.428571;
+  color: #FFF;
+  background-color: transparent;
+  background-image: none;
+  border: 0;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 0;
+  -webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,0.075);
+  box-shadow: 0px;
+  -webkit-transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s;
+  transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s;
 }
 
 .modal.in .modal-dialog {
@@ -630,7 +631,7 @@
   text-transform: uppercase;
   height: 100%;
   top: 0;
-  }
+}
 
 
 .modal-header {
@@ -653,9 +654,9 @@
 
 
 .fade.in {
-    opacity: 1;
-    background: url(https://cdn.videoremix.io/resources/bg-login-v4.jpeg) no-repeat center;
-    background-size: cover;
+  opacity: 1;
+  background: url(https://cdn.videoremix.io/resources/bg-login-v4.jpeg) no-repeat center;
+  background-size: cover;
 }
 
 .modal-content .modal-body .checkbox label div {
@@ -699,7 +700,7 @@ b, strong {
 
 .alert-danger {
   background-color: rgba(0,0,0,0.3);
-  }
+}
 
 .modal-content .alert {
   vertical-align: baseline;
@@ -727,21 +728,21 @@ b, strong {
   position: relative;
   width: 100%;
   height: 100%;
-  }
+}
 
 
 .modal-content .modal-body .checkbox label div span:after {
-    content: "";
-    position: absolute;
-    width: 17px;
-    height: 9px;
-    border-bottom: 3px solid @white;
-    border-left: 3px solid @white;
-    top: 9%;
-    -webkit-transform-origin: bottom left;
-    transform-origin: bottom left;
-    -webkit-transform: rotate(-45deg);
-    transform: rotate(-45deg);
+  content: "";
+  position: absolute;
+  width: 17px;
+  height: 9px;
+  border-bottom: 3px solid @white;
+  border-left: 3px solid @white;
+  top: 9%;
+  -webkit-transform-origin: bottom left;
+  transform-origin: bottom left;
+  -webkit-transform: rotate(-45deg);
+  transform: rotate(-45deg);
 }
 
 .modal-content .modal-body .checkbox label div {
@@ -749,7 +750,7 @@ b, strong {
 }
 
 .modal-content .modal-body .cta-links {
-    padding-top: 32px;
+  padding-top: 32px;
 }
 
 a {
@@ -758,15 +759,15 @@ a {
 }
 
 a:hover, a:focus {
-    color: #DDD;
-    text-decoration: none;
-    cursor: pointer;
+  color: #DDD;
+  text-decoration: none;
+  cursor: pointer;
 }
 
 .modal-content .modal-body .cta-links p {
-    display: block;
-    width: 100%;
-    margin: 22px 0 0 0;
+  display: block;
+  width: 100%;
+  margin: 22px 0 0 0;
 }
 
 #modal-introduction {
@@ -791,24 +792,24 @@ a:hover, a:focus {
 }
 
 .modal-description {
-    font-family: @font-family-sans-serif-v2;
-    color: #fff;
-    width: 50%;
-    padding: 358px 154px;
-    vertical-align: middle;
-    position: relative;
-    height: 100%;
-    margin-top: auto;
-    margin-bottom: auto;
-    float: left;
-    justify-content: center;
+  font-family: @font-family-sans-serif-v2;
+  color: #fff;
+  width: 50%;
+  padding: 358px 154px;
+  vertical-align: middle;
+  position: relative;
+  height: 100%;
+  margin-top: auto;
+  margin-bottom: auto;
+  float: left;
+  justify-content: center;
   b {
     font-weight: 600;
   }
 }
 
 p.subtitle-descrition {
-    font-weight: 600;
+  font-weight: 600;
 }
 
 /* MOBILE FIXES */
