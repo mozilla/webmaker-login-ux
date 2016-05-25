@@ -333,7 +333,6 @@
 }
 @media (min-width: 480px) {
   .modal-content .modal-body .enterToken .email-container {
-    display: -webkit-flex;
     display: -webkit-box;
     display: -ms-flexbox;
     display: flex;
@@ -345,7 +344,6 @@
 }
 @media (min-width: 480px) {
   .modal-content .modal-body .enterToken .mailIcon {
-    -webkit-flex: 1;
     -webkit-box-flex: 1;
         -ms-flex: 1;
             flex: 1;
@@ -359,7 +357,6 @@
 @media (min-width: 480px) {
   .modal-content .modal-body .enterToken .key-group {
     border-left: 1px solid #DDDDDD;
-    -webkit-flex: 3;
     -webkit-box-flex: 3;
         -ms-flex: 3;
             flex: 3;
@@ -451,11 +448,9 @@
 }
 .modal-content .modal-body .checkbox label {
   display: -webkit-box;
-  display: -webkit-flex;
   display: -ms-flexbox;
   display: flex;
   -webkit-box-align: center;
-  -webkit-align-items: center;
       -ms-flex-align: center;
           align-items: center;
 }
@@ -579,8 +574,9 @@
   font-weight: 400;
 }
 .modal-content .modal-body ul.password-strength li {
-  color: #333;
+  color: #777;
   font-weight: 300;
+  line-height: normal;
 }
 .modal-content .modal-body ul.password-strength li.invalid {
   color: #eb5d52;
@@ -825,7 +821,6 @@ a:focus {
   margin-bottom: auto;
   float: left;
   -webkit-box-pack: center;
-  -webkit-justify-content: center;
       -ms-flex-pack: center;
           justify-content: center;
 }

@@ -120,14 +120,14 @@ angular.module("join-webmaker-modal.html", []).run(["$templateCache", function($
 angular.module("modal-wrapper.html", []).run(["$templateCache", function($templateCache) {
  $templateCache.put("modal-wrapper.html",
   "<div class=\"modal-backdrop fade in\"></div>\n" +
-  "<div class=\"modal fade in\" style=\"display: block\">\n" +
+  "<div class=\"modal fade in\" style=\"display: block; z-index: 99999;\">\n" +
   "  <div class=\"modal-dialog\">\n" +
   "    <div class=\"modal-content\"></div>\n" +
   "  </div>\n" +
   "  <div class=\"vrlogo\"></div>\n" +
   "  <div class=\"modal-description\"><b>Cloud-Based. Personalization. No Rendering. </b><br>\n" +
-  "  <br>\n" +
-  "  VideoRemix is a dynamic & revolutionary video solution for cloud-based video creation, editing, & personalization. Create personalize videos with NO rendering!\n" +
+  "    <br>\n" +
+  "    VideoRemix is a dynamic & revolutionary video solution for cloud-based video creation, editing, & personalization. Create personalize videos with NO rendering!\n" +
   "  </div>\n" +
   "</div>\n" +
   "");
@@ -152,20 +152,25 @@ angular.module("reset-modal.html", []).run(["$templateCache", function($template
   "\n" +
   "    <div>\n" +
   "      <div class=\"form-group\">\n" +
+  "        <label for=\"value\">&nbsp;</label>\n" +
+  "        <input type=\"password\" name=\"value\" placeholder=\"{{ 'Set a Password' | i18n }}\"\n" +
+  "               class=\"form-control\" ng-model=\"password.value\" autocomplete=\"off\" required tabindex=\"1\" autofocus=\"true\"\n" +
+  "               ng-change=\"checkPasswordStrength(); checkPasswordsMatch(false);\"\n" +
+  "               ng-blur=\"checkPasswordStrength(true); checkPasswordsMatch(true);\">\n" +
+  "\n" +
+  "        <label for=\"confirmValue\">&nbsp;</label>\n" +
+  "        <input type=\"password\" name=\"confirmValue\" placeholder=\"{{ 'Confirm your password' | i18n }}\"\n" +
+  "               class=\"form-control\" ng-model=\"password.confirmValue\" autocomplete=\"off\" required tabindex=\"1\" autofocus=\"true\"\n" +
+  "               ng-change=\"checkPasswordsMatch(false)\"\n" +
+  "               ng-blur=\"checkPasswordsMatch(true)\">\n" +
+  "      </div>\n" +
+  "      <div class=\"form-group\">\n" +
   "        <p class=\"password-label\">{{ 'Minimum password requirements' | i18n }}</p>\n" +
   "        <ul class=\"list-unstyled password-strength\">\n" +
   "          <li id=\"eight-chars\" ng-class=\"{valid: eightCharsState === 'valid', invalid: eightCharsState === 'invalid', 'default': eightCharsState === 'default'}\">{{ 'At least 8 characters' | i18n }}</li>\n" +
   "          <li id=\"one-each-case\" ng-class=\"{valid: oneEachCaseState === 'valid', invalid: oneEachCaseState === 'invalid', 'default': oneEachCaseState === 'default'}\">{{ 'At least 1 upper and lower case character' | i18n }}</li>\n" +
   "          <li id=\"one-number\" ng-class=\"{valid: oneNumberState === 'valid', invalid: oneNumberState === 'invalid', 'default': oneNumberState === 'default'}\">{{ 'At least 1 number' | i18n }}</li>\n" +
   "        </ul>\n" +
-  "      </div>\n" +
-  "      <div class=\"form-group half-width\">\n" +
-  "        <label for=\"value\">{{ 'Set a Password' | i18n }}</label>\n" +
-  "        <input ng-model=\"password.value\" ng-change=\"checkPasswordStrength(); checkPasswordsMatch(false);\" ng-blur=\"checkPasswordStrength(true); checkPasswordsMatch(true);\" type=\"password\" class=\"form-control\" name=\"value\" autocomplete=\"off\" autofocus=\"true\" tabindex=\"1\" required>\n" +
-  "      </div>\n" +
-  "      <div class=\"form-group half-width\">\n" +
-  "        <label for=\"confirmValue\">{{ 'Confirm your password' | i18n }}</label>\n" +
-  "        <input ng-model=\"password.confirmValue\" ng-change=\"checkPasswordsMatch(false)\" ng-blur=\"checkPasswordsMatch(true)\"  type=\"password\" class=\"form-control\" name=\"confirmValue\" autocomplete=\"off\" tabindex=\"2\" required>\n" +
   "      </div>\n" +
   "      <div class=\"cta-links clearfix\">\n" +
   "        <button style=\"display: inline !important\" ng-click=\"submitResetRequest()\" ng-disabled=\"sendingRequest || !password.value || !password.confirmValue || !passwordsMatch || form.password.$error.passwordsMustMatch\" class=\"reset-password btn btn-primary hidden-xs-login\" type=\"button\" tabindex=\"3\">{{ 'Submit' | i18n }}</button>\n" +
