@@ -79,6 +79,14 @@
     "message": "Sign In",
     "description": "Header text for the sign in modal dialog"
   },
+  "Wrapper Title": {
+    "message": "Cloud-Based. Personalization. No Rendering.",
+    "description": ""
+  },
+  "Wrapper Subtitle": {
+    "message": "VideoRemix is a dynamic & revolutionary video solution for cloud-based video creation, editing, & personalization. Create personalize videos with NO rendering!",
+    "description": ""
+  },
   "Sign in":  {
     "message": "Sign In",
     "description": "Sign in Button text"
