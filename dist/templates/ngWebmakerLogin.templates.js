@@ -127,7 +127,7 @@ angular.module("modal-wrapper.html", []).run(["$templateCache", function($templa
   "  <div class=\"vrlogo\"></div>\n" +
   "  <div class=\"modal-description\"><b>Cloud-Based. Personalization. No Rendering. </b><br>\n" +
   "    <br>\n" +
-  "    VideoRemix is a dynamic & revolutionary video solution for cloud-based video creation, editing, & personalization. Create personalize videos with NO rendering!\n" +
+  "    We are a dynamic & revolutionary video solution for cloud-based video creation, editing, & personalization. Create personalized videos with NO rendering!\n" +
   "  </div>\n" +
   "</div>\n" +
   "");
