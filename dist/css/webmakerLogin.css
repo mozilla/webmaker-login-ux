@@ -675,13 +675,13 @@
   height: 151px;
   margin-top: 239px;
   margin-left: 144px;
-  background: url(https://cdn.videoremix.io/resources/vr_icon_white.svg);
+  background: url('https://cdn.vidcloud.io/resources/vr_icon_white.svg');
   background-size: 97px;
   background-repeat: no-repeat;
 }
 .fade.in {
   opacity: 1;
-  background: url(https://cdn.videoremix.io/resources/bg-login-v4.jpeg) no-repeat center;
+  background: url('https://cdn.vidcloud.io/resources/bg-login-v4.jpeg') no-repeat center;
   background-size: cover;
 }
 .modal-content .modal-body .checkbox label div {

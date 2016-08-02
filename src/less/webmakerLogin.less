@@ -1,5 +1,6 @@
 @import url('https://fonts.googleapis.com/css?family=Muli');
 
+@cdnUrl: 'https://cdn.vidcloud.io';
 @wlux-screen-xs-min: 480px;
 @wlux-screen-xs-max: 479px;
 @wlux-green: #3fb58e;
@@ -647,7 +648,7 @@
   height: 151px;
   margin-top: 239px;
   margin-left: 144px;
-  background: url(https://cdn.videoremix.io/resources/vr_icon_white.svg);
+  background: url('@{cdnUrl}/resources/vr_icon_white.svg');
   background-size: 97px;
   background-repeat: no-repeat;
 }
@@ -655,7 +656,7 @@
 
 .fade.in {
   opacity: 1;
-  background: url(https://cdn.videoremix.io/resources/bg-login-v4.jpeg) no-repeat center;
+  background: url('@{cdnUrl}/resources/bg-login-v4.jpeg') no-repeat center;
   background-size: cover;
 }
 
