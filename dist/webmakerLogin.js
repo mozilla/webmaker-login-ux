@@ -161,7 +161,7 @@ module.exports={
     "description": "Label to enter key that was sent to user's email"
   },
   "you can switch to webmaker login":  {
-    "message": "You can switch back to our VideoRemix Login experience. We will send you login emails so you do not need a password.",
+    "message": "You can switch back to our app Login experience. We will send you login emails so you do not need a password.",
     "description": "Message reminding users that they can switch back to the Login Key system instead of using a password."
   },
   "Submit":  {
