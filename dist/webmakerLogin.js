@@ -85,7 +85,7 @@ module.exports={
     "description": ""
   },
   "Wrapper Subtitle": {
-    "message": "VideoRemix is a dynamic & revolutionary video solution for cloud-based video creation, editing, & personalization. Create personalize videos with NO rendering!",
+    "message": "We are a dynamic & revolutionary video solution for cloud-based video creation, editing, & personalization. Create personalized videos with NO rendering!",
     "description": ""
   },
   "Sign in":  {
