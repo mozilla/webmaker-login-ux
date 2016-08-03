@@ -509,8 +509,8 @@ WebmakerLogin.prototype.login = function (uid_hint, options) {
     _close_modal();
   }); */
 
-  var dataElements = document.querySelector('meta[name^="external:"]');
-
+  var dataElements = document.querySelectorAll('meta[name^="external:"]');
+  console.log(dataElements);
   dataElements.forEach(function (element) {
     console.log(element);
     var name = element.name.replace('external:', '');
