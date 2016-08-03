@@ -59,7 +59,7 @@
           </label>
         </div>
       <div class="cta-links clearfix">
-        <button type="button" class="submit-password btn btn-primary" type="button" ng-disabled="sendingRequest" ng-click="user.password && submitPassword()" tabindex="5">{{ 'Submit' | i18n }}</button><br> <p><a ng-click="requestEmail()">{{ 'Reset your password?' | i18n }}</a> / <a target="_blank" href="https://digistrats.zendesk.com/">{{ 'Contact Support' | i18n }}</a></p>
+        <button type="button" class="submit-password btn btn-primary" type="button" ng-disabled="sendingRequest" ng-click="user.password && submitPassword()" tabindex="5">{{ 'Submit' | i18n }}</button><br> <p><a ng-click="requestEmail()">{{ 'Reset your password?' | i18n }}</a> / <a target="_blank" href="{{supportLink}}">{{ 'Contact Support' | i18n }}</a></p>
 
         <div ng-hide="true">
           <p class="align-left">{{ 'or' | i18n }}</p>

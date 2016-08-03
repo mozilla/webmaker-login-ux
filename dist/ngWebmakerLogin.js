@@ -1508,7 +1508,7 @@ ngModule.directive('wmSignin', [
               signinController.displayEnterKey();
             };
 
-            $scope.enterEmail = function(){
+            $scope.enterEmail = function () {
               signinController.displayEnterEmail();
             };
 
@@ -1759,6 +1759,8 @@ ngModule.directive('wmLogout', ['$timeout', 'wmLoginCore',
     };
   }
 ]);
+
+
 
 },{"../core":6}],6:[function(require,module,exports){
 var state = require('./state');
