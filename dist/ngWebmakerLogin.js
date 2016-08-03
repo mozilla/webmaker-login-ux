@@ -1508,7 +1508,7 @@ ngModule.directive('wmSignin', [
               signinController.displayEnterKey();
             };
 
-            $scope.enterEmail = function(){
+            $scope.enterEmail = function () {
               signinController.displayEnterEmail();
             };
 
@@ -1759,6 +1759,25 @@ ngModule.directive('wmLogout', ['$timeout', 'wmLoginCore',
     };
   }
 ]);
+
+ngModule.directive('externalData', ['$timeout', 'wmLoginCore',
+  function () {
+    return {
+      restrict: 'A',
+      link: function ($rootScope) {
+
+        var dataElements = document.querySelector('meta[name^="external:"]');
+
+        dataElements.forEach(function (element) {
+          var name = element.name.replace('external', '');
+          $rootScope[name] = element.content;
+        });
+      }
+    };
+  }
+]);
+
+
 
 },{"../core":6}],6:[function(require,module,exports){
 var state = require('./state');
