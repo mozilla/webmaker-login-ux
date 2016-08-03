@@ -34,20 +34,7 @@ expressions.filters.i18n = function (key) {
   return lang_data['en-US'][key].message;
 };
 
-var ui = {
-  create: template.renderString(fs.readFileSync(__dirname + '/../../templates/join-webmaker-modal.html', {
-    encoding: 'utf8'
-  }), template_options),
-  login: template.renderString(fs.readFileSync(__dirname + '/../../templates/signin-modal.html', {
-    encoding: 'utf8'
-  }), template_options),
-  reset: template.renderString(fs.readFileSync(__dirname + '/../../templates/reset-modal.html', {
-    encoding: 'utf8'
-  }), template_options),
-  wrapper: template.renderString(fs.readFileSync(__dirname + '/../../templates/modal-wrapper.html', {
-    encoding: 'utf8'
-  }), template_options)
-};
+var ui;
 
 var _create_modal_fragment = function (template) {
   var range = document.createRange();
@@ -163,6 +150,21 @@ var WebmakerLogin = function WebmakerLogin(options) {
       template.addGlobal(varName, templateOptions[varName]);
     }
   }
+
+  ui = {
+    create: template.renderString(fs.readFileSync(__dirname + '/../../templates/join-webmaker-modal.html', {
+      encoding: 'utf8'
+    }), template_options),
+    login: template.renderString(fs.readFileSync(__dirname + '/../../templates/signin-modal.html', {
+      encoding: 'utf8'
+    }), template_options),
+    reset: template.renderString(fs.readFileSync(__dirname + '/../../templates/reset-modal.html', {
+      encoding: 'utf8'
+    }), template_options),
+    wrapper: template.renderString(fs.readFileSync(__dirname + '/../../templates/modal-wrapper.html', {
+      encoding: 'utf8'
+    }), template_options)
+  };
 
   wmLogin.on('verified', function (user) {
     this.emit('verified', user);
