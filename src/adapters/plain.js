@@ -202,6 +202,8 @@ WebmakerLogin.prototype.create = function (email_hint, username_hint, agreeToTer
     usernameWithUrl.textContent = scope.user.username;
   }
 
+
+
   scope.user.agree = agreeToTerms_hint;
 
   controller.on('sendingRequest', function (state) {
@@ -291,6 +293,15 @@ WebmakerLogin.prototype.create = function (email_hint, username_hint, agreeToTer
     el.addEventListener('click', function () {
       controller.submitUser(scope.user);
     });
+  });
+
+  var dataElements = document.querySelectorAll('meta[name^="external:"]');
+  console.log(dataElements);
+  dataElements.forEach(function (element) {
+    console.log(element);
+    var name = element.name.replace('external:', '');
+    scope[name] = element.content;
+    console.log(scope[name], 'current var', scope, '$rootScope');
   });
 
   _run_expressions(modal_fragment, scope);
@@ -508,15 +519,6 @@ WebmakerLogin.prototype.login = function (uid_hint, options) {
   document.querySelector('body > div.modal').addEventListener("click", function () {
     _close_modal();
   }); */
-
-  var dataElements = document.querySelectorAll('meta[name^="external:"]');
-  console.log(dataElements);
-  dataElements.forEach(function (element) {
-    console.log(element);
-    var name = element.name.replace('external:', '');
-    scope[name] = element.content;
-    console.log(scope[name], 'current var', scope, '$rootScope');
-  });
 
   controller.start();
 };
