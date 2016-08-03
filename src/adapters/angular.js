@@ -633,23 +633,4 @@ ngModule.directive('wmLogout', ['$timeout', 'wmLoginCore',
   }
 ]);
 
-ngModule.directive('externalData', ['$timeout', 'wmLoginCore',
-  function () {
-    return {
-      restrict: 'A',
-      link: function ($rootScope) {
-
-        var dataElements = document.querySelector('meta[name^="external:"]');
-
-        dataElements.forEach(function (element) {
-          console.log(element);
-          var name = element.name.replace('external:', '');
-          $rootScope[name] = element.content;
-          console.log($rootScope[name], 'current var', $rootScope, '$rootScope');
-        });
-      }
-    };
-  }
-]);
-
 

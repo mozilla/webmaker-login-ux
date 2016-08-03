@@ -120,7 +120,7 @@ angular.module("join-webmaker-modal.html", []).run(["$templateCache", function($
 angular.module("modal-wrapper.html", []).run(["$templateCache", function($templateCache) {
  $templateCache.put("modal-wrapper.html",
   "<div class=\"modal-backdrop fade in\"></div>\n" +
-  "<div class=\"modal fade in\" style=\"display: block; z-index: 99999;\" external-data>\n" +
+  "<div class=\"modal fade in\" style=\"display: block; z-index: 99999;\">\n" +
   "  <div class=\"modal-dialog\">\n" +
   "    <div class=\"modal-content\"></div>\n" +
   "  </div>\n" +

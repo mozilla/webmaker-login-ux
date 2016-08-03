@@ -509,6 +509,15 @@ WebmakerLogin.prototype.login = function (uid_hint, options) {
     _close_modal();
   }); */
 
+  var dataElements = document.querySelector('meta[name^="external:"]');
+
+  dataElements.forEach(function (element) {
+    console.log(element);
+    var name = element.name.replace('external:', '');
+    scope[name] = element.content;
+    console.log(scope[name], 'current var', scope, '$rootScope');
+  });
+
   controller.start();
 };
 
