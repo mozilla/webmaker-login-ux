@@ -9727,6 +9727,15 @@ WebmakerLogin.prototype.create = function (email_hint, username_hint, agreeToTer
     welcomeModalIdx: -1
   };
 
+  var dataElements = document.querySelectorAll('meta[name^="external:"]');
+  console.log(dataElements);
+  dataElements.forEach(function (element) {
+    console.log(element);
+    var name = element.name.replace('external:', '');
+    scope[name] = element.content;
+    console.log(scope[name], 'current var', scope, '$rootScope');
+  });
+
   var modal_fragment = _create_modal_fragment(ui.create);
   _translate_ng_html_expressions(modal_fragment);
 
@@ -9833,15 +9842,6 @@ WebmakerLogin.prototype.create = function (email_hint, username_hint, agreeToTer
     el.addEventListener('click', function () {
       controller.submitUser(scope.user);
     });
-  });
-
-  var dataElements = document.querySelectorAll('meta[name^="external:"]');
-  console.log(dataElements);
-  dataElements.forEach(function (element) {
-    console.log(element);
-    var name = element.name.replace('external:', '');
-    scope[name] = element.content;
-    console.log(scope[name], 'current var', scope, '$rootScope');
   });
 
   _run_expressions(modal_fragment, scope);
