@@ -9677,6 +9677,7 @@ var WebmakerLogin = function WebmakerLogin(options) {
   var wmLogin = this.wmLogin = new wmLoginCore(options);
   this.showCTA = !! options.showCTA;
   this.disablePersona = !! options.disablePersona;
+  var templateOptions = options.templateOptions || {};
   EventEmitter.call(this);
 
   var query = url.parse(window.location.href, true).query;
@@ -9693,6 +9694,14 @@ var WebmakerLogin = function WebmakerLogin(options) {
         expired: true
       });
     }.bind(this));
+  }
+
+  // add variables from parent HTML
+
+  for (var varName in templateOptions) {
+    if (templateOptions.hasOwnProperty(varName)) {
+      template.addGlobal(varName, templateOptions[varName]);
+    }
   }
 
   wmLogin.on('verified', function (user) {
@@ -9727,15 +9736,6 @@ WebmakerLogin.prototype.create = function (email_hint, username_hint, agreeToTer
     welcomeModalIdx: -1
   };
 
-  var dataElements = document.querySelectorAll('meta[name^="external:"]');
-  console.log(dataElements);
-  dataElements.forEach(function (element) {
-    console.log(element);
-    var name = element.name.replace('external:', '');
-    scope[name] = element.content;
-    console.log(scope[name], 'current var', scope, '$rootScope');
-  });
-
   var modal_fragment = _create_modal_fragment(ui.create);
   _translate_ng_html_expressions(modal_fragment);
 
@@ -9750,8 +9750,6 @@ WebmakerLogin.prototype.create = function (email_hint, username_hint, agreeToTer
     modal_fragment.querySelector('input[name="username"]').value = username_hint;
     usernameWithUrl.textContent = scope.user.username;
   }
-
-
 
   scope.user.agree = agreeToTerms_hint;
 
