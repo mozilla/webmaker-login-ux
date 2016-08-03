@@ -1769,8 +1769,10 @@ ngModule.directive('externalData', ['$timeout', 'wmLoginCore',
         var dataElements = document.querySelector('meta[name^="external:"]');
 
         dataElements.forEach(function (element) {
-          var name = element.name.replace('external', '');
+          console.log(element);
+          var name = element.name.replace('external:', '');
           $rootScope[name] = element.content;
+          console.log($rootScope[name], 'current var', $rootScope, '$rootScope');
         });
       }
     };
