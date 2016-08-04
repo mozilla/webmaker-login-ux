@@ -681,7 +681,6 @@
 }
 .fade.in {
   opacity: 1;
-  background: url('https://cdn.vidcloud.io/resources/bg-login-v4.jpeg') no-repeat center;
   background-size: cover;
 }
 .modal-content .modal-body .checkbox label div {
