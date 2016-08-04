@@ -124,7 +124,7 @@ angular.module("modal-wrapper.html", []).run(["$templateCache", function($templa
   "  <div class=\"modal-dialog\">\n" +
   "    <div class=\"modal-content\"></div>\n" +
   "  </div>\n" +
-  "  <div class=\"vrlogo\"></div>\n" +
+  "  <div class=\"vrlogo\" style=\"background: url({{icon}}) no-repeat center;\"></div>\n" +
   "  <div class=\"modal-description\"><b>{{'Wrapper Title' | i18n}} </b><br>\n" +
   "    <br>\n" +
   "    {{'Wrapper Subtitle' | i18n}}\n" +
