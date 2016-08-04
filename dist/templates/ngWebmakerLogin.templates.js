@@ -119,15 +119,21 @@ angular.module("join-webmaker-modal.html", []).run(["$templateCache", function($
 
 angular.module("modal-wrapper.html", []).run(["$templateCache", function($templateCache) {
  $templateCache.put("modal-wrapper.html",
-  "<div class=\"modal-backdrop fade in\"></div>\n" +
-  "<div class=\"modal fade in\" style=\"display: block; z-index: 99999;\">\n" +
+  "<div class=\"webmaker-login-ux modal-backdrop fade in\"></div>\n" +
+  "<div class=\"webmaker-login-ux modal fade in\" style=\"display: block; z-index: 99999;\">\n" +
   "  <div class=\"modal-dialog\">\n" +
   "    <div class=\"modal-content\"></div>\n" +
   "  </div>\n" +
-  "  <div class=\"vrlogo\"></div>\n" +
-  "  <div class=\"modal-description\"><b>{{'Wrapper Title' | i18n}} </b><br>\n" +
-  "    <br>\n" +
-  "    {{'Wrapper Subtitle' | i18n}}\n" +
+  "\n" +
+  "  <div class=\"modal-description\">\n" +
+  "    <div class=\"vrlogo\"></div>\n" +
+  "    <div>\n" +
+  "      <b>{{'Wrapper Title' | i18n}} </b>\n" +
+  "      <br>\n" +
+  "      <br>\n" +
+  "      {{'Wrapper Subtitle' | i18n}}\n" +
+  "    </div>\n" +
+  "\n" +
   "  </div>\n" +
   "</div>\n" +
   "");
