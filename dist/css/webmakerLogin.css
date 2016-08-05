@@ -671,12 +671,14 @@
   height: 151px;
   background-size: 97px;
   background-repeat: no-repeat;
+  background-position: left center;
   position: relative;
   margin: 0 !important;
 }
 .fade.in {
   opacity: 1;
   background-size: cover;
+  background-repeat: no-repeat;
 }
 .modal-content .modal-body .checkbox label div {
   width: 17px !important;
