@@ -127,22 +127,6 @@ var WebmakerLogin = function WebmakerLogin(options) {
   var templateOptions = options.templateOptions || {};
   EventEmitter.call(this);
 
-  var query = url.parse(window.location.href, true).query;
-  if (query.uid && query.resetCode) {
-    this.request_password_reset(query.uid, query.resetCode);
-  } else if (query.uid && query.token) {
-    wmLogin.instantLogin(query.uid, query.token, query.validFor);
-    wmLogin.on('signedIn', function (user) {
-      this.emit('login', user);
-    }.bind(this));
-    wmLogin.on('signinFailed', function (uid) {
-      console.log("Instant signin failed for uid %s", uid);
-      this.login(uid, {
-        expired: true
-      });
-    }.bind(this));
-  }
-
   // add variables from parent HTML
 
   for (var varName in templateOptions) {
@@ -165,6 +149,22 @@ var WebmakerLogin = function WebmakerLogin(options) {
       encoding: 'utf8'
     }), template_options)
   };
+
+  var query = url.parse(window.location.href, true).query;
+  if (query.uid && query.resetCode) {
+    this.request_password_reset(query.uid, query.resetCode);
+  } else if (query.uid && query.token) {
+    wmLogin.instantLogin(query.uid, query.token, query.validFor);
+    wmLogin.on('signedIn', function (user) {
+      this.emit('login', user);
+    }.bind(this));
+    wmLogin.on('signinFailed', function (uid) {
+      console.log("Instant signin failed for uid %s", uid);
+      this.login(uid, {
+        expired: true
+      });
+    }.bind(this));
+  }
 
   wmLogin.on('verified', function (user) {
     this.emit('verified', user);
