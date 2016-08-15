@@ -152,7 +152,7 @@ var WebmakerLogin = function WebmakerLogin(options) {
 
   var query = url.parse(window.location.href, true).query;
   if (query.uid && query.resetCode) {
-    this.request_password_reset(query.uid, query.resetCode);
+    return this.request_password_reset(query.uid, query.resetCode);
   } else if (query.uid && query.token) {
     wmLogin.instantLogin(query.uid, query.token, query.validFor);
     wmLogin.on('signedIn', function (user) {
