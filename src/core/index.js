@@ -13,7 +13,7 @@ module.exports = function WebmakerLoginCore(options) {
       }
 
       try {
-        body = JSON.parse(body || '{}');
+        body = JSON.parse(body);
       } catch (ex) {
         return emitter.emit('error', 'could not parse json from verify route');
       }
