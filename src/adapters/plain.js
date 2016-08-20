@@ -34,7 +34,20 @@ expressions.filters.i18n = function (key) {
   return lang_data['en-US'][key].message;
 };
 
-var ui;
+var ui = {
+  create: template.renderString(fs.readFileSync(__dirname + '/../../templates/join-webmaker-modal.html', {
+    encoding: 'utf8'
+  }), template_options),
+  login: template.renderString(fs.readFileSync(__dirname + '/../../templates/signin-modal.html', {
+    encoding: 'utf8'
+  }), template_options),
+  reset: template.renderString(fs.readFileSync(__dirname + '/../../templates/reset-modal.html', {
+    encoding: 'utf8'
+  }), template_options),
+  wrapper: template.renderString(fs.readFileSync(__dirname + '/../../templates/modal-wrapper.html', {
+    encoding: 'utf8'
+  }), template_options)
+};
 
 var _create_modal_fragment = function (template) {
   var range = document.createRange();
@@ -124,31 +137,7 @@ var WebmakerLogin = function WebmakerLogin(options) {
   var wmLogin = this.wmLogin = new wmLoginCore(options);
   this.showCTA = !! options.showCTA;
   this.disablePersona = !! options.disablePersona;
-  var templateOptions = options.templateOptions || {};
   EventEmitter.call(this);
-
-  // add variables from parent HTML
-
-  for (var varName in templateOptions) {
-    if (templateOptions.hasOwnProperty(varName)) {
-      template.addGlobal(varName, templateOptions[varName]);
-    }
-  }
-
-  ui = {
-    create: template.renderString(fs.readFileSync(__dirname + '/../../templates/join-webmaker-modal.html', {
-      encoding: 'utf8'
-    }), template_options),
-    login: template.renderString(fs.readFileSync(__dirname + '/../../templates/signin-modal.html', {
-      encoding: 'utf8'
-    }), template_options),
-    reset: template.renderString(fs.readFileSync(__dirname + '/../../templates/reset-modal.html', {
-      encoding: 'utf8'
-    }), template_options),
-    wrapper: template.renderString(fs.readFileSync(__dirname + '/../../templates/modal-wrapper.html', {
-      encoding: 'utf8'
-    }), template_options)
-  };
 
   var query = url.parse(window.location.href, true).query;
   if (query.uid && query.resetCode) {
