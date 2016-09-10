@@ -149,8 +149,8 @@ var WebmakerLogin = function WebmakerLogin(options) {
   EventEmitter.call(this);
 
   var query = url.parse(window.location.href, true).query;
-  if (query.uid && query.resetCode) {
-    this.request_password_reset(query.uid, query.resetCode);
+  if (!query.uid && query.token) {
+    this.request_password_reset(query.token);
   } else if (query.uid && query.token) {
     wmLogin.instantLogin(query.uid, query.token, query.validFor);
     wmLogin.on('signedIn', function (user) {
@@ -615,7 +615,7 @@ WebmakerLogin.prototype.request_password_reset = function (uid, token) {
   });
 
   modal_fragment.querySelector('button[ng-click="submitResetRequest()"]').addEventListener('click', function (e) {
-    controller.submitResetRequest(uid, token, scope.password.value);
+    controller.submitResetRequest(token, scope.password.value);
   });
 
   _run_expressions(modal_fragment, scope);
@@ -624,7 +624,7 @@ WebmakerLogin.prototype.request_password_reset = function (uid, token) {
   _attach_close(modal);
   document.querySelector('body > div.modal > .modal-dialog > .modal-content > .modal-body > form.form > div > div.cta-links > button.reset-password').addEventListener("click", function (e) {
     if (e.target.disabled === false) {
-      controller.submitResetRequest(uid, token, scope.password.value);
+      controller.submitResetRequest(token, scope.password.value);
     } else {
       e.stopPropagation();
     }

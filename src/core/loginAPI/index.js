@@ -95,10 +95,9 @@ module.exports = function LoginAPI(options) {
     }, callback);
   }
 
-  function resetPassword(uid, resetCode, password, callback) {
+  function resetPassword(resetCode, password, callback) {
     doRequest(loginUrls.resetPassword, {
-      uid: uid,
-      resetCode: resetCode,
+      token: resetCode,
       newPassword: password
     }, callback);
   }
