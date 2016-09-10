@@ -2225,31 +2225,6 @@ function isUndefined(arg) {
 }
 
 },{}],7:[function(require,module,exports){
-if (typeof Object.create === 'function') {
-  // implementation from standard node.js 'util' module
-  module.exports = function inherits(ctor, superCtor) {
-    ctor.super_ = superCtor
-    ctor.prototype = Object.create(superCtor.prototype, {
-      constructor: {
-        value: ctor,
-        enumerable: false,
-        writable: true,
-        configurable: true
-      }
-    });
-  };
-} else {
-  // old school shim for old browsers
-  module.exports = function inherits(ctor, superCtor) {
-    ctor.super_ = superCtor
-    var TempCtor = function () {}
-    TempCtor.prototype = superCtor.prototype
-    ctor.prototype = new TempCtor()
-    ctor.prototype.constructor = ctor
-  }
-}
-
-},{}],8:[function(require,module,exports){
 // shim for using process in browser
 
 var process = module.exports = {};
@@ -2314,7 +2289,7 @@ process.chdir = function (dir) {
     throw new Error('process.chdir is not supported');
 };
 
-},{}],9:[function(require,module,exports){
+},{}],8:[function(require,module,exports){
 (function (global){
 /*! http://mths.be/punycode v1.2.4 by @mathias */
 ;(function(root) {
@@ -2825,7 +2800,7 @@ process.chdir = function (dir) {
 }(this));
 
 }).call(this,typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
-},{}],10:[function(require,module,exports){
+},{}],9:[function(require,module,exports){
 // Copyright Joyent, Inc. and other Node contributors.
 //
 // Permission is hereby granted, free of charge, to any person obtaining a
@@ -2911,7 +2886,7 @@ var isArray = Array.isArray || function (xs) {
   return Object.prototype.toString.call(xs) === '[object Array]';
 };
 
-},{}],11:[function(require,module,exports){
+},{}],10:[function(require,module,exports){
 // Copyright Joyent, Inc. and other Node contributors.
 //
 // Permission is hereby granted, free of charge, to any person obtaining a
@@ -2998,13 +2973,13 @@ var objectKeys = Object.keys || function (obj) {
   return res;
 };
 
-},{}],12:[function(require,module,exports){
+},{}],11:[function(require,module,exports){
 'use strict';
 
 exports.decode = exports.parse = require('./decode');
 exports.encode = exports.stringify = require('./encode');
 
-},{"./decode":10,"./encode":11}],13:[function(require,module,exports){
+},{"./decode":9,"./encode":10}],12:[function(require,module,exports){
 // Copyright Joyent, Inc. and other Node contributors.
 //
 // Permission is hereby granted, free of charge, to any person obtaining a
@@ -3713,7 +3688,32 @@ function isNullOrUndefined(arg) {
   return  arg == null;
 }
 
-},{"punycode":9,"querystring":12}],14:[function(require,module,exports){
+},{"punycode":8,"querystring":11}],13:[function(require,module,exports){
+if (typeof Object.create === 'function') {
+  // implementation from standard node.js 'util' module
+  module.exports = function inherits(ctor, superCtor) {
+    ctor.super_ = superCtor
+    ctor.prototype = Object.create(superCtor.prototype, {
+      constructor: {
+        value: ctor,
+        enumerable: false,
+        writable: true,
+        configurable: true
+      }
+    });
+  };
+} else {
+  // old school shim for old browsers
+  module.exports = function inherits(ctor, superCtor) {
+    ctor.super_ = superCtor
+    var TempCtor = function () {}
+    TempCtor.prototype = superCtor.prototype
+    ctor.prototype = new TempCtor()
+    ctor.prototype.constructor = ctor
+  }
+}
+
+},{}],14:[function(require,module,exports){
 module.exports = function isBuffer(arg) {
   return arg && typeof arg === 'object'
     && typeof arg.copy === 'function'
@@ -4310,7 +4310,7 @@ function hasOwnProperty(obj, prop) {
 }
 
 }).call(this,require('_process'),typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
-},{"./support/isBuffer":14,"_process":8,"inherits":7}],16:[function(require,module,exports){
+},{"./support/isBuffer":14,"_process":7,"inherits":13}],16:[function(require,module,exports){
 // Browser bundle of nunjucks 1.0.7 
 
 (function() {
@@ -9689,8 +9689,8 @@ var WebmakerLogin = function WebmakerLogin(options) {
   EventEmitter.call(this);
 
   var query = url.parse(window.location.href, true).query;
-  if (query.uid && query.resetCode) {
-    this.request_password_reset(query.uid, query.resetCode);
+  if (!query.uid && query.token) {
+    this.request_password_reset(query.token);
   } else if (query.uid && query.token) {
     wmLogin.instantLogin(query.uid, query.token, query.validFor);
     wmLogin.on('signedIn', function (user) {
@@ -10075,7 +10075,7 @@ WebmakerLogin.prototype._persona_login = function () {
   controller.authenticate();
 };
 
-WebmakerLogin.prototype.request_password_reset = function (uid, token) {
+WebmakerLogin.prototype.request_password_reset = function (token) {
   var controller = this.wmLogin.resetPassword();
   var scope = {
     form: {
@@ -10155,7 +10155,7 @@ WebmakerLogin.prototype.request_password_reset = function (uid, token) {
   });
 
   modal_fragment.querySelector('button[ng-click="submitResetRequest()"]').addEventListener('click', function (e) {
-    controller.submitResetRequest(uid, token, scope.password.value);
+    controller.submitResetRequest(token, scope.password.value);
   });
 
   _run_expressions(modal_fragment, scope);
@@ -10164,7 +10164,7 @@ WebmakerLogin.prototype.request_password_reset = function (uid, token) {
   _attach_close(modal);
   document.querySelector('body > div.modal > .modal-dialog > .modal-content > .modal-body > form.form > div > div.cta-links > button.reset-password').addEventListener("click", function (e) {
     if (e.target.disabled === false) {
-      controller.submitResetRequest(uid, token, scope.password.value);
+      controller.submitResetRequest(token, scope.password.value);
     } else {
       e.stopPropagation();
     }
@@ -10188,7 +10188,7 @@ WebmakerLogin.prototype.logout = function () {
 window.WebmakerLogin = WebmakerLogin;
 module.exports = WebmakerLogin;
 
-},{"../../locale/en_US/webmaker-login.json":1,"../core":19,"angular-expressions":2,"events":6,"nunjucks":16,"url":13,"util":15}],19:[function(require,module,exports){
+},{"../../locale/en_US/webmaker-login.json":1,"../core":19,"angular-expressions":2,"events":6,"nunjucks":16,"url":12,"util":15}],19:[function(require,module,exports){
 var state = require('./state');
 var LoginAPI = require('./loginAPI');
 var Emitter = require('./state/emitter');
@@ -10348,10 +10348,9 @@ module.exports = function LoginAPI(options) {
     }, callback);
   }
 
-  function resetPassword(uid, resetCode, password, callback) {
+  function resetPassword(resetCode, password, callback) {
     doRequest(loginUrls.resetPassword, {
-      uid: uid,
-      resetCode: resetCode,
+      token: resetCode,
       newPassword: password
     }, callback);
   }
@@ -10805,8 +10804,8 @@ module.exports = function ResetController(loginApi) {
     off: function (event, listener) {
       emitter.off(event, listener);
     },
-    passwordsMatch: function (password, confimValue, blur) {
-      if (validation.passwordsMatch(password, confimValue)) {
+    passwordsMatch: function (password, confirmValue, blur) {
+      if (validation.passwordsMatch(password, confirmValue)) {
         hideAlert(RESET_ALERTS.passwordsMustMatch);
         emit(RESET_EVENTS.checkConfirmPassword, true);
       } else {
@@ -10819,13 +10818,13 @@ module.exports = function ResetController(loginApi) {
     checkPasswordStrength: function (password, blur) {
       emit(RESET_EVENTS.passwordCheckResult, validation.checkPasswordStrength(password), blur);
     },
-    submitResetRequest: function (uid, resetCode, password) {
+    submitResetRequest: function (resetCode, password) {
       hideAlert(RESET_ALERTS.serverError);
       hideAlert(RESET_ALERTS.weakPassword);
       setRequestState(true);
-      loginApi.resetPassword(uid, resetCode, password, function (err, resp, body) {
+      loginApi.resetPassword(resetCode, password, function (err, resp) {
         setRequestState(false);
-        if (err || resp.status !== 200) {
+        if (resp.status !== 200) {
           if (resp.status === 400) {
             return displayAlert(RESET_ALERTS.weakPassword);
           }

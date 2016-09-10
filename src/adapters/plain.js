@@ -535,7 +535,7 @@ WebmakerLogin.prototype._persona_login = function () {
   controller.authenticate();
 };
 
-WebmakerLogin.prototype.request_password_reset = function (uid, token) {
+WebmakerLogin.prototype.request_password_reset = function (token) {
   var controller = this.wmLogin.resetPassword();
   var scope = {
     form: {
