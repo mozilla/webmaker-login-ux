@@ -43,8 +43,8 @@ module.exports = function ResetController(loginApi) {
     off: function (event, listener) {
       emitter.off(event, listener);
     },
-    passwordsMatch: function (password, confimValue, blur) {
-      if (validation.passwordsMatch(password, confimValue)) {
+    passwordsMatch: function (password, confirmValue, blur) {
+      if (validation.passwordsMatch(password, confirmValue)) {
         hideAlert(RESET_ALERTS.passwordsMustMatch);
         emit(RESET_EVENTS.checkConfirmPassword, true);
       } else {
@@ -57,13 +57,13 @@ module.exports = function ResetController(loginApi) {
     checkPasswordStrength: function (password, blur) {
       emit(RESET_EVENTS.passwordCheckResult, validation.checkPasswordStrength(password), blur);
     },
-    submitResetRequest: function (uid, resetCode, password) {
+    submitResetRequest: function (resetCode, password) {
       hideAlert(RESET_ALERTS.serverError);
       hideAlert(RESET_ALERTS.weakPassword);
       setRequestState(true);
-      loginApi.resetPassword(uid, resetCode, password, function (err, resp, body) {
+      loginApi.resetPassword(resetCode, password, function (err, resp) {
         setRequestState(false);
-        if (err || resp.status !== 200) {
+        if (resp.status !== 200) {
           if (resp.status === 400) {
             return displayAlert(RESET_ALERTS.weakPassword);
           }
@@ -71,8 +71,8 @@ module.exports = function ResetController(loginApi) {
         }
 
         analytics.event('Webmaker Password Reset Succeeded');
-
-        emit(RESET_EVENTS.resetSucceeded);
+        window.location = '/';
+        //emit(RESET_EVENTS.resetSucceeded);
       });
     }
   };

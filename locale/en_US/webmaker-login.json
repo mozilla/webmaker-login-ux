@@ -1,15 +1,15 @@
 {
   "webmakerAuthWelcome":  {
-    "message": "Welcome to Webmaker!",
-    "description": "Welcome message for the join Webmaker modal dialog. Displayed after successfully creating a new Webmaker account"
+    "message": "Welcome!",
+    "description": "Welcome message for the join modal dialog. Displayed after successfully creating a new account"
   },
   "webmakerAuthServerError":  {
-    "message": "An unknown error occurred on the server. Try your request again. If the problem persists, <a class=\"alert-link\" href=\"https://support.mozilla.org/kb/webmaker-account-help\" target=\"_\">get help</a>.",
+    "message": "An unknown error occurred on the server. Try your request again. If the problem persists, <a class=\"alert-link\" href=\"{{supportLink}}/\" target=\"_\">get help</a>.",
     "description": "Error message displayed if an error occurs on the server."
   },
   "webmakerAuthCreateWelcome":  {
-    "message": "Create a Webmaker account",
-    "description": "Header text for the join webmaker modal dialog"
+    "message": "Create An Account",
+    "description": "Header text for the join modal dialog"
   },
   "webmakerAuthChooseUsername":  {
     "message": "Choose A Username",
@@ -24,12 +24,12 @@
     "description": "Error message displayed when the username entered contains symbols that are not allowed."
   },
   "webmakerAuthMailingList":  {
-    "message": "Send me email updates about Webmaker and other Mozilla projects",
+    "message": "Send me email updates about and other projects",
     "description": "Message about opting in for a Mozilla mailing list"
   },
   "webmakerAuthAgreeToTerms":  {
-    "message": "I agree to Mozilla Webmaker's <a href='https://webmaker.org/terms'>Terms</a> and <a href='https://webmaker.org/privacy'>Privacy Policy</a>",
-    "description": "I agree to Mozilla Webmaker's terms and privacy policy."
+    "message": "I agree to <a href='#'>Terms</a> and <a href='#'>Privacy Policy</a>",
+    "description": "I agree to terms and privacy policy."
   },
   "webmakerAuthAgreeError":  {
     "message": "<i class=\"fa fa-times\"></i>  <strong>Oh snap!</strong> You must agree to our terms and conditions.",
@@ -37,7 +37,11 @@
   },
   "webmakerAuthCreateAccount":  {
     "message": "Create Account",
-    "description": "The button text for finishing the join Webmaker process."
+    "description": "The button text for finishing the join process."
+  },
+   "Back":  {
+    "message": "Back",
+    "description": "Back text"
   },
   "Cancel":  {
     "message": "Cancel",
@@ -48,8 +52,8 @@
     "description": "Label text for the email input"
   },
   "EmailOrUsername":  {
-    "message": "Email or Username",
-    "description": "Label text for the sign in input, asks for the username or email of the user's account."
+    "message": "Username (your email)",
+    "description": "Label text for the sign in input, asks for the email of the user's account."
   },
   "NotAnEmail":  {
     "message": "<i class=\"fa fa-times\"></i>  <strong>Uh Oh!</strong> That doesn't look like an email address.",
@@ -68,8 +72,20 @@
     "description": "Label text for selecting the preferred language for the user."
   },
   "Sign in to Webmaker":  {
-    "message": "Sign In To Webmaker",
+    "message": "Sign In",
     "description": "Header text for the sign in modal dialog"
+  },
+  "Sign in to VideoRemix":  {
+    "message": "Sign In",
+    "description": "Header text for the sign in modal dialog"
+  },
+  "Wrapper Title": {
+    "message": "Cloud-Based. Personalization. No Rendering.",
+    "description": ""
+  },
+  "Wrapper Subtitle": {
+    "message": "We are a dynamic & revolutionary video solution for cloud-based video creation, editing, & personalization. Create personalized videos with NO rendering!",
+    "description": ""
   },
   "Sign in":  {
     "message": "Sign In",
@@ -88,7 +104,7 @@
     "description": "Directs the user to check their email for a password reset link"
   },
   "resetRequestFailed":  {
-    "message": "<i class=\"fa fa-times\"></i> <strong>Uh oh!</strong> Something went wrong! Try requesting the password reset again. Or, <a class=\"alert-link\" href=\"https://support.mozilla.org/kb/webmaker-account-help\" target=\"_\">get help</a>.",
+    "message": "<i class=\"fa fa-times\"></i> <strong>Uh oh!</strong> Something went wrong! Try requesting the password reset again. Or, <a class=\"alert-link\" href=\"{{supportLink}}\" target=\"_\">get help</a>.",
     "description": "Error displayed if a password reset request fails."
   },
   "Password":  {
@@ -98,6 +114,14 @@
   "Forgot your password?":  {
     "message": "Forgot your password?",
     "description": "button text for the password reset function"
+  },
+  "Reset your password?":  {
+    "message": "Reset your password?",
+    "description": "link text for the password reset function"
+  },
+  "Click to Reset your password":  {
+    "message": "Click to Reset your password",
+    "description": "Link text for the password reset function"
   },
   "checkEmail":  {
     "message": "Check Your Email",
@@ -112,11 +136,11 @@
     "description": "Error message displayed when the input doesn't match a username or email"
   },
   "No account found for your uid":  {
-    "message": "<i class=\"fa fa-times\"></i> We couldn't find your username or email address. Did you mean to <a href=\"#\" ng-click=\"switchToSignup();\" class=\"alert-link\">create an account</a>? Trouble? <a class=\"alert-link\" href=\"https://support.mozilla.org/kb/webmaker-account-help\" target=\"_\">Get help</a>.",
-    "description": "Error message displayed when the given username or email doesn't have a Webmaker account and asks if they would like to sign up."
+    "message": "<i class=\"fa fa-times\"></i> We couldn't find your email address. Did you mean to <a href=\"#\" ng-click=\"switchToSignup();\" class=\"alert-link\">create an account</a>? Trouble? <a class=\"alert-link\" href=\"{{supportLink}}/\" target=\"_\">Get help</a>.",
+    "description": "Error message displayed when the given username or email doesn't have an account and asks if they would like to sign up."
   },
   "problem sending token":  {
-    "message": "<i class=\"fa fa-times\"></i> There was a problem sending a login key to you, please try again. <a class=\"alert-link\" href=\"https://support.mozilla.org/kb/webmaker-account-help\" target=\"_\">Get help</a>.",
+    "message": "<i class=\"fa fa-times\"></i> There was a problem sending a login key to you, please try again. <a class=\"alert-link\" href=\"{{supportLink}}\" target=\"_\">Get help</a>.",
     "description": "Error message displayed when the request for a login key fails for some reason."
   },
   "incorrectToken":  {
@@ -136,8 +160,8 @@
     "description": "Label to enter key that was sent to user's email"
   },
   "you can switch to webmaker login":  {
-    "message": "You can switch back to our Webmaker Login experience. We will send you login emails so you do not need a password.",
-    "description": "Message reminding users that they can switch back to the Webmaker Login Key system instead of using a password."
+    "message": "You can switch back to our app Login experience. We will send you login emails so you do not need a password.",
+    "description": "Message reminding users that they can switch back to the Login Key system instead of using a password."
   },
   "Submit":  {
     "message": "Submit",
@@ -152,12 +176,12 @@
     "description": "Text for the button that initiates a persona login"
   },
   "trouble with email":  {
-    "message": "Trouble with email? Check your spam or <a href=\"https://support.mozilla.org/kb/webmaker-account-help\" tabindex=\"5\" target=\"_\">get help</a>",
+    "message": "Trouble with email? Check your spam or <a href=\"{{supportLink}}\" tabindex=\"5\" target=\"_\">get help</a>",
     "description": "Text that allows users to get help"
   },
   "aboutWebmaker":  {
     "message": "Make your own web pages, interactive videos, remixes and mobile apps.",
-    "description": "Short description of Webmaker"
+    "description": "Short description"
   },
   "XRay-Goggles":  {
     "message": "X-Ray Goggles",
@@ -172,15 +196,15 @@
     "description": "Text for the button that takes the user to the X-Ray Goggles homepage"
   },
   "ExploreWebmaker":  {
-    "message": "Explore the rest of Webmaker",
-    "description": "Text for the button which takes the user to webmaker.org/explore"
+    "message": "Explore the rest",
+    "description": "Text for the button which takes the user to explore"
   },
   "Resources":  {
     "message": "Resources",
-    "description": "The Resources section of Webmaker"
+    "description": "The Resources section"
   },
   "AboutResources":  {
-    "message": "Teach and learn digital skills and web literacy. Webmaker Resources are full of fun things to discover, make and teach.",
+    "message": "Teach and learn digital skills and web literacy. Resources are full of fun things to discover, make and teach.",
     "description": "A short description about the Resources section"
   },
   "VisitResources":  {
@@ -200,7 +224,7 @@
     "description": "Label text for the password confirmation input"
   },
   "Reset Password":  {
-    "message": "Reset Password",
+    "message": "Click to Reset Password",
     "description": "Reset Password Modal title"
   },
   "Set a Password":  {
@@ -232,7 +256,7 @@
     "description": "a password must contain at least one number character"
   },
   "resetRequestFailed": {
-    "message": "<i class=\"fa fa-times\"></i>  <strong>Uh oh!</strong> There was a problem processing your request, please try again.",
+    "message": "<i class=\"fa fa-times\"></i>  <strong>Uh oh!</strong> There was a problem processing your request, Please enter your Email & try again.",
     "description": "Error message displayed if the reset request fails for some reason"
   },
   "Next": {
@@ -258,5 +282,9 @@
   "Expired Login Link": {
     "message": "Uh Oh! Your login link expired. Request a new email to sign in.",
     "description": "Error message displayed if a login link is expired"
+  },
+  "Contact Support": {
+    "message": "Contact Support",
+    "description": "Digital Zendesk Link"
   }
 }

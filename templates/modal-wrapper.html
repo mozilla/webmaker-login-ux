@@ -1,6 +1,17 @@
-<div class="modal-backdrop fade in"></div>
-<div class="modal fade in" style="display: block">
+<div class="webmaker-login-ux modal-backdrop fade in"></div>
+<div class="webmaker-login-ux modal fade in" style='display: block; z-index: 99999;  background-image: url("{{loginBgImage}}")'>
   <div class="modal-dialog">
     <div class="modal-content"></div>
+  </div>
+
+  <div class="modal-description">
+    <div class="vrlogo" style='background-image: url("{{loginLogo}}")'></div>
+    <div>
+      <b>{{'Wrapper Title' | i18n}} </b>
+      <br>
+      <br>
+      {{'Wrapper Subtitle' | i18n}}
+    </div>
+
   </div>
 </div>

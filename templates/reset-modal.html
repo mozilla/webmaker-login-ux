@@ -6,7 +6,7 @@
     <button ng-click="submitResetRequest()" ng-disabled="sendingRequest || !password.value || !password.confirmValue || !passwordsMatch || form.password.$error.passwordsMustMatch" class="modal-title-right btn-link" type="button" tabindex="3">{{ 'Submit' | i18n }}</button>
   </h3>
 </div>
-<div class="modal-body clearfix">
+<div class="modal-body clearfix wm-login-ux">
   <form class="form" name="form.password" novalidate>
 
     <div class="alert alert-danger" ng-show="form.password.$error.passwordsMustMatch" ng-bind-html="'passwords do not match' | i18n"></div>
@@ -15,6 +15,19 @@
 
     <div>
       <div class="form-group">
+        <label for="value">&nbsp;</label>
+        <input type="password" name="value" placeholder="{{ 'Set a Password' | i18n }}"
+               class="form-control" ng-model="password.value" autocomplete="off" required tabindex="1" autofocus="true"
+               ng-change="checkPasswordStrength(); checkPasswordsMatch(false);"
+               ng-blur="checkPasswordStrength(true); checkPasswordsMatch(true);">
+
+        <label for="confirmValue">&nbsp;</label>
+        <input type="password" name="confirmValue" placeholder="{{ 'Confirm your password' | i18n }}"
+               class="form-control" ng-model="password.confirmValue" autocomplete="off" required tabindex="1" autofocus="true"
+               ng-change="checkPasswordsMatch(false)"
+               ng-blur="checkPasswordsMatch(true)">
+      </div>
+      <div class="form-group">
         <p class="password-label">{{ 'Minimum password requirements' | i18n }}</p>
         <ul class="list-unstyled password-strength">
           <li id="eight-chars" ng-class="{valid: eightCharsState === 'valid', invalid: eightCharsState === 'invalid', 'default': eightCharsState === 'default'}">{{ 'At least 8 characters' | i18n }}</li>
@@ -22,16 +35,8 @@
           <li id="one-number" ng-class="{valid: oneNumberState === 'valid', invalid: oneNumberState === 'invalid', 'default': oneNumberState === 'default'}">{{ 'At least 1 number' | i18n }}</li>
         </ul>
       </div>
-      <div class="form-group half-width">
-        <label for="value">{{ 'Set a Password' | i18n }}</label>
-        <input ng-model="password.value" ng-change="checkPasswordStrength(); checkPasswordsMatch(false);" ng-blur="checkPasswordStrength(true); checkPasswordsMatch(true);" type="password" class="form-control" name="value" autocomplete="off" autofocus="true" tabindex="1" required>
-      </div>
-      <div class="form-group half-width">
-        <label for="confirmValue">{{ 'Confirm your password' | i18n }}</label>
-        <input ng-model="password.confirmValue" ng-change="checkPasswordsMatch(false)" ng-blur="checkPasswordsMatch(true)"  type="password" class="form-control" name="confirmValue" autocomplete="off" tabindex="2" required>
-      </div>
       <div class="cta-links clearfix">
-        <button ng-click="submitResetRequest()" ng-disabled="sendingRequest || !password.value || !password.confirmValue || !passwordsMatch || form.password.$error.passwordsMustMatch" class="reset-password btn btn-primary hidden-xs-login" type="button" tabindex="3">{{ 'Submit' | i18n }}</button>
+        <button style="display: inline !important" ng-click="submitResetRequest()" ng-disabled="sendingRequest || !password.value || !password.confirmValue || !passwordsMatch || form.password.$error.passwordsMustMatch" class="reset-password btn btn-primary hidden-xs-login" type="button" tabindex="3">{{ 'Submit' | i18n }}</button>
       </div>
     </div>
   </form>

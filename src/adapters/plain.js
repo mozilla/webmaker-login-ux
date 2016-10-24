@@ -34,20 +34,7 @@ expressions.filters.i18n = function (key) {
   return lang_data['en-US'][key].message;
 };
 
-var ui = {
-  create: template.renderString(fs.readFileSync(__dirname + '/../../templates/join-webmaker-modal.html', {
-    encoding: 'utf8'
-  }), template_options),
-  login: template.renderString(fs.readFileSync(__dirname + '/../../templates/signin-modal.html', {
-    encoding: 'utf8'
-  }), template_options),
-  reset: template.renderString(fs.readFileSync(__dirname + '/../../templates/reset-modal.html', {
-    encoding: 'utf8'
-  }), template_options),
-  wrapper: fs.readFileSync(__dirname + '/../../templates/modal-wrapper.html', {
-    encoding: 'utf8'
-  })
-};
+var ui;
 
 var _create_modal_fragment = function (template) {
   var range = document.createRange();
@@ -134,14 +121,36 @@ var _attach_close = function (modal) {
 };
 
 var WebmakerLogin = function WebmakerLogin(options) {
+  var templateOptions = options.templateOptions || {};
+  // add variables from parent HTML
+  for (var varName in templateOptions) {
+    if (templateOptions.hasOwnProperty(varName)) {
+      template.addGlobal(varName, templateOptions[varName]);
+    }
+  }
+  ui = {
+    create: template.renderString(fs.readFileSync(__dirname + '/../../templates/join-webmaker-modal.html', {
+      encoding: 'utf8'
+    }), template_options),
+    login: template.renderString(fs.readFileSync(__dirname + '/../../templates/signin-modal.html', {
+      encoding: 'utf8'
+    }), template_options),
+    reset: template.renderString(fs.readFileSync(__dirname + '/../../templates/reset-modal.html', {
+      encoding: 'utf8'
+    }), template_options),
+    wrapper: template.renderString(fs.readFileSync(__dirname + '/../../templates/modal-wrapper.html', {
+      encoding: 'utf8'
+    }), template_options)
+  };
   var wmLogin = this.wmLogin = new wmLoginCore(options);
   this.showCTA = !! options.showCTA;
   this.disablePersona = !! options.disablePersona;
+
   EventEmitter.call(this);
 
   var query = url.parse(window.location.href, true).query;
-  if (query.uid && query.resetCode) {
-    this.request_password_reset(query.uid, query.resetCode);
+  if (!query.uid && query.token) {
+    this.request_password_reset(query.token);
   } else if (query.uid && query.token) {
     wmLogin.instantLogin(query.uid, query.token, query.validFor);
     wmLogin.on('signedIn', function (user) {
@@ -317,7 +326,8 @@ WebmakerLogin.prototype.login = function (uid_hint, options) {
       checkEmail: 1,
       enterKey: 2,
       enterPassword: 3,
-      resetRequestSent: 4
+      resetRequestSent: 4,
+      enterEmail: 5,
     },
     currentState: 0,
     form: {
@@ -347,6 +357,12 @@ WebmakerLogin.prototype.login = function (uid_hint, options) {
 
   controller.on('displayEnterUid', function () {
     scope.currentState = scope.MODALSTATE.enterUid;
+    _run_expressions(modal, scope);
+    modal.querySelector('input[focus-on="login-uid"]').focus();
+  });
+
+  controller.on('displayEnterEmail', function () {
+    scope.currentState = scope.MODALSTATE.enterEmail;
     _run_expressions(modal, scope);
     modal.querySelector('input[focus-on="login-uid"]').focus();
   });
@@ -390,6 +406,11 @@ WebmakerLogin.prototype.login = function (uid_hint, options) {
   }.bind(this));
 
   modal_fragment.querySelector('input[name="uid"]').addEventListener('input', function (e) {
+    scope.user.uid = e.target.value;
+    _run_expressions(modal, scope);
+  });
+
+  modal_fragment.querySelector('input[name="myuid"]').addEventListener('input', function (e) {
     scope.user.uid = e.target.value;
     _run_expressions(modal, scope);
   });
@@ -441,6 +462,11 @@ WebmakerLogin.prototype.login = function (uid_hint, options) {
     controller.requestReset(scope.user.uid);
   });
 
+  modal_fragment.querySelector('a[ng-click="requestEmail()"]').addEventListener('click', function (event) {
+    event.preventDefault();
+    controller.requestEmail(scope.user.uid);
+  });
+
   modal_fragment.querySelector('a[ng-click="switchToSignup();"]').addEventListener('click', function (event) {
     event.preventDefault();
     _close_modal();
@@ -475,7 +501,7 @@ WebmakerLogin.prototype.login = function (uid_hint, options) {
   }.bind(this));
 
   modal_fragment.querySelector('input[ng-keyup="$event.keyCode === 13 && user.password && !sendingRequest && submitPassword()"]').addEventListener('keyup', function (event) {
-    if (event.keyCode === 13 && scope.user.password && !scope.sendingRequest) {
+    if (event.keyCode === 13 && !scope.sendingRequest) {
       controller.verifyPassword(scope.user.uid, scope.user.password, scope.user.rememberMe);
     }
   }.bind(this));
@@ -487,9 +513,10 @@ WebmakerLogin.prototype.login = function (uid_hint, options) {
   document.querySelector('body > div.modal > .modal-dialog').addEventListener("click", function (e) {
     e.stopPropagation();
   });
+  /* Prevent click modal to close
   document.querySelector('body > div.modal').addEventListener("click", function () {
     _close_modal();
-  });
+  }); */
 
   controller.start();
 };
@@ -508,7 +535,7 @@ WebmakerLogin.prototype._persona_login = function () {
   controller.authenticate();
 };
 
-WebmakerLogin.prototype.request_password_reset = function (uid, token) {
+WebmakerLogin.prototype.request_password_reset = function (token) {
   var controller = this.wmLogin.resetPassword();
   var scope = {
     form: {
@@ -588,19 +615,24 @@ WebmakerLogin.prototype.request_password_reset = function (uid, token) {
   });
 
   modal_fragment.querySelector('button[ng-click="submitResetRequest()"]').addEventListener('click', function (e) {
-    controller.submitResetRequest(uid, token, scope.password.value);
+    controller.submitResetRequest(token, scope.password.value);
   });
 
   _run_expressions(modal_fragment, scope);
   _open_modal(modal_fragment);
   var modal = document.querySelector('body > div.modal');
   _attach_close(modal);
-  document.querySelector('body > div.modal > .modal-dialog').addEventListener("click", function (e) {
-    e.stopPropagation();
+  document.querySelector('body > div.modal > .modal-dialog > .modal-content > .modal-body > form.form > div > div.cta-links > button.reset-password').addEventListener("click", function (e) {
+    if (e.target.disabled === false) {
+      controller.submitResetRequest(token, scope.password.value);
+    } else {
+      e.stopPropagation();
+    }
   });
+  /*
   document.querySelector('body > div.modal').addEventListener("click", function () {
     _close_modal();
-  });
+  }); */
 };
 
 WebmakerLogin.prototype.logout = function () {

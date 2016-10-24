@@ -25,7 +25,8 @@ module.exports = function SignInController(loginApi) {
     displayEnterKey: 'displayEnterKey',
     displayCheckEmail: 'displayCheckEmail',
     displayResetSent: 'displayResetSent',
-    signedIn: 'signedIn'
+    signedIn: 'signedIn',
+    displayEnterEmail: 'displayEnterEmail'
   };
 
   function emit() {
@@ -89,7 +90,7 @@ module.exports = function SignInController(loginApi) {
         }
 
         if (body.usePasswordLogin) {
-          return emit(SIGNIN_EVENTS.displayEnterPassword);
+          return false; //emit(SIGNIN_EVENTS.displayEnterPassword);
         }
 
         loginApi.sendLoginKey(uid, path, function sendLoginKeyCallback(err, resp, body) {
@@ -154,16 +155,24 @@ module.exports = function SignInController(loginApi) {
         emit(SIGNIN_EVENTS.signedIn, body.user);
       });
     },
+    requestEmail: function(uid) {
+      setRequestState(false);
+      emit(SIGNIN_EVENTS.displayEnterEmail);
+    },
     requestReset: function (uid) {
       setRequestState(true);
       loginApi.requestReset(uid, function requestResetCallback(err, resp, body) {
         setRequestState(false);
         if (err) {
           return displayAlert(SIGNIN_ALERTS.serverError);
+        } else {
+          hideAlert(SIGNIN_ALERTS.serverError);
         }
 
         if (!body.status) {
           return displayAlert(SIGNIN_ALERTS.resetRequestFailed);
+        } else {
+          hideAlert(SIGNIN_ALERTS.resetRequestFailed);
         }
 
         analytics.event('Webmaker Password Reset Requested');
